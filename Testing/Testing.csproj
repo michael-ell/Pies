@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FAF90E94-F25E-492B-91E3-D424432D5378}</ProjectGuid>
+    <ProjectGuid>{39E3C606-0DC7-469F-BCA3-F63144178E22}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Codell.Pies.Tests</RootNamespace>
-    <AssemblyName>Codell.Pies.Tests</AssemblyName>
+    <RootNamespace>Codell.Pies.Testing</RootNamespace>
+    <AssemblyName>Codell.Pies.Testing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
