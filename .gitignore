@@ -162,4 +162,6 @@ pip-log.txt
 # Mac crap
 .DS_Store
 
-packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40*/
+packages
+Web/Web.Debug.config
+Web/Web.Release.config
