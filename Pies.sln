@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{CA9630E7-3987-4259-8578-14271434F13A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Shared", ".Shared", "{BB99DFF5-7ED0-4F0C-AAB8-0F78B9A6F76E}"
+	ProjectSection(SolutionItems) = preProject
+		.Shared\ProductInfo.cs = .Shared\ProductInfo.cs
+		.Shared\VersionInfo.cs = .Shared\VersionInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{5B8AD3F1-8823-404B-BCCE-7E535D558AEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB2F718D-C645-42F3-AD5C-277F1B91ECA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{FAF90E94-F25E-492B-91E3-D424432D5378}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA9630E7-3987-4259-8578-14271434F13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9630E7-3987-4259-8578-14271434F13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9630E7-3987-4259-8578-14271434F13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9630E7-3987-4259-8578-14271434F13A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF90E94-F25E-492B-91E3-D424432D5378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF90E94-F25E-492B-91E3-D424432D5378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF90E94-F25E-492B-91E3-D424432D5378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF90E94-F25E-492B-91E3-D424432D5378}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA9630E7-3987-4259-8578-14271434F13A} = {5B8AD3F1-8823-404B-BCCE-7E535D558AEC}
+		{FAF90E94-F25E-492B-91E3-D424432D5378} = {BB2F718D-C645-42F3-AD5C-277F1B91ECA9}
+	EndGlobalSection
+EndGlobal
