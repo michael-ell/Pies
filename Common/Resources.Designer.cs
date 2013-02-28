@@ -22,7 +22,7 @@ namespace Codell.Pies.Common {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Codell.Pies.Common {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Codell.Pies.Common.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Codell.Pies.Common {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,43 @@ namespace Codell.Pies.Common {
         /// <summary>
         ///   Looks up a localized string similar to Cannot has the object.  The object is not serializable, mark it with [Serializable]..
         /// </summary>
-        internal static string CannotHashObject {
+        public static string CannotHashObject {
             get {
                 return ResourceManager.GetString("CannotHashObject", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find {0} in appSettings..
+        /// </summary>
+        public static string MissingAppSetting {
+            get {
+                return ResourceManager.GetString("MissingAppSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configuration section {0} is not configured..
+        /// </summary>
+        public static string MissingConfiguration {
+            get {
+                return ResourceManager.GetString("MissingConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find connection string named {0}..
+        /// </summary>
+        public static string MissingConnectionString {
+            get {
+                return ResourceManager.GetString("MissingConnectionString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load type through reflection: {0}..
         /// </summary>
-        internal static string ReflectionTypeLoaderError {
+        public static string ReflectionTypeLoaderError {
             get {
                 return ResourceManager.GetString("ReflectionTypeLoaderError", resourceCulture);
             }
@@ -81,7 +108,7 @@ namespace Codell.Pies.Common {
         /// <summary>
         ///   Looks up a localized string similar to ?.
         /// </summary>
-        internal static string Unknown {
+        public static string Unknown {
             get {
                 return ResourceManager.GetString("Unknown", resourceCulture);
             }
@@ -90,7 +117,7 @@ namespace Codell.Pies.Common {
         /// <summary>
         ///   Looks up a localized string similar to Could not find a value for the description &apos;{0}&apos;..
         /// </summary>
-        internal static string UnknownDescription {
+        public static string UnknownDescription {
             get {
                 return ResourceManager.GetString("UnknownDescription", resourceCulture);
             }
