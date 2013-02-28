@@ -9,5 +9,10 @@ namespace Codell.Pies.Common
             if (obj == null)
                 throw new ArgumentNullException(paramName);
         }
+
+        public static void NotWhitespace(string value, string paramName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
