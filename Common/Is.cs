@@ -37,7 +37,7 @@ namespace Codell.Pies.Common
         /// <returns></returns>
         public static bool IsEmpty<T>(this IEnumerable<T> value)
         {
-            return value == null || value.Count() == 0;
+            return value == null || !value.Any();
         }
 
         /// <summary>
