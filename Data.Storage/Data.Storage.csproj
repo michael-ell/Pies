@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EventStore">
+      <HintPath>..\..\..\WestJet\westjet.westnet.travel.mobile\Lib\Storage\EventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Ncqrs">
+      <HintPath>..\Lib\Ncqrs\Ncqrs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -54,7 +60,12 @@
     <Compile Include="Configuration\StorageConfigurationProviderBase.cs" />
     <Compile Include="Configuration\StorageSection.cs" />
     <Compile Include="Configuration\StorageSectionGroup.cs" />
+    <Compile Include="EventDispatcher.cs" />
+    <Compile Include="EventStore.cs" />
+    <Compile Include="NonPublishingEventBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StreamMappingExtensions.cs" />
+    <Compile Include="UnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

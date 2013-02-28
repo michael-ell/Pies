@@ -120,6 +120,9 @@
   <data name="CannotHashObject" xml:space="preserve">
     <value>Cannot has the object.  The object is not serializable, mark it with [Serializable].</value>
   </data>
+  <data name="ExistingUnitOfWork" xml:space="preserve">
+    <value>There is already a unit of work created for this context.</value>
+  </data>
   <data name="MissingAppSetting" xml:space="preserve">
     <value>Could not find {0} in appSettings.</value>
   </data>

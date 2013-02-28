@@ -70,6 +70,15 @@ namespace Codell.Pies.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is already a unit of work created for this context..
+        /// </summary>
+        public static string ExistingUnitOfWork {
+            get {
+                return ResourceManager.GetString("ExistingUnitOfWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find {0} in appSettings..
         /// </summary>
         public static string MissingAppSetting {
