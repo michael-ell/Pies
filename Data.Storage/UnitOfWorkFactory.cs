@@ -18,7 +18,7 @@ namespace Codell.Pies.Data.Storage
             }
 
             var store = NcqrsEnvironment.Get<IEventStore>();
-            //Allow mongo event store to dispatch events when commit is successful vs the unit of work
+            //Allow event store to dispatch events when commit is successful vs the unit of work
             var bus = new NonPublishingEventBus();
             var snapshotStore = NcqrsEnvironment.Get<ISnapshotStore>();
             var snapshottingPolicy = NcqrsEnvironment.Get<ISnapshottingPolicy>();
