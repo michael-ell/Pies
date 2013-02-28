@@ -72,6 +72,9 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Ncqrs">
+      <HintPath>..\Lib\Ncqrs\Ncqrs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -132,6 +135,17 @@
     <Compile Include="FluentFixtures\FixtureContextAware.cs" />
     <Compile Include="FluentFixtures\IFixtureContext.cs" />
     <Compile Include="FluentFixtures\New.cs" />
+    <Compile Include="Helpers\ActionExtensions.cs" />
+    <Compile Include="Helpers\AutofacContainer.cs" />
+    <Compile Include="Helpers\AutofacExtensions.cs" />
+    <Compile Include="Helpers\DateTimeExtensions.cs" />
+    <Compile Include="Helpers\EntityFactory.cs" />
+    <Compile Include="Helpers\FluentAssertionExtensions.cs" />
+    <Compile Include="Helpers\ObjectExtensions.cs" />
+    <Compile Include="Helpers\RouteValueDictionaryExtensions.cs" />
+    <Compile Include="Ncqrs\AggregateRootSpecBase.cs" />
+    <Compile Include="Ncqrs\EventHandlerSpecBase.cs" />
+    <Compile Include="Ncqrs\IPublishedEventsViewer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
