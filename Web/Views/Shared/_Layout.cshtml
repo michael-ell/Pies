@@ -1,0 +1,16 @@
+﻿@using StackExchange.Profiling
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>@RenderSection("PageTitle", required: true)</title>
+        @RenderSection("Styles", required: false)
+        <script type="text/javascript" src="../../Scripts/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="../../Scripts/jquery-ui-1.10.0.js"></script>
+@*        @MiniProfiler.RenderIncludes()*@
+        <script type="text/javascript"></script>
+        @RenderSection("Scripts", required: false)
+    </head>
+    <body>
+        @RenderBody()
+    </body>
+</html>

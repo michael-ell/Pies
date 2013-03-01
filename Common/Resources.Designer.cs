@@ -115,6 +115,15 @@ namespace Codell.Pies.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to -Select-.
+        /// </summary>
+        public static string SelectPrompt {
+            get {
+                return ResourceManager.GetString("SelectPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ?.
         /// </summary>
         public static string Unknown {

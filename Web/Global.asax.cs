@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using Codell.Pies.Common.Configuration;
+using Codell.Pies.Web.Configuration;
+using Elmah;
+using StackExchange.Profiling;
+using Web;
 
-namespace Web
+namespace Codell.Pies.Web
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -19,6 +22,63 @@ namespace Web
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            RegisterDependencyResolver();
+            RegisterViewEngines();
+            SetupProfiler();
+        }
+
+        private void RegisterDependencyResolver()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<AutofacConfigurationModule>();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
+        }
+
+        private void RegisterViewEngines()
+        {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+        }
+
+        private void SetupProfiler()
+        {
+            var ignored = MiniProfiler.Settings.IgnoredPaths.ToList();
+            ignored.Add("Glimpse.axd");
+            MiniProfiler.Settings.IgnoredPaths = ignored.ToArray();  
+        }
+
+        protected void Application_BeginRequest()
+        {
+            var store = new AppSettings();
+            if (store.Get<bool>(Keys.Profile))
+            {
+                MiniProfiler.Start();
+            }
+        }
+
+        protected void Application_EndRequest()
+        {
+            MiniProfiler.Stop();
+        }
+
+        protected void ErrorLog_Filtering(object sender, ExceptionFilterEventArgs e)
+        {
+            FilterError404(e);
+        }
+
+        protected void ErrorMail_Filtering(object sender, ExceptionFilterEventArgs e)
+        {
+            FilterError404(e);
+        }
+
+        private void FilterError404(ExceptionFilterEventArgs e)
+        {
+            if (e.Exception.GetBaseException() is HttpException)
+            {
+                var ex = (HttpException)e.Exception.GetBaseException();
+                if (ex.GetHttpCode() == 404)
+                    e.Dismiss();
+            }
         }
     }
 }

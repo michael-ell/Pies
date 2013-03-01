@@ -135,6 +135,9 @@
   <data name="ReflectionTypeLoaderError" xml:space="preserve">
     <value>Failed to load type through reflection: {0}.</value>
   </data>
+  <data name="SelectPrompt" xml:space="preserve">
+    <value>-Select-</value>
+  </data>
   <data name="Unknown" xml:space="preserve">
     <value>?</value>
   </data>
