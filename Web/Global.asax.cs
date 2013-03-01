@@ -2,14 +2,15 @@
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Codell.Pies.Common.Configuration;
+using Codell.Pies.Web.App_Start;
 using Codell.Pies.Web.Configuration;
 using Elmah;
 using StackExchange.Profiling;
-using Web;
 
 namespace Codell.Pies.Web
 {
@@ -22,6 +23,7 @@ namespace Codell.Pies.Web
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             RegisterDependencyResolver();
             RegisterViewEngines();
             SetupProfiler();
