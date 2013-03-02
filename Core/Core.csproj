@@ -35,6 +35,9 @@
     <Reference Include="Common.Logging">
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Ncqrs">
+      <HintPath>..\Lib\Ncqrs\Ncqrs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -51,11 +54,38 @@
     <Compile Include="..\.Shared\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Cqrs\CommandResult.cs" />
+    <Compile Include="Cqrs\CommandServiceExtensions.cs" />
+    <Compile Include="Cqrs\InMemoryEventBus.cs" />
+    <Compile Include="Cqrs\IRegisterEventHandlers.cs" />
+    <Compile Include="ValueTypes\BrokenRule.cs" />
+    <Compile Include="Domain\BusinessRuleException.cs" />
+    <Compile Include="ValueTypes\ContextualBrokenRules.cs" />
     <Compile Include="Domain\Pie.cs" />
+    <Compile Include="ValueTypes\Severity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\InMemoryRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
+    <Compile Include="Validation\AndRule.cs" />
+    <Compile Include="Validation\ConditionalRule.cs" />
+    <Compile Include="Validation\ContextualBrokenRules.cs" />
+    <Compile Include="Validation\IErrorProvider.cs" />
+    <Compile Include="Validation\InvalidRule.cs" />
+    <Compile Include="Validation\IRule.cs" />
+    <Compile Include="Validation\IValidatedRule.cs" />
+    <Compile Include="Validation\IValidationResult.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\IValidatorProvider.cs" />
+    <Compile Include="Validation\NullValidator.cs" />
+    <Compile Include="Validation\OrRule.cs" />
+    <Compile Include="Validation\RegularExpressionRule.cs" />
+    <Compile Include="Validation\Rule.cs" />
+    <Compile Include="Validation\RuleBase.cs" />
+    <Compile Include="Validation\RulesValidator.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
+    <Compile Include="Validation\ValidatorProvider.cs" />
+    <Compile Include="Validation\ValidRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

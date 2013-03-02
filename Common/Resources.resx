@@ -132,6 +132,9 @@
   <data name="MissingConnectionString" xml:space="preserve">
     <value>Could not find connection string named {0}.</value>
   </data>
+  <data name="OrRuleMessage" xml:space="preserve">
+    <value>At least one of the following conditions must be met: '{0}' or '{1}'</value>
+  </data>
   <data name="ReflectionTypeLoaderError" xml:space="preserve">
     <value>Failed to load type through reflection: {0}.</value>
   </data>

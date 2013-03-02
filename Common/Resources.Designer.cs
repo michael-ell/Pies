@@ -106,6 +106,15 @@ namespace Codell.Pies.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At least one of the following conditions must be met: &apos;{0}&apos; or &apos;{1}&apos;.
+        /// </summary>
+        public static string OrRuleMessage {
+            get {
+                return ResourceManager.GetString("OrRuleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load type through reflection: {0}..
         /// </summary>
         public static string ReflectionTypeLoaderError {
