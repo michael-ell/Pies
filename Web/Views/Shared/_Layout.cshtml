@@ -1,18 +1,24 @@
 ﻿@using Codell.Pies.Web.App_Start
 @using StackExchange.Profiling
 @using System.Web.Optimization
+@using Codell.Pies.Web.Extensions
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <title>@RenderSection("PageTitle", required: true)</title>
+        <meta charset="utf-8" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,FF=Edge;OtherUA=Edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
+        <title>@Html.ProductName()</title>
         @RenderSection("Styles", required: false)
+        @Scripts.Render(BundleConfig.Names.Styles)
         @Scripts.Render(BundleConfig.Names.Scripts)
         @MiniProfiler.RenderIncludes()
         <script type="text/javascript"></script>
         @RenderSection("Scripts", required: false)
     </head>
     <body>
+        <h1>What's in your Pie?</h1>
         @RenderBody()
     </body>
 </html>

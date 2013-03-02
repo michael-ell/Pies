@@ -2,6 +2,6 @@
 {
     public class ApplicationStorageConfigurationProvider : StorageConfigurationProviderBase, IApplicationStorageConfigurationProvider
     {
-        protected override string GroupName { get { return "Data.Storage.Application"; } }
+        protected override string GroupName { get { return "data.storage.application"; } }
     }
 }

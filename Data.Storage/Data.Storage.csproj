@@ -65,11 +65,10 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Configuration\ApplicationStorageConfigurationProvider.cs" />
-    <Compile Include="Configuration\AuditStorageConfigurationProvider.cs" />
     <Compile Include="Configuration\IApplicationStorageConfigurationProvider.cs" />
-    <Compile Include="Configuration\IAuditStorageConfigurationProvider.cs" />
     <Compile Include="Configuration\ModuleSection.cs" />
     <Compile Include="Configuration\StorageConfigurationProviderBase.cs" />
+    <Compile Include="Configuration\StorageModule.cs" />
     <Compile Include="Configuration\StorageSection.cs" />
     <Compile Include="Configuration\StorageSectionGroup.cs" />
     <Compile Include="EventDispatcher.cs" />

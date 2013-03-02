@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using Autofac;
+﻿using Autofac;
 using Autofac.Configuration;
-using Autofac.Core;
-using Codell.Pies.Common.Extensions;
+using Autofac.Integration.Mvc;
+using Codell.Pies.Data.Storage.Configuration;
+using Module = Autofac.Module;
 
 namespace Codell.Pies.Web.Configuration
 {
@@ -12,11 +11,9 @@ namespace Codell.Pies.Web.Configuration
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            var moduleTypes = AppDomain.CurrentDomain.GetProjectTypesImplementing(typeof(IModule));
-            foreach (var moduleType in moduleTypes.Where(moduleType => moduleType != typeof (AutofacConfigurationModule)))
-            {
-                builder.RegisterModule(Activator.CreateInstance(moduleType) as IModule);
-            }
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterModule<NcqrsModule>();
+            builder.RegisterModule<StorageModule>();
             builder.RegisterModule(new ConfigurationSettingsReader());
         }
     }

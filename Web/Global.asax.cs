@@ -4,7 +4,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Autofac;
 using Autofac.Integration.Mvc;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Web.App_Start;
@@ -19,7 +18,6 @@ namespace Codell.Pies.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -31,9 +29,8 @@ namespace Codell.Pies.Web
 
         private void RegisterDependencyResolver()
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<AutofacConfigurationModule>();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(builder.Build()));
+            var container = Configure.With<AutofacConfigurationModule>();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 
         private void RegisterViewEngines()
