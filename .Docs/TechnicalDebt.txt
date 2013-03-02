@@ -1,0 +1,1 @@
+- Do I need BrokenRule or is IRule good enough?  Who decides severity?  May lead to answer

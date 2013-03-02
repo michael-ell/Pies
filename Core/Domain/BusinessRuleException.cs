@@ -12,11 +12,10 @@ namespace Codell.Pies.Core.Domain
         {
         }
 
-        public BusinessRuleException(IEnumerable<string> messages, Severity severity)
-            : base(messages.Aggregate((m1, m2) => m1 + "\r\n" + m2))
+        public BusinessRuleException(IEnumerable<string> messages, Severity severity) : base(messages.Aggregate((m1, m2) => m1 + "\r\n" + m2))
         {
             Verify.NotNull(messages, "messages");
-            BrokenRules = messages.Select(m=>new BrokenRule(m, severity));
+            BrokenRules = messages.Select( m => new BrokenRule(m, severity) );
         }
 
         public BusinessRuleException(string message, Severity severity) : base(message)
