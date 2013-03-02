@@ -9,7 +9,7 @@ using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 using Ncqrs.Commanding.ServiceModel;
 using Ncqrs.Eventing.ServiceModel.Bus;
 
-namespace Codell.Pies.Core.Configuration
+namespace Codell.Pies.Web.Configuration
 {
     public class NcqrsModule : Module
     {
@@ -38,7 +38,6 @@ namespace Codell.Pies.Core.Configuration
             public static InMemoryEventBus CreateInstance(IComponentContext context)
             {
                 var bus = new InMemoryEventBus();
-                //var implementationTypes = typeof(BookingStartedEvent).Assembly.GetTypesImplementing(typeof(IEventHandler<>));
                 var implementationTypes = AppDomain.CurrentDomain.GetProjectTypesImplementing(typeof(IEventHandler<>));
 
                 foreach (var implementationType in implementationTypes)

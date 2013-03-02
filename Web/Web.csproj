@@ -69,6 +69,10 @@
     <Reference Include="MiniProfiler">
       <HintPath>..\packages\MiniProfiler.2.0.2\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
+    <Reference Include="Ncqrs, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Ncqrs\Ncqrs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -151,6 +155,9 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Configuration\AutofacConfigurationModule.cs" />
+    <Compile Include="Configuration\AutofacServiceLocator.cs" />
+    <Compile Include="Configuration\Configure.cs" />
+    <Compile Include="Configuration\NcqrsModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PieController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
