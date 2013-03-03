@@ -1,3 +1,5 @@
 - Do I need BrokenRule or is IRule good enough?  Who decides severity?  May lead to answer
 - Configuration specs not working
 - Get Sql Server working with integration tests (automap vs classmap)
+- port over existing tests for infrastructure
+- add test to ensure mapped commands are valid

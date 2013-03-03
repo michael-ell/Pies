@@ -79,6 +79,15 @@ namespace Codell.Pies.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Slice percent must be greater than 0 and less than or equal to 100..
+        /// </summary>
+        public static string InvalidPercentage {
+            get {
+                return ResourceManager.GetString("InvalidPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find {0} in appSettings..
         /// </summary>
         public static string MissingAppSetting {
@@ -111,6 +120,15 @@ namespace Codell.Pies.Common {
         public static string OrRuleMessage {
             get {
                 return ResourceManager.GetString("OrRuleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, 100% of the pie is accounted for..
+        /// </summary>
+        public static string PieAccountedFor {
+            get {
+                return ResourceManager.GetString("PieAccountedFor", resourceCulture);
             }
         }
         

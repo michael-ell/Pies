@@ -120,8 +120,14 @@
   <data name="CannotHashObject" xml:space="preserve">
     <value>Cannot has the object.  The object is not serializable, mark it with [Serializable].</value>
   </data>
+  <data name="PieAccountedFor" xml:space="preserve">
+    <value>Sorry, 100% of the pie is accounted for.</value>
+  </data>
   <data name="ExistingUnitOfWork" xml:space="preserve">
     <value>There is already a unit of work created for this context.</value>
+  </data>
+  <data name="InvalidPercentage" xml:space="preserve">
+    <value>Slice percent must be greater than 0 and less than or equal to 100.</value>
   </data>
   <data name="MissingAppSetting" xml:space="preserve">
     <value>Could not find {0} in appSettings.</value>

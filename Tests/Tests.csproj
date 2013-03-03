@@ -47,6 +47,10 @@
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.2.0.0.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Ncqrs, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Ncqrs\Ncqrs.dll</HintPath>
@@ -73,6 +77,14 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Core\Domain\PieSpecs.cs" />
+    <Compile Include="Core\Validation\ConditionalRuleSpecs.cs" />
+    <Compile Include="Core\Validation\InvalidRuleSpecs.cs" />
+    <Compile Include="Core\Validation\ItemToValidate.cs" />
+    <Compile Include="Core\Validation\RuleSpecs.cs" />
+    <Compile Include="Core\Validation\RulesValidatorSpecs.cs" />
+    <Compile Include="Core\Validation\ValidationResultSpecs.cs" />
+    <Compile Include="Core\Validation\ValidatorProviderSpecs.cs" />
+    <Compile Include="Core\Validation\ValidRuleSpecs.cs" />
     <Compile Include="Web\Configuration\ICommandServiceExtensions.cs" />
     <Compile Include="Web\Configuration\IEventBusExtensions.cs" />
     <Compile Include="Web\Configuration\NcqrsModuleSpecs.cs" />

@@ -1,3 +1,11 @@
-﻿<div>
-    Congrats, you just started a new pie!
+﻿@model Codell.Pies.Web.Models.PieModel
+<div>
+    <h3>Congrats, you just started a new pie!</h3>   
+    <div>
+    @foreach (var slice in Model.Slices)
+    {
+        @Html.Partial("_EditSlice", slice)  
+    }
+    </div>
+
 </div>

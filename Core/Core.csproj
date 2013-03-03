@@ -61,11 +61,13 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
+    <Compile Include="Commands\SlicePieCommand.cs" />
     <Compile Include="Commands\StartPieCommand.cs" />
     <Compile Include="Cqrs\CommandResult.cs" />
     <Compile Include="Cqrs\CommandServiceExtensions.cs" />
     <Compile Include="Cqrs\InMemoryEventBus.cs" />
     <Compile Include="Cqrs\IRegisterEventHandlers.cs" />
+    <Compile Include="Events\PieSlicedEvent.cs" />
     <Compile Include="Events\PieStartedEvent.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
