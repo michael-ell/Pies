@@ -12,8 +12,8 @@ namespace Codell.Pies.Web.App_Start
 
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle(Names.Styles).Include("~/Content/Styles/*.css"));
-            bundles.Add(new ScriptBundle(Names.Scripts).Include("~/Scripts/*.js"));
+            bundles.Add(new StyleBundle(Names.Styles).Include("~/content/styles/*.css"));
+            bundles.Add(new ScriptBundle(Names.Scripts).Include("~/scripts/*.js"));
         }
     }
 }

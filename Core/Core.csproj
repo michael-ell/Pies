@@ -67,6 +67,7 @@
     <Compile Include="Cqrs\InMemoryEventBus.cs" />
     <Compile Include="Cqrs\IRegisterEventHandlers.cs" />
     <Compile Include="Events\PieStartedEvent.cs" />
+    <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />
     <Compile Include="ValueTypes\ContextualBrokenRules.cs" />
