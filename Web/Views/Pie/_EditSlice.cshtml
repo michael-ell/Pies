@@ -1,7 +1,0 @@
-﻿@model Codell.Pies.Web.Models.SliceModel
-@using (Html.BeginForm("Slice", "Pie"))
-{
-    @Html.TextBoxFor(m => m.Percent) @:% @Html.TextBoxFor(m => m.Description)
-    @Html.HiddenFor(m => m.PieId)
-    <input type="submit" value="Add" />           
-}    

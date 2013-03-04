@@ -7,7 +7,7 @@ namespace Codell.Pies.Core.Domain
 {
     public class Pie : AggregateRootMappedByConvention
     {
-        private int _total;
+        private int _totalPercent;
 
         public Pie()
         {
@@ -23,18 +23,20 @@ namespace Codell.Pies.Core.Domain
 
         public void Slice(int percent, string description)
         {
-            if (percent < 0 || percent > 100)
+            const int maxPercentage = 100;
+            if (percent < 0 || percent > maxPercentage)
                 throw new BusinessRuleException(Resources.InvalidPercentage);
-            if (_total + percent > 100)
+            var proposed = _totalPercent + percent;
+            if (proposed > maxPercentage)
             {
                 throw new BusinessRuleException(Resources.PieAccountedFor);
             }
-            ApplyEvent(new PieSlicedEvent(percent, description));
+            ApplyEvent(new PieSlicedEvent(percent, description, maxPercentage - proposed));
         }
 
         protected void OnPieSliced(PieSlicedEvent @event)
         {
-            _total += @event.Percent;
+            _totalPercent += @event.Percent;
         }
     }
 }

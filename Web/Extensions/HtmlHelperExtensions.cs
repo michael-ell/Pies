@@ -106,5 +106,26 @@ namespace Codell.Pies.Web.Extensions
             var settings = new AppSettings();
             return settings.Get<string>(key);            
         }
+
+        public static MvcHtmlString TextBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, IgnoreHtmlFieldPrefix ignoreHtmlFieldPrefix)
+        {
+            if (ignoreHtmlFieldPrefix)
+            {
+                var pi = (PropertyInfo) ((MemberExpression) expression.Body).Member;
+                return htmlHelper.TextBoxFor(expression, new {pi.Name, Id = pi.Name});
+            }
+            return htmlHelper.TextBoxFor(expression);
+        }
+
+        public static MvcHtmlString HiddenFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, IgnoreHtmlFieldPrefix ignoreHtmlFieldPrefix)
+        {
+            if (ignoreHtmlFieldPrefix)
+            {
+                var pi = (PropertyInfo)((MemberExpression)expression.Body).Member;
+                return htmlHelper.HiddenFor(expression, new { pi.Name, Id = pi.Name });
+            }
+            return htmlHelper.HiddenFor(expression);
+        }
+
     }
 }

@@ -8,7 +8,7 @@ namespace Codell.Pies.Web.App_Start
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.MapHubs();
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

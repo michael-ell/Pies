@@ -19,7 +19,7 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
 
         protected override void When()
         {
-            // na, done in create
+            // na, done in create sut
         }
 
         [Observation]
@@ -34,6 +34,7 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
     {
         private string _description;
         private int _percent;
+        private int _expectedRemaining;
 
         protected override Pie CreateSut()
         {
@@ -44,6 +45,7 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         {
             _percent = 20;
             _description = "some description";
+            _expectedRemaining = 80;
         }
 
         protected override void When()
@@ -52,9 +54,21 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         }
 
         [Observation]
-        public void Then_should_announce_that_the_pie_has_been_sliced()
+        public void Then_should_announce_the_percent_of_the_slice()
         {
-            Verify<PieSlicedEvent>(e => e.Percent == _percent && e.Description == _description).WasPublished();
+            Verify<PieSlicedEvent>(e => e.Percent == _percent).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_that_the_description_for_the_slice()
+        {
+            Verify<PieSlicedEvent>(e => e.Description == _description).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_that_the_remaining_precentage_for_the_pie()
+        {
+            Verify<PieSlicedEvent>(e => e.RemainingPercent == _expectedRemaining).WasPublished();
         } 
     }
 

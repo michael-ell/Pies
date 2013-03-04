@@ -38,5 +38,11 @@ namespace Codell.Pies.Web.Controllers
             _commandService.Execute(new SlicePieCommand(model.PieId, model.Percent, model.Description));
             return new EmptyResult();
         }
+
+        [HttpGet]
+        public ActionResult GetSlices(Guid id)
+        {
+            return new EmptyResult();
+        }
     }
 }
