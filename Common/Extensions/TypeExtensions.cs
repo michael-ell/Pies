@@ -74,21 +74,21 @@ namespace Codell.Pies.Common.Extensions
 
         public static IEnumerable<Type> GetProjectTypesImplementing(this AppDomain domain, Type toFind)
         {
-            return domain.GetAllWestJetTypes().Where(type => type.Implements(toFind));
+            return domain.GetAllProjectTypes().Where(type => type.Implements(toFind));
         }
 
-        public static IEnumerable<Type> GetWestJetTypesHavingCustomAttribute(this AppDomain domain, Type toFind)
+        public static IEnumerable<Type> GetProjectTypesHavingCustomAttribute(this AppDomain domain, Type toFind)
         {
-            var allWestJetTypes = domain.GetAllWestJetTypes();
-            return allWestJetTypes.Where(type => Attribute.IsDefined(type, toFind));
+            var allProjectTypes = domain.GetAllProjectTypes();
+            return allProjectTypes.Where(type => Attribute.IsDefined(type, toFind));
         }
 
-        public static IEnumerable<Type> GetWestJetClassTypesWithinNamespace(this AppDomain domain, string ns)
+        public static IEnumerable<Type> GetProjectClassTypesWithinNamespace(this AppDomain domain, string ns)
         {
-            return domain.GetAllWestJetTypes().Where(type => string.Equals(type.Namespace, ns, StringComparison.OrdinalIgnoreCase) && type.IsClass);
+            return domain.GetAllProjectTypes().Where(type => string.Equals(type.Namespace, ns, StringComparison.OrdinalIgnoreCase) && type.IsClass);
         }
 
-        public static IEnumerable<Type> GetAllWestJetTypes(this AppDomain domain)
+        public static IEnumerable<Type> GetAllProjectTypes(this AppDomain domain)
         {
             return domain.GetAssemblies()
                          .Where(a => a.FullName.IndexOf(ProjectNamespace, StringComparison.OrdinalIgnoreCase) != -1)

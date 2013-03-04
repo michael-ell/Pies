@@ -76,6 +76,7 @@
     <Compile Include="..\.Shared\VersionInfo.cs">
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Core\Commands\MappedCommandsSpecs.cs" />
     <Compile Include="Core\Domain\PieSpecs.cs" />
     <Compile Include="Core\Validation\ConditionalRuleSpecs.cs" />
     <Compile Include="Core\Validation\InvalidRuleSpecs.cs" />
