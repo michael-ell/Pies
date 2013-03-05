@@ -180,9 +180,10 @@
     <Compile Include="Configuration\AutofacServiceLocator.cs" />
     <Compile Include="Configuration\Configure.cs" />
     <Compile Include="Configuration\NcqrsModule.cs" />
+    <Compile Include="Configuration\SignalRModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PieController.cs" />
-    <Compile Include="EventHandlers\MessageDispatcher.cs" />
+    <Compile Include="EventHandlers\MessengerHub.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\IgnoreHtmlFieldPrefix.cs" />
     <Compile Include="Global.asax.cs">

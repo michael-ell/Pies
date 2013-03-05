@@ -1,12 +1,20 @@
 ﻿@model Codell.Pies.Web.Models.CreatePieModel
 @section Scripts
 {
+    <script src="~/signalr/hubs" type="text/javascript"></script> 
     <script type="text/javascript">
         $(function() {
             $('#Name').blur(function() {
                 var form = $(this).closest('form');
                 $.post(form.attr('action'), form.serializeArray());
             });
+            var messenger = $.connection.messenger;
+
+            messenger.client.pieStarted = function(data) {
+                $('#message').text(data);
+            };
+
+            $.connection.hub.start();
         });
     </script>
 }
@@ -17,5 +25,6 @@
         @Html.TextBoxFor(m => m.Name) @: is made up of:
         @Html.HiddenFor(m => m.Id)
     }
+    <div id="message" class="important"></div>
 </div>
 
