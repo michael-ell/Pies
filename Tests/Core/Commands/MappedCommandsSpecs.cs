@@ -15,7 +15,7 @@ namespace Codell.Pies.Tests.Core.Commands.MappedCommandsSpecs
     {
         protected override void Given()
         {
-            AppDomain.CurrentDomain.Load(typeof (StartPieCommand).Assembly.FullName);
+            AppDomain.CurrentDomain.Load(typeof (CreatePieCommand).Assembly.FullName);
         }
 
         protected override void When()

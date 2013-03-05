@@ -20,28 +20,21 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult New()
+        public ActionResult Create()
         {
-            var id = Guid.NewGuid();            
-            _commandService.Execute(new StartPieCommand(id));
-            var model = new PieModel
-                            {
-                                Id = id,
-                                Slices = new List<SliceModel>{ new SliceModel {PieId = id} }
-                            };
-            return View(model);
+            return View(new CreatePieModel{Id = Guid.NewGuid()});
+        }
+
+        [HttpPost]
+        public void Create(CreatePieModel model)
+        {
+            _commandService.Execute(new CreatePieCommand(model.Id));            
         }
 
         [HttpPost]
         public ActionResult Slice(SliceModel model)
         {
             _commandService.Execute(new SlicePieCommand(model.PieId, model.Percent, model.Description));
-            return new EmptyResult();
-        }
-
-        [HttpGet]
-        public ActionResult GetSlices(Guid id)
-        {
             return new EmptyResult();
         }
     }

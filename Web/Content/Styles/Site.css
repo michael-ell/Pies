@@ -6,6 +6,10 @@
     text-align: center;
 }
 
-.loud {
+.loud, .important {
     font-weight: bold;
+}
+
+.important {
+    color: red;
 }

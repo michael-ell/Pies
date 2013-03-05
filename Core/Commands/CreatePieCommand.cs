@@ -6,11 +6,11 @@ using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 namespace Codell.Pies.Core.Commands
 {
     [MapsToAggregateRootConstructor(typeof(Pie))]
-    public class StartPieCommand : CommandBase
+    public class CreatePieCommand : CommandBase
     {
         public Guid Id { get; private set; }
 
-        public StartPieCommand(Guid id)
+        public CreatePieCommand(Guid id)
         {
             Id = id;
         }

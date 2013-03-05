@@ -28,7 +28,7 @@ namespace Codell.Pies.Web.Configuration.NcqrsModuleSpecs
         public void Then_all_commands_should_have_registered_command_executors()
         {
             var commandService = NcqrsEnvironment.Get<ICommandService>();
-            foreach (var cmdType in typeof(StartPieCommand).Assembly.GetTypes().Where(t => typeof(ICommand).IsAssignableFrom(t)))
+            foreach (var cmdType in typeof(CreatePieCommand).Assembly.GetTypes().Where(t => typeof(ICommand).IsAssignableFrom(t)))
             {
                 commandService.IsRegistered(cmdType).Should().BeTrue(string.Format("all command should have executors (missing executor for {0})", cmdType.Name));
             }

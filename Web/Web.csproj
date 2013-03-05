@@ -188,6 +188,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreatePieModel.cs" />
     <Compile Include="Models\PieModel.cs" />
     <Compile Include="Models\SliceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -277,8 +278,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Pie\New.cshtml" />
     <Content Include="Views\Pie\EditorTemplates\SliceModel.cshtml" />
+    <Content Include="Views\Pie\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

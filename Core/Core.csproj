@@ -62,7 +62,7 @@
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
     <Compile Include="Commands\SlicePieCommand.cs" />
-    <Compile Include="Commands\StartPieCommand.cs" />
+    <Compile Include="Commands\CreatePieCommand.cs" />
     <Compile Include="Cqrs\CommandResult.cs" />
     <Compile Include="Cqrs\CommandServiceExtensions.cs" />
     <Compile Include="Cqrs\InMemoryEventBus.cs" />

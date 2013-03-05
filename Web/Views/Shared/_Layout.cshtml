@@ -14,11 +14,18 @@
         @Styles.Render(BundleConfig.Names.Styles)
         @Scripts.Render(BundleConfig.Names.Scripts)
         @MiniProfiler.RenderIncludes()
-        <script type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                $(document).ajaxError(function (evnt, xhr) {
+                    $('#error').text(xhr.responseText);
+                });
+            });
+        </script>
         @RenderSection("Scripts", required: false)
     </head>
     <body>
         <h1>What's in your Pie?</h1>
         @RenderBody()
+        <div id="error" class="important"></div>
     </body>
 </html>
