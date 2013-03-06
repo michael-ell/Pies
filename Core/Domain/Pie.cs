@@ -16,10 +16,12 @@ namespace Codell.Pies.Core.Domain
         public Pie(Guid id, string name) : base(id)
         {
             ApplyEvent(new PieCreatedEvent(name));
+            Slice(100, string.Empty);
         }
 
         protected void OnPieStarted(PieCreatedEvent @event)
-        {}
+        {            
+        }
 
         public void Slice(int percent, string description)
         {

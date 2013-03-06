@@ -183,7 +183,8 @@
     <Compile Include="Configuration\SignalRModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PieController.cs" />
-    <Compile Include="EventHandlers\MessengerHub.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Hubs\PieHub.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\IgnoreHtmlFieldPrefix.cs" />
     <Compile Include="Global.asax.cs">
@@ -281,6 +282,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Pie\EditorTemplates\SliceModel.cshtml" />
     <Content Include="Views\Pie\Create.cshtml" />
+    <Content Include="Views\Pie\_EditableSlice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

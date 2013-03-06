@@ -36,6 +36,12 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         {
             Verify<PieCreatedEvent>().WasPublished();
         }
+
+        [Observation]
+        public void Then_should_fill_the_pie()
+        {
+            Verify<PieSlicedEvent>(e => e.Percent == 100 && e.Description.IsEmpty()).WasPublished();
+        }
     }
 
     [Concern(typeof (Pie))]
@@ -79,6 +85,8 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         {
             Verify<PieSlicedEvent>(e => e.RemainingPercent == _expectedRemaining).WasPublished();
         } 
+
+
     }
 
     [Concern(typeof(Pie))]

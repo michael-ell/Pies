@@ -8,9 +8,9 @@
                 var form = $(this).closest('form');
                 $.post(form.attr('action'), form.serializeArray());
             });
-            var messenger = $.connection.messenger;
+            var pie = $.connection.pie;
 
-            messenger.client.pieStarted = function(data) {
+            pie.client.sliced = function(data) {
                 $('#message').html(data);
             };
 

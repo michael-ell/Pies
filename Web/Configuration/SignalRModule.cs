@@ -10,7 +10,7 @@ namespace Codell.Pies.Web.Configuration
         {
             base.Load(builder);
 
-            builder.Register(c => GlobalHost.ConnectionManager.GetHubContext<MessengerHub>()).As<IHubContext>();
+            builder.Register(c => GlobalHost.ConnectionManager.GetHubContext<PieHub>()).As<IHubContext>();
         }
     }
 }
