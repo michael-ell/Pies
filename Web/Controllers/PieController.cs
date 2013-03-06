@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using Codell.Pies.Common;
 using Codell.Pies.Core.Commands;
@@ -28,7 +27,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpPost]
         public void Create(CreatePieModel model)
         {
-            _commandService.Execute(new CreatePieCommand(model.Id));            
+            _commandService.Execute(new CreatePieCommand(model.Id, model.Name));            
         }
 
         [HttpPost]

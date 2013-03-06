@@ -13,12 +13,12 @@ namespace Codell.Pies.Core.Domain
         {
         }
 
-        public Pie(Guid id) : base(id)
+        public Pie(Guid id, string name) : base(id)
         {
-            ApplyEvent(new PieStartedEvent());
+            ApplyEvent(new PieCreatedEvent(name));
         }
 
-        protected void OnPieStarted(PieStartedEvent @event)
+        protected void OnPieStarted(PieCreatedEvent @event)
         {}
 
         public void Slice(int percent, string description)

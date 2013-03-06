@@ -10,7 +10,7 @@ namespace Codell.Pies.Testing.Creators.Domain
         public PieCreator(IFixtureContext context) : base(context, null)
         {
             Id = Guid.NewGuid();
-            Creation = new Pie(Id);
+            Creation = new Pie(Id, Guid.NewGuid().ToString());
         }
     }
 }

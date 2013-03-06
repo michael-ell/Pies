@@ -12,9 +12,12 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
     [Concern(typeof (Pie))]
     public class When_creating_a_pie : AggregateRootSpecBase<Pie>
     {
+        private string _expectedName;
+
         protected override Pie CreateSut()
         {
-            return new Pie(Guid.NewGuid());
+            _expectedName = "xxxx";
+            return new Pie(Guid.NewGuid(), _expectedName);
         }
 
         protected override void When()
@@ -23,9 +26,15 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         }
 
         [Observation]
-        public void Then_should_announce_that_a_pie_was_started()
+        public void Then_should_announce_that_a_pie_was_created()
         {
-            Verify<PieStartedEvent>().WasPublished();
+            Verify<PieCreatedEvent>().WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_the_name_of_the_pie_that_was_created()
+        {
+            Verify<PieCreatedEvent>().WasPublished();
         }
     }
 

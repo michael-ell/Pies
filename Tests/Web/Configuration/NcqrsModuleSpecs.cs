@@ -38,7 +38,7 @@ namespace Codell.Pies.Web.Configuration.NcqrsModuleSpecs
         public void Then_all_event_handlers_in_the_core_should_be_registered_within_the_event_bus()
         {
             var bus = NcqrsEnvironment.Get<IEventBus>();
-            var handlerAssemblies = new List<Assembly> {typeof (PieStartedEvent).Assembly};
+            var handlerAssemblies = new List<Assembly> {typeof (PieCreatedEvent).Assembly};
             var handlerTypes = handlerAssemblies.SelectMany(a => a.GetTypes().SelectMany(type => type.GetImplementationsOf(typeof(IEventHandler<>)))).Distinct();
 
             foreach (var eventType in handlerTypes)

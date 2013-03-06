@@ -7,7 +7,7 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 namespace Codell.Pies.Web.EventHandlers
 {
     [HubName("messenger")]
-    public class MessengerHub : Hub, IEventHandler<PieStartedEvent>
+    public class MessengerHub : Hub, IEventHandler<PieCreatedEvent>
     {
         private readonly IHubContext _hubContext;
 
@@ -17,9 +17,9 @@ namespace Codell.Pies.Web.EventHandlers
             _hubContext = hubContext;
         }
 
-        public void Handle(IPublishedEvent<PieStartedEvent> evnt)
+        public void Handle(IPublishedEvent<PieCreatedEvent> evnt)
         {
-            _hubContext.Clients.All.pieStarted(evnt.EventSourceId);
+            _hubContext.Clients.All.pieStarted(string.Format("<div class='important'>{0}</div>", evnt.Payload.Name));
         }
     }
 }

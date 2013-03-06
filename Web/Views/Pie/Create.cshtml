@@ -11,7 +11,7 @@
             var messenger = $.connection.messenger;
 
             messenger.client.pieStarted = function(data) {
-                $('#message').text(data);
+                $('#message').html(data);
             };
 
             $.connection.hub.start();
@@ -25,6 +25,6 @@
         @Html.TextBoxFor(m => m.Name) @: is made up of:
         @Html.HiddenFor(m => m.Id)
     }
-    <div id="message" class="important"></div>
+    <div id="message"></div>
 </div>
 
