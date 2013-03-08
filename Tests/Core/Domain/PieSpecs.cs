@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Codell.Pies.Common;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
@@ -34,129 +35,125 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         [Observation]
         public void Then_should_announce_the_name_of_the_pie_that_was_created()
         {
-            Verify<PieCreatedEvent>().WasPublished();
+            Verify<PieCreatedEvent>(e => e.Name == _expectedName).WasPublished();
         }
 
         [Observation]
         public void Then_should_fill_the_pie()
         {
-            Verify<PieSlicedEvent>(e => e.Percent == 100 && e.Description.IsEmpty()).WasPublished();
-        }
+            Verify<PieSliceAddedEvent>(e => e.Percent == Pie.Max && e.Description.IsEmpty()).WasPublished();
+        }        
     }
 
-    [Concern(typeof (Pie))]
-    public class When_slicing_a_pie : AggregateRootSpecBase<Pie>
+    [Concern(typeof(Pie))]
+    public class When_updating_the_percentage_of_a_slice_and_the_percent_is_negative : AggregateRootSpecBase<Pie>
     {
-        private string _description;
-        private int _percent;
-        private int _expectedRemaining;
+        private Action _act;
+        private Guid _sliceId;
 
         protected override Pie CreateSut()
         {
-            return New.Domain().Pie();
+            var sut = New.Domain().Pie();
+            _sliceId = sut.SliceIds.First();
+            return sut;
+        }
+
+        protected override void When()
+        {
+            _act = () => Sut.UpdateSlicePercentage(_sliceId, -10);
+        }
+
+        [Observation]
+        public void Then_should_not_allow_the_slice_to_continue()
+        {
+            _act.ShouldThrow<BusinessRuleException>().WithMessage(Resources.InvalidPercentage);
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_updating_the_percentage_of_a_slice_and_the_percent_is_greater_than_100 : AggregateRootSpecBase<Pie>
+    {
+        private Action _act;
+        private Guid _sliceId;
+
+        protected override Pie CreateSut()
+        {
+            var sut = New.Domain().Pie();
+            _sliceId = sut.SliceIds.First();
+            return sut;
+        }
+
+        protected override void When()
+        {
+            _act = () => Sut.UpdateSlicePercentage(_sliceId, 101);
+        }
+
+        [Observation]
+        public void Then_should_not_allow_the_slice_to_continue()
+        {
+            _act.ShouldThrow<BusinessRuleException>().WithMessage(Resources.InvalidPercentage);
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_updating_the_percentage_of_a_slice : AggregateRootSpecBase<Pie>
+    {
+        private int _percent;
+        private Guid _sliceId;
+
+        protected override Pie CreateSut()
+        {
+            var sut = New.Domain().Pie();
+            _sliceId = sut.SliceIds.First();
+            return sut;
         }
 
         protected override void Given()
         {
             _percent = 20;
-            _description = "some description";
-            _expectedRemaining = 80;
         }
 
         protected override void When()
         {
-            Sut.Slice(_percent, _description);
+            Sut.UpdateSlicePercentage(_sliceId, _percent);
         }
 
         [Observation]
-        public void Then_should_announce_the_percent_of_the_slice()
+        public void Then_should_announce_slice_percent_was_updated()
         {
-            Verify<PieSlicedEvent>(e => e.Percent == _percent).WasPublished();
-        }
-
-        [Observation]
-        public void Then_should_announce_that_the_description_for_the_slice()
-        {
-            Verify<PieSlicedEvent>(e => e.Description == _description).WasPublished();
-        }
-
-        [Observation]
-        public void Then_should_announce_that_the_remaining_precentage_for_the_pie()
-        {
-            Verify<PieSlicedEvent>(e => e.RemainingPercent == _expectedRemaining).WasPublished();
-        } 
-
-
-    }
-
-    [Concern(typeof(Pie))]
-    public class When_slicing_a_pie_with_a_negative_percentage: AggregateRootSpecBase<Pie>
-    {
-        private Action _act;
-
-        protected override Pie CreateSut()
-        {
-            return New.Domain().Pie();
-        }
-
-        protected override void When()
-        {
-            _act = () => Sut.Slice(-1, "xxx");
-        }
-
-        [Observation]
-        public void Then_should_not_allow_the_slice_to_continue()
-        {
-            _act.ShouldThrow<BusinessRuleException>().WithMessage(Resources.InvalidPercentage);
+            Verify<SlicePercentageUpdatedEvent>(e => e.Percent == _percent && e.SliceId == _sliceId).WasPublished();
         }
     }
 
     [Concern(typeof(Pie))]
-    public class When_slicing_a_pie_with_a_percentage_greate_than_100 : AggregateRootSpecBase<Pie>
+    public class When_updating_the_percentage_of_a_slice_and_the_pie_is_no_longer_full : AggregateRootSpecBase<Pie>
     {
-        private Action _act;
+        private int _percent;
+        private Guid _sliceId;
+        private int _expectedPercent;
 
         protected override Pie CreateSut()
         {
-            return New.Domain().Pie();
-        }
-
-        protected override void When()
-        {
-            _act = () => Sut.Slice(101, "xxx");
-        }
-
-        [Observation]
-        public void Then_should_not_allow_the_slice_to_continue()
-        {
-            _act.ShouldThrow<BusinessRuleException>().WithMessage(Resources.InvalidPercentage);
-        }
-    }
-
-    [Concern(typeof(Pie))]
-    public class When_slicing_a_pie_that_is_already_has_100_percent_of_the_pie_accounted_for : AggregateRootSpecBase<Pie>
-    {
-        private Action _act;
-
-        protected override Pie CreateSut()
-        {
-            return New.Domain().Pie();
+            var sut = New.Domain().Pie();
+            _sliceId = sut.SliceIds.First();
+            return sut;
         }
 
         protected override void Given()
         {
-            Sut.Slice(100, "all accounted for");
+            _percent = 20;
+            _expectedPercent = 80;
         }
 
         protected override void When()
         {
-            _act = () => Sut.Slice(20, "my pie runneth over");
+            Sut.UpdateSlicePercentage(_sliceId, _percent);
         }
 
         [Observation]
-        public void Then_should_not_allow_the_slice_to_continue()
+        public void Then_should_add_another_slice_to_fill_the_pie()
         {
-            _act.ShouldThrow<BusinessRuleException>().WithMessage(Resources.PieAccountedFor);
+            Verify<PieSliceAddedEvent>(e => e.Percent == _expectedPercent && e.Description == string.Empty).WasPublished();
         }
     }
 }

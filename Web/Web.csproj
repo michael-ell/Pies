@@ -280,7 +280,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Pie\EditorTemplates\SliceModel.cshtml" />
     <Content Include="Views\Pie\Create.cshtml" />
     <Content Include="Views\Pie\_EditableSlice.cshtml" />
   </ItemGroup>

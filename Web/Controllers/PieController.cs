@@ -29,12 +29,5 @@ namespace Codell.Pies.Web.Controllers
         {
             _commandService.Execute(new CreatePieCommand(model.Id, model.Name));            
         }
-
-        [HttpPost]
-        public ActionResult Slice(SliceModel model)
-        {
-            _commandService.Execute(new SlicePieCommand(model.PieId, model.Percent, model.Description));
-            return new EmptyResult();
-        }
     }
 }

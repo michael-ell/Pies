@@ -4,19 +4,19 @@ using Ncqrs.Eventing.Sourcing;
 namespace Codell.Pies.Core.Events
 {
     [Serializable]
-    public class PieSlicedEvent : SourcedEvent
+    public class PieSliceAddedEvent : SourcedEvent
     {
         public int Percent { get; private set; }
 
         public string Description { get; private set; }
 
-        public int RemainingPercent { get; private set; }
+        public Guid SliceId { get; private set; }
 
-        public PieSlicedEvent(int percent, string description, int remainingPercent)
+        public PieSliceAddedEvent(int percent, string description, Guid sliceId)
         {
             Percent = percent;
             Description = description;
-            RemainingPercent = remainingPercent;
+            SliceId = sliceId;
         }
     }
 }

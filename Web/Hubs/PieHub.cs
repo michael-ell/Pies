@@ -10,7 +10,7 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 namespace Codell.Pies.Web.EventHandlers
 {
     [HubName("pie")]
-    public class PieHub : Hub, IEventHandler<PieSlicedEvent>
+    public class PieHub : Hub, IEventHandler<PieSliceAddedEvent>
     {
         private readonly IHubContext _hubContext;
         private readonly PieController _controller;
@@ -23,11 +23,11 @@ namespace Codell.Pies.Web.EventHandlers
             _controller = controller;
         }
 
-        public void Handle(IPublishedEvent<PieSlicedEvent> evnt)
+        public void Handle(IPublishedEvent<PieSliceAddedEvent> evnt)
         {
-            var model = new SliceModel { Description = evnt.Payload.Description, Percent = evnt.Payload.Percent, PieId = evnt.EventSourceId };
-            var html = _controller.Render("_EditableSlice", model);
-            _hubContext.Clients.All.sliced(html);
+            var model = new SliceModel { SliceId = evnt.Payload.SliceId, Percent = evnt.Payload.Percent, Description = evnt.Payload.Description, PieId = evnt.EventSourceId };
+            var view = _controller.Render("_EditableSlice", model);
+            _hubContext.Clients.All.sliced(view);
         }
     }
 }

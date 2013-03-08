@@ -61,14 +61,15 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
-    <Compile Include="Commands\SlicePieCommand.cs" />
     <Compile Include="Commands\CreatePieCommand.cs" />
+    <Compile Include="Commands\UpdateSlicePercentageCommand.cs" />
     <Compile Include="Cqrs\CommandResult.cs" />
     <Compile Include="Cqrs\CommandServiceExtensions.cs" />
     <Compile Include="Cqrs\InMemoryEventBus.cs" />
     <Compile Include="Cqrs\IRegisterEventHandlers.cs" />
-    <Compile Include="Events\PieSlicedEvent.cs" />
+    <Compile Include="Events\PieSliceAddedEvent.cs" />
     <Compile Include="Events\PieCreatedEvent.cs" />
+    <Compile Include="Events\SlicePercentageUpdatedEvent.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />
