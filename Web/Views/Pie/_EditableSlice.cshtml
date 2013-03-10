@@ -1,7 +1,11 @@
 ﻿@model Codell.Pies.Web.Models.SliceModel
-@using (Html.BeginForm("Slice", "Pie"))
-{
-    @Html.TextBoxFor(m => m.Percent) @:% @Html.TextBoxFor(m => m.Description)
+<div id='@Model.SliceId'>
+    @Html.TextBoxFor(m => m.Percent) @Html.TextBoxFor(m => m.Description)
     @Html.HiddenFor(m => m.PieId)
     @Html.HiddenFor(m => m.SliceId)
-}
+</div>
+<script type="text/javascript">
+    $('#Percent', $('#@Model.SliceId')).blur(function() {
+        $.post('@Url.Action("UpdateSlicePercentage")', {SliceId: '@Model.SliceId', Percent: $(this).val(), PieId: '@Model.PieId' });
+    })
+</script>

@@ -9,8 +9,11 @@ namespace Codell.Pies.Core.Domain
 {
     public class Pie : AggregateRootMappedByConvention
     {
-        private List<Slice> _slices;
         public const int Max = 100;
+
+        private List<Slice> _slices;
+
+        public IEnumerable<Slice> Slices { get { return _slices; } }
 
         public Pie()
         {
@@ -33,20 +36,21 @@ namespace Codell.Pies.Core.Domain
         {            
         }
 
-        private int Total { get { return _slices.Sum(slice => slice.Percent);  } }
+        private int Total { get { return Slices.Sum(slice => slice.Percent);  } }
 
         private int Remaining { get { return Max - Total; } }
 
-        public void UpdateSlicePercentage(Guid sliceId, int percent)
+        public void UpdateSlicePercentage(Guid sliceId, int newPercent)
         {
-            if (percent < 0 || percent > Max)
+            if (newPercent < 0 || newPercent > Max)
                 throw new BusinessRuleException(Resources.InvalidPercentage);
             //if (percent > Remaining)
             //{
             //    throw new BusinessRuleException(Resources.PieAccountedFor);
             //}
-            _slices.Single(slice => slice.Id == sliceId).Percent = percent;
-            ApplyEvent(new SlicePercentageUpdatedEvent(sliceId, percent));
+            var slice = Slices.Single(s => s.Id == sliceId);
+            if (slice.Percent == newPercent) return;
+            ApplyEvent(new SlicePercentageUpdatedEvent(sliceId, newPercent));
             if (Remaining > 0)
             {
                 AddSlice(Remaining, string.Empty);
@@ -54,36 +58,18 @@ namespace Codell.Pies.Core.Domain
         }
 
         protected void OnSlicePercentageUpdated(SlicePercentageUpdatedEvent @event)
-        {            
+        {
+            Slices.Single(s => s.Id == @event.SliceId).Percent = @event.Percent;
         }
 
         private void AddSlice(int percent, string description)
         {
-            ApplyEvent(new PieSliceAddedEvent(percent, description, CreateSliceId()));
+            ApplyEvent(new SliceAddedEvent(percent, description, Guid.NewGuid()));
         }
 
-        protected virtual Guid CreateSliceId()
-        {
-            return Guid.NewGuid();
-        }
-
-        protected void OnPieSliceAdded(PieSliceAddedEvent @event)
+        protected void OnSliceAdded(SliceAddedEvent @event)
         {
             _slices.Add(new Slice(@event.SliceId, @event.Percent, @event.Description));
-        }
-
-        private class Slice
-        {
-            public Slice(Guid id, int percent, string description)
-            {
-                Id = id;
-                Percent = percent;
-                Description = description;
-            }
-
-            public Guid Id { get; set; }
-            public int Percent { get; set; }
-            public string Description { get; set; }
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         [Observation]
         public void Then_should_fill_the_pie()
         {
-            Verify<PieSliceAddedEvent>(e => e.Percent == Pie.Max && e.Description.IsEmpty()).WasPublished();
+            Verify<SliceAddedEvent>(e => e.Percent == Pie.Max && e.Description.IsEmpty()).WasPublished();
         }        
     }
 
@@ -49,18 +49,15 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
     public class When_updating_the_percentage_of_a_slice_and_the_percent_is_negative : AggregateRootSpecBase<Pie>
     {
         private Action _act;
-        private Guid _sliceId;
 
         protected override Pie CreateSut()
         {
-            var sut = New.Domain().Pie();
-            _sliceId = sut.SliceIds.First();
-            return sut;
+            return New.Domain().Pie();
         }
 
         protected override void When()
         {
-            _act = () => Sut.UpdateSlicePercentage(_sliceId, -10);
+            _act = () => Sut.UpdateSlicePercentage(Sut.Slices.First().Id, -10);
         }
 
         [Observation]
@@ -74,18 +71,15 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
     public class When_updating_the_percentage_of_a_slice_and_the_percent_is_greater_than_100 : AggregateRootSpecBase<Pie>
     {
         private Action _act;
-        private Guid _sliceId;
 
         protected override Pie CreateSut()
         {
-            var sut = New.Domain().Pie();
-            _sliceId = sut.SliceIds.First();
-            return sut;
+            return New.Domain().Pie();
         }
 
         protected override void When()
         {
-            _act = () => Sut.UpdateSlicePercentage(_sliceId, 101);
+            _act = () => Sut.UpdateSlicePercentage(Sut.Slices.First().Id, 101);
         }
 
         [Observation]
@@ -99,13 +93,11 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
     public class When_updating_the_percentage_of_a_slice : AggregateRootSpecBase<Pie>
     {
         private int _percent;
-        private Guid _sliceId;
+        private Slice _slice;
 
         protected override Pie CreateSut()
         {
-            var sut = New.Domain().Pie();
-            _sliceId = sut.SliceIds.First();
-            return sut;
+            return New.Domain().Pie();
         }
 
         protected override void Given()
@@ -115,13 +107,14 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
 
         protected override void When()
         {
-            Sut.UpdateSlicePercentage(_sliceId, _percent);
+            _slice = Sut.Slices.First();
+            Sut.UpdateSlicePercentage(_slice.Id, _percent);
         }
 
         [Observation]
         public void Then_should_announce_slice_percent_was_updated()
         {
-            Verify<SlicePercentageUpdatedEvent>(e => e.Percent == _percent && e.SliceId == _sliceId).WasPublished();
+            Verify<SlicePercentageUpdatedEvent>(e => e.Percent == _percent && e.SliceId == _slice.Id).WasPublished();
         }
     }
 
@@ -129,14 +122,11 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
     public class When_updating_the_percentage_of_a_slice_and_the_pie_is_no_longer_full : AggregateRootSpecBase<Pie>
     {
         private int _percent;
-        private Guid _sliceId;
         private int _expectedPercent;
 
         protected override Pie CreateSut()
         {
-            var sut = New.Domain().Pie();
-            _sliceId = sut.SliceIds.First();
-            return sut;
+            return New.Domain().Pie();
         }
 
         protected override void Given()
@@ -147,13 +137,40 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
 
         protected override void When()
         {
-            Sut.UpdateSlicePercentage(_sliceId, _percent);
+            Sut.UpdateSlicePercentage(Sut.Slices.First().Id, _percent);
         }
 
         [Observation]
         public void Then_should_add_another_slice_to_fill_the_pie()
         {
-            Verify<PieSliceAddedEvent>(e => e.Percent == _expectedPercent && e.Description == string.Empty).WasPublished();
+            Verify<SliceAddedEvent>(e => e.Percent == _expectedPercent && e.Description == string.Empty).WasPublished();
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_updating_the_percentage_of_a_slice_but_the_percentage_has_not_changed : AggregateRootSpecBase<Pie>
+    {
+        private Slice _slice;
+
+        protected override Pie CreateSut()
+        {
+            return New.Domain().Pie();
+        }
+
+        protected override void Given()
+        {
+            _slice = Sut.Slices.First();
+        }
+
+        protected override void When()
+        { 
+            Sut.UpdateSlicePercentage(_slice.Id, _slice.Percent);
+        }
+
+        [Observation]
+        public void Then_should_not_announce_slice_percent_was_updated()
+        {
+            Verify<SlicePercentageUpdatedEvent>().WasNotPublished();
         }
     }
 }

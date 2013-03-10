@@ -29,5 +29,11 @@ namespace Codell.Pies.Web.Controllers
         {
             _commandService.Execute(new CreatePieCommand(model.Id, model.Name));            
         }
+
+        [HttpPost]
+        public void UpdateSlicePercentage(UpdateSlicePercentageModel model)
+        {
+            _commandService.Execute(new UpdateSlicePercentageCommand(model.SliceId, model.Percent, model.PieId));
+        }
     }
 }

@@ -67,7 +67,8 @@
     <Compile Include="Cqrs\CommandServiceExtensions.cs" />
     <Compile Include="Cqrs\InMemoryEventBus.cs" />
     <Compile Include="Cqrs\IRegisterEventHandlers.cs" />
-    <Compile Include="Events\PieSliceAddedEvent.cs" />
+    <Compile Include="Domain\Slice.cs" />
+    <Compile Include="Events\SliceAddedEvent.cs" />
     <Compile Include="Events\PieCreatedEvent.cs" />
     <Compile Include="Events\SlicePercentageUpdatedEvent.cs" />
     <Compile Include="ReadModels\Pie.cs" />
