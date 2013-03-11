@@ -2,3 +2,4 @@
 - Configuration specs not working
 - Get Sql Server working with integration tests (automap vs classmap)
 - port over existing tests for infrastructure
+- exposed Slices on Pie for testing

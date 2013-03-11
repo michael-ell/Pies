@@ -35,5 +35,11 @@ namespace Codell.Pies.Web.Controllers
         {
             _commandService.Execute(new UpdateSlicePercentageCommand(model.SliceId, model.Percent, model.PieId));
         }
+
+        [HttpDelete]
+        public void DeleteSlice(Guid sliceId)
+        {
+            
+        }
     }
 }

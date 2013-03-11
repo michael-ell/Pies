@@ -24,7 +24,7 @@ namespace Codell.Pies.Core.Domain
         {
             Init();
             ApplyEvent(new PieCreatedEvent(name));
-            AddSlice(Max, string.Empty);
+            KeepFull();
         }
 
         private void Init()
@@ -51,15 +51,35 @@ namespace Codell.Pies.Core.Domain
             var slice = Slices.Single(s => s.Id == sliceId);
             if (slice.Percent == newPercent) return;
             ApplyEvent(new SlicePercentageUpdatedEvent(sliceId, newPercent));
-            if (Remaining > 0)
-            {
-                AddSlice(Remaining, string.Empty);
-            }
+            KeepFull();
         }
 
         protected void OnSlicePercentageUpdated(SlicePercentageUpdatedEvent @event)
         {
             Slices.Single(s => s.Id == @event.SliceId).Percent = @event.Percent;
+        }
+
+
+        public void DeleteSlice(Guid sliceId)
+        {
+            if (_slices.Exists(slice => slice.Id == sliceId))
+            {
+                ApplyEvent(new SliceDeletedEvent(sliceId));
+                //KeepFull();
+            }
+        }
+
+        protected void OnSliceDeleted(SliceDeletedEvent @event)
+        {
+            _slices.Remove(_slices.Single(slice => slice.Id == @event.SliceId));
+        }
+
+        private void KeepFull()
+        {
+            if (Remaining > 0)
+            {
+                AddSlice(Remaining, string.Empty);
+            }
         }
 
         private void AddSlice(int percent, string description)

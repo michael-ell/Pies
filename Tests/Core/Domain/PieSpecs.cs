@@ -173,4 +173,52 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
             Verify<SlicePercentageUpdatedEvent>().WasNotPublished();
         }
     }
+
+    [Concern(typeof(Pie))]
+    public class When_deleting_a_slice_that_exists : AggregateRootSpecBase<Pie>
+    {
+        private Slice _slice;
+
+        protected override Pie CreateSut()
+        {
+            return New.Domain().Pie();
+        }
+
+        protected override void Given()
+        {
+            _slice = Sut.Slices.First();
+        }
+
+        protected override void When()
+        {
+            Sut.DeleteSlice(_slice.Id);
+        }
+
+        [Observation]
+        public void Then_should_announce_that_the_slice_was_deleted()
+        {
+            Verify<SliceDeletedEvent>(e => e.SliceId == _slice.Id).WasPublished();
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_deleting_a_slice_that_doeS_not_exist_in_the_pie : AggregateRootSpecBase<Pie>
+    {
+
+        protected override Pie CreateSut()
+        {
+            return New.Domain().Pie();
+        }
+
+        protected override void When()
+        {
+            Sut.DeleteSlice(Guid.NewGuid());
+        }
+
+        [Observation]
+        public void Then_should_not_announce_that_a_slice_was_deleted()
+        {
+            Verify<SliceDeletedEvent>().WasNotPublished();
+        }
+    }
 }

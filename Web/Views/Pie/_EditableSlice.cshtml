@@ -3,6 +3,7 @@
     @Html.TextBoxFor(m => m.Percent) @Html.TextBoxFor(m => m.Description)
     @Html.HiddenFor(m => m.PieId)
     @Html.HiddenFor(m => m.SliceId)
+    
 </div>
 <script type="text/javascript">
     $('#Percent', $('#@Model.SliceId')).blur(function() {

@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
     <Compile Include="Commands\CreatePieCommand.cs" />
+    <Compile Include="Commands\DeleteSliceCommand.cs" />
     <Compile Include="Commands\UpdateSlicePercentageCommand.cs" />
     <Compile Include="Cqrs\CommandResult.cs" />
     <Compile Include="Cqrs\CommandServiceExtensions.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Domain\Slice.cs" />
     <Compile Include="Events\SliceAddedEvent.cs" />
     <Compile Include="Events\PieCreatedEvent.cs" />
+    <Compile Include="Events\SliceDeletedEvent.cs" />
     <Compile Include="Events\SlicePercentageUpdatedEvent.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />

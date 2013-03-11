@@ -9,9 +9,7 @@
                 $.post(form.attr('action'), form.serializeArray());
             });
             var pie = $.connection.pie;
-            pie.client.sliceAdded = function (data) {
-                $('#slices').append(data);
-            };
+            pie.client.sliceAdded = function (data) { $('#slices').append(data); };
             $.connection.hub.start();
         });
     </script>
