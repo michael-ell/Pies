@@ -73,6 +73,7 @@
     <Compile Include="Events\PieCreatedEvent.cs" />
     <Compile Include="Events\SliceDeletedEvent.cs" />
     <Compile Include="Events\SlicePercentageUpdatedEvent.cs" />
+    <Compile Include="Events\SlicePercentageRejectedEvent.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />

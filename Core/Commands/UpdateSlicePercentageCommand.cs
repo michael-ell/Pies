@@ -10,15 +10,15 @@ namespace Codell.Pies.Core.Commands
     {
         public Guid SliceId { get; private set; }
 
-        public int NewPercent { get; private set; }
+        public int ProposedPercent { get; private set; }
 
         [AggregateRootId]
         public Guid PieId { get; private set; }
 
-        public UpdateSlicePercentageCommand(Guid sliceId, int newPercent, Guid pieId)
+        public UpdateSlicePercentageCommand(Guid sliceId, int proposedPercent, Guid pieId)
         {
             SliceId = sliceId;
-            NewPercent = newPercent;
+            ProposedPercent = proposedPercent;
             PieId = pieId;
         }
     }

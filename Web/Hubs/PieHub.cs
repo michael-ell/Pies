@@ -10,7 +10,7 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 namespace Codell.Pies.Web.EventHandlers
 {
     [HubName("pie")]
-    public class PieHub : Hub, IEventHandler<SliceAddedEvent>
+    public class PieHub : Hub, IEventHandler<SliceAddedEvent>, IEventHandler<SlicePercentageRejectedEvent>
     {
         private readonly IHubContext _hubContext;
         private readonly PieController _controller;
@@ -23,11 +23,18 @@ namespace Codell.Pies.Web.EventHandlers
             _controller = controller;
         }
 
-        public void Handle(IPublishedEvent<SliceAddedEvent> evnt)
+        public void Handle(IPublishedEvent<SliceAddedEvent> @event)
         {
-            var model = new SliceModel { SliceId = evnt.Payload.SliceId, Percent = evnt.Payload.Percent, Description = evnt.Payload.Description, PieId = evnt.EventSourceId };
+            var model = new SliceModel { SliceId = @event.Payload.SliceId, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
             var view = _controller.Render("_EditableSlice", model);
             _hubContext.Clients.All.sliceAdded(view);
+        }
+
+        public void Handle(IPublishedEvent<SlicePercentageRejectedEvent> @event)
+        {
+            _hubContext.Clients.All.slicePercentageRejected( new {sliceId = @event.Payload.SliceId, 
+                                                                  currentPercent = @event.Payload.CurrentPercent,
+                                                                  message = string.Format(Resources.RejectedPercentage, @event.Payload.RejectedPercent)} );
         }
     }
 }

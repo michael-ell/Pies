@@ -10,6 +10,9 @@
             });
             var pie = $.connection.pie;
             pie.client.sliceAdded = function (data) { $('#slices').append(data); };
+            pie.client.slicePercentageRejected = function (data) {
+                $.mhub.send(pies.messages.percentRejected(data.sliceId), data);
+            };
             $.connection.hub.start();
         });
     </script>

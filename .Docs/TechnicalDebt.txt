@@ -3,3 +3,5 @@
 - Get Sql Server working with integration tests (automap vs classmap)
 - port over existing tests for infrastructure
 - exposed Slices on Pie for testing
+- create extension method to generate js id from model property
+- add SlicePercentageAcceptedEvent to clear any messages

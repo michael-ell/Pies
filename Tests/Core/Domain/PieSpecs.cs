@@ -6,7 +6,6 @@ using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
 using Codell.Pies.Testing.Ncqrs;
 using Codell.Pies.Testing.Creators.Domain;
-using FluentAssertions;
 
 namespace Codell.Pies.Tests.Core.Domain.PieSpecs
 {
@@ -48,44 +47,27 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
     [Concern(typeof(Pie))]
     public class When_updating_the_percentage_of_a_slice_and_the_percent_is_negative : AggregateRootSpecBase<Pie>
     {
-        private Action _act;
+        private Slice _slice;
 
         protected override Pie CreateSut()
         {
             return New.Domain().Pie();
         }
 
-        protected override void When()
+        protected override void Given()
         {
-            _act = () => Sut.UpdateSlicePercentage(Sut.Slices.First().Id, -10);
-        }
-
-        [Observation]
-        public void Then_should_not_allow_the_slice_to_continue()
-        {
-            _act.ShouldThrow<BusinessRuleException>().WithMessage(Resources.InvalidPercentage);
-        }
-    }
-
-    [Concern(typeof(Pie))]
-    public class When_updating_the_percentage_of_a_slice_and_the_percent_is_greater_than_100 : AggregateRootSpecBase<Pie>
-    {
-        private Action _act;
-
-        protected override Pie CreateSut()
-        {
-            return New.Domain().Pie();
+            _slice = Sut.Slices.First();
         }
 
         protected override void When()
         {
-            _act = () => Sut.UpdateSlicePercentage(Sut.Slices.First().Id, 101);
+            Sut.UpdateSlicePercentage(_slice.Id, -10);
         }
 
         [Observation]
-        public void Then_should_not_allow_the_slice_to_continue()
+        public void Then_should_announce_slice_percent_was_updated_to_zero()
         {
-            _act.ShouldThrow<BusinessRuleException>().WithMessage(Resources.InvalidPercentage);
+            Verify<SlicePercentageUpdatedEvent>(e => e.Percent == 0 && e.SliceId == _slice.Id).WasPublished();
         }
     }
 
@@ -102,12 +84,12 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
 
         protected override void Given()
         {
+            _slice = Sut.Slices.First();
             _percent = 20;
         }
 
         protected override void When()
         {
-            _slice = Sut.Slices.First();
             Sut.UpdateSlicePercentage(_slice.Id, _percent);
         }
 
@@ -171,6 +153,41 @@ namespace Codell.Pies.Tests.Core.Domain.PieSpecs
         public void Then_should_not_announce_slice_percent_was_updated()
         {
             Verify<SlicePercentageUpdatedEvent>().WasNotPublished();
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_updating_the_percentage_of_a_slice_that_would_account_for_more_than_100_percent_of_the_pie : AggregateRootSpecBase<Pie>
+    {
+        private Slice _slice;
+        private int _proposed;
+
+        protected override Pie CreateSut()
+        {
+            return New.Domain().Pie();
+        }
+
+        protected override void Given()
+        {
+            _slice = Sut.Slices.First();
+            _proposed = 110;
+        }
+
+        protected override void When()
+        {
+            Sut.UpdateSlicePercentage(_slice.Id, _proposed);
+        }
+
+        [Observation]
+        public void Then_should_announce_that_the_slice_percent_was_rejected()
+        {
+            Verify<SlicePercentageRejectedEvent>(e => e.SliceId == _slice.Id && e.RejectedPercent == _proposed).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_the_current_percent_of_the_slice_that_was_not_updated()
+        {
+            Verify<SlicePercentageRejectedEvent>(e => e.CurrentPercent == _slice.Percent).WasPublished();
         }
     }
 

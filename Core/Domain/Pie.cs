@@ -40,18 +40,23 @@ namespace Codell.Pies.Core.Domain
 
         private int Remaining { get { return Max - Total; } }
 
-        public void UpdateSlicePercentage(Guid sliceId, int newPercent)
+        public void UpdateSlicePercentage(Guid sliceId, int proposedPercent)
         {
-            if (newPercent < 0 || newPercent > Max)
-                throw new BusinessRuleException(Resources.InvalidPercentage);
-            //if (percent > Remaining)
-            //{
-            //    throw new BusinessRuleException(Resources.PieAccountedFor);
-            //}
-            var slice = Slices.Single(s => s.Id == sliceId);
-            if (slice.Percent == newPercent) return;
-            ApplyEvent(new SlicePercentageUpdatedEvent(sliceId, newPercent));
-            KeepFull();
+            if (proposedPercent < 0)
+                proposedPercent = 0;
+
+            var slice = Slices.Single(s => s.Id == sliceId);           
+            if (slice.Percent == proposedPercent) return;
+
+            if (proposedPercent > slice.Percent)
+            {
+                ApplyEvent(new SlicePercentageRejectedEvent(sliceId, proposedPercent, slice.Percent));
+            }
+            else
+            {
+                ApplyEvent(new SlicePercentageUpdatedEvent(sliceId, proposedPercent));
+                KeepFull();
+            }
         }
 
         protected void OnSlicePercentageUpdated(SlicePercentageUpdatedEvent @event)
@@ -59,6 +64,9 @@ namespace Codell.Pies.Core.Domain
             Slices.Single(s => s.Id == @event.SliceId).Percent = @event.Percent;
         }
 
+        protected void OnSlicePercentageRejected(SlicePercentageRejectedEvent @event)
+        {
+        }
 
         public void DeleteSlice(Guid sliceId)
         {
