@@ -86,6 +86,7 @@
     <Compile Include="Core\Validation\ValidationResultSpecs.cs" />
     <Compile Include="Core\Validation\ValidatorProviderSpecs.cs" />
     <Compile Include="Core\Validation\ValidRuleSpecs.cs" />
+    <Compile Include="MockServiceModule.cs" />
     <Compile Include="Web\Configuration\ICommandServiceExtensions.cs" />
     <Compile Include="Web\Configuration\IEventBusExtensions.cs" />
     <Compile Include="Web\Configuration\NcqrsModuleSpecs.cs" />

@@ -179,9 +179,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Configuration\AutofacConfigurationModule.cs" />
     <Compile Include="Configuration\AutofacServiceLocator.cs" />
+    <Compile Include="Configuration\AutoMapperConfiguration.cs" />
     <Compile Include="Configuration\Configure.cs" />
+    <Compile Include="Configuration\InfrastructureModule.cs" />
     <Compile Include="Configuration\NcqrsModule.cs" />
-    <Compile Include="Configuration\SignalRModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PieController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
@@ -286,6 +287,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Pie\Create.cshtml" />
     <Content Include="Views\Pie\_EditableSlice.cshtml" />
+    <Content Include="Views\Pie\Index.cshtml" />
+    <Content Include="Views\Pie\DisplayTemplates\PieModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

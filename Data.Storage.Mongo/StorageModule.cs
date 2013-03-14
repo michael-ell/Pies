@@ -4,6 +4,7 @@ using System.Linq;
 using Autofac;
 using Codell.Pies.Common;
 using Codell.Pies.Common.Extensions;
+using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Data.Storage.Configuration;
 using Codell.Pies.Data.Storage.Mongo.Schema;
@@ -77,7 +78,15 @@ namespace Codell.Pies.Data.Storage.Mongo
 
         private void RegisterRootClassMaps()
         {
-           RegisterClassMap<Event>(cm =>
+           
+            RegisterClassMap<Pie>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIdMember(cm.GetMemberMap(model => model.Id));
+                cm.SetIgnoreExtraElements(true);
+            });
+
+            RegisterClassMap<Event>(cm =>
             {
                 cm.AutoMap();
                 cm.SetIsRootClass(true);
