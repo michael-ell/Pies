@@ -1,0 +1,4 @@
+1)  an ingredient change is applied to all other ingredients with % > 0
+2)  any leftover change (decimal portion) is applied to the lowest % > 0
+3)  if mulitple lowest % > 0 then it is applied to the last added ingredient
+4)  if split is < 0 then change is applied to the lowest % > 0

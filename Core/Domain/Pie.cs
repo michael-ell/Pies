@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Codell.Pies.Common;
 using Codell.Pies.Core.Events;
 using Ncqrs.Domain;
 
@@ -12,6 +11,7 @@ namespace Codell.Pies.Core.Domain
         public const int Max = 100;
 
         private List<Slice> _slices;
+        private List<Ingredient> _ingredients;
 
         public IEnumerable<Slice> Slices { get { return _slices; } }
 
@@ -30,6 +30,7 @@ namespace Codell.Pies.Core.Domain
         private void Init()
         {
             _slices = new List<Slice>();
+            _ingredients = new List<Ingredient>();
         }
 
         protected void OnPieStarted(PieCreatedEvent @event)
@@ -98,6 +99,46 @@ namespace Codell.Pies.Core.Domain
         protected void OnSliceAdded(SliceAddedEvent @event)
         {
             _slices.Add(new Slice(@event.SliceId, @event.Percent, @event.Description));
+        }
+
+        public void AddIngredient(string description)
+        {
+            ApplyEvent(new IngredientAddedEvent(description, _ingredients.Count == 0 ? 100 : 0, Guid.NewGuid()));
+        }
+
+        protected void OnIngredientAdded(IngredientAddedEvent @event)
+        {
+            _ingredients.Add(new Ingredient(@event.Id, @event.Description, @event.Percent)); 
+        }
+
+        public void UpdateIngredientPercentage(Guid id, int newPercent)
+        {
+            if (newPercent < 0)
+            {
+                newPercent = 0;
+            }
+
+            if (newPercent > 100)
+            {
+                newPercent = 100;
+            }
+
+            var change = newPercent - IngredientFor(id).Percent;
+            var affected = _ingredients.Where(i => i.Id != id && i.Percent > 0).ToList();
+            var split = change/affected.Count;
+            affected.ForEach(i => ApplyEvent(new IngredientPercentageUpdatedEvent(i.Id, i.Percent + split)));
+            ApplyEvent(new IngredientPercentageUpdatedEvent(id, newPercent));
+
+        }
+
+        protected void OnIngredientPercentageUpdated(IngredientPercentageUpdatedEvent @event)
+        {
+            IngredientFor(@event.Id).Percent = @event.Percent;
+        }
+
+        private Ingredient IngredientFor(Guid id)
+        {
+            return _ingredients.Single(i => i.Id == id);
         }
     }
 }
