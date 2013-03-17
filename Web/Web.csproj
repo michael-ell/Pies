@@ -194,8 +194,9 @@
     </Compile>
     <Compile Include="Models\CreatePieModel.cs" />
     <Compile Include="Models\PieModel.cs" />
-    <Compile Include="Models\SliceModel.cs" />
-    <Compile Include="Models\UpdateSlicePercentageModel.cs" />
+    <Compile Include="Models\IngredientModel.cs" />
+    <Compile Include="Models\UpdateIngredientPercentageModel.cs" />
+    <Compile Include="Models\UpdatePieCaptionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\RouteBuilder.cs" />
   </ItemGroup>

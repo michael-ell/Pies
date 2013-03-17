@@ -1,5 +1,4 @@
 ﻿using System;
-using Codell.Pies.Common;
 using Codell.Pies.Core.Domain;
 using Ncqrs.Commanding;
 using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
@@ -10,13 +9,10 @@ namespace Codell.Pies.Core.Commands
     public class CreatePieCommand : CommandBase
     {
         public Guid Id { get; private set; }
-        public string Name { get; set; }
 
-        public CreatePieCommand(Guid id, string name)
-        {
-            Verify.NotWhitespace(name, "name");            
+        public CreatePieCommand(Guid id)
+        {        
             Id = id;
-            Name = name;
         }
     }
 }

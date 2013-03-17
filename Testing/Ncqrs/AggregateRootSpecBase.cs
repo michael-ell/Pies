@@ -21,6 +21,8 @@ namespace Codell.Pies.Testing.Ncqrs
 
         protected bool TrackPublishedEvents { get; set; }
 
+        protected Action<UncommittedEvent> PublishedEventWatcher { get; set; }
+
         public IEnumerable<UncommittedEvent> PublishedEvents
         {
             get { return _publishedEvents; }
@@ -31,11 +33,6 @@ namespace Codell.Pies.Testing.Ncqrs
             _publishedEvents = new List<UncommittedEvent>();
             TrackPublishedEvents = true;
         }
-
-//        protected virtual CommittedEventStream History()
-//        {
-//            return new CommittedEventStream(new Guid());
-//        }
 
         protected override void BeforeCreateSut()
         {
@@ -50,7 +47,13 @@ namespace Codell.Pies.Testing.Ncqrs
         private void OnEventApplied(AggregateRoot ar, UncommittedEvent e)
         {
             if (TrackPublishedEvents)
+            {
                 _publishedEvents.Add(e);
+            }
+            if (PublishedEventWatcher != null)
+            {
+                PublishedEventWatcher(e);
+            }
         }
 
         protected override void AfterCreateSut()

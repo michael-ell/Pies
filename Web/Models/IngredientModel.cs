@@ -2,7 +2,7 @@
 
 namespace Codell.Pies.Web.Models
 {
-    public class SliceModel
+    public class IngredientModel
     {
         public Guid SliceId { get; set; }
 

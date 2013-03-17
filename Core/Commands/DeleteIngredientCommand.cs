@@ -5,17 +5,17 @@ using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 
 namespace Codell.Pies.Core.Commands
 {
-    [MapsToAggregateRootMethod(typeof(Pie), "DeleteSlice")]
-    public class DeleteSliceCommand : CommandBase
+    [MapsToAggregateRootMethod(typeof(Pie), "DeleteIngredient")]
+    public class DeleteIngredientCommand : CommandBase
     {
-        public Guid SliceId { get; private set; }
+        public Guid Id { get; private set; }
 
         [AggregateRootId]
         public Guid PieId { get; private set; }
 
-        public DeleteSliceCommand(Guid sliceId, Guid pieId)
+        public DeleteIngredientCommand(Guid ingredientId, Guid pieId)
         {
-            SliceId = sliceId;
+            Id = ingredientId;
             PieId = pieId;
         }
     }

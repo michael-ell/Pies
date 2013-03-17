@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace Codell.Pies.Web.Models
 {
-    public class UpdateSlicePercentageModel
+    public class UpdateIngredientPercentageModel
     {
         public Guid SliceId { get; set; }
 

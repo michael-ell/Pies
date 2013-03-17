@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace Codell.Pies.Core.ReadModels
+namespace Codell.Pies.Web.Models
 {
-    [Serializable]
-    public class Pie
+    public class UpdatePieCaptionModel
     {
         public Guid Id { get; set; }
 

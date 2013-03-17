@@ -62,8 +62,9 @@
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
     <Compile Include="Commands\CreatePieCommand.cs" />
-    <Compile Include="Commands\DeleteSliceCommand.cs" />
-    <Compile Include="Commands\UpdateSlicePercentageCommand.cs" />
+    <Compile Include="Commands\DeleteIngredientCommand.cs" />
+    <Compile Include="Commands\UpdateIngredientPercentageCommand.cs" />
+    <Compile Include="Commands\UpdatePieCaptionCommand.cs" />
     <Compile Include="Cqrs\CommandResult.cs" />
     <Compile Include="Cqrs\CommandServiceExtensions.cs" />
     <Compile Include="Cqrs\InMemoryEventBus.cs" />
@@ -73,11 +74,10 @@
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
     <Compile Include="Events\IngredientPercentageUpdatedEvent.cs" />
     <Compile Include="Events\IngredientAddedEvent.cs" />
-    <Compile Include="Events\SliceAddedEvent.cs" />
+    <Compile Include="Events\PieCaptionUpdatedEvent.cs" />
     <Compile Include="Events\PieCreatedEvent.cs" />
-    <Compile Include="Events\SliceDeletedEvent.cs" />
-    <Compile Include="Events\SlicePercentageUpdatedEvent.cs" />
-    <Compile Include="Events\SlicePercentageRejectedEvent.cs" />
+    <Compile Include="Events\IngredientDeletedEvent.cs" />
+    <Compile Include="Events\IngredientPercentageRejectedEvent.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />

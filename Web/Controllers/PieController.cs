@@ -43,17 +43,23 @@ namespace Codell.Pies.Web.Controllers
         [HttpPost]
         public void Create(CreatePieModel model)
         {
-            _commandService.Execute(new CreatePieCommand(model.Id, model.Name));            
+            _commandService.Execute(new CreatePieCommand(model.Id));            
         }
 
         [HttpPost]
-        public void UpdateSlicePercentage(UpdateSlicePercentageModel model)
+        public void UpdatePieCaption(UpdatePieCaptionModel model)
         {
-            _commandService.Execute(new UpdateSlicePercentageCommand(model.SliceId, model.Percent, model.PieId));
+            _commandService.Execute(new UpdatePieCaptionCommand(model.Id, model.Caption));
+        }
+
+        [HttpPost]
+        public void UpdateIngredientPercentage(UpdateIngredientPercentageModel model)
+        {
+            _commandService.Execute(new UpdateIngredientPercentageCommand(model.SliceId, model.Percent, model.PieId));
         }
 
         [HttpDelete]
-        public void DeleteSlice(Guid sliceId)
+        public void DeleteIngredient(Guid id)
         {
             
         }

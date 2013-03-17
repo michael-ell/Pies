@@ -10,7 +10,7 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 namespace Codell.Pies.Web.EventHandlers
 {
     [HubName("pie")]
-    public class PieHub : Hub, IEventHandler<SliceAddedEvent>, IEventHandler<SlicePercentageRejectedEvent>
+    public class PieHub : Hub, IEventHandler<IngredientAddedEvent>, IEventHandler<IngredientPercentageRejectedEvent>
     {
         private readonly IHubContext _hubContext;
         private readonly PieController _controller;
@@ -23,16 +23,16 @@ namespace Codell.Pies.Web.EventHandlers
             _controller = controller;
         }
 
-        public void Handle(IPublishedEvent<SliceAddedEvent> @event)
+        public void Handle(IPublishedEvent<IngredientAddedEvent> @event)
         {
-            var model = new SliceModel { SliceId = @event.Payload.SliceId, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
+            var model = new IngredientModel { SliceId = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
             var view = _controller.Render("_EditableSlice", model);
             _hubContext.Clients.All.sliceAdded(view);
         }
 
-        public void Handle(IPublishedEvent<SlicePercentageRejectedEvent> @event)
+        public void Handle(IPublishedEvent<IngredientPercentageRejectedEvent> @event)
         {
-            _hubContext.Clients.All.slicePercentageRejected( new {sliceId = @event.Payload.SliceId, 
+            _hubContext.Clients.All.slicePercentageRejected( new {sliceId = @event.Payload.Id, 
                                                                   currentPercent = @event.Payload.CurrentPercent,
                                                                   message = string.Format(Resources.RejectedPercentage, @event.Payload.RejectedPercent)} );
         }

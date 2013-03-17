@@ -5,19 +5,19 @@ using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 
 namespace Codell.Pies.Core.Commands
 {
-    [MapsToAggregateRootMethod(typeof(Pie), "UpdateSlicePercentage")]
-    public class UpdateSlicePercentageCommand : CommandBase
+    [MapsToAggregateRootMethod(typeof(Pie), "UpdateIngredientPercentage")]
+    public class UpdateIngredientPercentageCommand : CommandBase
     {
-        public Guid SliceId { get; private set; }
+        public Guid Id { get; private set; }
 
         public int ProposedPercent { get; private set; }
 
         [AggregateRootId]
         public Guid PieId { get; private set; }
 
-        public UpdateSlicePercentageCommand(Guid sliceId, int proposedPercent, Guid pieId)
+        public UpdateIngredientPercentageCommand(Guid id, int proposedPercent, Guid pieId)
         {
-            SliceId = sliceId;
+            Id = id;
             ProposedPercent = proposedPercent;
             PieId = pieId;
         }

@@ -7,13 +7,13 @@ namespace Codell.Pies.Web.Models
     {
         public PieModel()
         {
-            Slices = new List<SliceModel>();
+            Slices = new List<IngredientModel>();
         }
 
         public Guid Id { get; set; }
 
         public string Name { get; set; }
 
-        public IEnumerable<SliceModel> Slices { get; set; }
+        public IEnumerable<IngredientModel> Slices { get; set; }
     }
 }
