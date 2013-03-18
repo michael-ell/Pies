@@ -37,19 +37,21 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new CreatePieModel{Id = Guid.NewGuid()});
-        }
-
-        [HttpPost]
-        public void Create(CreatePieModel model)
-        {
-            _commandService.Execute(new CreatePieCommand(model.Id));            
+            var id = Guid.NewGuid();
+            _commandService.Execute(new CreatePieCommand(id));    
+            return View(new CreatePieModel{Id = id});
         }
 
         [HttpPost]
         public void UpdatePieCaption(UpdatePieCaptionModel model)
         {
             _commandService.Execute(new UpdatePieCaptionCommand(model.Id, model.Caption));
+        }
+
+        [HttpPost]
+        public void AddIngredient()
+        {
+            //_commandService.Execute(new AddIngredientCommand());
         }
 
         [HttpPost]

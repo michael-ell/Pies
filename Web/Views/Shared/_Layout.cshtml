@@ -24,8 +24,19 @@
         @RenderSection("Scripts", required: false)
     </head>
     <body>
-        <h1>What's in your Pie?</h1>
-        @RenderBody()
+        <div class="header">
+            <h1>Pies</h1>
+            <div class="nav">
+                <a href="@Url.Action("Index", "Pie")">Home</a>
+                <a href="@Url.Action("Create", "Pie")">Bake</a>
+            </div>
+        </div>
+        <div class="side">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
         <div id="error" class="important"></div>
     </body>
 </html>

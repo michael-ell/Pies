@@ -9,10 +9,10 @@ namespace Codell.Pies.Core.Commands
     [MapsToAggregateRootMethod(typeof(Pie), "UpdateCaption")]
     public class UpdatePieCaptionCommand : CommandBase
     {
-        public string Caption { get; private set; }
-
         [AggregateRootId]
         public Guid Id { get; private set; }
+
+        public string Caption { get; private set; }
 
         public UpdatePieCaptionCommand(Guid id, string caption)
         {

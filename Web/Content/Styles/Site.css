@@ -13,3 +13,35 @@
 .important {
     color: red;
 }
+
+.header {
+    text-align: center;
+    padding: 8px;
+    border-bottom: solid 1px black;
+}
+
+.nav {
+    text-align: left;
+}
+
+.side {
+    float: left;
+    width: 200px;
+    height: 100%;
+    padding: 10px;
+    border-right: solid 1px black;
+}
+
+.content {
+    float: left;
+    height: 100%;
+    padding: 10px;
+}
+
+.data-label {
+    width: 100px;
+}
+
+.caption {
+    width: 200px;
+}

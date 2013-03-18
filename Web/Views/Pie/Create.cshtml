@@ -4,26 +4,34 @@
     <script src="~/signalr/hubs" type="text/javascript"></script> 
     <script type="text/javascript">
         $(function() {
-            $('#Name').blur(function() {
-                var form = $(this).closest('form');
-                $.post(form.attr('action'), form.serializeArray());
-            });
-            var pie = $.connection.pie;
-            pie.client.sliceAdded = function (data) { $('#slices').append(data); };
-            pie.client.slicePercentageRejected = function (data) {
-                $.mhub.send(pies.messages.percentRejected(data.sliceId), data);
-            };
-            $.connection.hub.start();
+            //$('#Name').blur(function() {
+            //    var form = $(this).closest('form');
+            //    $.post(form.attr('action'), form.serializeArray());
+            //});
+            //var pie = $.connection.pie;
+            //pie.client.sliceAdded = function (data) { $('#slices').append(data); };
+            //pie.client.slicePercentageRejected = function (data) {
+            //    $.mhub.send(pies.messages.percentRejected(data.sliceId), data);
+            //};
+            //$.connection.hub.start();
+            var $create = $('#create');
+            var vm = new pies.cr8.ViewModel('@Model.Id', '@Url.Action("UpdatePieCaption")');
+            ko.applyBindings(vm, $create[0]);
+            $('a', $create).button();
         });
     </script>
 }
-<h2>Create</h2>
-<div>
-    @using (Html.BeginForm())
-    {
-        @Html.TextBoxFor(m => m.Name) @: is made up of:
-        @Html.HiddenFor(m => m.Id)
-    }
-    <div id="slices"></div>
+<div id="create">
+    <div>
+        <span class="data-label">Caption</span>
+        <input class="caption" type="text" data-bind="blur: caption"/>
+    </div>  
+    <div>
+        <span class="data-label">Ingredient</span>
+        <input type="text"/>
+        <a href="#" class="ui-state-default ui-corner-all" title="Add">
+            <span class="ui-icon ui-icon-circle-plus"></span>
+        </a>
+    </div>
 </div>
 

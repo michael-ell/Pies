@@ -61,6 +61,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
+    <Compile Include="Commands\AddIngredientCommand.cs" />
     <Compile Include="Commands\CreatePieCommand.cs" />
     <Compile Include="Commands\DeleteIngredientCommand.cs" />
     <Compile Include="Commands\UpdateIngredientPercentageCommand.cs" />
