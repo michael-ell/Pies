@@ -38,10 +38,24 @@
     padding: 10px;
 }
 
+.row {
+    padding-bottom: 10px;
+}
+
 .data-label {
     width: 100px;
+    display: inline-block;
 }
 
 .caption {
-    width: 200px;
+    width: 500px;
+}
+
+.ingredient {
+    width: 300px;
+}
+
+.ui-button-text {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }

@@ -17,14 +17,14 @@
     </script>
 }
 <div id="create">
-    <div>
+    <div class="row">
         <span class="data-label">Caption</span>
         <input class="caption" type="text" data-bind="blur: caption"/>
     </div>  
-    <div>
+    <div class="row">
         <span class="data-label">Ingredient</span>
-        <input type="text" data-bind="value: ingredientToAdd"/>
-        <a href="#" class="ui-state-default ui-corner-all" title="Add" data-bind="click: addIngredient">
+        <input class="ingredient" type="text" data-bind="value: ingredientToAdd"/>
+        <a href="#" title="Add" data-bind="click: addIngredient">
             <span class="ui-icon ui-icon-circle-plus"></span>
         </a>
     </div>

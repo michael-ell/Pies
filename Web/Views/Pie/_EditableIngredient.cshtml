@@ -1,8 +1,12 @@
 ﻿@model Codell.Pies.Web.Models.IngredientModel
 <div id='@Model.Id'>
-    @Html.TextBoxFor(m => m.Percent) @Html.TextBoxFor(m => m.Description) <span id="message"></span>    
+    <div>@Model.Description</div>
+    <div id="percent"></div>
+    @*@Html.TextBoxFor(m => m.Percent) @Html.TextBoxFor(m => m.Description) <span id="message"></span>    *@
 </div>
 <script type="text/javascript">
+    var scope = $('#@Model.Id');
+    $('#percent', scope).slider({min: 0, max: 100, step: 5, value: @Model.Percent});
 @*    $('#Percent', $('#@Model.Id')).blur(function() {
         $.post('@Url.Action("UpdateIngredientPercentage")', { SliceId: '@Model.Id', Percent: $(this).val(), PieId: '@Model.PieId' });
     });
