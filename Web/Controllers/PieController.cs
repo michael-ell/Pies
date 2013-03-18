@@ -49,9 +49,9 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpPost]
-        public void AddIngredient()
+        public void AddIngredient(AddIngredientModel model)
         {
-            //_commandService.Execute(new AddIngredientCommand());
+            _commandService.Execute(new AddIngredientCommand(model.Id, model.Description));
         }
 
         [HttpPost]
@@ -62,8 +62,7 @@ namespace Codell.Pies.Web.Controllers
 
         [HttpDelete]
         public void DeleteIngredient(Guid id)
-        {
-            
+        {            
         }
     }
 }

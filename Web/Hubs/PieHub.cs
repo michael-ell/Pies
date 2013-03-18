@@ -25,14 +25,14 @@ namespace Codell.Pies.Web.EventHandlers
 
         public void Handle(IPublishedEvent<IngredientAddedEvent> @event)
         {
-            var model = new IngredientModel { SliceId = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
-            var view = _controller.Render("_EditableSlice", model);
-            _hubContext.Clients.All.sliceAdded(view);
+            var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
+            var view = _controller.Render("_EditableIngredient", model);
+            _hubContext.Clients.All.ingredientAdded(view);
         }
 
         public void Handle(IPublishedEvent<IngredientPercentageRejectedEvent> @event)
         {
-            _hubContext.Clients.All.slicePercentageRejected( new {sliceId = @event.Payload.Id, 
+            _hubContext.Clients.All.ingredientPercentageRejected( new {id = @event.Payload.Id, 
                                                                   currentPercent = @event.Payload.CurrentPercent,
                                                                   message = string.Format(Resources.RejectedPercentage, @event.Payload.RejectedPercent)} );
         }

@@ -1,0 +1,15 @@
+﻿@model Codell.Pies.Web.Models.IngredientModel
+<div id='@Model.Id'>
+    @Html.TextBoxFor(m => m.Percent) @Html.TextBoxFor(m => m.Description) <span id="message"></span>    
+</div>
+<script type="text/javascript">
+@*    $('#Percent', $('#@Model.Id')).blur(function() {
+        $.post('@Url.Action("UpdateIngredientPercentage")', { SliceId: '@Model.Id', Percent: $(this).val(), PieId: '@Model.PieId' });
+    });
+    $.mhub.create(pies.messages.percentRejected('@Model.Id'));
+    $.mhub.subscribe(pies.messages.percentRejected('@Model.Id'), function (data) {
+        var scope = $('#@Model.Id');
+        $('#message', scope).text(data.message);
+        $('#Percent', scope).val(data.currentPercent);
+    });*@
+</script>

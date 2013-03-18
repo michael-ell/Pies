@@ -4,7 +4,7 @@ namespace Codell.Pies.Web.Models
 {
     public class IngredientModel
     {
-        public Guid SliceId { get; set; }
+        public Guid Id { get; set; }
 
         public int Percent { get; set; }
 

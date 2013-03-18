@@ -191,6 +191,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddIngredientModel.cs" />
     <Compile Include="Models\CreatePieModel.cs" />
     <Compile Include="Models\PieModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />
@@ -304,7 +305,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Pie\Create.cshtml" />
-    <Content Include="Views\Pie\_EditableSlice.cshtml" />
+    <Content Include="Views\Pie\_EditableIngredient.cshtml" />
     <Content Include="Views\Pie\Index.cshtml" />
     <Content Include="Views\Pie\DisplayTemplates\PieModel.cshtml" />
   </ItemGroup>

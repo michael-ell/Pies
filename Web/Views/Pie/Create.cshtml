@@ -1,21 +1,16 @@
 ﻿@model Codell.Pies.Web.Models.CreatePieModel
 @section Scripts
 {
-    <script src="~/signalr/hubs" type="text/javascript"></script> 
     <script type="text/javascript">
         $(function() {
-            //$('#Name').blur(function() {
-            //    var form = $(this).closest('form');
-            //    $.post(form.attr('action'), form.serializeArray());
-            //});
             //var pie = $.connection.pie;
             //pie.client.sliceAdded = function (data) { $('#slices').append(data); };
             //pie.client.slicePercentageRejected = function (data) {
-            //    $.mhub.send(pies.messages.percentRejected(data.sliceId), data);
+            //    $.mhub.send(pies.messages.percentRejected(data.Id), data);
             //};
             //$.connection.hub.start();
             var $create = $('#create');
-            var vm = new pies.cr8.ViewModel('@Model.Id', '@Url.Action("UpdatePieCaption")');
+            var vm = new pies.cr8.ViewModel('@Model.Id', '@Url.Action("UpdatePieCaption")', '@Url.Action("AddIngredient")');
             ko.applyBindings(vm, $create[0]);
             $('a', $create).button();
         });
@@ -28,10 +23,13 @@
     </div>  
     <div>
         <span class="data-label">Ingredient</span>
-        <input type="text"/>
-        <a href="#" class="ui-state-default ui-corner-all" title="Add">
+        <input type="text" data-bind="value: ingredientToAdd"/>
+        <a href="#" class="ui-state-default ui-corner-all" title="Add" data-bind="click: addIngredient">
             <span class="ui-icon ui-icon-circle-plus"></span>
         </a>
+    </div>
+    <div data-bind="foreach: ingredients">
+        <div data-bind="html: $data"></div>
     </div>
 </div>
 
