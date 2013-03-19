@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace Codell.Pies.Web.Models
 {
     public class UpdateIngredientPercentageModel
     {
-        public Guid SliceId { get; set; }
+        public Guid Id { get; set; }
 
         public int Percent { get; set; }
 

@@ -287,7 +287,9 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\create-pie.js" />
+    <Content Include="Scripts\highcharts.js" />
+    <Content Include="Scripts\pies-ingredient.js" />
+    <Content Include="Scripts\pies-create.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-ui-1.10.0.js" />
     <Content Include="Scripts\jquery.mHub.js" />

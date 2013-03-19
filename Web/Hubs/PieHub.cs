@@ -10,7 +10,7 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 namespace Codell.Pies.Web.EventHandlers
 {
     [HubName("pie")]
-    public class PieHub : Hub, IEventHandler<IngredientAddedEvent>, IEventHandler<IngredientPercentageRejectedEvent>
+    public class PieHub : Hub, IEventHandler<IngredientAddedEvent>, IEventHandler<IngredientPercentageUpdatedEvent>,  IEventHandler<IngredientPercentageRejectedEvent>
     {
         private readonly IHubContext _hubContext;
         private readonly PieController _controller;
@@ -28,6 +28,11 @@ namespace Codell.Pies.Web.EventHandlers
             var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
             var view = _controller.Render("_EditableIngredient", model);
             _hubContext.Clients.All.ingredientAdded(view);
+        }
+
+        public void Handle(IPublishedEvent<IngredientPercentageUpdatedEvent> evnt)
+        {
+            _hubContext.Clients.All.ingredientPercentUpdated( new {id = evnt.Payload.Id, percent = evnt.Payload.Percent} );
         }
 
         public void Handle(IPublishedEvent<IngredientPercentageRejectedEvent> @event)

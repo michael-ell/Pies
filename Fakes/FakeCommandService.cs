@@ -7,7 +7,7 @@ namespace Codell.Pies.Fakes
     {
         public void Execute(ICommand command)
         {
-            //Do nothing
+            //do nothing
         }
     }
 }

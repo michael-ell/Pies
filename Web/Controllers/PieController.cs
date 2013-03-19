@@ -57,7 +57,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpPost]
         public void UpdateIngredientPercentage(UpdateIngredientPercentageModel model)
         {
-            _commandService.Execute(new UpdateIngredientPercentageCommand(model.SliceId, model.Percent, model.PieId));
+            _commandService.Execute(new UpdateIngredientPercentageCommand(model.Id, model.Percent, model.PieId));
         }
 
         [HttpDelete]
