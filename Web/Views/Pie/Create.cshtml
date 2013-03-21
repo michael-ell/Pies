@@ -3,15 +3,9 @@
 {
     <script type="text/javascript">
         $(function() {
-            //var pie = $.connection.pie;
-            //pie.client.sliceAdded = function (data) { $('#slices').append(data); };
-            //pie.client.slicePercentageRejected = function (data) {
-            //    $.mhub.send(pies.messages.percentRejected(data.Id), data);
-            //};
-            //$.connection.hub.start();
             var $create = $('#create');
-            var vm = new pies.cr8.ViewModel('@Model.Id', '@Url.Action("UpdatePieCaption")', '@Url.Action("AddIngredient")');
-            ko.applyBindings(vm, $create[0]);
+            var pie = new pies.cr8.Pie('@Model.Id', '@Url.Action("UpdatePieCaption")', '@Url.Action("AddIngredient")', '@Url.Action("UpdateIngredientPercentage")');
+            ko.applyBindings(pie, $create[0]);
             $('a', $create).button();
         });
     </script>
@@ -28,9 +22,14 @@
             <span class="ui-icon ui-icon-circle-plus"></span>
         </a>
     </div>
-    <div data-bind="foreach: ingredients">
-        <div data-bind="html: $data"></div>
-    </div>
-    <div id="chart" data-bind="pieChart: ingredientValues"></div>
+    <div data-bind="template : {name: 'ingredient-template', foreach: ingredients }"></div>
+    <div id="chart" data-bind="pieChart: ingredients, map: {text: 'description', value: 'percent'}"></div>
+    <script type="text/html" id="ingredient-template">
+        <div>
+            <div class="row" data-bind="text: description"></div>
+            <div id="percent" data-bind="slider: percent, sliderOptions: {min: 0, max: 100, step: 5, value: $data.percent()}"></div>
+        </div>   
+    </script>
 </div>
+
 

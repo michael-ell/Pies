@@ -53,8 +53,12 @@ ko.bindingHandlers.pieChart = {
             }]
         });
     },
-    update: function (el, valueAccessor) {
-        var value = ko.utils.unwrapObservable(valueAccessor());
-        ko.bindingHandlers.pieChart.instance.series[0].setData(value);
+    update: function (el, valueAccessor, allBindingsAccessor) {
+        var slices = ko.utils.unwrapObservable(valueAccessor());
+        var map = allBindingsAccessor().map || { text: '', value: '' };
+        slices = $.map(slices, function (slice) {
+            return { name: ko.utils.unwrapObservable(slice[map.text]), y: ko.utils.unwrapObservable(slice[map.value]) };
+        });
+        ko.bindingHandlers.pieChart.instance.series[0].setData(slices);
     }
 };

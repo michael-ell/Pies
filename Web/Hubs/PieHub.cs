@@ -13,21 +13,19 @@ namespace Codell.Pies.Web.EventHandlers
     public class PieHub : Hub, IEventHandler<IngredientAddedEvent>, IEventHandler<IngredientPercentageUpdatedEvent>,  IEventHandler<IngredientPercentageRejectedEvent>
     {
         private readonly IHubContext _hubContext;
-        private readonly PieController _controller;
 
-        public PieHub(IHubContext hubContext, PieController controller)
+        public PieHub(IHubContext hubContext)
         {
-            Verify.NotNull(hubContext, "hubContext");
-            Verify.NotNull(controller, "controller");            
+            Verify.NotNull(hubContext, "hubContext");       
             _hubContext = hubContext;
-            _controller = controller;
         }
 
         public void Handle(IPublishedEvent<IngredientAddedEvent> @event)
         {
-            var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
-            var view = _controller.Render("_EditableIngredient", model);
-            _hubContext.Clients.All.ingredientAdded(view);
+            //var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
+            //var view = _controller.Render("_EditableIngredient", model);
+            //_hubContext.Clients.All.ingredientAdded(view);
+            _hubContext.Clients.All.ingredientAdded(new { id = @event.Payload.Id, percent = @event.Payload.Percent, description = @event.Payload.Description, pieId = @event.EventSourceId });
         }
 
         public void Handle(IPublishedEvent<IngredientPercentageUpdatedEvent> evnt)
