@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Codell.Pies.Core.Domain;
 using Ncqrs.Eventing.Sourcing;
 
 namespace Codell.Pies.Core.Events
@@ -6,17 +8,14 @@ namespace Codell.Pies.Core.Events
     [Serializable]
     public class IngredientAddedEvent : SourcedEvent
     {
-        public string Description { get; private set; }
+        public Ingredient IngredientAdded { get; private set; }
 
-        public int Percent { get; private set; }
+        public IEnumerable<Ingredient> AllIngredients { get; private set; }
 
-        public Guid Id { get; private set; }
-
-        public IngredientAddedEvent(string description, int percent, Guid id)
+        public IngredientAddedEvent(Ingredient ingredientAdded, IEnumerable<Ingredient> allIngredients)
         {
-            Percent = percent;
-            Description = description;
-            Id = id;
+            IngredientAdded = ingredientAdded;
+            AllIngredients = allIngredients;
         }
     }
 }

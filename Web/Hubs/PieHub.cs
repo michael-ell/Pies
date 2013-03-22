@@ -1,8 +1,6 @@
-﻿using Codell.Pies.Common;
+﻿using System.Linq;
+using Codell.Pies.Common;
 using Codell.Pies.Core.Events;
-using Codell.Pies.Web.Controllers;
-using Codell.Pies.Web.Extensions;
-using Codell.Pies.Web.Models;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Ncqrs.Eventing.ServiceModel.Bus;
@@ -25,7 +23,10 @@ namespace Codell.Pies.Web.EventHandlers
             //var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
             //var view = _controller.Render("_EditableIngredient", model);
             //_hubContext.Clients.All.ingredientAdded(view);
-            _hubContext.Clients.All.ingredientAdded(new { id = @event.Payload.Id, percent = @event.Payload.Percent, description = @event.Payload.Description, pieId = @event.EventSourceId });
+            _hubContext.Clients.All.pieIngredientsUpdated(@event.Payload.AllIngredients.Select(ingredient => new { id = ingredient.Id, 
+                                                                                                                   percent = ingredient.Percent, 
+                                                                                                                   description = ingredient.Description, 
+                                                                                                                   pieId = @event.EventSourceId }).ToList());
         }
 
         public void Handle(IPublishedEvent<IngredientPercentageUpdatedEvent> evnt)

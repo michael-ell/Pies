@@ -47,15 +47,15 @@ namespace Codell.Pies.Core.Domain
 
         public void AddIngredient(string description)
         {
-            if (!_ingredients.Exists(i => string.Equals(description, i.Description)))
-            {
-                ApplyEvent(new IngredientAddedEvent(description, _ingredients.Count == 0 ? 100 : 0, Guid.NewGuid()));                
-            }
+            if (_ingredients.Exists(i => string.Equals(description, i.Description))) return;
+
+            var toAdd = new Ingredient(Guid.NewGuid(), description, _ingredients.Count == 0 ? 100 : 0);
+            ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients));
         }
 
         protected void OnIngredientAdded(IngredientAddedEvent @event)
         {
-            _ingredients.Add(new Ingredient(@event.Id, @event.Description, @event.Percent)); 
+            _ingredients.Add(@event.IngredientAdded); 
         }
 
         public void UpdateIngredientPercentage(Guid id, int proposedPercent)

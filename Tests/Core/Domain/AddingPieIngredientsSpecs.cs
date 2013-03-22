@@ -1,6 +1,7 @@
 ﻿using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
+using FluentAssertions;
 
 namespace Codell.Pies.Tests.Core.Domain.AddingPieIngredientsSpecs
 {
@@ -22,13 +23,19 @@ namespace Codell.Pies.Tests.Core.Domain.AddingPieIngredientsSpecs
         [Observation]
         public void Then_should_announce_that_the_ingredient_was_added()
         {
-            Verify<IngredientAddedEvent>(e => e.Description == _description).WasPublished();
+            Verify<IngredientAddedEvent>(e => e.IngredientAdded.Description == _description).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_that_the_ingredient_is_100_percent()
         {
-            Verify<IngredientAddedEvent>(e => e.Percent == 100).WasPublished();
+            Verify<IngredientAddedEvent>(e => e.IngredientAdded.Percent == 100).WasPublished();
+        }
+
+        [Observation (Skip = "tbd")]
+        public void Then_should_announce_all_ingredients()
+        {                       
+            //Verify<IngredientAddedEvent>(e => e.AllIngredients.Should().Match(Ingredients, new IngredientEqualityComparer()) ).WasPublished();
         }
     }
 
@@ -51,13 +58,19 @@ namespace Codell.Pies.Tests.Core.Domain.AddingPieIngredientsSpecs
         [Observation]
         public void Then_should_announce_that_the_ingredient_was_added()
         {
-            Verify<IngredientAddedEvent>(e => e.Description == _description).WasPublished();
+            Verify<IngredientAddedEvent>(e => e.IngredientAdded.Description == _description).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_that_the_ingredient_is_0_percent()
         {
-            Verify<IngredientAddedEvent>(e => e.Percent == 0).WasPublished();
+            Verify<IngredientAddedEvent>(e => e.IngredientAdded.Percent == 0).WasPublished();
+        }
+
+        [Observation(Skip = "tbd")]
+        public void Then_should_announce_all_ingredients()
+        {
+            //Verify<IngredientAddedEvent>(e => e.AllIngredients.Contains()).WasPublished();
         }
     }
 

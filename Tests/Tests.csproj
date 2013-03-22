@@ -80,6 +80,7 @@
     <Compile Include="Core\Domain\AddingPieIngredientsSpecs.cs" />
     <Compile Include="Core\Domain\CreatingPieSpecs.cs" />
     <Compile Include="Core\Domain\DeletingPieIngredientSpecs.cs" />
+    <Compile Include="Core\Domain\IngredientEqualityComparer.cs" />
     <Compile Include="Core\Domain\PieSpecBase.cs" />
     <Compile Include="Core\Domain\UpdatingPieCaptionSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingPieIngredientPercentageSpecs.cs" />

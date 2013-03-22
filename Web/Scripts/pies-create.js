@@ -10,7 +10,6 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
     self.caption = ko.observable('');
     self.ingredientToAdd = ko.observable('');
     self.ingredients = ko.observableArray();
-    self.ingredientValues = ko.observableArray();
 
     self.caption.subscribe(function(caption) {
         if (caption) {
@@ -25,15 +24,13 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
         }
     };
 
-    var pie = $.connection.pie;
-    pie.client.ingredientAdded = function (data) {
-        var ingredient = new pies.cr8.Ingredient(data.id, data.description, data.percent, data.pieId, self.updateIngredientPercentageUrl);
-        self.ingredients.push(ingredient);
+    var hub = $.connection.pie;
+    hub.client.pieIngredientsUpdated = function (data) {
+        var ingredients = $.map(data, function(i) {
+            return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.updateIngredientPercentageUrl);
+        });
+        self.ingredients(ingredients);
     };
-    pie.client.ingredientPercentUpdated = function(data) { self.ingredientValues.push(data.percent); };
-    //pie.client.ingredientToAddPercentageRejected = function (data) {
-    //    $.mhub.send(pies.messages.percentRejected(data.Id), data);
-    //};
     $.connection.hub.start();
 };
 
