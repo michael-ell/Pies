@@ -30,7 +30,7 @@ namespace Codell.Pies.Tests.Core.Domain
             var track = @event.Payload as IngredientAddedEvent;
             if (track != null)
             {
-                _ingredients.Add(track.IngredientAdded);
+                _ingredients.Add(track.Added);
             }
         }
 

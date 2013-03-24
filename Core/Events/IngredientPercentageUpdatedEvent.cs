@@ -1,37 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using Codell.Pies.Core.Domain;
 using Ncqrs.Eventing.Sourcing;
 
 namespace Codell.Pies.Core.Events
 {
     [Serializable]
-    public class IngredientPercentageUpdatedEvent : SourcedEvent
+    public class IngredientPercentageUpdatedEvent : SourcedEvent, IIngredientsUpdatedEvent
     {
         public Guid Id { get; private set; }
-        public int Percent { get; private set; }
-        public IEnumerable<AffectedIngredients> Affected { get; private set; }
+        public int NewPercent { get; private set; }
+        public IEnumerable<Ingredient> AllIngredients { get; private set; }
+        public Ingredient Filler { get; private set; }
 
-        public IngredientPercentageUpdatedEvent(Guid id, int percent) : this(id, percent, new List<AffectedIngredients>())
-        {
-        }
-
-        public IngredientPercentageUpdatedEvent(Guid id, int percent, IEnumerable<AffectedIngredients> affected)
+        public IngredientPercentageUpdatedEvent(Guid id, int percent, IEnumerable<Ingredient> allIngredients, Ingredient filler)
         {
             Id = id;
-            Percent = percent;
-            Affected = affected;
-        }
-
-        public class AffectedIngredients
-        {
-            public Guid Id { get; private set; }
-            public int Percent { get; private set; }
-
-            public AffectedIngredients(Guid id, int percent)
-            {
-                Id = id;
-                Percent = percent;
-            }
+            NewPercent = percent;
+            AllIngredients = allIngredients;
+            Filler = filler;
         }
     }
 }

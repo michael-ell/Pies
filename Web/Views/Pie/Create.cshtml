@@ -22,8 +22,8 @@
             <span class="ui-icon ui-icon-circle-plus"></span>
         </a>
     </div>
-    <div data-bind="template : {name: 'ingredient-template', foreach: ingredients }"></div>
-    <div id="chart" data-bind="pieChart: ingredients, map: {text: 'description', value: 'percent'}"></div>
+    <div data-bind="template : {name: 'ingredient-template', foreach: editableIngredients }"></div>
+    <div id="chart" data-bind="pieChart: allIngredients, map: {text: 'description', value: 'percent'}"></div>
     <script type="text/html" id="ingredient-template">
         <div>
             <div class="row" data-bind="text: description"></div>

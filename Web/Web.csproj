@@ -294,7 +294,7 @@
     <Content Include="Scripts\jquery.mHub.js" />
     <Content Include="Scripts\jquery.signalR-1.0.1.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
-    <Content Include="Scripts\knockout-custom.js" />
+    <Content Include="Scripts\knockout-pies.js" />
     <Content Include="Scripts\messages.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />

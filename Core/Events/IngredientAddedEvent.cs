@@ -6,16 +6,19 @@ using Ncqrs.Eventing.Sourcing;
 namespace Codell.Pies.Core.Events
 {
     [Serializable]
-    public class IngredientAddedEvent : SourcedEvent
+    public class IngredientAddedEvent : SourcedEvent, IIngredientsUpdatedEvent
     {
-        public Ingredient IngredientAdded { get; private set; }
+        public Ingredient Added { get; private set; }
 
         public IEnumerable<Ingredient> AllIngredients { get; private set; }
 
-        public IngredientAddedEvent(Ingredient ingredientAdded, IEnumerable<Ingredient> allIngredients)
+        public Ingredient Filler { get; private set; }
+
+        public IngredientAddedEvent(Ingredient added, IEnumerable<Ingredient> allIngredients, Ingredient filler)
         {
-            IngredientAdded = ingredientAdded;
+            Added = added;
             AllIngredients = allIngredients;
+            Filler = filler;
         }
     }
 }

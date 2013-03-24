@@ -73,6 +73,7 @@
     <Compile Include="Domain\Ingredient.cs" />
     <Compile Include="Domain\Slice.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
+    <Compile Include="Events\IIngredientsUpdatedEvent.cs" />
     <Compile Include="Events\IngredientPercentageUpdatedEvent.cs" />
     <Compile Include="Events\IngredientAddedEvent.cs" />
     <Compile Include="Events\PieCaptionUpdatedEvent.cs" />

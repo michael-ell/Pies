@@ -9,7 +9,8 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
     self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
     self.caption = ko.observable('');
     self.ingredientToAdd = ko.observable('');
-    self.ingredients = ko.observableArray();
+    self.editableIngredients = ko.observableArray();
+    self.allIngredients = ko.observableArray();
 
     self.caption.subscribe(function(caption) {
         if (caption) {
@@ -26,10 +27,14 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
 
     var hub = $.connection.pie;
     hub.client.pieIngredientsUpdated = function (data) {
-        var ingredients = $.map(data, function(i) {
+        var ingredients = $.map(data.ingredients, function(i) {
             return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.updateIngredientPercentageUrl);
         });
-        self.ingredients(ingredients);
+        self.editableIngredients(ingredients);
+        if (data.filler.percent > 0) {
+            ingredients.push(new pies.cr8.Ingredient(data.filler.id, data.filler.description, data.filler.percent, data.filler.pieId));
+        }
+        self.allIngredients(ingredients);
     };
     $.connection.hub.start();
 };
@@ -39,10 +44,12 @@ pies.cr8.Ingredient = function (id, desc, percent, pieId, updateIngredientPercen
 
     self.id = id;
     self.pieId = pieId,
-    self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
     self.percent = ko.observable(percent);
     self.description = ko.observable(desc);
-    self.percent.subscribe(function (newPercent) {
-        $.post(updateIngredientPercentageUrl, { id: self.id, pieId: self.pieId, percent: newPercent });
-    });
+    if (updateIngredientPercentageUrl) {
+        self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
+        self.percent.subscribe(function(newPercent) {
+            $.post(updateIngredientPercentageUrl, { id: self.id, pieId: self.pieId, percent: newPercent });
+        });
+    }
 }
