@@ -16,6 +16,10 @@ ko.bindingHandlers.slider = {
             }
         };
         $(el).slider($.extend(opts, allBindingsAccessor().sliderOptions || {}));
+    },
+    
+    update: function (el, valueAccessor) {
+        $(el).slider('value', ko.utils.unwrapObservable(valueAccessor()));
     }
 };
 
@@ -59,9 +63,6 @@ ko.bindingHandlers.pieChart = {
         slices = $.map(slices, function (slice) {
             return { name: ko.utils.unwrapObservable(slice[map.text]), y: ko.utils.unwrapObservable(slice[map.value]) };
         });
-        //for (var i = 0; i < slices.length; i++) {
-        //    ko.bindingHandlers.pieChart.instance.series[i].setData(slices[i]);
-        //}
        ko.bindingHandlers.pieChart.instance.series[0].setData(slices);
     }
 };

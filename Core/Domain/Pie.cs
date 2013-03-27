@@ -27,14 +27,17 @@ namespace Codell.Pies.Core.Domain
         private void Init()
         {
             _ingredients = new List<Ingredient>();
-            _filler = new Ingredient(Guid.NewGuid(),"Filler", 100);
+            _filler = new Ingredient(Guid.NewGuid(), "Filler", 100);
         }
 
         protected void OnPieCreated(PieCreatedEvent @event)
-        {            
+        {
         }
 
-        private int Total { get { return _ingredients.Sum(i => i.Percent); } }
+        private int Total
+        {
+            get { return _ingredients.Sum(i => i.Percent); }
+        }
 
         public void UpdateCaption(string caption)
         {
@@ -61,7 +64,7 @@ namespace Codell.Pies.Core.Domain
         protected void OnIngredientAdded(IngredientAddedEvent @event)
         {
             _filler.Percent = Max - Total;
-            _ingredients.Add(@event.Added); 
+            _ingredients.Add(@event.Added);
         }
 
         public void UpdateIngredientPercentage(Guid id, int proposedPercent)
@@ -71,28 +74,36 @@ namespace Codell.Pies.Core.Domain
                 proposedPercent = 0;
             }
 
-            if (IngredientFor(id).Percent == proposedPercent) return;
-
             var ingredient = IngredientFor(id);
-            if (_filler.Percent > 0)
+            if (ingredient.Percent != proposedPercent)
             {
-                var newPercent = proposedPercent < _filler.Percent ? proposedPercent : _filler.Percent;
-                ApplyEvent(new IngredientPercentageUpdatedEvent(id, newPercent, _ingredients, _filler));
-            }
-            else
-            {
-                ApplyEvent(new IngredientPercentageRejectedEvent(id, proposedPercent, ingredient.Percent));                
+                if (proposedPercent < ingredient.Percent)
+                {
+                    _filler.Percent = _filler.Percent - (proposedPercent - ingredient.Percent);
+                    ApplyEvent(new IngredientPercentageUpdatedEvent(id, proposedPercent, _ingredients, _filler));
+                }
+                else if (_filler.Percent > 0)
+                {
+                    var cap = _filler.Percent + ingredient.Percent;
+                    var newPercent = proposedPercent < cap ? proposedPercent : cap;
+                    _filler.Percent = _filler.Percent - (newPercent - ingredient.Percent);
+                    ApplyEvent(new IngredientPercentageUpdatedEvent(id, newPercent, _ingredients, _filler));
+                }
+                else
+                {
+                    ApplyEvent(new IngredientPercentageRejectedEvent(id, proposedPercent, ingredient.Percent));
+                }
             }
         }
 
         protected void OnIngredientPercentageUpdated(IngredientPercentageUpdatedEvent @event)
         {
             IngredientFor(@event.Id).Percent = @event.NewPercent;
-            _filler.Percent = Max - Total;
+            _filler = @event.Filler;
         }
 
         protected void OnIngredientPercentageRejected(IngredientPercentageRejectedEvent @event)
-        {            
+        {
         }
 
         public void DeleteIngredient(Guid id)

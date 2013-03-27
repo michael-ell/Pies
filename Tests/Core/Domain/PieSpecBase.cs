@@ -12,7 +12,8 @@ namespace Codell.Pies.Tests.Core.Domain
     public abstract class PieSpecBase : AggregateRootSpecBase<Pie>
     {
         private readonly List<Ingredient> _ingredients;
-        protected IReadOnlyList<Ingredient> Ingredients { get { return _ingredients; } } 
+        protected IReadOnlyList<Ingredient> Ingredients { get { return _ingredients; } }
+        protected Ingredient Filler { get; private set; }
 
         protected PieSpecBase()
         {
@@ -27,10 +28,19 @@ namespace Codell.Pies.Tests.Core.Domain
 
         private void OnEventPublished(IPublishableEvent @event)
         {
-            var track = @event.Payload as IngredientAddedEvent;
-            if (track != null)
+            var added = @event.Payload as IngredientAddedEvent;
+            if (added != null)
             {
-                _ingredients.Add(track.Added);
+                _ingredients.Add(added.Added);
+                Filler = added.Filler;
+            }
+            else
+            {
+                var updated = @event.Payload as IngredientPercentageUpdatedEvent;
+                if (updated != null)
+                {
+                    Filler = updated.Filler;
+                }
             }
         }
 

@@ -36,6 +36,13 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
         }
         self.allIngredients(ingredients);
     };
+    hub.client.ingredientPercentageRejected = function(data) {
+        var ingredient = Enumerable.From(self.editableIngredients()).Single(function (i) { return i.id === data.id; });
+        ingredient.message(data.message);
+        ingredient.reverting = true;
+        ingredient.percent(data.currentPercent);
+        ingredient.reverting = false;
+    };
     $.connection.hub.start();
 };
 
@@ -46,10 +53,14 @@ pies.cr8.Ingredient = function (id, desc, percent, pieId, updateIngredientPercen
     self.pieId = pieId,
     self.percent = ko.observable(percent);
     self.description = ko.observable(desc);
-    if (updateIngredientPercentageUrl) {
+    self.message = ko.observable();
+    if (updateIngredientPercentageUrl) {       
         self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
-        self.percent.subscribe(function(newPercent) {
-            $.post(updateIngredientPercentageUrl, { id: self.id, pieId: self.pieId, percent: newPercent });
+        self.reverting = false;
+        self.percent.subscribe(function (newPercent) {
+            if (!self.reverting) {
+                $.post(updateIngredientPercentageUrl, { id: self.id, pieId: self.pieId, percent: newPercent });
+            }
         });
     }
 }

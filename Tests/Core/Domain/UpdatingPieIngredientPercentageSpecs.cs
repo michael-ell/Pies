@@ -1,4 +1,5 @@
-﻿using Codell.Pies.Core.Domain;
+﻿using System;
+using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
 
@@ -46,7 +47,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
     }
 
     [Concern(typeof(Pie))]
-    public class When_updating_the_percentage_of_a_ingredient_that_has_no_filler : PieSpecBase
+    public class When_increasing_the_percentage_of_a_ingredient_for_a_pie_that_has_no_filler : PieSpecBase
     {
         private int _proposed;
 
@@ -54,7 +55,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         {
             Sut.AddIngredient("blueberries");
             Sut.UpdateIngredientPercentage(Ingredients[0].Id, 100);
-            _proposed = 10;
+            _proposed = 110;
         }
 
         protected override void When()
@@ -76,7 +77,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
     }
 
     [Concern(typeof(Pie))]
-    public class When_updating_the_percentage_of_a_ingredient_that_is_less_than_the_filler : PieSpecBase
+    public class When_updating_the_percentage_of_a_ingredient_for_a_pie_that_is_less_than_the_filler : PieSpecBase
     {
         private int _proposed;
 
@@ -114,28 +115,79 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
     public class When_updating_the_percentage_of_a_ingredient_that_is_greater_than_the_filler : PieSpecBase
     {
         private int _proposed;
+        private int _expected;
+        private Guid _toChange;
 
         protected override void Given()
         {
             Sut.AddIngredient("blueberries");
-            _proposed = 110;
+            Sut.AddIngredient("cinammon");
+            _toChange = Ingredients[1].Id;
+            Sut.UpdateIngredientPercentage(Ingredients[0].Id, 80);
+            Sut.UpdateIngredientPercentage(_toChange, 15);
+            _proposed = 30;
+            _expected = 20;
         }
 
         protected override void When()
         {
-            Sut.UpdateIngredientPercentage(Ingredients[0].Id, _proposed);
+            Sut.UpdateIngredientPercentage(_toChange, _proposed);
         }
 
         [Observation]
         public void Then_should_announce_that_the_ingredient_percent_was_updated_using_the_remaining_filler()
         {
-            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == Pie.Max).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == _toChange && e.NewPercent == _expected).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_that_there_is_no_more_filler()
         {
             Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == 0).WasPublished();
+        }
+
+        [Observation(Skip = "tbd")]
+        public void Then_should_announce_all_ingredients()
+        {
+            //Verify<IngredientAddedEvent>(e => e.AllIngredients.Contains()).WasPublished();
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_increasing_the_percentage_of_a_ingredient_that_is_currently_the_same_as_the_filler : PieSpecBase
+    {
+        private int _proposed;
+        private int _expectedPercent;
+        private Guid _toChange;
+        private int _expectedFiller;
+
+        protected override void Given()
+        {
+            Sut.AddIngredient("blueberries");
+            Sut.AddIngredient("cinammon");
+            _toChange = Ingredients[1].Id;
+            Sut.UpdateIngredientPercentage(Ingredients[0].Id, 60);
+            Sut.UpdateIngredientPercentage(_toChange, 20);
+            _proposed = 25;
+            _expectedPercent = 25;
+            _expectedFiller = 15;
+        }
+
+        protected override void When()
+        {
+            Sut.UpdateIngredientPercentage(_toChange, _proposed);
+        }
+
+        [Observation]
+        public void Then_should_announce_that_the_ingredient_percent_was_updated()
+        {
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == _toChange && e.NewPercent == _expectedPercent).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_reduce_the_filler()
+        {
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == _expectedFiller).WasPublished();
         }
 
         [Observation(Skip = "tbd")]
@@ -171,6 +223,44 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         public void Then_should_announce_that_there_is_no_more_filler()
         {
             Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == 0).WasPublished();
+        }
+
+        [Observation(Skip = "tbd")]
+        public void Then_should_announce_all_ingredients()
+        {
+            //Verify<IngredientAddedEvent>(e => e.AllIngredients.Contains()).WasPublished();
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_reducing_the_percentage_of_a_ingredient_and_there_is_no_filler: PieSpecBase
+    {
+        private int _proposed;
+        private int _expectedFiller;
+
+        protected override void Given()
+        {
+            Sut.AddIngredient("blueberries");
+            Sut.UpdateIngredientPercentage(Ingredients[0].Id, Pie.Max);
+            _proposed = 20;
+            _expectedFiller = 80;
+        }
+
+        protected override void When()
+        {
+            Sut.UpdateIngredientPercentage(Ingredients[0].Id, _proposed);
+        }
+
+        [Observation]
+        public void Then_should_announce_that_the_ingredient_percent_was_updated()
+        {
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == _proposed).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_that_there_now_is_a_filler()
+        {
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == _expectedFiller).WasPublished();
         }
 
         [Observation(Skip = "tbd")]
