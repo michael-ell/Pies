@@ -25,19 +25,17 @@
         @RenderSection("Scripts", required: false)
     </head>
     <body>
-        <div class="header">
-            <h1>Pies</h1>
-            <div class="nav">
-                <a href="@Url.Action("Index", "Pie")">Home</a>
-                <a href="@Url.Action("Create", "Pie")">Bake</a>
-            </div>
+        <div class="top-nav">Codell Concepts Inc.</div>        
+        <div class="nav-bar">
+            <a class="nav-item" href="@Url.Action("Index", "Pie")">Home</a>
+            <a class="nav-item" href="@Url.Action("Create", "Pie")">Bake</a>
         </div>
-        <div class="side">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in malesuada semper mi, id sollicitudin urna fermentum ut fusce varius nisl ac ipsum gravida vel pretium tellus.
-        </div>
-        <div class="content">
+        <div class="container">
+@*            <div class="header">
+                <h1>Pies</h1>
+            </div>*@
             @RenderBody()
+            <div id="error" class="important"></div>
         </div>
-        <div id="error" class="important"></div>
     </body>
 </html>

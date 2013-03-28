@@ -1,5 +1,65 @@
 ﻿body {
     font-family: Verdana, Arial;
+    background-color: #f6f6f6;
+    margin: 0;
+    font-size: 14px;
+}
+
+.top-nav {
+    background-color: #4e769f;
+    height: 35px;
+    line-height: 35px;
+    margin-bottom: 25px;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.nav-bar, .container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1020px;
+    background-color: #ffffff;   
+    padding: 10px;     
+}
+
+.nav-bar {
+    border-left: #dfdfdf 1px solid;
+    border-top: #dfdfdf 1px solid;
+    border-right: #dfdfdf 1px solid;
+    background-color: #dfeffc;
+    border-top-left-radius: 10px;  
+    border-top-right-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.nav-item {
+    text-decoration: none;
+    width: 100px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #000000; 
+}
+
+.container {
+    position: relative;
+    border-left: #dfdfdf 1px solid;
+    border-bottom: #dfdfdf 1px solid;
+    border-right: #dfdfdf 1px solid;
+    border-bottom-left-radius: 10px;  
+    border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    height: 80%;    
 }
 
 .center {
@@ -20,10 +80,6 @@
     border-bottom: solid 1px black;
 }
 
-.nav {
-    text-align: left;
-}
-
 .side {
     float: left;
     width: 200px;
@@ -38,6 +94,14 @@
     padding: 10px;
 }
 
+.section {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: dotted 1px #dfdfdf 
+}
+
 .row {
     padding-bottom: 10px;
 }
@@ -49,6 +113,26 @@
 
 .caption {
     width: 500px;
+}
+
+.ingredients, .pie {
+
+    /*display: inline-block;*/
+}
+
+.ingredients {
+    /*float: left;
+    width: 55%;*/
+}
+
+.pie {
+    /*float: right;
+    width: 45%;*/
+}
+
+.ingredient-container {
+    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
 .ingredient {

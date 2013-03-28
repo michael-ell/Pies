@@ -11,21 +11,23 @@
     </script>
 }
 <div id="create">
-    <div class="row">
-        <span class="data-label">Caption</span>
-        <input class="caption" type="text" data-bind="blur: caption"/>
-    </div>  
-    <div class="row">
-        <span class="data-label">Ingredient</span>
-        <input class="ingredient" type="text" data-bind="value: ingredientToAdd"/>
-        <a href="#" title="Add" data-bind="click: addIngredient">
-            <span class="ui-icon ui-icon-circle-plus"></span>
-        </a>
+    <div class="section">
+        <div class="row">
+            <span class="data-label">Caption</span>
+            <input class="caption" type="text" data-bind="blur: caption"/>
+        </div>  
+        <div class="row">
+            <span class="data-label">Ingredient</span>
+            <input class="ingredient" type="text" data-bind="value: ingredientToAdd"/>
+            <a href="#" title="Add" data-bind="click: addIngredient">
+                <span class="ui-icon ui-icon-circle-plus"></span>
+            </a>
+        </div>
     </div>
-    <div data-bind="template : {name: 'ingredient-template', foreach: editableIngredients }"></div>
-    <div id="chart" data-bind="pieChart: allIngredients, map: {text: 'description', value: 'percent'}"></div>
+    <div class="ingredients" data-bind="template : {name: 'ingredient-template', foreach: editableIngredients }"></div>
+    <div class="pie" id="chart" data-bind="pieChart: allIngredients, map: {text: 'description', value: 'percent'}"></div>
     <script type="text/html" id="ingredient-template">
-        <div>
+        <div class="ingredient-container">
             <div class="row" data-bind="text: description"></div>
             <div id="percent" data-bind="slider: percent, sliderOptions: {min: 0, max: 100, step: 5, value: $data.percent()}"></div>
             <div data-bind="text: message"></div>
