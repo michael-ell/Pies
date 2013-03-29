@@ -74,12 +74,13 @@
     <Compile Include="Domain\Slice.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
     <Compile Include="Events\IIngredientsUpdatedEvent.cs" />
-    <Compile Include="Events\IngredientPercentageUpdatedEvent.cs" />
+    <Compile Include="Events\PercentageUpdatedEvent.cs" />
     <Compile Include="Events\IngredientAddedEvent.cs" />
     <Compile Include="Events\PieCaptionUpdatedEvent.cs" />
     <Compile Include="Events\PieCreatedEvent.cs" />
     <Compile Include="Events\IngredientDeletedEvent.cs" />
-    <Compile Include="Events\IngredientPercentageRejectedEvent.cs" />
+    <Compile Include="Events\PercentageRejectedEvent.cs" />
+    <Compile Include="Events\ProposedPercentageChangedEvent.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />

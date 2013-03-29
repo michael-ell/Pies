@@ -4,7 +4,7 @@ using Ncqrs.Eventing.Sourcing;
 namespace Codell.Pies.Core.Events
 {
     [Serializable]
-    public class IngredientPercentageRejectedEvent : SourcedEvent
+    public class PercentageRejectedEvent : SourcedEvent
     {
         public Guid Id { get; private set; }
 
@@ -12,7 +12,7 @@ namespace Codell.Pies.Core.Events
 
         public int CurrentPercent { get; private set; }
 
-        public IngredientPercentageRejectedEvent(Guid id, int rejectedPercent, int currentPercent)
+        public PercentageRejectedEvent(Guid id, int rejectedPercent, int currentPercent)
         {
             Id = id;
             RejectedPercent = rejectedPercent;

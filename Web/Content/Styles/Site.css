@@ -39,14 +39,38 @@ input[type=text]
     background-color: #f6f6f6;
 }
 
-.title>img {
-    vertical-align: middle;
+.p, .i, .e, .s, .period {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 18px;
 }
 
-.title>span {
-    margin-left: 20px;
-    font-weight: bold;
-    font-size: 18px;
+.p
+{
+    color: #FF0000;
+}
+
+.i
+{
+    color: #009900;
+}
+
+.e {
+    color: #FF6600;    
+}
+
+.s
+{
+    color: #FF3399;
+}
+
+.period
+{
+    color: #9900FF;
+}
+
+.title>img {
+    vertical-align: middle;
 }
 
 .nav-bar

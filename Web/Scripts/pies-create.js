@@ -28,7 +28,7 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
     };
 
     var hub = $.connection.pie;
-    hub.client.pieIngredientsUpdated = function (data) {
+    hub.client.ingredientsUpdated = function (data) {
         var ingredients = $.map(data.ingredients, function(i) {
             return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.updateIngredientPercentageUrl);
         });
@@ -38,7 +38,7 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
         }
         self.allIngredients(ingredients);
     };
-    hub.client.ingredientPercentageRejected = function(data) {
+    hub.client.percentageChanged = function (data) {
         var ingredient = Enumerable.From(self.editableIngredients()).Single(function (i) { return i.id === data.id; });
         ingredient.message(data.message);
         ingredient.reverting = true;

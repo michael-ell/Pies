@@ -6,14 +6,14 @@ using Ncqrs.Eventing.Sourcing;
 namespace Codell.Pies.Core.Events
 {
     [Serializable]
-    public class IngredientPercentageUpdatedEvent : SourcedEvent, IIngredientsUpdatedEvent
+    public class PercentageUpdatedEvent : SourcedEvent, IIngredientsUpdatedEvent
     {
         public Guid Id { get; private set; }
         public int NewPercent { get; private set; }
         public IEnumerable<Ingredient> AllIngredients { get; private set; }
         public Ingredient Filler { get; private set; }
 
-        public IngredientPercentageUpdatedEvent(Guid id, int percent, IEnumerable<Ingredient> allIngredients, Ingredient filler)
+        public PercentageUpdatedEvent(Guid id, int percent, IEnumerable<Ingredient> allIngredients, Ingredient filler)
         {
             Id = id;
             NewPercent = percent;
