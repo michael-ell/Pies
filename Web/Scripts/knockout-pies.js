@@ -1,8 +1,22 @@
 ﻿ko.bindingHandlers.blur = {
     init: function (el, valueAccessor) {
         $(el).blur(function() {
-            var observable = valueAccessor();
-            observable($(this).val());
+            var obs = valueAccessor();
+            obs($(this).val());
+        });
+    }
+};
+
+ko.bindingHandlers.onEnter = {
+    init: function(el, valueAccessor) {
+        $(el).keyup(function(e) {
+            if (e.which === 13) {
+                var $el = $(this);
+                $el.blur();
+                var obs = valueAccessor();
+                obs();
+                $el.focus();
+            }
         });
     }
 };

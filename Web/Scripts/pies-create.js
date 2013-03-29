@@ -21,7 +21,9 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
     self.addIngredient = function() {
         var description = self.ingredientToAdd();
         if (description) {
-            $.post(self.addIngredientUrl, { id: self.id, description: description });
+            $.post(self.addIngredientUrl, { id: self.id, description: description }, function() {
+                self.ingredientToAdd('');
+            });
         }
     };
 

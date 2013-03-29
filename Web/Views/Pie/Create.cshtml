@@ -18,7 +18,7 @@
         </div>  
         <div class="row">
             <span class="data-label">Ingredient</span>
-            <input class="ingredient" type="text" data-bind="value: ingredientToAdd"/>
+            <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>
             <a href="#" title="Add" data-bind="click: addIngredient">
                 <span class="ui-icon ui-icon-circle-plus"></span>
             </a>
