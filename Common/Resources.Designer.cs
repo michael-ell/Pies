@@ -115,11 +115,11 @@ namespace Codell.Pies.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, 100% of the pie is accounted for..
+        ///   Looks up a localized string similar to Oops, you must make room to increase this ingredient..
         /// </summary>
-        public static string PieAccountedFor {
+        public static string PercentRejected {
             get {
-                return ResourceManager.GetString("PieAccountedFor", resourceCulture);
+                return ResourceManager.GetString("PercentRejected", resourceCulture);
             }
         }
         
@@ -129,15 +129,6 @@ namespace Codell.Pies.Common {
         public static string ReflectionTypeLoaderError {
             get {
                 return ResourceManager.GetString("ReflectionTypeLoaderError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Oops, {0}% would cause the pie to explode!..
-        /// </summary>
-        public static string RejectedPercentage {
-            get {
-                return ResourceManager.GetString("RejectedPercentage", resourceCulture);
             }
         }
         

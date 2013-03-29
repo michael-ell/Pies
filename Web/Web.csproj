@@ -205,6 +205,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Styles\Images\animated-overlay.gif" />
+    <Content Include="Content\Styles\Images\pies.png" />
     <Content Include="Content\Styles\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Styles\Images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\Styles\Images\ui-bg_glass_55_fbf9ee_1x400.png" />

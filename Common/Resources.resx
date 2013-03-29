@@ -120,9 +120,6 @@
   <data name="CannotHashObject" xml:space="preserve">
     <value>Cannot has the object.  The object is not serializable, mark it with [Serializable].</value>
   </data>
-  <data name="PieAccountedFor" xml:space="preserve">
-    <value>Sorry, 100% of the pie is accounted for.</value>
-  </data>
   <data name="ExistingUnitOfWork" xml:space="preserve">
     <value>There is already a unit of work created for this context.</value>
   </data>
@@ -150,7 +147,7 @@
   <data name="UnknownDescription" xml:space="preserve">
     <value>Could not find a value for the description '{0}'.</value>
   </data>
-  <data name="RejectedPercentage" xml:space="preserve">
-    <value>Oops, {0}% would cause the pie to explode!.</value>
+  <data name="PercentRejected" xml:space="preserve">
+    <value>Oops, you must make room to increase this ingredient.</value>
   </data>
 </root>

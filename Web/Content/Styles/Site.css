@@ -1,8 +1,9 @@
-﻿body {
+﻿body,html {
     font-family: Verdana, Arial;
     background-color: #f6f6f6;
     margin: 0;
     font-size: 14px;
+    height: 100%;
 }
 
 .top-nav {
@@ -15,12 +16,26 @@
     font-size: 12px;
 }
 
-.nav-bar, .container {
+.nav-bar, .container, .title {
     margin-left: auto;
     margin-right: auto;
     width: 1020px;
     background-color: #ffffff;   
     padding: 10px;     
+}
+
+.title {
+    background-color: #f6f6f6;
+}
+
+.title>img {
+    vertical-align: middle;
+}
+
+.title>span {
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .nav-bar {
@@ -45,7 +60,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-    color: #000000; 
+    color: #4e769f;
 }
 
 .container {
@@ -59,7 +74,7 @@
     -webkit-border-bottom-right-radius: 10px;
     -moz-border-radius-bottomleft: 10px;
     -moz-border-radius-bottomright: 10px;
-    height: 80%;    
+    min-height: 500px;    
 }
 
 .center {
@@ -72,6 +87,10 @@
 
 .important {
     color: red;
+}
+
+.message {
+    padding-top: 10px;
 }
 
 .header {
@@ -116,18 +135,15 @@
 }
 
 .ingredients, .pie {
-
-    /*display: inline-block;*/
+    float: left;
 }
 
 .ingredients {
-    /*float: left;
-    width: 55%;*/
+    width: 50%;
 }
 
 .pie {
-    /*float: right;
-    width: 45%;*/
+    width: 50%;
 }
 
 .ingredient-container {

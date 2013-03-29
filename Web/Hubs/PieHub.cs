@@ -55,7 +55,7 @@ namespace Codell.Pies.Web.EventHandlers
         {
             _hubContext.Clients.All.ingredientPercentageRejected( new {id = @event.Payload.Id, 
                                                                   currentPercent = @event.Payload.CurrentPercent,
-                                                                  message = string.Format(Resources.RejectedPercentage, @event.Payload.RejectedPercent)} );
+                                                                  message = Resources.PercentRejected} );
         }
     }
 }
