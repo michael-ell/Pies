@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Codell.Pies.Common;
 using Codell.Pies.Core.Events;
@@ -8,7 +9,11 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 
 namespace Codell.Pies.Core.EventHandlers
 {
-    public class PieDenormalizer : IEventHandler<PieCreatedEvent>, IEventHandler<PieCaptionUpdatedEvent>, IEventHandler<IngredientAddedEvent>
+    public class PieDenormalizer : IEventHandler<PieCreatedEvent>, 
+                                   IEventHandler<PieCaptionUpdatedEvent>, 
+                                   IEventHandler<IngredientAddedEvent>,
+                                   IEventHandler<PercentageUpdatedEvent>,
+                                   IEventHandler<ProposedPercentageChangedEvent>
     {
         private readonly IRepository _repository;
         private readonly IMappingEngine _mapper;
@@ -39,6 +44,27 @@ namespace Codell.Pies.Core.EventHandlers
             var pie = GetPieFor(evnt);
             pie.Ingredients.Add(_mapper.Map<Domain.Ingredient, Ingredient>(evnt.Payload.Added));
             _repository.Save(pie);
+        }
+
+        public void Handle(IPublishedEvent<PercentageUpdatedEvent> evnt)
+        {
+            UpdateIngredients(GetPieFor(evnt), evnt.Payload);
+        }
+
+        public void Handle(IPublishedEvent<ProposedPercentageChangedEvent> evnt)
+        {
+            UpdateIngredients(GetPieFor(evnt), evnt.Payload);
+        }
+
+        private void UpdateIngredients(Pie pie, IIngredientsUpdatedEvent evnt)
+        {
+            pie.Ingredients.Clear();
+            pie.Ingredients.AddRange(_mapper.Map<IEnumerable<Domain.Ingredient>, IEnumerable<Ingredient>>(evnt.AllIngredients));
+            if (evnt.Filler.Percent > 0)
+            {
+                pie.Ingredients.Add(_mapper.Map<Domain.Ingredient, Ingredient>(evnt.Filler));
+            }
+            _repository.Save(pie);            
         }
 
         private Pie GetPieFor(IPublishableEvent evnt)

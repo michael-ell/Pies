@@ -22,6 +22,16 @@ namespace Codell.Pies.Testing.Creators.Events
             {
                 return new IngredientAddedEventCreator(New.Context);
             }
+
+            public PercentageUpdatedEventCreator PercentageUpdatedEvent()
+            {
+                return new PercentageUpdatedEventCreator(New.Context);
+            }
+
+            public ProposedPercentageChangedEventCreator ProposedPercentageChangedEvent()
+            {
+                return new ProposedPercentageChangedEventCreator(New.Context);
+            }
         }
     }
 }

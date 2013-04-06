@@ -289,12 +289,12 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\pies.js" />
     <Content Include="Scripts\highcharts.js" />
     <None Include="Scripts\linq-vsdoc.js" />
     <None Include="Scripts\jquery.linq-vsdoc.js" />
     <Content Include="Scripts\jquery.linq.js" />
     <Content Include="Scripts\linq.js" />
-    <Content Include="Scripts\pies-create.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-ui-1.10.0.js" />
     <Content Include="Scripts\jquery.mHub.js" />
@@ -313,11 +313,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Pie\Create.cshtml" />
     <Content Include="Views\Pie\Index.cshtml" />
-    <Content Include="Views\Pie\DisplayTemplates\PieModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Readme\" />
+    <Folder Include="Views\Pie\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

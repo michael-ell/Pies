@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Codell.Pies.Web.Models
 {
@@ -10,9 +9,7 @@ namespace Codell.Pies.Web.Models
             Slices = new List<IngredientModel>();
         }
 
-        public Guid Id { get; set; }
-
-        public string Name { get; set; }
+        public string Caption { get; set; }
 
         public IEnumerable<IngredientModel> Slices { get; set; }
     }

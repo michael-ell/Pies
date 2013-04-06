@@ -5,8 +5,7 @@ namespace Codell.Pies.Web.Configuration
     public class AutoMapperConfiguration : IAutoMapperConfiguration
     {
         public void Configure()
-        {
-            //Any funky automapper configuration goes here...
+        {            
         }
     }
 }

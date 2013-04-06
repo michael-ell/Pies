@@ -1,3 +1,16 @@
 ﻿@model IEnumerable<Codell.Pies.Web.Models.PieModel>
-<div>Check out these pies!</div>
-@Html.DisplayFor(pies => pies)
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            ko.applyBindings(new pies.Show([{ caption: 'x' }, { caption: 'y' }, { caption: 'z' }]), $('#pies')[0]);
+        });
+    </script>    
+}
+<div id="pies">
+    <div data-bind="template: { name: 'pie-template', foreach: pies }">&nbsp;</div>        
+    <script type="text/html" id="pie-template">
+        <div data-bind="text: caption"></div>
+    </script>    
+</div>
+

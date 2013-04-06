@@ -1,6 +1,11 @@
 ﻿var pies = pies || {};
-pies.cr8 = pies.cr8 || {};
 
+pies.Show = function(pies) {
+    var self = this;
+    self.pies = ko.observableArray(pies);
+};
+
+pies.cr8 = pies.cr8 || {};
 pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredientPercentageUrl) {
     var self = this;
     self.id = id;

@@ -31,7 +31,8 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(_mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(_repository.GetAll<Pie>()));
+            var pies = _repository.GetAll<Pie>();
+            return View(_mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(pies));
         }
 
         [HttpGet]

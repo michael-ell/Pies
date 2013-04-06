@@ -9,5 +9,11 @@ namespace Codell.Pies.Testing.Creators.Domain
         public IngredientCreator(IFixtureContext context) : base(context, new Ingredient(Guid.NewGuid(), Guid.NewGuid().ToString(), 20))
         {
         }
+
+        public IngredientCreator Percent(int percent)
+        {
+            Creation.Percent = percent;
+            return this;
+        }
     }
 }

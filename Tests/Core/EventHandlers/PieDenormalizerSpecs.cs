@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Codell.Pies.Core.EventHandlers;
 using Codell.Pies.Core.Events;
@@ -111,5 +112,148 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         {
             MockFor<IRepository>().Verify(repo => repo.Save(_pie));
         }        
+    }
+
+    [Concern(typeof(PieDenormalizer))]
+    public class When_an_ingredients_percentage_is_updated : EventHandlerSpecBase<PieDenormalizer>
+    {
+        private PercentageUpdatedEvent _event;
+        private PublishedEvent<PercentageUpdatedEvent> _publishedEvent;
+        private Pie _pie;
+        private List<Ingredient> _expectedIngredients;
+        private Ingredient _expectedFiller;
+
+        protected override void Given()
+        {
+            _event = New.Events().PercentageUpdatedEvent();
+            _publishedEvent = PublishedEvent.For(_event);
+            _pie = New.ReadModels().Pie();
+            _expectedIngredients = new List<Ingredient>{New.ReadModels().Ingredient()};
+            _expectedFiller = New.ReadModels().Ingredient();
+
+            MockFor<IRepository>().Setup(repo => repo.FindById<Guid, Pie>(_publishedEvent.EventSourceId)).Returns(_pie);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(_event.AllIngredients))
+                                     .Returns(_expectedIngredients);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Filler))
+                                     .Returns(_expectedFiller);
+        }
+
+        protected override void When()
+        {
+            Sut.Handle(_publishedEvent);
+        }
+
+        [Observation]
+        public void Then_should_update_the_ingredients_to_reflect_the_change()
+        {
+            _expectedIngredients.ForEach(ingredient => _pie.Ingredients.Should().Contain(ingredient));
+        }
+
+        [Observation]
+        public void Then_should_include_the_filler_as_part_of_the_ingredients()
+        {
+            _pie.Ingredients.Should().Contain(_expectedFiller);
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(_pie));
+        }
+    }
+
+    [Concern(typeof(PieDenormalizer))]
+    public class When_an_ingredients_proposed_precentage_is_changed: EventHandlerSpecBase<PieDenormalizer>
+    {
+        private ProposedPercentageChangedEvent _event;
+        private PublishedEvent<ProposedPercentageChangedEvent> _publishedEvent;
+        private Pie _pie;
+        private List<Ingredient> _expectedIngredients;
+        private Ingredient _expectedFiller;
+
+        protected override void Given()
+        {
+            _event = New.Events().ProposedPercentageChangedEvent();
+            _publishedEvent = PublishedEvent.For(_event);
+            _pie = New.ReadModels().Pie();
+            _expectedIngredients = new List<Ingredient> { New.ReadModels().Ingredient() };
+            _expectedFiller = New.ReadModels().Ingredient();
+
+            MockFor<IRepository>().Setup(repo => repo.FindById<Guid, Pie>(_publishedEvent.EventSourceId)).Returns(_pie);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(_event.AllIngredients))
+                                     .Returns(_expectedIngredients);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Filler))
+                                     .Returns(_expectedFiller);
+        }
+
+        protected override void When()
+        {
+            Sut.Handle(_publishedEvent);
+        }
+
+        [Observation]
+        public void Then_should_update_the_ingredients_to_reflect_the_change()
+        {
+            _expectedIngredients.ForEach(ingredient => _pie.Ingredients.Should().Contain(ingredient));
+        }
+
+        [Observation]
+        public void Then_should_include_the_filler_as_part_of_the_ingredients()
+        {
+            _pie.Ingredients.Should().Contain(_expectedFiller);
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(_pie));
+        }
+    }
+
+    [Concern(typeof(PieDenormalizer))]
+    public class When_an_ingredients_percentage_is_updated_that_eliminated_filler : EventHandlerSpecBase<PieDenormalizer>
+    {
+        private PercentageUpdatedEvent _event;
+        private PublishedEvent<PercentageUpdatedEvent> _publishedEvent;
+        private Pie _pie;
+        private List<Ingredient> _expectedIngredients;
+
+        protected override void Given()
+        {
+            _event = New.Events().PercentageUpdatedEvent().WithNoFiller();
+            _publishedEvent = PublishedEvent.For(_event);
+            _pie = New.ReadModels().Pie();
+            _expectedIngredients = new List<Ingredient> { New.ReadModels().Ingredient() };
+
+
+            MockFor<IRepository>().Setup(repo => repo.FindById<Guid, Pie>(_publishedEvent.EventSourceId)).Returns(_pie);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(_event.AllIngredients))
+                                     .Returns(_expectedIngredients);
+
+        }
+
+        protected override void When()
+        {
+            Sut.Handle(_publishedEvent);
+        }
+
+        [Observation]
+        public void Then_should_only_contain_the_ingredients()
+        {
+            _expectedIngredients.ForEach(ingredient => _pie.Ingredients.Should().Contain(ingredient));
+            _pie.Ingredients.Count.Should().Be(_expectedIngredients.Count);
+        }
+
+        [Observation]
+        public void Then_should_not_include_the_filler_as_part_of_the_ingredients()
+        {
+            MockFor<IMappingEngine>().Verify(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Filler), Times.Never());
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(_pie));
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Codell.Pies.Core.Domain
         private void Init()
         {
             _ingredients = new List<Ingredient>();
-            _filler = new Ingredient(Guid.NewGuid(), "Filler", 100);
+            _filler = new Ingredient(Guid.NewGuid(), "Filler", Max);
         }
 
         protected void OnPieCreated(PieCreatedEvent @event)
