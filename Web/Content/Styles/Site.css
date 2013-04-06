@@ -191,6 +191,25 @@ input[type=text]
     width: 300px;
 }
 
+.ingredient-slider {
+    float: left;
+    width: 300px;
+}
+
+.ingredient-percent {
+    float: left;
+    margin-left: 15px;
+    position: relative;
+    top: -3px;
+}
+
+.add {
+    background: url("images/add.png") no-repeat;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+}
+
 .ui-button-text {
     padding-top: 0 !important;
     padding-bottom: 0 !important;

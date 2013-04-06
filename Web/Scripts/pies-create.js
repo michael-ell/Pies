@@ -1,7 +1,7 @@
 ﻿var pies = pies || {};
 pies.cr8 = pies.cr8 || {};
 
-pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredientPercentageUrl) {
+pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredientPercentageUrl) {
     var self = this;
     self.id = id;
     self.updateCaptionUrl = updateCaptionUrl;
@@ -12,16 +12,16 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
     self.editableIngredients = ko.observableArray();
     self.allIngredients = ko.observableArray();
 
-    self.caption.subscribe(function(caption) {
+    self.caption.subscribe(function (caption) {
         if (caption) {
             $.post(self.updateCaptionUrl, { id: self.id, caption: caption });
         }
     });
 
-    self.addIngredient = function() {
+    self.addIngredient = function () {
         var description = self.ingredientToAdd();
         if (description) {
-            $.post(self.addIngredientUrl, { id: self.id, description: description }, function() {
+            $.post(self.addIngredientUrl, { id: self.id, description: description }, function () {
                 self.ingredientToAdd('');
             });
         }
@@ -29,7 +29,7 @@ pies.cr8.Pie = function(id, updateCaptionUrl, addIngredientUrl, updateIngredient
 
     var hub = $.connection.pie;
     hub.client.ingredientsUpdated = function (data) {
-        var ingredients = $.map(data.ingredients, function(i) {
+        var ingredients = $.map(data.ingredients, function (i) {
             return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.updateIngredientPercentageUrl);
         });
         self.editableIngredients(ingredients);
@@ -54,9 +54,13 @@ pies.cr8.Ingredient = function (id, desc, percent, pieId, updateIngredientPercen
     self.id = id;
     self.pieId = pieId,
     self.percent = ko.observable(percent);
+    self.formattedPercent = ko.computed(function () {
+        return self.percent() + '%';
+    });
     self.description = ko.observable(desc);
     self.message = ko.observable();
-    if (updateIngredientPercentageUrl) {       
+    self.color = ko.observable();
+    if (updateIngredientPercentageUrl) {
         self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
         self.reverting = false;
         self.percent.subscribe(function (newPercent) {

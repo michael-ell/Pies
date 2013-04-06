@@ -5,3 +5,7 @@
 - exposed Slices on Pie for testing
 - create extension method to generate js id from model property
 - add SlicePercentageAcceptedEvent to clear any messages
+- messages disappear after x seconds
+- color slider to match pie sclie
+- experiment with different pies charts
+- 45, 55 chart rendering issue.

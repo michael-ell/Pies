@@ -204,6 +204,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Styles\Images\add.png" />
     <Content Include="Content\Styles\Images\animated-overlay.gif" />
     <Content Include="Content\Styles\Images\pies.png" />
     <Content Include="Content\Styles\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
