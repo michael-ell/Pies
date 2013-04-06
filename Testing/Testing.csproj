@@ -128,10 +128,16 @@
     <Compile Include="BDD\ObservationAttribute.cs" />
     <Compile Include="BDD\SpecificationCommand.cs" />
     <Compile Include="BDD\TimeThisAttribute.cs" />
+    <Compile Include="Creators\Domain\IngredientCreator.cs" />
     <Compile Include="Creators\Domain\NewExtensions.cs" />
     <Compile Include="Creators\Domain\PieCreator.cs" />
+    <Compile Include="Creators\Events\IngredientAddedEventCreator.cs" />
+    <Compile Include="Creators\Events\NewExtensions.cs" />
     <Compile Include="Creators\Helpers\ListCreator.cs" />
     <Compile Include="Creators\Helpers\NewExtensions.cs" />
+    <Compile Include="Creators\ReadModels\IngredientCreator.cs" />
+    <Compile Include="Creators\ReadModels\NewExtensions.cs" />
+    <Compile Include="Creators\ReadModels\PieCreator.cs" />
     <Compile Include="FluentFixtures\Creator.cs" />
     <Compile Include="FluentFixtures\Current.cs" />
     <Compile Include="FluentFixtures\Existing.cs" />

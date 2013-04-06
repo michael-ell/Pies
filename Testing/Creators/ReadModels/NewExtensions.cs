@@ -1,19 +1,19 @@
 ﻿using Codell.Pies.Testing.FluentFixtures;
 
-namespace Codell.Pies.Testing.Creators.Domain
+namespace Codell.Pies.Testing.Creators.ReadModels
 {
     public static class NewExtensions
     {
-        public static NewDomain Domain(this New @new)
+        public static NewReadModels ReadModels(this New @new)
         {
-            return new NewDomain(@new);
+            return new NewReadModels(@new);
         }
 
-        public class NewDomain
+        public class NewReadModels
         {
             public New New { get; private set; }
 
-            public NewDomain(New @new)
+            public NewReadModels(New @new)
             {
                 New = @new;
             }

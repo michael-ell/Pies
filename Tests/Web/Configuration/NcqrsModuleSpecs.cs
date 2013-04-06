@@ -7,6 +7,7 @@ using Codell.Pies.Core.Commands;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
 using Codell.Pies.Tests.Web.Configuration;
+using Codell.Pies.Web.EventHandlers;
 using FluentAssertions;
 using Ncqrs;
 using Ncqrs.Commanding;
@@ -21,7 +22,7 @@ namespace Codell.Pies.Web.Configuration.NcqrsModuleSpecs
     {
         protected override void When()
         {
-            Configure.With<TestableNcqrsModule>();
+            Configure.With<TestableNcqrsModule>();           
         }
 
         [Observation]
@@ -38,7 +39,7 @@ namespace Codell.Pies.Web.Configuration.NcqrsModuleSpecs
         public void Then_all_event_handlers_in_the_core_should_be_registered_within_the_event_bus()
         {
             var bus = NcqrsEnvironment.Get<IEventBus>();
-            var handlerAssemblies = new List<Assembly> {typeof (PieCreatedEvent).Assembly};
+            var handlerAssemblies = new List<Assembly> {typeof (PieCreatedEvent).Assembly, typeof(PieHub).Assembly};
             var handlerTypes = handlerAssemblies.SelectMany(a => a.GetTypes().SelectMany(type => type.GetImplementationsOf(typeof(IEventHandler<>)))).Distinct();
 
             foreach (var eventType in handlerTypes)
