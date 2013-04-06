@@ -6,12 +6,12 @@
             var $create = $('#create');
             var pie = new pies.cr8.Pie('@Model.Id', '@Url.Action("UpdatePieCaption")', '@Url.Action("AddIngredient")', '@Url.Action("UpdateIngredientPercentage")');
             ko.applyBindings(pie, $create[0]);
-            $('a', $create).button();
+            //$('a', $create).button();
         });
     </script>
 }
 <div id="create">
-    <div class="section">
+    <div class="input-container">
         <div class="row">
             <span class="data-label">Caption</span>
             <input class="caption" type="text" data-bind="blur: caption"/>
@@ -20,7 +20,7 @@
             <span class="data-label">Ingredient</span>
             <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>
             <a href="#" title="Add" data-bind="click: addIngredient">
-                <span class="ui-icon ui-icon-circle-plus"></span>
+                <img src="~/Content/Styles/Images/add.png" alt="Add Ingredient" class="add"/>
             </a>
         </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="pie" id="chart" data-bind="pieChart: allIngredients, map: { text: 'description', value: 'percent' }"></div>
     <script type="text/html" id="ingredient-template">
         <div class="ingredient-container">
-            <div class="row" data-bind="text: description"></div>
+            <div class="ingredient-desc" data-bind="text: description, color: color, colorOptions: {backgroundAdjust: 95, borderAdjust: -50}"></div>
             <div style="width: 100%">
                 <div class="ingredient-slider" id="percent" data-bind="slider: percent, sliderOptions: { min: 0, max: 100, step: 5, value: $data.percent() }, sliderColor: color"></div>
                 <div class="ingredient-percent" data-bind="text: formattedPercent"></div>

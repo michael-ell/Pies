@@ -6,12 +6,15 @@
     height: 100%;
 }
 
+input[type=text], .ingredient-desc {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;    
+}
+
 input[type=text]
 {
     border: #dfdfdf 1px solid;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 5px;
@@ -47,26 +50,26 @@ input[type=text]
 
 .p
 {
-    color: #FF0000;
+    color: #AA4643;
 }
 
 .i
 {
-    color: #009900;
+    color: #4572A7;
 }
 
 .e {
-    color: #FF6600;    
+    color: #89A54E;    
 }
 
 .s
 {
-    color: #FF3399;
+    color: #DB843D;
 }
 
 .period
 {
-    color: #9900FF;
+    color: #FF3399;
 }
 
 .title>img {
@@ -126,6 +129,7 @@ input[type=text]
 }
 
 .message {
+    clear: both;
     padding-top: 10px;
 }
 
@@ -149,7 +153,7 @@ input[type=text]
     padding: 10px;
 }
 
-.section {
+.section, .input-container {
     margin-top: 5px;
     margin-bottom: 20px;
     padding-top: 10px;
@@ -166,8 +170,12 @@ input[type=text]
     display: inline-block;
 }
 
-.caption {
-    width: 500px;
+.input-container, .ingredients {
+    padding-left: 30px; 
+}
+
+.caption, .ingredient, .ingredient-slider {
+    width: 300px;
 }
 
 .ingredients, .pie {
@@ -175,11 +183,11 @@ input[type=text]
 }
 
 .ingredients {
-    width: 50%;
+    width: 45%;
 }
 
 .pie {
-    width: 50%;
+    width: 45%;
 }
 
 .ingredient-container {
@@ -187,27 +195,31 @@ input[type=text]
     margin-bottom: 5px;
 }
 
-.ingredient {
-    width: 300px;
+.ingredient-desc {
+    margin-bottom: 15px;
+    border: 1px solid;
+    padding: 5px;
+    padding: 5px;
+    width: 80%;
 }
 
 .ingredient-slider {
+    position: relative;
+    left: 8px;
     float: left;
-    width: 300px;
 }
 
 .ingredient-percent {
     float: left;
-    margin-left: 15px;
+    margin-left: 30px;
     position: relative;
     top: -3px;
 }
 
 .add {
-    background: url("images/add.png") no-repeat;
-    cursor: pointer;
-    height: 32px;
-    width: 32px;
+    position: relative;
+    top: 13px;
+    border: 0;
 }
 
 .ui-button-text {
