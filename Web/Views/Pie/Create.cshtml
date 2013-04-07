@@ -29,7 +29,7 @@
     <script type="text/html" id="ingredient-template">
         <div class="ingredient-container">
             <div class="ingredient-desc" data-bind="text: description, color: color, colorOptions: {backgroundAdjust: 95, borderAdjust: -50}"></div>
-            <div style="width: 100%">
+            <div>
                 <div class="ingredient-slider" id="percent" data-bind="slider: percent, sliderOptions: { min: 0, max: 100, step: 5, value: $data.percent() }, sliderColor: color"></div>
                 <div class="ingredient-percent" data-bind="text: formattedPercent"></div>
             </div>

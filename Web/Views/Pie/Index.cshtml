@@ -3,14 +3,14 @@
 {
     <script type="text/javascript">
         $(function () {
-            ko.applyBindings(new pies.Show([{ caption: 'x' }, { caption: 'y' }, { caption: 'z' }]), $('#pies')[0]);
+            ko.applyBindings(new pies.Show([{ caption: 'x', ingredients: [{ description: 'a', percent: 100 }] }, { caption: 'y', ingredients: [{ description: 'b', percent: 100 }] }, { caption: 'z', ingredients: [{ description: 'c', percent: 100 }] }]), $('#pies')[0]);
         });
     </script>    
 }
 <div id="pies">
     <div data-bind="template: { name: 'pie-template', foreach: pies }">&nbsp;</div>        
     <script type="text/html" id="pie-template">
-        <div data-bind="text: caption"></div>
+        <div data-bind="pieChart: $data, map: { data: 'ingredients', text: 'description', value: 'percent' }"></div>
     </script>    
 </div>
 

@@ -59,52 +59,67 @@ ko.bindingHandlers.color = {
 ko.bindingHandlers.pieChart = {
     instance: null,
     colors: ['#AA4643', '#4572A7', '#89A54E', '#DB843D', '#80699B', '#3D96AE', '#92A8CD', '#A47D7C', '#B5CA92'],
-    init: function (el, valueAccessor) {
-        ko.bindingHandlers.pieChart.instance = new Highcharts.Chart({
-            chart: {
-                renderTo: el.id,
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: ''
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        formatter: function () {
-                            return '<b>' + this.point.name + '</b>';
+    init: function (el, valueAccessor, allBindingsAccessor) {
+        var map = ko.bindingHandlers.pieChart.map(allBindingsAccessor);
+        var data = ko.bindingHandlers.pieChart.data(ko.utils.unwrapObservable(valueAccessor()), map);
+        ko.bindingHandlers.pieChart.instance =
+            new Highcharts.Chart({
+                chart: {
+                    renderTo: el,
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: ''
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: '#000000',
+                            formatter: function() {
+                                return '<b>' + this.point.name + '</b>';
+                            }
                         }
                     }
-                }
-            },
-            series: [{
-                type: 'pie',
-                data: ko.utils.unwrapObservable(valueAccessor()),
-            }]
-        });
+                },
+                series: [{
+                    type: 'pie',
+                    data: ko.bindingHandlers.pieChart.transform(data, map),
+                    name: 'XXX'
+                }]
+            });
     },
     update: function (el, valueAccessor, allBindingsAccessor) {
-        var slices = ko.utils.unwrapObservable(valueAccessor());
-        var map = allBindingsAccessor().map || { text: '', value: '' };
+        var map = ko.bindingHandlers.pieChart.map(allBindingsAccessor);
+        var data = ko.bindingHandlers.pieChart.data(ko.utils.unwrapObservable(valueAccessor()), map);
+        ko.bindingHandlers.pieChart.instance.series[0].setData(ko.bindingHandlers.pieChart.transform(data, map), false);
+        setTimeout(function () { ko.bindingHandlers.pieChart.instance.redraw(); }, 1000);
+    },
+    map: function (allBindingsAccessor) {
+        return allBindingsAccessor().map || { text: '', value: '' };
+    },
+    data: function(obs, map) {
+        if (map && map.data) {
+            return obs[map.data] || [];
+        }
+        return obs;
+    },
+    transform: function (data, map) {
         var max = ko.bindingHandlers.pieChart.colors.length;
         var j = 0;
-        slices = $.map(slices, function (slice, i) {
+        return $.map(data, function(slice, i) {
             var color = ko.bindingHandlers.pieChart.colors[j];
             j = i <= max ? j + 1 : 0;
-            if (slice.color && typeof (slice.color) === 'function') {
+            if (slice.color && typeof(slice.color) === 'function') {
                 slice.color(color);
             }
             return { name: ko.utils.unwrapObservable(slice[map.text]), y: ko.utils.unwrapObservable(slice[map.value]), color: color };
         });
-        ko.bindingHandlers.pieChart.instance.series[0].setData(slices, false);
-        setTimeout(function () { ko.bindingHandlers.pieChart.instance.redraw(); }, 1000);
     }
 };
 
@@ -129,4 +144,4 @@ ko.utils.adjustColor = function(color, amt) {
     else if (g < 0) g = 0;
 
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
-}
+};
