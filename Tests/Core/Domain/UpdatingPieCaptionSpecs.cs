@@ -11,7 +11,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieCaptionSpecs
 
         protected override void Given()
         {
-            _expected = "My blueberry pie is made up of";
+            _expected = "My blueberry pie-preview is made up of";
         }
 
         protected override void When()
@@ -33,7 +33,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieCaptionSpecs
 
         protected override void Given()
         {
-            _sameCaption = "My blueberry pie is made up of";
+            _sameCaption = "My blueberry pie-preview is made up of";
            Sut.UpdateCaption(_sameCaption);
         }
 

@@ -161,6 +161,10 @@ input[type=text]
     border-bottom: dotted 1px #dfdfdf 
 }
 
+.pie, .ingredients, .pie-preview {
+    float: left;
+}
+
 .row {
     padding-bottom: 10px;
 }
@@ -178,15 +182,12 @@ input[type=text]
     width: 300px;
 }
 
-.ingredients, .pie {
-    float: left;
-}
 
 .ingredients {
     width: 45%;
 }
 
-.pie {
+.pie-preview {
     width: 45%;
 }
 

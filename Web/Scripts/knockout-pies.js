@@ -61,7 +61,8 @@ ko.bindingHandlers.pieChart = {
     colors: ['#AA4643', '#4572A7', '#89A54E', '#DB843D', '#80699B', '#3D96AE', '#92A8CD', '#A47D7C', '#B5CA92'],
     init: function (el, valueAccessor, allBindingsAccessor) {
         var map = ko.bindingHandlers.pieChart.map(allBindingsAccessor);
-        var data = ko.bindingHandlers.pieChart.data(ko.utils.unwrapObservable(valueAccessor()), map);
+        var obs = ko.utils.unwrapObservable(valueAccessor());
+        var data = ko.bindingHandlers.pieChart.data(obs, map);
         ko.bindingHandlers.pieChart.instance =
             new Highcharts.Chart({
                 chart: {
@@ -71,7 +72,7 @@ ko.bindingHandlers.pieChart = {
                     plotShadow: false
                 },
                 title: {
-                    text: ''
+                    text: ko.bindingHandlers.pieChart.title(obs, map)
                 },
                 plotOptions: {
                     pie: {
@@ -90,7 +91,7 @@ ko.bindingHandlers.pieChart = {
                 series: [{
                     type: 'pie',
                     data: ko.bindingHandlers.pieChart.transform(data, map),
-                    name: 'XXX'
+                    name: 'Percent'
                 }]
             });
     },
@@ -106,6 +107,12 @@ ko.bindingHandlers.pieChart = {
     data: function(obs, map) {
         if (map && map.data) {
             return obs[map.data] || [];
+        }
+        return obs;
+    },
+    title: function(obs, map) {
+        if (map && map.title) {
+            return obs[map.title] || '? is';
         }
         return obs;
     },

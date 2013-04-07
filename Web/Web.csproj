@@ -185,6 +185,7 @@
     <Compile Include="Configuration\NcqrsModule.cs" />
     <Compile Include="Controllers\PieController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Hubs\PieHub.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Extensions\IgnoreHtmlFieldPrefix.cs" />

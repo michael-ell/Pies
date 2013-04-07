@@ -7,3 +7,4 @@
 - experiment with different pies charts
 - 45, 55 chart rendering issue.
 - jasmine test view models
+- extension to get data member name for javascript instead of magic strings (Index.cshtml)

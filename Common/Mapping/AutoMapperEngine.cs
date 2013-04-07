@@ -10,7 +10,7 @@ namespace Codell.Pies.Common.Mapping
     public class AutoMapperEngine : IMappingEngine
     {
         public static IMappingEngine Configure(IAutoMapperConfiguration configuration)
-        {
+        {            
             configuration.Configure();
             MapCustomTypeConverters();
             return new AutoMapperEngine(Mapper.Engine);

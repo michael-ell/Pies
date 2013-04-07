@@ -1,16 +1,17 @@
-﻿@model IEnumerable<Codell.Pies.Web.Models.PieModel>
+﻿@using Codell.Pies.Web.Extensions
+@model IEnumerable<Codell.Pies.Web.Models.PieModel>
 @section Scripts
 {
     <script type="text/javascript">
         $(function () {
-            ko.applyBindings(new pies.Show([{ caption: 'x', ingredients: [{ description: 'a', percent: 100 }] }, { caption: 'y', ingredients: [{ description: 'b', percent: 100 }] }, { caption: 'z', ingredients: [{ description: 'c', percent: 100 }] }]), $('#pies')[0]);
+            ko.applyBindings(new pies.Show(@Html.Raw(Model.ToJson())), $('#pies')[0]);
         });
     </script>    
 }
 <div id="pies">
-    <div data-bind="template: { name: 'pie-template', foreach: pies }">&nbsp;</div>        
+    <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
     <script type="text/html" id="pie-template">
-        <div data-bind="pieChart: $data, map: { data: 'ingredients', text: 'description', value: 'percent' }"></div>
+        <div data-bind="pieChart: $data, map: { data: 'ingredients', title: 'caption', text: 'description', value: 'percent' }"></div>
     </script>    
 </div>
 
