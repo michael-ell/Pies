@@ -33,6 +33,9 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
     };
 
     var hub = $.connection.pie;
+    hub.client.captionUpdated = function(data) {
+        self.caption(data);
+    };
     hub.client.ingredientsUpdated = function (data) {
         var ingredients = $.map(data.ingredients, function (i) {
             return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.updateIngredientPercentageUrl);

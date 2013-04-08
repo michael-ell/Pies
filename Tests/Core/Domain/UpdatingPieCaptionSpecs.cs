@@ -22,7 +22,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieCaptionSpecs
         [Observation]
         public void Then_should_announce_that_the_pie_caption_was_updated()
         {
-            Verify<PieCaptionUpdatedEvent>(e => e.Caption == _expected);
+            Verify<PieCaptionUpdatedEvent>(e => e.NewCaption == _expected);
         }
     }
 

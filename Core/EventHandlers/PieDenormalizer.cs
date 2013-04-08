@@ -29,21 +29,19 @@ namespace Codell.Pies.Core.EventHandlers
 
         public void Handle(IPublishedEvent<PieCreatedEvent> evnt)
         {
-            _repository.Save(new Pie { Id = evnt.EventSourceId, CreatedOn = DateTime.Now } );
+            _repository.Save(new Pie { Id = evnt.EventSourceId, CreatedOn = DateTime.Now, IsEmpty = true} );
         }
 
         public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> evnt)
         {
             var pie = GetPieFor(evnt);
-            pie.Caption = evnt.Payload.Caption;
+            pie.Caption = evnt.Payload.NewCaption;
             _repository.Save(pie);
         }
 
         public void Handle(IPublishedEvent<IngredientAddedEvent> evnt)
         {
-            var pie = GetPieFor(evnt);
-            pie.Ingredients.Add(_mapper.Map<Domain.Ingredient, Ingredient>(evnt.Payload.Added));
-            _repository.Save(pie);
+            UpdateIngredients(GetPieFor(evnt), evnt.Payload);
         }
 
         public void Handle(IPublishedEvent<PercentageUpdatedEvent> evnt)
@@ -58,6 +56,7 @@ namespace Codell.Pies.Core.EventHandlers
 
         private void UpdateIngredients(Pie pie, IIngredientsUpdatedEvent evnt)
         {
+            pie.IsEmpty = false;
             pie.Ingredients.Clear();
             pie.Ingredients.AddRange(_mapper.Map<IEnumerable<Domain.Ingredient>, IEnumerable<Ingredient>>(evnt.AllIngredients));
             if (evnt.Filler.Percent > 0)

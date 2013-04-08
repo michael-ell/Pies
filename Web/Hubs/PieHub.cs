@@ -10,10 +10,12 @@ using Ncqrs.Eventing.ServiceModel.Bus;
 namespace Codell.Pies.Web.EventHandlers
 {
     [HubName("pie")]
-    public class PieHub : Hub, IEventHandler<IngredientAddedEvent>, 
+    public class PieHub : Hub, IEventHandler<PieCaptionUpdatedEvent>,
+                               IEventHandler<IngredientAddedEvent>, 
                                IEventHandler<PercentageUpdatedEvent>, 
                                IEventHandler<ProposedPercentageChangedEvent>,
                                IEventHandler<PercentageRejectedEvent>
+                              
     {
         private readonly IHubContext _hubContext;
 
@@ -21,6 +23,12 @@ namespace Codell.Pies.Web.EventHandlers
         {
             Verify.NotNull(hubContext, "hubContext");       
             _hubContext = hubContext;
+        }
+
+
+        public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> evnt)
+        {
+            _hubContext.Clients.All.captionUpdated(evnt.Payload.NewCaption);    
         }
 
         public void Handle(IPublishedEvent<IngredientAddedEvent> @event)

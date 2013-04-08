@@ -6,11 +6,11 @@ namespace Codell.Pies.Core.Events
     [Serializable]
     public class PieCaptionUpdatedEvent : SourcedEvent
     {
-        public string Caption { get; private set; }
+        public string NewCaption { get; private set; }
 
-        public PieCaptionUpdatedEvent(string caption)
+        public PieCaptionUpdatedEvent(string newCaption)
         {
-            Caption = caption;
+            NewCaption = newCaption;
         }
     }
 }

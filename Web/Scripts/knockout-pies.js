@@ -140,6 +140,14 @@ ko.bindingHandlers.pieChart = {
     }
 };
 
+ko.bindingHandlers.pieChartTitle = {
+    update: function (el, valueAccessor) {
+       if (ko.bindingHandlers.pieChart.instance) {
+           ko.bindingHandlers.pieChart.instance.setTitle({ text: ko.utils.unwrapObservable(valueAccessor()) });
+       }
+    },
+};
+
 ko.utils.adjustColor = function(color, amt) {
     var usePound = false;
     if (color[0] == "#") {

@@ -31,7 +31,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var pies = _repository.Find<Pie>(pie => pie.Caption != null);
+            var pies = _repository.Find<Pie>(pie => pie.IsEmpty == false);
             return View(_mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(pies));
         }
 

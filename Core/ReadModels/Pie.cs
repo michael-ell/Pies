@@ -17,6 +17,8 @@ namespace Codell.Pies.Core.ReadModels
 
         public List<Ingredient> Ingredients { get; set; }
 
-        public DateTime CreatedOn { get; set; }        
+        public bool IsEmpty { get; set; }
+
+        public DateTime CreatedOn { get; set; }       
     }
 }

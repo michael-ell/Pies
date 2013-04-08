@@ -42,6 +42,12 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         {
             MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.CreatedOn.IgnoreSeconds() == DateTime.Now.IgnoreSeconds())));
         }
+
+        [Observation]
+        public void Then_the_pie_should_be_empty()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.IsEmpty)));
+        }
     }
 
     [Concern(typeof (PieDenormalizer))]
@@ -83,17 +89,22 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         private IngredientAddedEvent _event;
         private PublishedEvent<IngredientAddedEvent> _publishedEvent;
         private Pie _pie;
-        private Ingredient _expectedIngredient;
+        private List<Ingredient> _expectedIngredients;
+        private Ingredient _expectedFiller;
 
         protected override void Given()
         {
             _event = New.Events().IngredientAddedEvent();
             _publishedEvent = PublishedEvent.For(_event);
             _pie = New.ReadModels().Pie();
-            _expectedIngredient = New.ReadModels().Ingredient();
+            _expectedIngredients = new List<Ingredient> { New.ReadModels().Ingredient() };
+            _expectedFiller = New.ReadModels().Ingredient();
 
             MockFor<IRepository>().Setup(repo => repo.FindById<Guid, Pie>(_publishedEvent.EventSourceId)).Returns(_pie);
-            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Added)).Returns(_expectedIngredient);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(_event.AllIngredients))
+                                     .Returns(_expectedIngredients);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Filler))
+                                     .Returns(_expectedFiller);
         }
 
         protected override void When()
@@ -102,16 +113,28 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         }
 
         [Observation]
-        public void Then_should_add_the_ingredient_to_the_pie()
+        public void Then_should_update_the_ingredients_to_reflect_the_change()
         {
-            _pie.Ingredients.Should().Contain(_expectedIngredient);
+            _expectedIngredients.ForEach(ingredient => _pie.Ingredients.Should().Contain(ingredient));
+        }
+
+        [Observation]
+        public void Then_should_include_the_filler_as_part_of_the_ingredients()
+        {
+            _pie.Ingredients.Should().Contain(_expectedFiller);
+        }
+
+        [Observation]
+        public void Then_the_pie_should_not_be_empty()
+        {
+            _pie.IsEmpty.Should().BeFalse();
         }
 
         [Observation]
         public void Then_should_save_the_pie()
         {
             MockFor<IRepository>().Verify(repo => repo.Save(_pie));
-        }        
+        }   
     }
 
     [Concern(typeof(PieDenormalizer))]

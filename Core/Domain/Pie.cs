@@ -49,7 +49,7 @@ namespace Codell.Pies.Core.Domain
 
         protected void OnPieCaptionUpdated(PieCaptionUpdatedEvent @event)
         {
-            _caption = @event.Caption;
+            _caption = @event.NewCaption;
         }
 
         public void AddIngredient(string description)
