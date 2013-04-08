@@ -34,6 +34,7 @@ input[type=text]
     margin-left: auto;
     margin-right: auto;
     width: 1020px;
+    min-width: 1020px;
     background-color: #ffffff;   
     padding: 10px;     
 }
@@ -114,6 +115,8 @@ input[type=text]
     -moz-border-radius-bottomleft: 10px;
     -moz-border-radius-bottomright: 10px;
     min-height: 520px;
+    overflow: auto;
+    margin-bottom: 10px;
 }
 
 .center {
@@ -163,6 +166,10 @@ input[type=text]
 
 .pie, .ingredients, .pie-preview {
     float: left;
+}
+
+.pie {
+    width: 50%;
 }
 
 .row {

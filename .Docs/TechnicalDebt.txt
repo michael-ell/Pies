@@ -8,3 +8,4 @@
 - 45, 55 chart rendering issue.
 - jasmine test view models
 - extension to get data member name for javascript instead of magic strings (Index.cshtml)
+- track whether pie read model is empty instead of looking for null captions in PieController

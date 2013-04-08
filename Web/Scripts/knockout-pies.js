@@ -60,16 +60,19 @@ ko.bindingHandlers.pieChart = {
     instance: null,
     colors: ['#AA4643', '#4572A7', '#89A54E', '#DB843D', '#80699B', '#3D96AE', '#92A8CD', '#A47D7C', '#B5CA92'],
     init: function (el, valueAccessor, allBindingsAccessor) {
-        var map = ko.bindingHandlers.pieChart.map(allBindingsAccessor);
+        var map = ko.bindingHandlers.pieChart.chartMap(allBindingsAccessor);
         var obs = ko.utils.unwrapObservable(valueAccessor());
         var data = ko.bindingHandlers.pieChart.data(obs, map);
+        var opts = ko.bindingHandlers.pieChart.options(allBindingsAccessor);
         ko.bindingHandlers.pieChart.instance =
             new Highcharts.Chart({
                 chart: {
                     renderTo: el,
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
-                    plotShadow: false
+                    plotShadow: false,
+                    height: opts.height,
+                    width: opts.width                    
                 },
                 title: {
                     text: ko.bindingHandlers.pieChart.title(obs, map)
@@ -90,19 +93,25 @@ ko.bindingHandlers.pieChart = {
                 },
                 series: [{
                     type: 'pie',
-                    data: ko.bindingHandlers.pieChart.transform(data, map),
+                    data: ko.bindingHandlers.pieChart.transform(data, allBindingsAccessor),
                     name: 'Percent'
                 }]
             });
     },
     update: function (el, valueAccessor, allBindingsAccessor) {
-        var map = ko.bindingHandlers.pieChart.map(allBindingsAccessor);
+        var map = ko.bindingHandlers.pieChart.chartMap(allBindingsAccessor);
         var data = ko.bindingHandlers.pieChart.data(ko.utils.unwrapObservable(valueAccessor()), map);
-        ko.bindingHandlers.pieChart.instance.series[0].setData(ko.bindingHandlers.pieChart.transform(data, map), false);
+        ko.bindingHandlers.pieChart.instance.series[0].setData(ko.bindingHandlers.pieChart.transform(data, allBindingsAccessor), false);
         setTimeout(function () { ko.bindingHandlers.pieChart.instance.redraw(); }, 1000);
     },
-    map: function (allBindingsAccessor) {
-        return allBindingsAccessor().map || { text: '', value: '' };
+    options: function(allBindingsAccessor) {
+        return allBindingsAccessor().pieOptions || { height: null, width: null };
+    },
+    chartMap: function (allBindingsAccessor) {
+        return ko.bindingHandlers.pieChart.options(allBindingsAccessor).chartMap || { title: '' };
+    },
+    dataMap: function (allBindingsAccessor) {
+        return ko.bindingHandlers.pieChart.options(allBindingsAccessor).dataMap || { text: '', value: '' };
     },
     data: function(obs, map) {
         if (map && map.data) {
@@ -116,7 +125,8 @@ ko.bindingHandlers.pieChart = {
         }
         return obs;
     },
-    transform: function (data, map) {
+    transform: function (data, allBindingsAccessor) {
+        var map = ko.bindingHandlers.pieChart.dataMap(allBindingsAccessor);
         var max = ko.bindingHandlers.pieChart.colors.length;
         var j = 0;
         return $.map(data, function(slice, i) {
