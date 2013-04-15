@@ -3,38 +3,59 @@
 {
     <script type="text/javascript">
         $(function () {
-            var $create = $('#create');
             var pie = new pies.cr8.Pie('@Model.Id', '@Url.Action("UpdatePieCaption")', '@Url.Action("AddIngredient")', '@Url.Action("UpdateIngredientPercentage")');
-            ko.applyBindings(pie, $create[0]);
-            //$('a', $create).button();
+            ko.applyBindings(pie, $('#create')[0]);
         });
     </script>
 }
 <div id="create">
-    <div class="input-container">
-        <div class="row">
-            <span class="data-label">Caption</span>
-            <input class="caption" type="text" data-bind="blur: caption"/>
-        </div>  
-        <div class="row">
-            <span class="data-label">Ingredient</span>
-            <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>
-            <a href="#" title="Add" data-bind="click: addIngredient">
-                <img src="~/Content/Styles/Images/add.png" alt="Add Ingredient" class="add"/>
-            </a>
-        </div>
+    <div class="kitchen">
+        <table class="kitchen-top">
+            <tr>
+                <td class="data-label">Caption</td>
+                <td><input class="caption" type="text" data-bind="blur: caption"/></td>
+            </tr>
+            <tr>
+                <td class="data-label">Ingredient</td>
+                <td>
+                    <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>
+                    <a href="#" title="Add" data-bind="click: addIngredient">
+                        Add
+                        <!--<img src="~/Content/Styles/Images/add.png" alt="Add Ingredient" class="add"/>-->
+                    </a>                        
+                </td>
+            </tr>
+        </table>                  
+        <div class="ingredients" data-bind="template: { name: 'ingredient-template', foreach: editableIngredients }"></div> 
+@*        <table class="kitchen-bottom">
+            <tr>
+                <td colspan="2">&nbsp</td>
+            </tr>
+        </table>  *@                          
     </div>
-    <div class="ingredients" data-bind="template: { name: 'ingredient-template', foreach: editableIngredients }">&nbsp;</div>
-    <div class="pie-preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent' } }"></div>
+    <div class="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent' } }"></div>
     <script type="text/html" id="ingredient-template">
-        <div class="ingredient-container">
-            <div class="ingredient-desc" data-bind="text: description, color: color, colorOptions: {backgroundAdjust: 95, borderAdjust: -50}"></div>
-            <div>
-                <div class="ingredient-slider" id="percent" data-bind="slider: percent, sliderOptions: { min: 0, max: 100, step: 5, value: $data.percent() }, sliderColor: color"></div>
-                <div class="ingredient-percent" data-bind="text: formattedPercent"></div>
-            </div>
-            <div class="important message" data-bind="text: message"></div>
-        </div>   
+        <table class="ingredient-container" data-bind="color: color">
+            <tr>
+                <td class="data-label"></td>
+                <td>
+                    <div class="ingredient-desc" data-bind="text: description"></div>
+                </td>
+            </tr>    
+            <tr>
+                <td></td>
+                <td>
+                    <div class="ingredient-slider" id="percent" data-bind="slider: percent, sliderOptions: { min: 0, max: 100, step: 5, value: $data.percent() }, sliderColor: color, colorOptions: { backgroundAdjust: 80, borderAdjust: 0 }"></div>
+                    <div class="ingredient-percent" data-bind="text: formattedPercent"></div>
+                </td>
+            </tr> 
+            <tr>
+                <td></td>
+                <td>
+                    <div class="important message" data-bind="text: message"></div>
+                </td>
+            </tr>      
+         </table>
     </script>
 </div>
 

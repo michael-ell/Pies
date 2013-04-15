@@ -38,11 +38,8 @@ ko.bindingHandlers.slider = {
 };
 
 ko.bindingHandlers.sliderColor = {
-    update: function(el, valueAccessor) {
-        var color = ko.utils.unwrapObservable(valueAccessor());
-        if (color) {
-            $('.ui-slider-handle', $(el)).css('background', color).css('border-color', ko.utils.adjustColor(color, -50));
-        }
+    update: function (el, valueAccessor, allBindingsAccessor) {
+        ko.bindingHandlers.color.update($('.ui-slider-handle', $(el)), valueAccessor, allBindingsAccessor);
     }
 };
 

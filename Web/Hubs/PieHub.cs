@@ -26,9 +26,9 @@ namespace Codell.Pies.Web.EventHandlers
         }
 
 
-        public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> evnt)
-        {
-            _hubContext.Clients.All.captionUpdated(evnt.Payload.NewCaption);    
+        public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> @event)
+        {  
+            SendTo(@event.EventSourceId).captionUpdated(@event.Payload.NewCaption);
         }
 
         public void Handle(IPublishedEvent<IngredientAddedEvent> @event)
@@ -45,9 +45,10 @@ namespace Codell.Pies.Web.EventHandlers
         }
 
         private void PublishIngredientsUpdated(IIngredientsUpdatedEvent @event, Guid pieId)
-        {
+        {                       
             var ingredients = @event.AllIngredients.Select(ingredient => ToDto(ingredient, pieId));
             var filler = ToDto(@event.Filler, pieId);
+            //SendTo(pieId).ingredientsUpdated(new { ingredients, filler });            
             _hubContext.Clients.All.ingredientsUpdated(new { ingredients, filler });            
         }
 
@@ -64,19 +65,25 @@ namespace Codell.Pies.Web.EventHandlers
 
         public void Handle(IPublishedEvent<ProposedPercentageChangedEvent> @event)
         {
-            PublishPercentageChanged(@event.Payload.Id, @event.Payload.AcceptedPercent, string.Empty);
+            PublishPercentageChanged(@event.Payload.Id, @event.Payload.AcceptedPercent, string.Empty, @event.EventSourceId);
         }
 
         public void Handle(IPublishedEvent<PercentageRejectedEvent> @event)
         {
-            PublishPercentageChanged(@event.Payload.Id, @event.Payload.CurrentPercent, Resources.PercentRejected);
+            PublishPercentageChanged(@event.Payload.Id, @event.Payload.CurrentPercent, Resources.PercentRejected, @event.EventSourceId);
         }
 
-        private void PublishPercentageChanged(Guid ingredientId, int updatedPercentage, string message)
+        private void PublishPercentageChanged(Guid ingredientId, int updatedPercentage, string message, Guid pieId)
         {
-            _hubContext.Clients.All.percentageChanged (new { id = ingredientId,
-                                                             currentPercent = updatedPercentage, 
-                                                             message } );            
+            SendTo(pieId).percentageChanged (new { id = ingredientId,
+                                                   currentPercent = updatedPercentage, 
+                                                   message } );            
+        }
+
+        private dynamic SendTo(Guid pieId)
+        {
+            var client = _hubContext.Clients.Client(pieId.ToString());
+            return client;
         }
     }
 }

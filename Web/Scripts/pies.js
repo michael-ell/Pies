@@ -12,7 +12,7 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
     self.updateCaptionUrl = updateCaptionUrl;
     self.addIngredientUrl = addIngredientUrl;
     self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
-    self.caption = ko.observable('');
+    self.caption = ko.observable('?');
     self.ingredientToAdd = ko.observable('');
     self.editableIngredients = ko.observableArray();
     self.allIngredients = ko.observableArray();
@@ -53,7 +53,9 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
         ingredient.percent(data.currentPercent);
         ingredient.reverting = false;
     };
-    $.connection.hub.start();
+    $.connection.hub.start(function() {
+        $.connection.pie.connection.id = self.id;
+    });
 };
 
 pies.cr8.Ingredient = function (id, desc, percent, pieId, updateIngredientPercentageUrl) {
