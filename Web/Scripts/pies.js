@@ -12,10 +12,10 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
     self.updateCaptionUrl = updateCaptionUrl;
     self.addIngredientUrl = addIngredientUrl;
     self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
-    self.caption = ko.observable('?');
+    self.caption = ko.observable();
     self.ingredientToAdd = ko.observable('');
     self.editableIngredients = ko.observableArray();
-    self.allIngredients = ko.observableArray();
+    self.allIngredients = ko.observableArray([{percent: 100, description: 'Filler'}]);
 
     self.caption.subscribe(function (caption) {
         if (caption) {
