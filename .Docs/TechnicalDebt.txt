@@ -9,3 +9,4 @@
 - jasmine test view models
 - extension to get data member name for javascript instead of magic strings (Index.cshtml)
 - only publish messages to creator of pie.
+- split out event handler from pie hub - create PieNotifier that is hub only

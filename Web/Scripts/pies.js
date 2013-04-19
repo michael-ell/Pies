@@ -53,8 +53,8 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
         ingredient.percent(data.currentPercent);
         ingredient.reverting = false;
     };
-    $.connection.hub.start(function() {
-        $.connection.pie.connection.id = self.id;
+    $.connection.hub.start().done(function () {
+        hub.server.join(id);
     });
 };
 

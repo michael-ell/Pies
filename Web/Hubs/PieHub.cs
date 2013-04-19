@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Codell.Pies.Common;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
@@ -14,18 +15,8 @@ namespace Codell.Pies.Web.EventHandlers
                                IEventHandler<IngredientAddedEvent>, 
                                IEventHandler<PercentageUpdatedEvent>, 
                                IEventHandler<ProposedPercentageChangedEvent>,
-                               IEventHandler<PercentageRejectedEvent>
-                              
+                               IEventHandler<PercentageRejectedEvent>                              
     {
-        private readonly IHubContext _hubContext;
-
-        public PieHub(IHubContext hubContext)
-        {
-            Verify.NotNull(hubContext, "hubContext");       
-            _hubContext = hubContext;
-        }
-
-
         public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> @event)
         {  
             SendTo(@event.EventSourceId).captionUpdated(@event.Payload.NewCaption);
@@ -35,7 +26,6 @@ namespace Codell.Pies.Web.EventHandlers
         {
             //var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
             //var view = _controller.Render("_EditableIngredient", model);
-            //_hubContext.Clients.All.ingredientAdded(view);
             PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
         }
 
@@ -48,8 +38,7 @@ namespace Codell.Pies.Web.EventHandlers
         {                       
             var ingredients = @event.AllIngredients.Select(ingredient => ToDto(ingredient, pieId));
             var filler = ToDto(@event.Filler, pieId);
-            //SendTo(pieId).ingredientsUpdated(new { ingredients, filler });            
-            _hubContext.Clients.All.ingredientsUpdated(new { ingredients, filler });            
+            SendTo(pieId).ingredientsUpdated(new { ingredients, filler });                    
         }
 
         private dynamic ToDto(Ingredient ingredient, Guid pieId)
@@ -82,8 +71,14 @@ namespace Codell.Pies.Web.EventHandlers
 
         private dynamic SendTo(Guid pieId)
         {
-            var client = _hubContext.Clients.Client(pieId.ToString());
-            return client;
+            //Need to resolve context as this is called via event bus and not created by signalr
+            return GlobalHost.ConnectionManager.GetHubContext<PieHub>().Clients.Group(pieId.ToString());
+        }
+
+        public Task Join(string pieId)
+        {
+            //No need to resolve context as this is created by signalr so context is already set
+            return Groups.Add(Context.ConnectionId, pieId);
         }
     }
 }
