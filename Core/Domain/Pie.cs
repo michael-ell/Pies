@@ -119,13 +119,15 @@ namespace Codell.Pies.Core.Domain
         {
             if (_ingredients.Exists(i => i.Id == id))
             {
-                ApplyEvent(new IngredientDeletedEvent(id));
+                var toDelete = IngredientFor(id);
+                _filler.Percent += toDelete.Percent ;
+                ApplyEvent(new IngredientDeletedEvent(toDelete, _ingredients, _filler));
             }
         }
 
         protected void OnIngredientDeleted(IngredientDeletedEvent @event)
         {
-            _ingredients.Remove(IngredientFor(@event.Id));
+            _ingredients.Remove(IngredientFor(@event.Deleted.Id));
         }
 
         private Ingredient IngredientFor(Guid id)

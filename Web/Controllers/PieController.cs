@@ -62,8 +62,9 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpDelete]
-        public void DeleteIngredient(Guid id)
-        {            
+        public void DeleteIngredient(DeleteIngredientModel model)
+        {
+            _commandService.Execute(new DeleteIngredientCommand(model.Id, model.PieId));  
         }
     }
 }

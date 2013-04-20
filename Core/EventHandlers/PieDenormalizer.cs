@@ -12,6 +12,7 @@ namespace Codell.Pies.Core.EventHandlers
     public class PieDenormalizer : IEventHandler<PieCreatedEvent>, 
                                    IEventHandler<PieCaptionUpdatedEvent>, 
                                    IEventHandler<IngredientAddedEvent>,
+                                   IEventHandler<IngredientDeletedEvent>,
                                    IEventHandler<PercentageUpdatedEvent>,
                                    IEventHandler<ProposedPercentageChangedEvent>
     {
@@ -50,6 +51,11 @@ namespace Codell.Pies.Core.EventHandlers
         }
 
         public void Handle(IPublishedEvent<ProposedPercentageChangedEvent> evnt)
+        {
+            UpdateIngredients(GetPieFor(evnt), evnt.Payload);
+        }
+
+        public void Handle(IPublishedEvent<IngredientDeletedEvent> evnt)
         {
             UpdateIngredients(GetPieFor(evnt), evnt.Payload);
         }

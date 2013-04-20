@@ -279,4 +279,58 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
             MockFor<IRepository>().Verify(repo => repo.Save(_pie));
         }
     }
+
+    [Concern(typeof(PieDenormalizer))]
+    public class When_an_ingredient_is_deleted : EventHandlerSpecBase<PieDenormalizer>
+    {
+        private IngredientDeletedEvent _event;
+        private PublishedEvent<IngredientDeletedEvent> _publishedEvent;
+        private Pie _pie;
+        private List<Ingredient> _expectedIngredients;
+        private Ingredient _expectedFiller;
+
+        protected override void Given()
+        {
+            _event = New.Events().IngredientDeletedEvent();
+            _publishedEvent = PublishedEvent.For(_event);
+            _pie = New.ReadModels().Pie();
+            _expectedIngredients = new List<Ingredient> { New.ReadModels().Ingredient() };
+            _expectedFiller = New.ReadModels().Ingredient();
+
+            MockFor<IRepository>().Setup(repo => repo.FindById<Guid, Pie>(_publishedEvent.EventSourceId)).Returns(_pie);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(_event.AllIngredients))
+                                     .Returns(_expectedIngredients);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Filler))
+                                     .Returns(_expectedFiller);
+        }
+
+        protected override void When()
+        {
+            Sut.Handle(_publishedEvent);
+        }
+
+        [Observation]
+        public void Then_should_update_the_ingredients_to_reflect_the_change()
+        {
+            _expectedIngredients.ForEach(ingredient => _pie.Ingredients.Should().Contain(ingredient));
+        }
+
+        [Observation]
+        public void Then_should_include_the_filler_as_part_of_the_ingredients()
+        {
+            _pie.Ingredients.Should().Contain(_expectedFiller);
+        }
+
+        [Observation]
+        public void Then_the_pie_should_not_be_empty()
+        {
+            _pie.IsEmpty.Should().BeFalse();
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(_pie));
+        }
+    }
 }

@@ -194,6 +194,7 @@
     </Compile>
     <Compile Include="Models\AddIngredientModel.cs" />
     <Compile Include="Models\CreatePieModel.cs" />
+    <Compile Include="Models\DeleteIngredientModel.cs" />
     <Compile Include="Models\PieModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />
     <Compile Include="Models\UpdateIngredientPercentageModel.cs" />
@@ -304,7 +305,9 @@
     <Content Include="Scripts\knockout-pies.js" />
     <Content Include="Scripts\messages.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

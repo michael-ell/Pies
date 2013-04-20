@@ -23,6 +23,11 @@ namespace Codell.Pies.Testing.Creators.Events
                 return new IngredientAddedEventCreator(New.Context);
             }
 
+            public IngredientDeletedEventCreator IngredientDeletedEvent()
+            {
+                return new IngredientDeletedEventCreator(New.Context);
+            }
+
             public PercentageUpdatedEventCreator PercentageUpdatedEvent()
             {
                 return new PercentageUpdatedEventCreator(New.Context);

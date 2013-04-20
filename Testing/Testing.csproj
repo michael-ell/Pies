@@ -132,6 +132,7 @@
     <Compile Include="Creators\Domain\NewExtensions.cs" />
     <Compile Include="Creators\Domain\PieCreator.cs" />
     <Compile Include="Creators\Events\IngredientAddedEventCreator.cs" />
+    <Compile Include="Creators\Events\IngredientDeletedEventCreator.cs" />
     <Compile Include="Creators\Events\NewExtensions.cs" />
     <Compile Include="Creators\Events\PercentageUpdatedEventCreator.cs" />
     <Compile Include="Creators\Events\ProposedPercentageChangedEventCreator.cs" />

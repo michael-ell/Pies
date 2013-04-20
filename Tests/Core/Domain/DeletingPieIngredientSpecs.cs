@@ -8,20 +8,36 @@ namespace Codell.Pies.Tests.Core.Domain.DeletingPieIngredientSpecs
     [Concern(typeof(Pie))]
     public class When_deleting_an_ingredient_that_exists : PieSpecBase
     {
+        private Ingredient _toDelete;
+        private int _expectedFiller;
+
         protected override void Given()
         {
             Sut.AddIngredient("blueberries");
+            Sut.AddIngredient("cinnamon");
+
+            _toDelete = Ingredients[1];
+            Sut.UpdateIngredientPercentage(_toDelete.Id, 20);
+            Sut.UpdateIngredientPercentage(Ingredients[0].Id, 40);
+            _expectedFiller = 60;
+
         }
 
         protected override void When()
         {
-            Sut.DeleteIngredient(Ingredients[0].Id);
+            Sut.DeleteIngredient(_toDelete.Id);
         }
 
         [Observation]
         public void Then_should_announce_that_the_ingredient_was_deleted()
         {
-            Verify<IngredientDeletedEvent>(e => e.Id == Ingredients[0].Id).WasPublished();
+            Verify<IngredientDeletedEvent>(e => e.Deleted == _toDelete).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_the_adjusted_filler_ingredient()
+        {
+            Verify<IngredientDeletedEvent>(e => e.Filler.Percent == _expectedFiller).WasPublished();
         }
     }
 

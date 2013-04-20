@@ -1,16 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using Codell.Pies.Core.Domain;
 using Ncqrs.Eventing.Sourcing;
 
 namespace Codell.Pies.Core.Events
 {
     [Serializable]
-    public class IngredientDeletedEvent : SourcedEvent
+    public class IngredientDeletedEvent : SourcedEvent, IIngredientsUpdatedEvent
     {
-        public Guid Id { get; private set; }
+        public Ingredient Deleted { get; private set; }
 
-        public IngredientDeletedEvent(Guid id)
+        public IEnumerable<Ingredient> AllIngredients { get; private set; }
+
+        public Ingredient Filler { get; private set; }
+
+        public IngredientDeletedEvent(Ingredient deleted, IEnumerable<Ingredient> allIngredients, Ingredient filler)
         {
-            Id = id;
+            Deleted = deleted;
+            AllIngredients = allIngredients;
+            Filler = filler;
         }
     }
 }
