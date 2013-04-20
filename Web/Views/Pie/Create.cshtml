@@ -2,8 +2,9 @@
 @section Scripts
 {
     <script type="text/javascript">
-        $(function () {
-            var pie = new pies.cr8.Pie('@Model.Id', '@Url.Action("UpdatePieCaption")', '@Url.Action("AddIngredient")', '@Url.Action("UpdateIngredientPercentage")');
+        $(function() {
+            var pie = new pies.cr8.Pie('@Model.Id', '@Url.Action("UpdatePieCaption")',
+                                       { add: '@Url.Action("AddIngredient")', updatePercentage: '@Url.Action("UpdateIngredientPercentage")', delete: '@Url.Action("DeleteIngredient")' });
             ko.applyBindings(pie, $('#create')[0]);
         });
     </script>
@@ -40,6 +41,7 @@
                 <td class="data-label"></td>
                 <td>
                     <div class="ingredient-desc" data-bind="text: description"></div>
+                    <a href="#" title="Remove" data-bind="click: remove">Remove</a>
                 </td>
             </tr>    
             <tr>

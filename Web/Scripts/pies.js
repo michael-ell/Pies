@@ -6,12 +6,11 @@ pies.Show = function(pies) {
 };
 
 pies.cr8 = pies.cr8 || {};
-pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredientPercentageUrl) {
+pies.cr8.Pie = function (id, updateCaptionUrl, ingredientUrls) {
     var self = this;
     self.id = id;
     self.updateCaptionUrl = updateCaptionUrl;
-    self.addIngredientUrl = addIngredientUrl;
-    self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
+    self.ingredientUrls = ingredientUrls;
     self.caption = ko.observable();
     self.ingredientToAdd = ko.observable('');
     self.editableIngredients = ko.observableArray();
@@ -26,7 +25,7 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
     self.addIngredient = function () {
         var description = self.ingredientToAdd();
         if (description) {
-            $.post(self.addIngredientUrl, { id: self.id, description: description }, function () {
+            $.post(self.ingredientUrls.add, { id: self.id, description: description }, function () {
                 self.ingredientToAdd('');
             });
         }
@@ -38,7 +37,7 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
     };
     hub.client.ingredientsUpdated = function (data) {
         var ingredients = $.map(data.ingredients, function (i) {
-            return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.updateIngredientPercentageUrl);
+            return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.ingredientUrls);
         });
         self.editableIngredients(ingredients);
         if (data.filler.percent > 0) {
@@ -58,7 +57,7 @@ pies.cr8.Pie = function (id, updateCaptionUrl, addIngredientUrl, updateIngredien
     });
 };
 
-pies.cr8.Ingredient = function (id, desc, percent, pieId, updateIngredientPercentageUrl) {
+pies.cr8.Ingredient = function (id, desc, percent, pieId, urls) {
     var self = this;
 
     self.id = id;
@@ -70,13 +69,14 @@ pies.cr8.Ingredient = function (id, desc, percent, pieId, updateIngredientPercen
     self.description = ko.observable(desc);
     self.message = ko.observable();
     self.color = ko.observable();
-    if (updateIngredientPercentageUrl) {
-        self.updateIngredientPercentageUrl = updateIngredientPercentageUrl;
-        self.reverting = false;
-        self.percent.subscribe(function (newPercent) {
-            if (!self.reverting) {
-                $.post(updateIngredientPercentageUrl, { id: self.id, pieId: self.pieId, percent: newPercent });
-            }
-        });
-    }
+    self.urls = urls;
+    self.remove = function() {
+        $.ajax({ url: self.urls.delete, type: 'DELETE', data: { id: self.id, pieId: self.pieId } });
+    };
+    self.reverting = false;
+    self.percent.subscribe(function (newPercent) {
+        if (!self.reverting) {
+            $.post(self.urls.updatePercentage, { id: self.id, pieId: self.pieId, percent: newPercent });
+        }
+    });
 }

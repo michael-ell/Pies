@@ -19,7 +19,11 @@
                 $(document).ajaxError(function (evnt, xhr) {
                     $('#error').text(xhr.responseText);
                 });
-            });
+                if (typeof window.console === "undefined" || typeof window.console.log === "undefined") {
+                    window.console = {};
+                    window.console.log = function (msg) { alert(msg); };
+                }
+            });           
         </script>
         <script src="~/signalr/hubs" type="text/javascript"></script> 
         @RenderSection("Scripts", required: false)

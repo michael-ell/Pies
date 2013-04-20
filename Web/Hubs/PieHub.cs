@@ -15,7 +15,8 @@ namespace Codell.Pies.Web.EventHandlers
                                IEventHandler<IngredientAddedEvent>, 
                                IEventHandler<PercentageUpdatedEvent>, 
                                IEventHandler<ProposedPercentageChangedEvent>,
-                               IEventHandler<PercentageRejectedEvent>                              
+                               IEventHandler<PercentageRejectedEvent>,
+                               IEventHandler<IngredientDeletedEvent>
     {
         public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> @event)
         {  
@@ -30,6 +31,11 @@ namespace Codell.Pies.Web.EventHandlers
         }
 
         public void Handle(IPublishedEvent<PercentageUpdatedEvent> @event)
+        {
+            PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
+        }
+
+        public void Handle(IPublishedEvent<IngredientDeletedEvent> @event)
         {
             PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
         }
