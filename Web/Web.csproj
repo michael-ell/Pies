@@ -224,6 +224,7 @@
     <Content Include="Content\Styles\Images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\Styles\jquery-ui.css" />
     <Content Include="Content\Styles\Site.css" />
+    <Content Include="Content\Styles\spectrum.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -305,6 +306,7 @@
     <Content Include="Scripts\knockout-pies.js" />
     <Content Include="Scripts\messages.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\spectrum.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
