@@ -28,14 +28,19 @@ namespace Codell.Pies.Testing.Creators.Events
                 return new IngredientDeletedEventCreator(New.Context);
             }
 
-            public PercentageUpdatedEventCreator PercentageUpdatedEvent()
+            public IngredientPercentageUpdatedEventCreator IngredientPercentageUpdatedEvent()
             {
-                return new PercentageUpdatedEventCreator(New.Context);
+                return new IngredientPercentageUpdatedEventCreator(New.Context);
             }
 
-            public ProposedPercentageChangedEventCreator ProposedPercentageChangedEvent()
+            public IngredientColorUpdatedEventCreator IngredientColorUpdatedEvent()
             {
-                return new ProposedPercentageChangedEventCreator(New.Context);
+                return new IngredientColorUpdatedEventCreator(New.Context);
+            }
+
+            public ProposedIngredientPercentageChangedEventCreator ProposedIngredientPercentageChangedEvent()
+            {
+                return new ProposedIngredientPercentageChangedEventCreator(New.Context);
             }
         }
     }

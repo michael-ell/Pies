@@ -73,13 +73,15 @@ namespace Codell.Pies.Core.Domain
                 proposedPercent = 0;
             }
 
-            var ingredient = IngredientFor(id);
+            Ingredient ingredient;
+            if (!TryToGetIngredient(id, out ingredient)) return;
+
             if (ingredient.Percent != proposedPercent)
             {
                 if (proposedPercent < ingredient.Percent)
                 {
                     _filler.Percent = _filler.Percent - (proposedPercent - ingredient.Percent);
-                    ApplyEvent(new PercentageUpdatedEvent(id, proposedPercent, _ingredients, _filler));
+                    ApplyEvent(new IngredientPercentageUpdatedEvent(id, proposedPercent, _ingredients, _filler));
                 }
                 else if (_filler.Percent > 0)
                 {
@@ -88,9 +90,9 @@ namespace Codell.Pies.Core.Domain
                     _filler.Percent = _filler.Percent - (newPercent - ingredient.Percent);
                     if (newPercent != proposedPercent)
                     {
-                        ApplyEvent(new ProposedPercentageChangedEvent(id,  proposedPercent, newPercent, _ingredients, _filler));
+                        ApplyEvent(new ProposedIngredientPercentageChangedEvent(id,  proposedPercent, newPercent, _ingredients, _filler));
                     }      
-                    ApplyEvent(new PercentageUpdatedEvent(id, newPercent, _ingredients, _filler));
+                    ApplyEvent(new IngredientPercentageUpdatedEvent(id, newPercent, _ingredients, _filler));
                 }
                 else
                 {
@@ -99,13 +101,13 @@ namespace Codell.Pies.Core.Domain
             }
         }
 
-        protected void OnIngredientPercentageUpdated(PercentageUpdatedEvent @event)
+        protected void OnIngredientPercentageUpdated(IngredientPercentageUpdatedEvent @event)
         {
             IngredientFor(@event.Id).Percent = @event.NewPercent;
             _filler = @event.Filler;
         }
 
-        protected void OnProposedPercentageChanged(ProposedPercentageChangedEvent @event)
+        protected void OnProposedPercentageChanged(ProposedIngredientPercentageChangedEvent @event)
         {
             IngredientFor(@event.Id).Percent = @event.AcceptedPercent;
             _filler = @event.Filler;
@@ -115,19 +117,38 @@ namespace Codell.Pies.Core.Domain
         {
         }
 
+        public void UpdateIngredientColor(Guid id, string newColor)
+        {
+            Ingredient ingredient;
+            if (TryToGetIngredient(id, out ingredient))
+            {
+                ApplyEvent(new IngredientColorUpdatedEvent(id, newColor, _ingredients, _filler));
+            }
+        }
+
+        protected void OnIngredientColorUpdated(IngredientColorUpdatedEvent @event)
+        {
+            IngredientFor(@event.Id).Color = @event.NewColor;
+        }
+
         public void DeleteIngredient(Guid id)
         {
-            if (_ingredients.Exists(i => i.Id == id))
-            {
-                var toDelete = IngredientFor(id);
-                _filler.Percent += toDelete.Percent ;
-                ApplyEvent(new IngredientDeletedEvent(toDelete, _ingredients, _filler));
-            }
+            Ingredient toDelete;
+            if (!TryToGetIngredient(id, out toDelete)) return;
+
+            _filler.Percent += toDelete.Percent ;
+            ApplyEvent(new IngredientDeletedEvent(toDelete, _ingredients, _filler));
         }
 
         protected void OnIngredientDeleted(IngredientDeletedEvent @event)
         {
             _ingredients.Remove(IngredientFor(@event.Deleted.Id));
+        }
+
+        private bool TryToGetIngredient(Guid id, out Ingredient ingredient)
+        {
+            ingredient = _ingredients.SingleOrDefault(i => i.Id == id);
+            return ingredient != null;
         }
 
         private Ingredient IngredientFor(Guid id)

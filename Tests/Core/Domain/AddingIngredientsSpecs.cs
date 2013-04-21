@@ -2,7 +2,7 @@
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
 
-namespace Codell.Pies.Tests.Core.Domain.AddingPieIngredientsSpecs
+namespace Codell.Pies.Tests.Core.Domain.AddingIngredientsSpecs
 {
     [Concern(typeof(Pie))]
     public class When_an_ingredient_is_added: PieSpecBase

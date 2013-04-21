@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
     <Compile Include="Commands\AddIngredientCommand.cs" />
+    <Compile Include="Commands\UpdateIngredientColorCommand.cs" />
     <Compile Include="Commands\CreatePieCommand.cs" />
     <Compile Include="Commands\DeleteIngredientCommand.cs" />
     <Compile Include="Commands\UpdateIngredientPercentageCommand.cs" />
@@ -77,14 +78,15 @@
     <Compile Include="Domain\Ingredient.cs" />
     <Compile Include="Domain\Slice.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
+    <Compile Include="Events\IngredientColorUpdatedEvent.cs" />
     <Compile Include="Events\IIngredientsUpdatedEvent.cs" />
-    <Compile Include="Events\PercentageUpdatedEvent.cs" />
+    <Compile Include="Events\IngredientPercentageUpdatedEvent.cs" />
     <Compile Include="Events\IngredientAddedEvent.cs" />
     <Compile Include="Events\PieCaptionUpdatedEvent.cs" />
     <Compile Include="Events\PieCreatedEvent.cs" />
     <Compile Include="Events\IngredientDeletedEvent.cs" />
     <Compile Include="Events\PercentageRejectedEvent.cs" />
-    <Compile Include="Events\ProposedPercentageChangedEvent.cs" />
+    <Compile Include="Events\ProposedIngredientPercentageChangedEvent.cs" />
     <Compile Include="ReadModels\Ingredient.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />

@@ -36,7 +36,7 @@ namespace Codell.Pies.Tests.Core.Domain
             }
             else
             {
-                var updated = @event.Payload as PercentageUpdatedEvent;
+                var updated = @event.Payload as IngredientPercentageUpdatedEvent;
                 if (updated != null)
                 {
                     Filler = updated.Filler;

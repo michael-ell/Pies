@@ -13,8 +13,9 @@ namespace Codell.Pies.Core.EventHandlers
                                    IEventHandler<PieCaptionUpdatedEvent>, 
                                    IEventHandler<IngredientAddedEvent>,
                                    IEventHandler<IngredientDeletedEvent>,
-                                   IEventHandler<PercentageUpdatedEvent>,
-                                   IEventHandler<ProposedPercentageChangedEvent>
+                                   IEventHandler<IngredientPercentageUpdatedEvent>,
+                                   IEventHandler<IngredientColorUpdatedEvent>,
+                                   IEventHandler<ProposedIngredientPercentageChangedEvent>
     {
         private readonly IRepository _repository;
         private readonly IMappingEngine _mapper;
@@ -45,12 +46,17 @@ namespace Codell.Pies.Core.EventHandlers
             UpdateIngredients(GetPieFor(evnt), evnt.Payload);
         }
 
-        public void Handle(IPublishedEvent<PercentageUpdatedEvent> evnt)
+        public void Handle(IPublishedEvent<IngredientPercentageUpdatedEvent> evnt)
         {
             UpdateIngredients(GetPieFor(evnt), evnt.Payload);
         }
 
-        public void Handle(IPublishedEvent<ProposedPercentageChangedEvent> evnt)
+        public void Handle(IPublishedEvent<ProposedIngredientPercentageChangedEvent> evnt)
+        {
+            UpdateIngredients(GetPieFor(evnt), evnt.Payload);
+        }
+
+        public void Handle(IPublishedEvent<IngredientColorUpdatedEvent> evnt)
         {
             UpdateIngredients(GetPieFor(evnt), evnt.Payload);
         }

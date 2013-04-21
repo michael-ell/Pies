@@ -15,6 +15,8 @@ namespace Codell.Pies.Core.Domain
 
         public string Description { get; set; }
 
+        public string Color { get; set; }
+
         public int Percent { get; set; }
     }
 }

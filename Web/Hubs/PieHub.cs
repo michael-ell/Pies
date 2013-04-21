@@ -13,8 +13,8 @@ namespace Codell.Pies.Web.EventHandlers
     [HubName("pie")]
     public class PieHub : Hub, IEventHandler<PieCaptionUpdatedEvent>,
                                IEventHandler<IngredientAddedEvent>, 
-                               IEventHandler<PercentageUpdatedEvent>, 
-                               IEventHandler<ProposedPercentageChangedEvent>,
+                               IEventHandler<IngredientPercentageUpdatedEvent>, 
+                               IEventHandler<ProposedIngredientPercentageChangedEvent>,
                                IEventHandler<PercentageRejectedEvent>,
                                IEventHandler<IngredientDeletedEvent>
     {
@@ -30,7 +30,7 @@ namespace Codell.Pies.Web.EventHandlers
             PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
         }
 
-        public void Handle(IPublishedEvent<PercentageUpdatedEvent> @event)
+        public void Handle(IPublishedEvent<IngredientPercentageUpdatedEvent> @event)
         {
             PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
         }
@@ -58,7 +58,7 @@ namespace Codell.Pies.Web.EventHandlers
             };
         }
 
-        public void Handle(IPublishedEvent<ProposedPercentageChangedEvent> @event)
+        public void Handle(IPublishedEvent<ProposedIngredientPercentageChangedEvent> @event)
         {
             PublishPercentageChanged(@event.Payload.Id, @event.Payload.AcceptedPercent, string.Empty, @event.EventSourceId);
         }

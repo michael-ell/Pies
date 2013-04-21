@@ -61,6 +61,12 @@ namespace Codell.Pies.Web.Controllers
             _commandService.Execute(new UpdateIngredientPercentageCommand(model.Id, model.Percent, model.PieId));
         }
 
+        [HttpPost]
+        public void UpdateIngredientColor(UpdateIngredientColorModel model)
+        {
+            _commandService.Execute(new UpdateIngredientColorCommand(model.Id, model.Color, model.PieId));
+        }
+
         [HttpDelete]
         public void DeleteIngredient(DeleteIngredientModel model)
         {

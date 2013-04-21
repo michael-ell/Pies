@@ -3,7 +3,7 @@ using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
 
-namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
+namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientPercentageSpecs
 {
     [Concern(typeof(Pie))]
     public class When_updating_the_percentage_of_a_ingredient_and_the_percent_is_negative : PieSpecBase
@@ -22,7 +22,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         [Observation]
         public void Then_should_announce_slice_percent_was_updated_to_zero()
         {
-            Verify<PercentageUpdatedEvent>(e => e.NewPercent == 0 && e.Id == Ingredients[0].Id).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.NewPercent == 0 && e.Id == Ingredients[0].Id).WasPublished();
         }
     }
 
@@ -42,7 +42,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         [Observation]
         public void Then_should_not_announce_slice_percent_was_updated()
         {
-            Verify<PercentageUpdatedEvent>().WasNotPublished();
+            Verify<IngredientPercentageUpdatedEvent>().WasNotPublished();
         }
     }
 
@@ -95,13 +95,13 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         [Observation]
         public void Then_should_announce_that_the_ingredient_percent_was_updated()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == _proposed).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == _proposed).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_the_adjusted_filler_ingredient()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Filler.Percent == Pie.Max - _proposed).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == Pie.Max - _proposed).WasPublished();
         }
 
         [Observation(Skip = "tbd")]
@@ -137,19 +137,19 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         [Observation]
         public void Then_should_announce_that_the_proposed_ingredient_percent_was_changed_to_the_remaining_filler()
         {
-            Verify<ProposedPercentageChangedEvent>(e => e.Id == _toChange && e.AcceptedPercent == _expected).WasPublished();
+            Verify<ProposedIngredientPercentageChangedEvent>(e => e.Id == _toChange && e.AcceptedPercent == _expected).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_the_proposed_ingredient_percentage()
         {
-            Verify<ProposedPercentageChangedEvent>(e => e.ProposedPercent == _proposed).WasPublished();
+            Verify<ProposedIngredientPercentageChangedEvent>(e => e.ProposedPercent == _proposed).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_that_there_is_no_more_filler()
         {
-            Verify<ProposedPercentageChangedEvent>(e => e.Filler.Percent == 0).WasPublished();
+            Verify<ProposedIngredientPercentageChangedEvent>(e => e.Filler.Percent == 0).WasPublished();
         }
 
         [Observation(Skip = "tbd")]
@@ -187,13 +187,13 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         [Observation]
         public void Then_should_announce_that_the_ingredient_percent_was_updated()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Id == _toChange && e.NewPercent == _expectedPercent).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == _toChange && e.NewPercent == _expectedPercent).WasPublished();
         }
 
         [Observation]
         public void Then_should_reduce_the_filler()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Filler.Percent == _expectedFiller).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == _expectedFiller).WasPublished();
         }
 
         [Observation(Skip = "tbd")]
@@ -222,13 +222,13 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         [Observation]
         public void Then_should_announce_that_the_ingredient_percent_was_updated_using_the_remaining_filler()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == Pie.Max).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == Pie.Max).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_that_there_is_no_more_filler()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Filler.Percent == 0).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == 0).WasPublished();
         }
 
         [Observation(Skip = "tbd")]
@@ -260,13 +260,13 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingPieIngredientPercentageSpecs
         [Observation]
         public void Then_should_announce_that_the_ingredient_percent_was_updated()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == _proposed).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Id == Ingredients[0].Id && e.NewPercent == _proposed).WasPublished();
         }
 
         [Observation]
         public void Then_should_announce_that_there_now_is_a_filler()
         {
-            Verify<PercentageUpdatedEvent>(e => e.Filler.Percent == _expectedFiller).WasPublished();
+            Verify<IngredientPercentageUpdatedEvent>(e => e.Filler.Percent == _expectedFiller).WasPublished();
         }
 
         [Observation(Skip = "tbd")]
