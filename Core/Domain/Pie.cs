@@ -12,6 +12,7 @@ namespace Codell.Pies.Core.Domain
         private List<Ingredient> _ingredients;
         private string _caption;
         private Ingredient _filler;
+        private Colors _colors;
 
         public Pie()
         {
@@ -28,6 +29,7 @@ namespace Codell.Pies.Core.Domain
         {
             _ingredients = new List<Ingredient>();
             _filler = new Ingredient(Guid.NewGuid(), "Filler", Max);
+            _colors = new Colors();
         }
 
         protected void OnPieCreated(PieCreatedEvent @event)
@@ -63,6 +65,7 @@ namespace Codell.Pies.Core.Domain
         protected void OnIngredientAdded(IngredientAddedEvent @event)
         {
             _filler.Percent = Max - Total;
+            @event.Added.Color = _colors.Next();
             _ingredients.Add(@event.Added);
         }
 

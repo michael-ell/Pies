@@ -93,6 +93,7 @@
     <Compile Include="Core\Domain\UpdatingIngredientColorSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingPieCaptionSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingIngredientPercentageSpecs.cs" />
+    <Compile Include="Core\EventHandlers\IngredientUpdatedPieDenormalizerSpecBase.cs" />
     <Compile Include="Core\EventHandlers\PieDenormalizerSpecs.cs" />
     <Compile Include="Core\Validation\ConditionalRuleSpecs.cs" />
     <Compile Include="Core\Validation\InvalidRuleSpecs.cs" />

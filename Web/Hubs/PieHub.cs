@@ -14,6 +14,7 @@ namespace Codell.Pies.Web.EventHandlers
     public class PieHub : Hub, IEventHandler<PieCaptionUpdatedEvent>,
                                IEventHandler<IngredientAddedEvent>, 
                                IEventHandler<IngredientPercentageUpdatedEvent>, 
+                               IEventHandler<IngredientColorUpdatedEvent>, 
                                IEventHandler<ProposedIngredientPercentageChangedEvent>,
                                IEventHandler<PercentageRejectedEvent>,
                                IEventHandler<IngredientDeletedEvent>
@@ -36,6 +37,11 @@ namespace Codell.Pies.Web.EventHandlers
         }
 
         public void Handle(IPublishedEvent<IngredientDeletedEvent> @event)
+        {
+            PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
+        }
+
+        public void Handle(IPublishedEvent<IngredientColorUpdatedEvent> @event)
         {
             PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
         }
