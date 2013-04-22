@@ -146,7 +146,7 @@ table {
     display: inline-block;
 }
 
-.caption, .ingredient, .ingredient-slider, .ingredient-desc {
+.caption, .ingredient, .tags, .ingredient-slider, .ingredient-desc {
     width: 250px;
 }
 

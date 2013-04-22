@@ -85,17 +85,21 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Core\Commands\MappedCommandsSpecs.cs" />
+    <Compile Include="Core\Commands\UpdatePieTagsCommandSpecs.cs" />
     <Compile Include="Core\Domain\AddingIngredientsSpecs.cs" />
     <Compile Include="Core\Domain\ColorsSpecs.cs" />
     <Compile Include="Core\Domain\CreatingPieSpecs.cs" />
     <Compile Include="Core\Domain\DeletingPieIngredientSpecs.cs" />
     <Compile Include="Core\Domain\IngredientEqualityComparer.cs" />
     <Compile Include="Core\Domain\PieSpecBase.cs" />
+    <Compile Include="Core\Domain\TagSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingIngredientColorSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingPieCaptionSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingIngredientPercentageSpecs.cs" />
+    <Compile Include="Core\Domain\UpdatingPieTagsSpecs.cs" />
     <Compile Include="Core\EventHandlers\IngredientUpdatedPieDenormalizerSpecBase.cs" />
     <Compile Include="Core\EventHandlers\PieDenormalizerSpecs.cs" />
+    <Compile Include="Core\EventHandlers\TagDenormalizerSpecs.cs" />
     <Compile Include="Core\Validation\ConditionalRuleSpecs.cs" />
     <Compile Include="Core\Validation\InvalidRuleSpecs.cs" />
     <Compile Include="Core\Validation\ItemToValidate.cs" />

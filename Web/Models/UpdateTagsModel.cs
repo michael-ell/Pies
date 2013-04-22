@@ -2,10 +2,10 @@
 
 namespace Codell.Pies.Web.Models
 {
-    public class UpdatePieCaptionModel
+    public class UpdateTagsModel
     {
         public Guid Id { get; set; }
 
-        public string Caption { get; set; }
+        public string Tags { get; set; }         
     }
 }

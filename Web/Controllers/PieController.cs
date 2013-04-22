@@ -45,7 +45,7 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpPost]
-        public void UpdatePieCaption(UpdatePieCaptionModel model)
+        public void UpdateCaption(UpdateCaptionModel model)
         {
             _commandService.Execute(new UpdatePieCaptionCommand(model.Id, model.Caption));
         }
@@ -72,6 +72,12 @@ namespace Codell.Pies.Web.Controllers
         public void DeleteIngredient(DeleteIngredientModel model)
         {
             _commandService.Execute(new DeleteIngredientCommand(model.Id, model.PieId));  
+        }
+
+        [HttpPost]
+        public void UpdateTags(UpdateTagsModel model)
+        {
+            _commandService.Execute(new UpdatePieTagsCommand(model.Id, model.Tags));
         }
     }
 }

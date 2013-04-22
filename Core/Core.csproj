@@ -71,14 +71,15 @@
     <Compile Include="Commands\DeleteIngredientCommand.cs" />
     <Compile Include="Commands\UpdateIngredientPercentageCommand.cs" />
     <Compile Include="Commands\UpdatePieCaptionCommand.cs" />
+    <Compile Include="Commands\UpdatePieTagsCommand.cs" />
     <Compile Include="Cqrs\CommandResult.cs" />
     <Compile Include="Cqrs\CommandServiceExtensions.cs" />
     <Compile Include="Cqrs\InMemoryEventBus.cs" />
     <Compile Include="Cqrs\IRegisterEventHandlers.cs" />
     <Compile Include="Domain\Colors.cs" />
     <Compile Include="Domain\Ingredient.cs" />
-    <Compile Include="Domain\Slice.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
+    <Compile Include="EventHandlers\TagDenormalizer.cs" />
     <Compile Include="Events\IngredientColorUpdatedEvent.cs" />
     <Compile Include="Events\IIngredientsUpdatedEvent.cs" />
     <Compile Include="Events\IngredientPercentageUpdatedEvent.cs" />
@@ -87,9 +88,11 @@
     <Compile Include="Events\PieCreatedEvent.cs" />
     <Compile Include="Events\IngredientDeletedEvent.cs" />
     <Compile Include="Events\PercentageRejectedEvent.cs" />
+    <Compile Include="Events\PieTagsUpdatedEvent.cs" />
     <Compile Include="Events\ProposedIngredientPercentageChangedEvent.cs" />
     <Compile Include="ReadModels\Ingredient.cs" />
     <Compile Include="ReadModels\Pie.cs" />
+    <Compile Include="ReadModels\Tag.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />
     <Compile Include="ValueTypes\ContextualBrokenRules.cs" />
@@ -118,6 +121,7 @@
     <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Validation\ValidatorProvider.cs" />
     <Compile Include="Validation\ValidRule.cs" />
+    <Compile Include="Domain\Tag.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

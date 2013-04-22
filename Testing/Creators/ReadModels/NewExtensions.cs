@@ -27,6 +27,11 @@ namespace Codell.Pies.Testing.Creators.ReadModels
             {
                 return new IngredientCreator(New.Context);
             }
+
+            public TagCreator Tag()
+            {
+                return new TagCreator(New.Context);
+            }
         }
     }
 }

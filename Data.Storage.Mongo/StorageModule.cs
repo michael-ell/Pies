@@ -57,7 +57,8 @@ namespace Codell.Pies.Data.Storage.Mongo
 
         private void RegisterCollectionNameMaps(ContainerBuilder builder)
         {
-            var map = new CollectionNameMap().Register<Pie>("Pies");
+            var map = new CollectionNameMap().Register<Pie>("Pies")
+                                             .Register<Tag>("Tags");
             builder.RegisterInstance(map).As<ICollectionNameMap>();
         }
 

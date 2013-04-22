@@ -4,7 +4,9 @@
 {
     <script type="text/javascript">
         $(function() {
-            var pie = new pies.cr8.Pie(@Html.Raw(Model.ToJson()), '@Url.Action("UpdatePieCaption")',
+            var pie = new pies.cr8.Pie(@Html.Raw(Model.ToJson()), 
+                                       { updateCaption : '@Url.Action("UpdateCaption")',
+                                         updateTags : '@Url.Action("UpdateTags")'},
                                        { add: '@Url.Action("AddIngredient")', 
                                          updatePercentage: '@Url.Action("UpdateIngredientPercentage")', 
                                          updateColor: '@Url.Action("UpdateIngredientColor")', 
@@ -19,6 +21,12 @@
             <tr>
                 <td class="data-label">Caption</td>
                 <td><input class="caption" type="text" data-bind="blur: caption"/></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tags</td>
+                <td><input class="tags" type="text" data-bind="blur: tags"/></td>
+                <td></td>
             </tr>
             <tr>
                 <td class="data-label">Ingredient</td>

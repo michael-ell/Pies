@@ -15,6 +15,7 @@ namespace Codell.Pies.Core.Domain
         private Ingredient _filler;
         private Colors _colors;
         private string _nextColor;
+        private IEnumerable<Tag> _tags;
 
         public Pie()
         {
@@ -32,6 +33,7 @@ namespace Codell.Pies.Core.Domain
             _ingredients = new List<Ingredient>();
             _colors = new Colors();
             _nextColor = _colors.GetNext();
+            _tags = new List<Tag>();
         }
 
         protected void OnPieCreated(PieCreatedEvent @event)
@@ -160,6 +162,28 @@ namespace Codell.Pies.Core.Domain
         private Ingredient IngredientFor(Guid id)
         {
             return _ingredients.Single(i => i.Id == id);
+        }
+
+        public void UpdateTags(IEnumerable<Tag> newTags)
+        {
+            if (_tags.Count() != newTags.Count())
+            {
+                ApplyEvent(new PieTagsUpdatedEvent(newTags));
+            }
+            else
+            {
+                //var changed = newTags.Except<Tag>(_tags, StringComparer.OrdinalIgnoreCase);
+                var changed = newTags.Except(_tags);
+                if (changed.IsNotEmpty())
+                {
+                    ApplyEvent(new PieTagsUpdatedEvent(newTags));
+                }                
+            }
+        }
+
+        protected void OnPieTagsUpdated(PieTagsUpdatedEvent @event)
+        {
+            _tags = @event.NewTags;
         }
     }
 }
