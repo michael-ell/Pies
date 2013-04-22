@@ -60,6 +60,7 @@ namespace Codell.Pies.Web.EventHandlers
                 id = ingredient.Id,
                 percent = ingredient.Percent,
                 description = ingredient.Description,
+                color = ingredient.Color,
                 pieId
             };
         }

@@ -6,7 +6,8 @@ namespace Codell.Pies.Testing.Creators.Domain
 {
     public class IngredientCreator : Creator<Ingredient>
     {
-        public IngredientCreator(IFixtureContext context) : base(context, new Ingredient(Guid.NewGuid(), Guid.NewGuid().ToString(), 20))
+        public IngredientCreator(IFixtureContext context)
+            : base(context, new Ingredient(Guid.NewGuid(), Guid.NewGuid().ToString(), 20, Guid.NewGuid().ToString()))
         {
         }
 

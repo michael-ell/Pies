@@ -37,11 +37,11 @@ pies.cr8.Pie = function (id, updateCaptionUrl, ingredientUrls) {
     };
     hub.client.ingredientsUpdated = function (data) {
         var ingredients = $.map(data.ingredients, function (i) {
-            return new pies.cr8.Ingredient(i.id, i.description, i.percent, i.pieId, self.ingredientUrls);
+            return new pies.cr8.Ingredient(i, self.ingredientUrls);
         });
         self.editableIngredients(ingredients);
         if (data.filler.percent > 0) {
-            ingredients.push(new pies.cr8.Ingredient(data.filler.id, data.filler.description, data.filler.percent, data.filler.pieId));
+            ingredients.push(new pies.cr8.Ingredient(data.filler));
         }
         self.allIngredients(ingredients);
     };
@@ -57,18 +57,18 @@ pies.cr8.Pie = function (id, updateCaptionUrl, ingredientUrls) {
     });
 };
 
-pies.cr8.Ingredient = function (id, desc, percent, pieId, urls) {
+pies.cr8.Ingredient = function (dto, urls) {
     var self = this;
 
-    self.id = id;
-    self.pieId = pieId,
-    self.percent = ko.observable(percent);
+    self.id = dto.id;
+    self.percent = ko.observable(dto.percent);
+    self.description = ko.observable(dto.description);
+    self.color = ko.observable(dto.color);
+    self.pieId = dto.pieId,
     self.formattedPercent = ko.computed(function () {
         return self.percent() + '%';
     });
-    self.description = ko.observable(desc);
     self.message = ko.observable();
-    self.color = ko.observable();
     self.urls = urls;
     self.remove = function() {
         $.ajax({ url: self.urls.delete, type: 'DELETE', data: { id: self.id, pieId: self.pieId } });

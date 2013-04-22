@@ -1,11 +1,12 @@
 ﻿using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
+using Codell.Pies.Common;
 
 namespace Codell.Pies.Tests.Core.Domain.AddingIngredientsSpecs
 {
     [Concern(typeof(Pie))]
-    public class When_an_ingredient_is_added: PieSpecBase
+    public class When_the_first_ingredient_is_added: PieSpecBase
     {
         private string _description;
 
@@ -35,6 +36,18 @@ namespace Codell.Pies.Tests.Core.Domain.AddingIngredientsSpecs
         public void Then_should_announce_the_filler_ingredient()
         {
             Verify<IngredientAddedEvent>(e => e.Filler.Percent == Pie.Max).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_a_color_for_the_filler_ingredient()
+        {
+            Verify<IngredientAddedEvent>(e => e.Filler.Color.IsNotEmpty()).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_assign_a_color_to_the_ingredient()
+        {
+            Verify<IngredientAddedEvent>(e => e.Added.Color.IsNotEmpty()).WasPublished();
         }
 
         [Observation(Skip = "tbd")]

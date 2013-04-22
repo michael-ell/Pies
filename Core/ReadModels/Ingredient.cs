@@ -5,5 +5,7 @@
         public string Description { get; set; }
 
         public int Percent { get; set; }
+
+        public string Color { get; set; }
     }
 }

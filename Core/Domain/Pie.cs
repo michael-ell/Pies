@@ -28,8 +28,8 @@ namespace Codell.Pies.Core.Domain
         private void Init()
         {
             _ingredients = new List<Ingredient>();
-            _filler = new Ingredient(Guid.NewGuid(), "Filler", Max);
             _colors = new Colors();
+            _filler = new Ingredient(Guid.NewGuid(), "Filler", Max, _colors.Next());
         }
 
         protected void OnPieCreated(PieCreatedEvent @event)
@@ -58,14 +58,13 @@ namespace Codell.Pies.Core.Domain
         {
             if (_ingredients.Exists(i => string.Equals(description, i.Description))) return;
 
-            var toAdd = new Ingredient(Guid.NewGuid(), description, 0);
+            var toAdd = new Ingredient(Guid.NewGuid(), description, 0, _colors.Next());
             ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients, _filler));
         }
 
         protected void OnIngredientAdded(IngredientAddedEvent @event)
         {
             _filler.Percent = Max - Total;
-            @event.Added.Color = _colors.Next();
             _ingredients.Add(@event.Added);
         }
 

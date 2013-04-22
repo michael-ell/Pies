@@ -4,11 +4,12 @@ namespace Codell.Pies.Core.Domain
 {
     public class Ingredient
     {
-        public Ingredient(Guid id, string description, int percent)
+        public Ingredient(Guid id, string description, int percent, string color)
         {
             Id = id;
             Percent = percent;
             Description = description;
+            Color = color;
         }
 
         public Guid Id { get; set; }

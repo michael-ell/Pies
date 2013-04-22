@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Core\Commands\MappedCommandsSpecs.cs" />
     <Compile Include="Core\Domain\AddingIngredientsSpecs.cs" />
+    <Compile Include="Core\Domain\ColorsSpecs.cs" />
     <Compile Include="Core\Domain\CreatingPieSpecs.cs" />
     <Compile Include="Core\Domain\DeletingPieIngredientSpecs.cs" />
     <Compile Include="Core\Domain\IngredientEqualityComparer.cs" />

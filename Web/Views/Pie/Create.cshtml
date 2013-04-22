@@ -29,7 +29,7 @@
         </table>                  
         <div class="ingredients" data-bind="template: { name: 'ingredient-template', foreach: editableIngredients }"></div>                      
     </div>
-    <div class="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent' } }"></div>
+    <div class="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
     <script type="text/html" id="ingredient-template">
         <table class="ingredient-container" data-bind="color: color">
             <tr>

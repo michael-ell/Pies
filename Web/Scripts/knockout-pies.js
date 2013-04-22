@@ -96,7 +96,7 @@ ko.bindingHandlers.colorPicker = {
 
 ko.bindingHandlers.pieChart = {
     instance: null,
-    colors: ['#AA4643', '#4572A7', '#89A54E', '#DB843D', '#80699B', '#3D96AE', '#92A8CD', '#A47D7C', '#B5CA92'],
+    //colors: ['#AA4643', '#4572A7', '#89A54E', '#DB843D', '#80699B', '#3D96AE', '#92A8CD', '#A47D7C', '#B5CA92'],
     init: function (el, valueAccessor, allBindingsAccessor) {
         var map = ko.bindingHandlers.pieChart.chartMap(allBindingsAccessor);
         var obs = ko.utils.unwrapObservable(valueAccessor());
@@ -159,16 +159,22 @@ ko.bindingHandlers.pieChart = {
     },
     transform: function (data, allBindingsAccessor) {
         var map = ko.bindingHandlers.pieChart.dataMap(allBindingsAccessor);
-        var max = ko.bindingHandlers.pieChart.colors.length;
-        var j = 0;
-        return $.map(data, function(slice, i) {
-            var color = ko.bindingHandlers.pieChart.colors[j];
-            j = i <= max ? j + 1 : 0;
-            if (slice.color && typeof(slice.color) === 'function') {
-                slice.color(color);
-            }
-            return { name: ko.utils.unwrapObservable(slice[map.text]), y: ko.utils.unwrapObservable(slice[map.value]), color: color };
+        return $.map(data, function(ingredient) {
+            return { name: ko.utils.unwrapObservable(ingredient[map.text]),
+                     y: ko.utils.unwrapObservable(ingredient[map.value]),
+                     color: ko.utils.unwrapObservable(ingredient[map.color])
+            };
         });
+        //var max = ko.bindingHandlers.pieChart.colors.length;
+        //var j = 0;
+        //return $.map(data, function(slice, i) {
+        //    var color = ko.bindingHandlers.pieChart.colors[j];
+        //    j = i <= max ? j + 1 : 0;
+        //    if (slice.color && typeof(slice.color) === 'function') {
+        //        slice.color(color);
+        //    }
+        //    return { name: ko.utils.unwrapObservable(slice[map.text]), y: ko.utils.unwrapObservable(slice[map.value]), color: color };
+        //});
     }
 };
 
