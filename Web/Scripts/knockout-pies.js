@@ -175,6 +175,33 @@ ko.bindingHandlers.pieChartTitle = {
     },
 };
 
+ko.bindingHandlers.autocomplete = {
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        var allBindings = allBindingsAccessor(),
+            options = valueAccessor();
+        $(element).autocomplete({
+            autoFocus: true,
+            delay: 0,
+            minLength: 2,
+            source: options.sourceUrl,
+            select: function (event, ui) {
+                allBindings.selected(ui.item.value);
+            },
+            change: function (event, ui) {
+                allBindings.selected(ui.item == null ? null : ui.item.value);
+            }
+        }).on('paste', function () {
+            return false;
+        }).focus(function () {
+            this.select();
+        }).addClass(options.classes);
+
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            $(element).autocomplete("destroy");
+        });
+    }
+};
+
 ko.utils.adjustColor = function(color, amt) {
     var usePound = false;
     if (color[0] == "#") {

@@ -1,9 +1,18 @@
 ﻿var pies = pies || {};
 
-pies.Show = function(pies) {
+pies.Index = function(pies, findUrl) {
     var self = this;
-    self.tag = ko.observable();
+    self.tags = ko.observableArray();
+    self.selectedTag = ko.observable();
     self.pies = ko.observableArray(pies);
+    self.findUrl = findUrl;
+    self.find = function () {
+        if (self.selectedTag()) {
+            $.get(findUrl + '/' + self.selectedTag(), function (data) {
+                self.pies($.parseJSON(data));
+            });
+        }
+    };
 };
 
 pies.cr8 = pies.cr8 || {};

@@ -19,7 +19,7 @@ namespace Codell.Pies.Tests.Core.EventHandlers.TagDenormalizerSpecs
 
         protected override void Given()
         {
-            _expected = "some tag";
+            _expected = "some SearchableTag";
             _event = New.Events().PieTagsUpdatedEvent().With(_expected);
             MockFor<IRepository>().Setup(repo => repo.GetAll<Tag>()).Returns(new List<Tag>());
         }

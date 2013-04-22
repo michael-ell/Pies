@@ -11,7 +11,7 @@ using Ncqrs.Commanding.ServiceModel;
 
 namespace Codell.Pies.Web.Controllers
 {
-    public class PieController : Controller
+    public class PieController : ControllerBase
     {
         private readonly ICommandService _commandService;
         private readonly IRepository _repository;

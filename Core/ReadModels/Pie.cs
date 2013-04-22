@@ -15,7 +15,9 @@ namespace Codell.Pies.Core.ReadModels
 
         public string Caption { get; set; }
 
-        public List<Ingredient> Ingredients { get; set; }
+        public IEnumerable<Ingredient> Ingredients { get; set; }
+
+        public IEnumerable<string> Tags { get; set; }
 
         public bool IsEmpty { get; set; }
 

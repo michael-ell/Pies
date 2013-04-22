@@ -9,15 +9,9 @@ namespace Codell.Pies.Core.Domain
     {
         private readonly IEnumerable<string> _inner;
 
-        public Tags()
-        {
-            _inner = new List<string>();
-        }
-
         public Tags(IEnumerable<string> tags)
         {
-            _inner = tags.Safe().Where(tag => tag != null)
-                                .Select(tag => tag.Trim().ToLower())
+            _inner = tags.Safe().Select(tag => new SearchableTag(tag).Value)
                                 .Where(tag => tag.Length >= 3)
                                 .Distinct();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using AutoMapper;
 using Codell.Pies.Core.EventHandlers;
 using Codell.Pies.Core.Events;
@@ -219,7 +220,7 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         public void Then_should_only_contain_the_ingredients()
         {
             ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
-            Pie.Ingredients.Count.Should().Be(ExpectedIngredients.Count);
+            Pie.Ingredients.Count().Should().Be(ExpectedIngredients.Count);
         }
 
         [Observation]
@@ -297,5 +298,38 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         {
             MockFor<IRepository>().Verify(repo => repo.Save(Pie));
         }
+    }
+
+    [Concern(typeof (PieDenormalizer))]
+    public class When_tags_for_a_pie_are_updated : EventHandlerSpecBase<PieDenormalizer>
+    {
+        private PieTagsUpdatedEvent _event;
+        private Pie _pie;
+
+        protected override void Given()
+        {
+            _event = New.Events().PieTagsUpdatedEvent();
+            _pie = New.ReadModels().Pie();
+            MockFor<IRepository>().Setup(repo => repo.FindById<Guid, Pie>(_event.EventSourceId)).Returns(_pie);
+        }
+
+        protected override void When()
+        {
+            Sut.Handle(PublishedEvent.For(_event));
+        }
+
+
+        [Observation]
+        public void Then_should_update_the_tags_for_the_pie()
+        {
+            _pie.Tags.Should().Equal(_event.NewTags);
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(_pie));
+        }
+         
     }
 }

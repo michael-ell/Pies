@@ -25,9 +25,9 @@ namespace Codell.Pies.Testing.Ncqrs
                 return CreatePublishedEventFor(@event);
             }
 
-            private PublishedEvent<T> CreatePublishedEventFor<T>(T @event)
+            private PublishedEvent<T> CreatePublishedEventFor<T>(T @event) where T : SourcedEvent
             {
-                return new PublishedEvent<T>(new CommittedEvent(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), 1, DateTime.Now, @event, new Version()));
+                return new PublishedEvent<T>(new CommittedEvent(Guid.NewGuid(), Guid.NewGuid(), @event.EventSourceId, 1, DateTime.Now, @event, new Version()));
             }
         }
     }

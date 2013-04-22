@@ -11,6 +11,7 @@ namespace Codell.Pies.Core.EventHandlers
 {
     public class PieDenormalizer : IEventHandler<PieCreatedEvent>, 
                                    IEventHandler<PieCaptionUpdatedEvent>, 
+                                   IEventHandler<PieTagsUpdatedEvent>,
                                    IEventHandler<IngredientAddedEvent>,
                                    IEventHandler<IngredientDeletedEvent>,
                                    IEventHandler<IngredientPercentageUpdatedEvent>,
@@ -49,6 +50,14 @@ namespace Codell.Pies.Core.EventHandlers
             _repository.Save(pie);
         }
 
+
+        public void Handle(IPublishedEvent<PieTagsUpdatedEvent> evnt)
+        {
+            var pie = GetPieFor(evnt);
+            pie.Tags = evnt.Payload.NewTags;
+            _repository.Save(pie);
+        }
+
         public void Handle(IPublishedEvent<IngredientAddedEvent> evnt)
         {
             UpdateIngredients(GetPieFor(evnt), evnt.Payload);
@@ -77,12 +86,12 @@ namespace Codell.Pies.Core.EventHandlers
         private void UpdateIngredients(Pie pie, IIngredientsUpdatedEvent evnt)
         {
             pie.IsEmpty = false;
-            pie.Ingredients.Clear();
-            pie.Ingredients.AddRange(_mapper.Map<IEnumerable<Domain.Ingredient>, IEnumerable<Ingredient>>(evnt.Ingredients));
+            var ingredients = new List<Ingredient>(_mapper.Map<IEnumerable<Domain.Ingredient>, IEnumerable<Ingredient>>(evnt.Ingredients));
             if (evnt.Filler.Percent > 0)
             {
-                pie.Ingredients.Add(_mapper.Map<Domain.Ingredient, Ingredient>(evnt.Filler));
+                ingredients.Add(_mapper.Map<Domain.Ingredient, Ingredient>(evnt.Filler));
             }
+            pie.Ingredients = ingredients;
             _repository.Save(pie);            
         }
 

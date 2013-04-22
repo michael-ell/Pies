@@ -183,6 +183,7 @@
     <Compile Include="Configuration\Configure.cs" />
     <Compile Include="Configuration\InfrastructureModule.cs" />
     <Compile Include="Configuration\NcqrsModule.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\PieController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />

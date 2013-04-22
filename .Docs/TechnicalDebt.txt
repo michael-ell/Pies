@@ -12,3 +12,5 @@
 - split out event handler from pie hub - create PieNotifier that is hub only
 - bulk insert tags in TagDenormalizer?
 - clean up / manage unused tags?
+- why parse Json needed in pies when searching results found?
+- why searchcontroller gettags not working when sending back as JsonNet result?
