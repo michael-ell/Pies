@@ -4,10 +4,14 @@
 {
     <script type="text/javascript">
         $(function () {
+            $('#search').autocomplete({source: '@Url.Action("GetTags", "Search")', minLength: 2});
             ko.applyBindings(new pies.Show(@Html.Raw(Model.ToJson())), $('#pies')[0]);
         });
     </script>    
 }
+<div>
+    <input type="text" id="search"/>
+</div>
 <div id="pies">
     <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
     <script type="text/html" id="pie-template">

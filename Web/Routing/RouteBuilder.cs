@@ -1,4 +1,5 @@
-﻿using System.Web.Routing;
+﻿using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Codell.Pies.Web.Routing
 {
@@ -12,6 +13,7 @@ namespace Codell.Pies.Web.Routing
 
         public void Build(RouteCollection routes)
         {
+            routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Pie", action = "Index", id = UrlParameter.Optional });
         }         
     }
 }

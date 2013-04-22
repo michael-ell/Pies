@@ -92,7 +92,7 @@
     <Compile Include="Core\Domain\DeletingPieIngredientSpecs.cs" />
     <Compile Include="Core\Domain\IngredientEqualityComparer.cs" />
     <Compile Include="Core\Domain\PieSpecBase.cs" />
-    <Compile Include="Core\Domain\TagSpecs.cs" />
+    <Compile Include="Core\Domain\TagsSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingIngredientColorSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingPieCaptionSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingIngredientPercentageSpecs.cs" />

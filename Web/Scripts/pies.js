@@ -2,6 +2,7 @@
 
 pies.Show = function(pies) {
     var self = this;
+    self.tag = ko.observable();
     self.pies = ko.observableArray(pies);
 };
 

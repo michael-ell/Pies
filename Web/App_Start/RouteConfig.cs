@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using Codell.Pies.Web.Routing;
 
 namespace Codell.Pies.Web.App_Start
 {
@@ -9,11 +10,7 @@ namespace Codell.Pies.Web.App_Start
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapHubs();
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Pie", action = "Index", id = UrlParameter.Optional }
-            );
+            RouteBuilder.Register(routes);
         }
     }
 }

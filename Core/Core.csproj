@@ -78,6 +78,7 @@
     <Compile Include="Cqrs\IRegisterEventHandlers.cs" />
     <Compile Include="Domain\Colors.cs" />
     <Compile Include="Domain\Ingredient.cs" />
+    <Compile Include="Domain\Tags.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
     <Compile Include="EventHandlers\TagDenormalizer.cs" />
     <Compile Include="Events\IngredientColorUpdatedEvent.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Validation\ValidatorProvider.cs" />
     <Compile Include="Validation\ValidRule.cs" />
-    <Compile Include="Domain\Tag.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

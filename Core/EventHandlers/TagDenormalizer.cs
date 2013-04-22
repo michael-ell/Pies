@@ -24,8 +24,8 @@ namespace Codell.Pies.Core.EventHandlers
             var newTags = evnt.Payload.NewTags;
             if (newTags.IsEmpty()) return;
 
-            var tags = _repository.Project<Tag, Domain.Tag>(tag => new Domain.Tag(tag.Value));
-            var toAdd = newTags.Except(tags);
+            var existing = _repository.GetAll<Tag>().Select(tag => tag.Value);
+            var toAdd = newTags.Except(existing);
             foreach (var tag in toAdd)
             {
                 //ToDo: Bulk insert?

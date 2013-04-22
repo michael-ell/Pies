@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Codell.Pies.Core.Commands;
-using Codell.Pies.Core.Domain;
 using Codell.Pies.Testing.BDD;
 using FluentAssertions;
 
@@ -14,13 +12,13 @@ namespace Codell.Pies.Tests.Core.Commands.UpdatePieTagsCommandSpecs
         private Guid _expectedPieId;
         private UpdatePieTagsCommand _command;
         private string _tags;
-        private List<Tag> _expectedTags;
+        private List<string> _expectedTags;
 
         protected override void Given()
         {
             _expectedPieId = Guid.NewGuid();
-            _tags = "x y   z";
-            _expectedTags = new List<Tag> {"x", "y", "z"};
+            _tags = "x y z";
+            _expectedTags = new List<string> {"x", "y", "z"};
         }
 
         protected override void When()
@@ -41,12 +39,6 @@ namespace Codell.Pies.Tests.Core.Commands.UpdatePieTagsCommandSpecs
             {
                 _tags.Should().Contain(expectedTag);
             }
-        }
-
-        [Observation]
-        public void Then_should_not_include_empty_values_as_tags()
-        {
-            _command.NewTags.Count().Should().Be(_expectedTags.Count);
         }
     }
 }
