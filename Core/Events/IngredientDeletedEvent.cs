@@ -10,14 +10,14 @@ namespace Codell.Pies.Core.Events
     {
         public Ingredient Deleted { get; private set; }
 
-        public IEnumerable<Ingredient> AllIngredients { get; private set; }
+        public IEnumerable<Ingredient> Ingredients { get; private set; }
 
         public Ingredient Filler { get; private set; }
 
         public IngredientDeletedEvent(Ingredient deleted, IEnumerable<Ingredient> allIngredients, Ingredient filler)
         {
             Deleted = deleted;
-            AllIngredients = allIngredients;
+            Ingredients = allIngredients;
             Filler = filler;
         }
     }

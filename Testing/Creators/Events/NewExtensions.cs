@@ -18,6 +18,11 @@ namespace Codell.Pies.Testing.Creators.Events
                 New = @new;
             }
 
+            public PieCreatedEventCreator PieCreatedEvent()
+            {
+                return new PieCreatedEventCreator(New.Context);
+            }
+
             public IngredientAddedEventCreator IngredientAddedEvent()
             {
                 return new IngredientAddedEventCreator(New.Context);

@@ -31,7 +31,15 @@ namespace Codell.Pies.Core.EventHandlers
 
         public void Handle(IPublishedEvent<PieCreatedEvent> evnt)
         {
-            _repository.Save(new Pie { Id = evnt.EventSourceId, CreatedOn = DateTime.Now, IsEmpty = true} );
+            var filler = _mapper.Map<Domain.Ingredient, Ingredient>(evnt.Payload.Filler);
+            _repository.Save(new Pie
+                                 {
+                                     Id = evnt.EventSourceId, 
+                                     Caption = evnt.Payload.Caption,
+                                     Ingredients = new List<Ingredient>{filler},
+                                     CreatedOn = DateTime.Now, 
+                                     IsEmpty = true
+                                 } );
         }
 
         public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> evnt)
@@ -70,7 +78,7 @@ namespace Codell.Pies.Core.EventHandlers
         {
             pie.IsEmpty = false;
             pie.Ingredients.Clear();
-            pie.Ingredients.AddRange(_mapper.Map<IEnumerable<Domain.Ingredient>, IEnumerable<Ingredient>>(evnt.AllIngredients));
+            pie.Ingredients.AddRange(_mapper.Map<IEnumerable<Domain.Ingredient>, IEnumerable<Ingredient>>(evnt.Ingredients));
             if (evnt.Filler.Percent > 0)
             {
                 pie.Ingredients.Add(_mapper.Map<Domain.Ingredient, Ingredient>(evnt.Filler));

@@ -10,17 +10,19 @@ namespace Codell.Pies.Core.Domain
        
         public Colors()
         {
-            _inner = new List<string> { "#AA4643", "#4572A7", "#89A54E", "#DB843D", "#80699B", "#3D96AE", "#92A8CD", "#A47D7C", "#B5CA92" };
+            _inner = new List<string> { "#4572A7", "#89A54E", "#DB843D", "#80699B", "#3D96AE", "#92A8CD", "#A47D7C", "#B5CA92" };
             _next = 0;
+        }        
+
+        public string First
+        {
+            get { return _inner[0]; }
         }
 
-        public string First()
-        {
-            return _inner[0];
-        }
+        public string Filler { get { return "#AA4643"; } }
 
-        public string Next()
-        {
+        public string GetNext()
+        {          
             if (_next > _inner.Count - 1)
             {
                 _next = 0;

@@ -33,7 +33,7 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
             ExpectedFiller = New.ReadModels().Ingredient();
 
             MockFor<IRepository>().Setup(repo => repo.FindById<Guid, Pie>(PublishedIngredientUpdatedEvent.EventSourceId)).Returns(Pie);
-            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(@event.AllIngredients))
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(@event.Ingredients))
                                      .Returns(ExpectedIngredients);
             MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(@event.Filler))
                                      .Returns(ExpectedFiller);

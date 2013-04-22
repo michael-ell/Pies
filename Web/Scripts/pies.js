@@ -6,16 +6,16 @@ pies.Show = function(pies) {
 };
 
 pies.cr8 = pies.cr8 || {};
-pies.cr8.Pie = function (id, updateCaptionUrl, ingredientUrls) {
+pies.cr8.Pie = function (dto, updateCaptionUrl, ingredientUrls) {    
     var self = this;
-    self.id = id;
+    self.id = dto.id;
+    self.caption = ko.observable(dto.caption);
+    self.allIngredients = ko.observableArray(dto.ingredients);
     self.updateCaptionUrl = updateCaptionUrl;
     self.ingredientUrls = ingredientUrls;
-    self.caption = ko.observable();
     self.ingredientToAdd = ko.observable('');
     self.editableIngredients = ko.observableArray();
-    self.allIngredients = ko.observableArray([{percent: 100, description: 'Filler'}]);
-
+    
     self.caption.subscribe(function (caption) {
         if (caption) {
             $.post(self.updateCaptionUrl, { id: self.id, caption: caption });
@@ -53,13 +53,12 @@ pies.cr8.Pie = function (id, updateCaptionUrl, ingredientUrls) {
         ingredient.reverting = false;
     };
     $.connection.hub.start().done(function () {
-        hub.server.join(id);
+        hub.server.join(dto.id);
     });
 };
 
 pies.cr8.Ingredient = function (dto, urls) {
     var self = this;
-
     self.id = dto.id;
     self.percent = ko.observable(dto.percent);
     self.description = ko.observable(dto.description);
@@ -78,5 +77,8 @@ pies.cr8.Ingredient = function (dto, urls) {
         if (!self.reverting) {
             $.post(self.urls.updatePercentage, { id: self.id, pieId: self.pieId, percent: newPercent });
         }
+    });
+    self.color.subscribe(function (newColor) {
+        $.post(self.urls.updateColor, { id: self.id, pieId: self.pieId, color: newColor });
     });
 }

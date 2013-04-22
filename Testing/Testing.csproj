@@ -131,6 +131,7 @@
     <Compile Include="Creators\Domain\IngredientCreator.cs" />
     <Compile Include="Creators\Domain\NewExtensions.cs" />
     <Compile Include="Creators\Domain\PieCreator.cs" />
+    <Compile Include="Creators\Events\PieCreatedEventCreator.cs" />
     <Compile Include="Creators\Events\IngredientColorUpdatedEventCreator.cs" />
     <Compile Include="Creators\Events\IngredientAddedEventCreator.cs" />
     <Compile Include="Creators\Events\IngredientDeletedEventCreator.cs" />

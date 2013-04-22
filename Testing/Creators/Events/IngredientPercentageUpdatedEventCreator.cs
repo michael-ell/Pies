@@ -16,7 +16,7 @@ namespace Codell.Pies.Testing.Creators.Events
 
         public IngredientPercentageUpdatedEventCreator WithNoFiller()
         {
-            Creation = new IngredientPercentageUpdatedEvent(Creation.Id, Creation.NewPercent, Creation.AllIngredients, New.Domain().Ingredient().Percent(0));
+            Creation = new IngredientPercentageUpdatedEvent(Creation.Id, Creation.NewPercent, Creation.Ingredients, New.Domain().Ingredient().Percent(0));
             return this;
         }
     }

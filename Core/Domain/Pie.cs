@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Codell.Pies.Common;
 using Codell.Pies.Core.Events;
 using Ncqrs.Domain;
 
@@ -13,6 +14,7 @@ namespace Codell.Pies.Core.Domain
         private string _caption;
         private Ingredient _filler;
         private Colors _colors;
+        private string _nextColor;
 
         public Pie()
         {
@@ -22,18 +24,19 @@ namespace Codell.Pies.Core.Domain
         public Pie(Guid id) : base(id)
         {
             Init();
-            ApplyEvent(new PieCreatedEvent());
+            ApplyEvent(new PieCreatedEvent(Resources.Unknown, _ingredients, new Ingredient(Guid.NewGuid(), "Filler", Max, _colors.Filler)));
         }
 
         private void Init()
         {
             _ingredients = new List<Ingredient>();
             _colors = new Colors();
-            _filler = new Ingredient(Guid.NewGuid(), "Filler", Max, _colors.Next());
+            _nextColor = _colors.GetNext();
         }
 
         protected void OnPieCreated(PieCreatedEvent @event)
         {
+            _filler = @event.Filler;
         }
 
         private int Total
@@ -58,7 +61,7 @@ namespace Codell.Pies.Core.Domain
         {
             if (_ingredients.Exists(i => string.Equals(description, i.Description))) return;
 
-            var toAdd = new Ingredient(Guid.NewGuid(), description, 0, _colors.Next());
+            var toAdd = new Ingredient(Guid.NewGuid(), description, 0, _nextColor);
             ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients, _filler));
         }
 
@@ -66,6 +69,7 @@ namespace Codell.Pies.Core.Domain
         {
             _filler.Percent = Max - Total;
             _ingredients.Add(@event.Added);
+            _nextColor = _colors.GetNext();
         }
 
         public void UpdateIngredientPercentage(Guid id, int proposedPercent)

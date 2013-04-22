@@ -19,10 +19,13 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
     public class When_a_pie_is_created : EventHandlerSpecBase<PieDenormalizer>
     {
         private PublishedEvent<PieCreatedEvent> _event;
+        private Ingredient _expectedFiller;
 
         protected override void Given()
         {
-            _event = PublishedEvent.For(new PieCreatedEvent());
+            _event = PublishedEvent.For(New.Events().PieCreatedEvent().Creation);
+            _expectedFiller = New.ReadModels().Ingredient();
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Payload.Filler)).Returns(_expectedFiller);
         }
 
         protected override void When()
@@ -37,9 +40,21 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         }
 
         [Observation]
+        public void Then_should_save_the_pie_with_the_default_caption()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.Caption == _event.Payload.Caption)));
+        }
+
+        [Observation]
         public void Then_should_save_the_date_the_pie_was_created()
         {
             MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.CreatedOn.IgnoreSeconds() == DateTime.Now.IgnoreSeconds())));
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie_with_the_filler()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.Ingredients.Contains(_expectedFiller))));
         }
 
         [Observation]

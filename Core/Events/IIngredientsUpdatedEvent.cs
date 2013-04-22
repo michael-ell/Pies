@@ -5,7 +5,7 @@ namespace Codell.Pies.Core.Events
 {
     public interface IIngredientsUpdatedEvent
     {
-        IEnumerable<Ingredient> AllIngredients { get; }
+        IEnumerable<Ingredient> Ingredients { get; }
         Ingredient Filler { get; }
     }
 }

@@ -48,7 +48,7 @@ namespace Codell.Pies.Web.EventHandlers
 
         private void PublishIngredientsUpdated(IIngredientsUpdatedEvent @event, Guid pieId)
         {                       
-            var ingredients = @event.AllIngredients.Select(ingredient => ToDto(ingredient, pieId));
+            var ingredients = @event.Ingredients.Select(ingredient => ToDto(ingredient, pieId));
             var filler = ToDto(@event.Filler, pieId);
             SendTo(pieId).ingredientsUpdated(new { ingredients, filler });                    
         }

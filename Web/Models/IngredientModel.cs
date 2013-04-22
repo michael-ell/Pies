@@ -10,5 +10,8 @@ namespace Codell.Pies.Web.Models
 
         [DataMember(Name = "description")]
         public string Description { get; set; }
+
+        [DataMember(Name = "color")]
+        public string Color { get; set; }
     }
 }

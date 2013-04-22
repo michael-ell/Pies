@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Codell.Pies.Web.Models
@@ -10,6 +11,9 @@ namespace Codell.Pies.Web.Models
         {
             Ingredients = new List<IngredientModel>();
         }
+
+        [DataMember(Name = "id")]
+        public Guid Id { get; set; }
 
         [DataMember(Name = "caption")]
         public string Caption { get; set; }

@@ -10,14 +10,14 @@ namespace Codell.Pies.Core.Events
     {
         public Guid Id { get; private set; }
         public string NewColor { get; private set; }
-        public IEnumerable<Ingredient> AllIngredients { get; private set; }
+        public IEnumerable<Ingredient> Ingredients { get; private set; }
         public Ingredient Filler { get; private set; }
 
         public IngredientColorUpdatedEvent(Guid id, string color, IEnumerable<Ingredient> allIngredients, Ingredient filler)
         {
             Id = id;
             NewColor = color;
-            AllIngredients = allIngredients;
+            Ingredients = allIngredients;
             Filler = filler;
         }
     }

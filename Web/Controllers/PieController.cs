@@ -39,8 +39,9 @@ namespace Codell.Pies.Web.Controllers
         public ActionResult Create()
         {
             var id = Guid.NewGuid();
-            _commandService.Execute(new CreatePieCommand(id));    
-            return View(new CreatePieModel{Id = id});
+            _commandService.Execute(new CreatePieCommand(id));
+            var pie = _repository.FindById<Guid, Pie>(id);
+            return View(_mapper.Map<Pie, PieModel>(pie));
         }
 
         [HttpPost]

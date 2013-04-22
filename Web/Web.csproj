@@ -194,7 +194,6 @@
     </Compile>
     <Compile Include="Models\AddIngredientModel.cs" />
     <Compile Include="Models\UpdateIngredientColorModel.cs" />
-    <Compile Include="Models\CreatePieModel.cs" />
     <Compile Include="Models\DeleteIngredientModel.cs" />
     <Compile Include="Models\PieModel.cs" />
     <Compile Include="Models\IngredientModel.cs" />

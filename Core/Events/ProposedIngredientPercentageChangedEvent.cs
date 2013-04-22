@@ -14,7 +14,7 @@ namespace Codell.Pies.Core.Events
 
         public int AcceptedPercent { get; private set; }
 
-        public IEnumerable<Ingredient> AllIngredients { get; private set; }
+        public IEnumerable<Ingredient> Ingredients { get; private set; }
 
         public Ingredient Filler { get; private set; }
 
@@ -23,7 +23,7 @@ namespace Codell.Pies.Core.Events
             Id = id;
             ProposedPercent = proposedPercent;
             AcceptedPercent = acceptedPercent;
-            AllIngredients = allIngredients;
+            Ingredients = allIngredients;
             Filler = filler;
         }         
     }
