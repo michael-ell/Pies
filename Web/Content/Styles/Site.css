@@ -222,6 +222,10 @@ table {
     top: -3px;
 }
 
+.ingredient-color {
+    text-align: center;
+}
+
 .add {
     position: relative;
     top: 13px;

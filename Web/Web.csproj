@@ -295,6 +295,7 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\highcharts-exporting.js" />
     <Content Include="Scripts\pies.js" />
     <Content Include="Scripts\highcharts.js" />
     <None Include="Scripts\linq-vsdoc.js" />

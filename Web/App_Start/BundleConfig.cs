@@ -13,7 +13,20 @@ namespace Codell.Pies.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle(Names.Styles).Include("~/content/styles/*.css"));
-            bundles.Add(new ScriptBundle(Names.Scripts).Include("~/scripts/*.js"));
+            bundles.Add(new ScriptBundle(Names.Scripts).Include("~/scripts/jquery-{version}.js",
+                                                                "~/scripts/jquery-ui-{version}.js",
+                                                                "~/scripts/jquery.linq.js",
+                                                                "~/scripts/jquery.mHub.js",
+                                                                "~/scripts/jquery.signalR-{version}.js",
+                                                                "~/scripts/knockout-{version}.js",
+                                                                "~/scripts/linq.js",
+                                                                "~/scripts/modernizr-{version}.js",
+                                                                "~/scripts/highcharts.js",
+                                                                "~/scripts/highcharts-exporting.js",
+                                                                "~/scripts/spectrum.js",
+                                                                "~/scripts/knockout-pies.js",
+                                                                "~/scripts/messages.js",
+                                                                "~/scripts/pies.js"));
         }
     }
 }

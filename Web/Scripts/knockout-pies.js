@@ -181,8 +181,8 @@ ko.bindingHandlers.autocomplete = {
             options = valueAccessor();
         $(element).autocomplete({
             autoFocus: true,
-            delay: 0,
-            minLength: 2,
+            delay: 500,
+            minLength: 1,
             source: options.sourceUrl,
             select: function (event, ui) {
                 allBindings.selected(ui.item.value);
