@@ -45,7 +45,8 @@
     </div>
     <div class="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
     <script type="text/html" id="ingredient-template">
-        <table class="ingredient-container" data-bind="color: color">
+        <!--<table class="ingredient-container" data-bind="color: color">-->
+        <table class="ingredient-container">
             <tr>
                 <td class="data-label"></td>
                 <td>
@@ -60,7 +61,7 @@
                     <input data-bind="colorPicker: color"/></td>
                 <td>
                     <div class="ingredient-slider" id="percent" data-bind="slider: percent, sliderOptions: { min: 0, max: 100, step: 5, value: $data.percent() },
-                                                                           sliderColor: color, colorOptions: { backgroundAdjust: 75, borderAdjust: 0 }"></div>
+                                                                           sliderColor: color, colorOptions: { backgroundAdjust: 0, borderAdjust: -50 }"></div>
                     <div class="ingredient-percent" data-bind="text: formattedPercent"></div>
                 </td>
                 <td></td>
