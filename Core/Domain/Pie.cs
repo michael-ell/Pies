@@ -126,6 +126,20 @@ namespace Codell.Pies.Core.Domain
         {
         }
 
+        public void UpdateIngredientDescription(Guid id, string newDescription)
+        {
+            Ingredient ingredient;
+            if (TryToGetIngredient(id, out ingredient))
+            {
+                ApplyEvent(new IngredientDescriptionUpdatedEvent(id, newDescription, _ingredients, _filler));
+            }
+        }
+
+        protected void OnIngredientDescriptionUpdated(IngredientDescriptionUpdatedEvent @event)
+        {
+            IngredientFor(@event.Id).Description = @event.NewDescription;
+        }
+
         public void UpdateIngredientColor(Guid id, string newColor)
         {
             Ingredient ingredient;

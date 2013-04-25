@@ -12,7 +12,9 @@ namespace Codell.Pies.Web.App_Start
 
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle(Names.Styles).Include("~/content/styles/*.css"));
+            bundles.Add(new StyleBundle(Names.Styles).Include("~/content/styles/jquery-ui.css",
+                                                              "~/content/styles/spectrum.css",
+                                                              "~/content/styles/site.css"));
             bundles.Add(new ScriptBundle(Names.Scripts).Include("~/scripts/jquery-{version}.js",
                                                                 "~/scripts/jquery-ui-{version}.js",
                                                                 "~/scripts/jquery.linq.js",

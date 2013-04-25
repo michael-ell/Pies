@@ -2,11 +2,11 @@
 
 namespace Codell.Pies.Web.Models
 {
-    public class UpdateIngredientDescriptionModel
+    public class UpdateIngredientColorModel
     {
         public Guid Id { get; set; }
 
-        public string Description { get; set; }
+        public string Color { get; set; }
 
         public Guid PieId { get; set; }
     }

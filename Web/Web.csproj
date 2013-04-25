@@ -195,6 +195,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddIngredientModel.cs" />
+    <Compile Include="Models\UpdateIngredientDescriptionModel.cs" />
     <Compile Include="Models\UpdateIngredientColorModel.cs" />
     <Compile Include="Models\DeleteIngredientModel.cs" />
     <Compile Include="Models\PieModel.cs" />

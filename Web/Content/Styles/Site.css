@@ -242,6 +242,7 @@ td.ingredient{
 }
 
 .sp-replacer {
+    background-color: #e6e6e6 !important;
     border: #d3d3d3 1px solid !important;
     -webkit-border-top-left-radius: 4px;
     border-top-left-radius: 4px;

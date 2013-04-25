@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="CommandExecutors\AggregateRootExistsUoWMappedCommandExecutor.cs" />
     <Compile Include="Commands\AddIngredientCommand.cs" />
+    <Compile Include="Commands\UpdateIngredientDescriptionCommand.cs" />
     <Compile Include="Commands\UpdateIngredientColorCommand.cs" />
     <Compile Include="Commands\CreatePieCommand.cs" />
     <Compile Include="Commands\DeleteIngredientCommand.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Domain\Tags.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
     <Compile Include="EventHandlers\TagDenormalizer.cs" />
+    <Compile Include="Events\IngredientDescriptionUpdatedEvent.cs" />
     <Compile Include="Events\IngredientColorUpdatedEvent.cs" />
     <Compile Include="Events\IIngredientsUpdatedEvent.cs" />
     <Compile Include="Events\IngredientPercentageUpdatedEvent.cs" />

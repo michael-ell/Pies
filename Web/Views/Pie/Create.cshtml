@@ -11,6 +11,7 @@
                                          updateTags : '@Url.Action("UpdateTags")'},
                                        { add: '@Url.Action("AddIngredient")', 
                                          updatePercentage: '@Url.Action("UpdateIngredientPercentage")', 
+                                         updateDescription: '@Url.Action("UpdateIngredientDescription")', 
                                          updateColor: '@Url.Action("UpdateIngredientColor")', 
                                          delete: '@Url.Action("DeleteIngredient")' });
             ko.applyBindings(pie, $scope[0]);
@@ -44,7 +45,8 @@
                                                         foreach: editableIngredients,
                                                         afterRender: function(el) {
                                                             $('#remove', $(el)).button({ icons: { primary: 'ui-icon-minus' }, text: false });
-                                                        } }"></div>                      
+                                                        } }">            
+        </div>                      
     </div>
     <div class="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
     <script type="text/html" id="ingredient-template">
@@ -54,7 +56,7 @@
                     <input data-bind="colorPicker: color"/>
                 </td>
                 <td class="ingredient">
-                    <input class="ingredient" type="text" data-bind="value: description"/>   
+                    <input class="ingredient" type="text" data-bind="value: description, blur: description"/>   
                 </td>
                 <td>
                     <button id="remove" data-bind="click: remove">Remove</button>

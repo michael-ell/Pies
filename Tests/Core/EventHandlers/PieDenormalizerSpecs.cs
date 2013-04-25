@@ -300,6 +300,38 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         }
     }
 
+    [Concern(typeof(PieDenormalizer))]
+    public class When_an_ingredient_description_is_updated : IngredientUpdatedPieDenormalizerSpecBase<IngredientDescriptionUpdatedEvent>
+    {
+        protected override IngredientDescriptionUpdatedEvent GetEvent()
+        {
+            return New.Events().IngredientDescriptionUpdatedEvent();
+        }
+
+        protected override void When()
+        {
+            Sut.Handle(PublishedIngredientUpdatedEvent);
+        }
+
+        [Observation]
+        public void Then_should_update_the_ingredients_to_reflect_the_change()
+        {
+            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
+        }
+
+        [Observation]
+        public void Then_the_pie_should_not_be_empty()
+        {
+            Pie.IsEmpty.Should().BeFalse();
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(Pie));
+        }
+    }
+
     [Concern(typeof (PieDenormalizer))]
     public class When_tags_for_a_pie_are_updated : EventHandlerSpecBase<PieDenormalizer>
     {
@@ -329,7 +361,6 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         public void Then_should_save_the_pie()
         {
             MockFor<IRepository>().Verify(repo => repo.Save(_pie));
-        }
-         
+        }         
     }
 }

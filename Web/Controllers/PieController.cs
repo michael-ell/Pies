@@ -64,6 +64,12 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpPost]
+        public void UpdateIngredientDescription(UpdateIngredientDescriptionModel model)
+        {
+            _commandService.Execute(new UpdateIngredientDescriptionCommand(model.Id, model.Description, model.PieId));
+        }
+
+        [HttpPost]
         public void UpdateIngredientColor(UpdateIngredientColorModel model)
         {
             _commandService.Execute(new UpdateIngredientColorCommand(model.Id, model.Color, model.PieId));

@@ -11,7 +11,7 @@ namespace Codell.Pies.Testing.Creators.Events
     {
         public IngredientColorUpdatedEventCreator(IFixtureContext context) : base(context, null)
         {
-            Creation = new IngredientColorUpdatedEvent(Guid.NewGuid(), "#ffffff", new List<Ingredient> { New.Domain().Ingredient() }, New.Domain().Ingredient());
+            Creation = new IngredientColorUpdatedEvent(Guid.NewGuid(), Guid.NewGuid().ToString(), new List<Ingredient> { New.Domain().Ingredient() }, New.Domain().Ingredient());
         }
     }
 }

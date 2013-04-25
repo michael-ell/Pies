@@ -93,6 +93,9 @@ pies.cr8.Ingredient = function (dto, actions) {
             $.post(self.actions.updatePercentage, { id: self.id, pieId: self.pieId, percent: newPercent });
         }
     });
+    self.description.subscribe(function (newDescription) {
+        $.post(self.actions.updateDescription, { id: self.id, pieId: self.pieId, description: newDescription });
+    });
     self.color.subscribe(function (newColor) {
         $.post(self.actions.updateColor, { id: self.id, pieId: self.pieId, color: newColor });
     });
