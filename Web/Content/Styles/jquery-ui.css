@@ -796,17 +796,17 @@ body .ui-tooltip {
 ----------------------------------*/
 .ui-widget {
 	font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
-	font-size: 1.1em/*{fsDefault}*/;
+	font-size: 0.875em/*{fsDefault}*/;
 }
 .ui-widget .ui-widget {
-	font-size: 1em;
+	font-size: 0.875em;
 }
 .ui-widget input,
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
 	font-family: Verdana,Arial,sans-serif/*{ffDefault}*/;
-	font-size: 1em;
+	font-size: 0.875em;
 }
 .ui-widget-content {
 	border: 1px solid #aaaaaa/*{borderColorContent}*/;

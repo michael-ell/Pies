@@ -44,7 +44,7 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
                 self.ingredientToAdd('');
             });
         }
-    };
+    };    
 
     var hub = $.connection.pie;
     hub.client.captionUpdated = function(data) {

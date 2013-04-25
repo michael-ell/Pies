@@ -65,7 +65,7 @@ namespace Codell.Pies.Data.Storage.Mongo
         private void ConfigureSerialization()
         {
             RegisterClassMaps();
-            BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer());
+            //BsonSerializer.RegisterSerializer(typeof(DateTime), new DateTimeSerializer());
         }
 
         private void RegisterClassMaps()

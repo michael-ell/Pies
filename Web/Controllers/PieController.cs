@@ -8,6 +8,7 @@ using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Models;
 using Ncqrs.Commanding.ServiceModel;
+using System.Linq;
 
 namespace Codell.Pies.Web.Controllers
 {
@@ -31,7 +32,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var pies = _repository.Find<Pie>(pie => pie.IsEmpty == false);
+            var pies = _repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12);
             return View(_mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(pies));
         }
 

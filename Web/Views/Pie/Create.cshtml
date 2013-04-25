@@ -4,6 +4,8 @@
 {
     <script type="text/javascript">
         $(function() {
+            var $scope = $('#create');
+            $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
             var pie = new pies.cr8.Pie(@Html.Raw(Model.ToJson()), 
                                        { updateCaption : '@Url.Action("UpdateCaption")',
                                          updateTags : '@Url.Action("UpdateTags")'},
@@ -11,7 +13,7 @@
                                          updatePercentage: '@Url.Action("UpdateIngredientPercentage")', 
                                          updateColor: '@Url.Action("UpdateIngredientColor")', 
                                          delete: '@Url.Action("DeleteIngredient")' });
-            ko.applyBindings(pie, $('#create')[0]);
+            ko.applyBindings(pie, $scope[0]);
         });
     </script>
 }
@@ -19,8 +21,8 @@
     <div class="kitchen">
         <table class="kitchen-top">
             <tr>
-                <td class="data-label">Caption</td>
-                <td><input class="caption" type="text" data-bind="blur: caption"/></td>
+                <td class="label">Caption</td>
+                <td class="ingredient"><input class="caption" type="text" data-bind="blur: caption"/></td>
                 <td></td>
             </tr>
             <tr>
@@ -29,49 +31,52 @@
                 <td></td>
             </tr>
             <tr>
-                <td class="data-label">Ingredient</td>
+                <td class="label">Ingredient</td>
                 <td>
                     <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>                         
                 </td>
                 <td>
-                    <a href="#" title="Add" data-bind="click: addIngredient">
-                        Add
-                        <!--<img src="~/Content/Styles/Images/add.png" alt="Add Ingredient" class="add"/>-->
-                    </a>                      
+                    <button id="add" data-bind="click: addIngredient">Add</button>                  
                 </td>
             </tr>
         </table>                  
-        <div class="ingredients" data-bind="template: { name: 'ingredient-template', foreach: editableIngredients }"></div>                      
+        <div class="ingredients" data-bind="template: { name: 'ingredient-template', 
+                                                        foreach: editableIngredients,
+                                                        afterRender: function(el) {
+                                                            $('#remove', $(el)).button({ icons: { primary: 'ui-icon-minus' }, text: false });
+                                                        } }"></div>                      
     </div>
     <div class="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
     <script type="text/html" id="ingredient-template">
-        <!--<table class="ingredient-container" data-bind="color: color">-->
         <table class="ingredient-container">
             <tr>
-                <td class="data-label"></td>
-                <td>
-                    <div class="ingredient-desc" data-bind="text: description"></div> 
+                <td class="label ingredient-color">
+                    <input data-bind="colorPicker: color"/>
+                </td>
+                <td class="ingredient">
+                    <input class="ingredient" type="text" data-bind="value: description"/>   
                 </td>
                 <td>
-                    <a href="#" title="Remove" data-bind="click: remove">Remove</a>
+                    <button id="remove" data-bind="click: remove">Remove</button>
                 </td>
             </tr>    
             <tr>
                 <td class="ingredient-color">
-                    <input data-bind="colorPicker: color"/></td>
+
+                </td>
                 <td>
                     <div class="ingredient-slider" id="percent" data-bind="slider: percent, sliderOptions: { min: 0, max: 100, step: 5, value: $data.percent() },
                                                                            sliderColor: color, colorOptions: { backgroundAdjust: 0, borderAdjust: -50 }"></div>
-                    <div class="ingredient-percent" data-bind="text: formattedPercent"></div>
+
                 </td>
-                <td></td>
+                <td data-bind="text: formattedPercent"></td>
             </tr> 
             <tr>
                 <td colspan="3">
                     <div class="important message" data-bind="text: message"></div>
                 </td>
             </tr>      
-         </table>
+        </table>
     </script>
 </div>
 
