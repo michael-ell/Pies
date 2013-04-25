@@ -124,12 +124,14 @@ table {
 
 .important {
     color: red;
-    font-weight: bold;
 }
 
 .message {
     clear: both;
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    overflow: auto;
+    text-align: center;
 }
 
 .pie, .kitchen, .preview {

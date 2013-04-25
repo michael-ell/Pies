@@ -37,7 +37,7 @@
                     <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>                         
                 </td>
                 <td>
-                    <button id="add" data-bind="click: addIngredient">Add</button>                  
+                    <a href="#" id="add" data-bind="click: addIngredient">Add</a>                  
                 </td>
             </tr>
         </table>                  
@@ -59,7 +59,7 @@
                     <input class="ingredient" type="text" data-bind="value: description, blur: description"/>   
                 </td>
                 <td>
-                    <button id="remove" data-bind="click: remove">Remove</button>
+                    <a href="#" id="remove" data-bind="click: remove">Remove</a>
                 </td>
             </tr>    
             <tr>
@@ -74,9 +74,11 @@
                 <td data-bind="text: formattedPercent"></td>
             </tr> 
             <tr>
-                <td colspan="3">
+                <td></td>
+                <td>
                     <div class="important message" data-bind="text: message"></div>
                 </td>
+                <td></td>
             </tr>      
         </table>
     </script>
