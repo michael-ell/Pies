@@ -131,7 +131,10 @@ namespace Codell.Pies.Core.Domain
             Ingredient ingredient;
             if (TryToGetIngredient(id, out ingredient))
             {
-                ApplyEvent(new IngredientDescriptionUpdatedEvent(id, newDescription, _ingredients, _filler));
+                if (ingredient.Description != newDescription)
+                {
+                    ApplyEvent(new IngredientDescriptionUpdatedEvent(id, newDescription, _ingredients, _filler));
+                }
             }
         }
 
@@ -145,7 +148,10 @@ namespace Codell.Pies.Core.Domain
             Ingredient ingredient;
             if (TryToGetIngredient(id, out ingredient))
             {
-                ApplyEvent(new IngredientColorUpdatedEvent(id, newColor, _ingredients, _filler));
+                if (ingredient.Color != newColor)
+                {
+                    ApplyEvent(new IngredientColorUpdatedEvent(id, newColor, _ingredients, _filler));
+                }
             }
         }
 

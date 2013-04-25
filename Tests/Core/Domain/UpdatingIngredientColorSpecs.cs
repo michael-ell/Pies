@@ -28,4 +28,27 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientColorSpecs
             Verify<IngredientColorUpdatedEvent>(e => e.Id == _ingredientToUpdate.Id && e.NewColor == _expectedColor).WasPublished();
         }
     }
+
+    [Concern(typeof(Pie))]
+    public class When_updating_the_color_of_an_ingredient_that_has_not_changed : PieSpecBase
+    {
+        private Ingredient _ingredientToUpdate;
+
+        protected override void Given()
+        {
+            Sut.AddIngredient("cinammon");
+            _ingredientToUpdate = Ingredients[0];
+        }
+
+        protected override void When()
+        {
+            Sut.UpdateIngredientDescription(_ingredientToUpdate.Id, _ingredientToUpdate.Color);
+        }
+
+        [Observation]
+        public void Then_should_not_announce_that_the_color_was_updated_for_the_ingredient()
+        {
+            Verify<IngredientColorUpdatedEvent>().WasNotPublished();
+        }
+    }
 }
