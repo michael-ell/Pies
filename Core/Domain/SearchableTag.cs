@@ -9,6 +9,12 @@ namespace Codell.Pies.Core.Domain
         public SearchableTag(string value)
         {
             Value =  (value ?? "").ToLower().Trim();
+            var index = Value.Length - 1;
+            var last = index > 0 ? Value[index] : '~';
+            if (last == ',' || last == ';')
+            {
+                Value = Value.Remove(index, 1);
+            }
         }
 
         public static implicit operator string(SearchableTag tag)

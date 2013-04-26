@@ -88,6 +88,7 @@
     <Compile Include="Core\Commands\UpdatePieTagsCommandSpecs.cs" />
     <Compile Include="Core\Domain\AddingIngredientsSpecs.cs" />
     <Compile Include="Core\Domain\ColorsSpecs.cs" />
+    <Compile Include="Core\Domain\SearchableTagSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingIngredientDescriptionSpecs.cs" />
     <Compile Include="Core\Domain\CreatingPieSpecs.cs" />
     <Compile Include="Core\Domain\DeletingPieIngredientSpecs.cs" />
