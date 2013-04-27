@@ -24,7 +24,7 @@ namespace Codell.Pies.Web.App_Start
                                                                 "~/scripts/linq.js",
                                                                 "~/scripts/modernizr-{version}.js",
                                                                 "~/scripts/highcharts.js",
-                                                                "~/scripts/highcharts-exporting.js",
+                                                                //"~/scripts/highcharts-exporting.js",
                                                                 "~/scripts/spectrum.js",
                                                                 "~/scripts/knockout-pies.js",
                                                                 "~/scripts/messages.js",

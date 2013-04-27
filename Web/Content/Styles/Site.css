@@ -43,6 +43,10 @@ table {
     padding: 10px;     
 }
 
+.clear {
+    clear: both;
+}
+
 .title {
     background-color: #f6f6f6;
 }
@@ -134,7 +138,7 @@ table {
     text-align: center;
 }
 
-.pie, .kitchen, .preview {
+.pie, .kitchen, .preview, .pie-preview, .share-pie {
     float: left;
 }
 
@@ -157,13 +161,11 @@ td.ingredient{
     padding-right: 10px;
 }
 
-.kitchen, .kitchen-top {
+.kitchen, .kitchen-top, .share-pie {
     background-color: #dfeffc;
 }
 
-.kitchen {
-    width: 48%;
-    padding: 10px;
+.kitchen, .share-pie {
     border: 1px #dfdfdf solid;
     -webkit-border-top-left-radius: 10px;
     border-top-left-radius: 10px;
@@ -176,7 +178,12 @@ td.ingredient{
     -webkit-border-bottom-right-radius: 10px;
     border-bottom-right-radius: 10px;
     -moz-border-radius-bottomleft: 10px;
-    -moz-border-radius-bottomright: 10px;  
+    -moz-border-radius-bottomright: 10px;      
+}
+
+.kitchen {
+    width: 48%;
+    padding: 10px;
 }
 
 .kitchen-top {
@@ -215,6 +222,27 @@ td.ingredient{
 
 .preview {
     width: 49%;
+    overflow: hidden;
+    position: relative;
+}
+
+.pie-preview {    
+    width: 90%;
+}
+.share-pie{
+    width: 10%;
+    height: 96%;
+    position: absolute;
+    right: 0;
+    padding-top: 10px;
+}
+
+.share-pie img {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+    padding-bottom: 10px;
+    cursor: pointer;
 }
 
 .ingredient-container {

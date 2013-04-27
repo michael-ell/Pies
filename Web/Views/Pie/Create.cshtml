@@ -27,11 +27,6 @@
                 <td></td>
             </tr>
             <tr>
-                <td>Tags</td>
-                <td><input class="tags" type="text" data-bind="blur: tags"/></td>
-                <td></td>
-            </tr>
-            <tr>
                 <td class="label">Ingredient</td>
                 <td>
                     <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>                         
@@ -39,6 +34,11 @@
                 <td>
                     <a href="#" id="add" data-bind="click: addIngredient">Add</a>                  
                 </td>
+            </tr>
+            <tr>
+                <td>Tags</td>
+                <td><input class="tags" type="text" data-bind="blur: tags"/></td>
+                <td></td>
             </tr>
         </table>                  
         <div class="ingredients" data-bind="template: { name: 'ingredient-template', 
@@ -48,7 +48,18 @@
                                                         } }">            
         </div>                      
     </div>
-    <div class="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
+    <div class="preview" >
+        <div class ="pie-preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
+        <div class="share-pie">
+            <img src="@Url.Content("~/content/styles/images/facebook_24_24.png")" alt="Facebook"/>
+            <img src="@Url.Content("~/content/styles/images/twitter_24_24.png")" alt="Facebook"/>
+            <img src="@Url.Content("~/content/styles/images/linkedin_24_24.png")" alt="Facebook"/>
+            <img src="@Url.Content("~/content/styles/images/twittert_24_24.png")" alt="Facebook"/>
+            <img src="@Url.Content("~/content/styles/images/facebook_no_circle_24_24.png")" alt="Facebook"/>
+            <img src="@Url.Content("~/content/styles/images/twitter_no_circle_24_24.png")" alt="Facebook"/>
+            <img src="@Url.Content("~/content/styles/images/twittert_no_circle_24_24.png")" alt="Facebook"/>
+        </div>
+    </div>
     <script type="text/html" id="ingredient-template">
         <table class="ingredient-container">
             <tr>
