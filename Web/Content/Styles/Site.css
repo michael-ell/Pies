@@ -138,12 +138,13 @@ table {
     text-align: center;
 }
 
-.pie, .kitchen, .preview, .pie-preview, .share-pie {
-    float: left;
+.kitchen, .preview, .pie-preview, .share-pie {
+    display: inline-block;
 }
 
 .pie {
     width: 33%;
+    float: left;
 }
 
 .label {
@@ -161,11 +162,11 @@ td.ingredient{
     padding-right: 10px;
 }
 
-.kitchen, .kitchen-top, .share-pie {
+.kitchen, .kitchen-top {
     background-color: #dfeffc;
 }
 
-.kitchen, .share-pie {
+.kitchen{
     border: 1px #dfdfdf solid;
     -webkit-border-top-left-radius: 10px;
     border-top-left-radius: 10px;
@@ -178,7 +179,10 @@ td.ingredient{
     -webkit-border-bottom-right-radius: 10px;
     border-bottom-right-radius: 10px;
     -moz-border-radius-bottomleft: 10px;
-    -moz-border-radius-bottomright: 10px;      
+    -moz-border-radius-bottomright: 10px;
+    height: 100%;
+    vertical-align: top;
+    min-height: 435px;
 }
 
 .kitchen {
