@@ -79,6 +79,15 @@ namespace Codell.Pies.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, our pies can only hold {0} ingredients..
+        /// </summary>
+        public static string MaxIngredientsReached {
+            get {
+                return ResourceManager.GetString("MaxIngredientsReached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find {0} in appSettings..
         /// </summary>
         public static string MissingAppSetting {

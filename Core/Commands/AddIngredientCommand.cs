@@ -1,5 +1,6 @@
 ﻿using System;
 using Codell.Pies.Common;
+using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Domain;
 using Ncqrs.Commanding;
 using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
@@ -14,12 +15,15 @@ namespace Codell.Pies.Core.Commands
 
         public string Description { get; set; }
 
+        public ISettings Settings { get; set; }
+
         public AddIngredientCommand(Guid id, string description)
         {
             Verify.NotWhitespace(description, "description");
             
             Id = id;
             Description = description;
+            Settings = ServiceLocator.Instance.Find<ISettings>();
         }
     }
 }

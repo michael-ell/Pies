@@ -13,10 +13,9 @@ namespace Codell.Pies.Tests.Core.Domain.DeletingPieIngredientSpecs
 
         protected override void Given()
         {
-            Sut.AddIngredient("blueberries");
-            Sut.AddIngredient("cinnamon");
+            AddIngredient("blueberries");
+            _toDelete = AddIngredient("cinnamon");
 
-            _toDelete = Ingredients[1];
             Sut.UpdateIngredientPercentage(_toDelete.Id, 20);
             Sut.UpdateIngredientPercentage(Ingredients[0].Id, 40);
             _expectedFiller = 60;

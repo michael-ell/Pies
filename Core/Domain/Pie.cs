@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Codell.Pies.Common;
+using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Events;
 using Ncqrs.Domain;
 
@@ -60,12 +61,21 @@ namespace Codell.Pies.Core.Domain
             _caption = @event.NewCaption;
         }
 
-        public void AddIngredient(string description)
+        public void AddIngredient(string description, ISettings settings)
         {
             if (_ingredients.Exists(i => string.Equals(description, i.Description))) return;
 
-            var toAdd = new Ingredient(Guid.NewGuid(), description, 0, _nextColor);
-            ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients, _filler));
+            var max = settings.Get<int>(Keys.MaxIngredients);
+            if (_ingredients.Count + 1 > max)
+            {
+                ApplyEvent(new MaxIngredientsReachedEvent(string.Format(Resources.MaxIngredientsReached, max)));
+            }
+            else
+            {
+                var toAdd = new Ingredient(Guid.NewGuid(), description, 0, _nextColor);
+                ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients, _filler));                
+            }
+
         }
 
         protected void OnIngredientAdded(IngredientAddedEvent @event)
@@ -73,6 +83,10 @@ namespace Codell.Pies.Core.Domain
             _filler.Percent = Max - Total;
             _ingredients.Add(@event.Added);
             _nextColor = _colors.GetNext();
+        }
+
+        protected void OnMaxIngredientsReached(MaxIngredientsReachedEvent @event)
+        {            
         }
 
         public void UpdateIngredientPercentage(Guid id, int proposedPercent)

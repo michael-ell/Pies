@@ -12,8 +12,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientDescriptionSpecs
 
         protected override void Given()
         {
-            Sut.AddIngredient("blueberries");
-            _ingredientToUpdate = Ingredients[0];
+            _ingredientToUpdate = AddIngredient("blueberries");
             _expectedDescription = "cinammon";
         }
 
@@ -36,8 +35,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientDescriptionSpecs
 
         protected override void Given()
         {
-            Sut.AddIngredient("cinammon");
-            _ingredientToUpdate = Ingredients[0];
+            _ingredientToUpdate = AddIngredient("cinammon");
         }
 
         protected override void When()

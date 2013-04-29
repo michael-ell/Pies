@@ -29,15 +29,20 @@
             <tr>
                 <td class="label">Ingredient</td>
                 <td>
-                    <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>                         
+                    <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>                                          
                 </td>
                 <td>
-                    <a href="#" id="add" data-bind="click: addIngredient">Add</a>                  
+                    <a href="#" id="add" data-bind="click: addIngredient">Add</a>                                      
                 </td>
             </tr>
             <tr>
                 <td>Tags</td>
                 <td><input class="tags" type="text" data-bind="blur: tags"/></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="important message" data-bind="text: message"></td>
                 <td></td>
             </tr>
         </table>                  

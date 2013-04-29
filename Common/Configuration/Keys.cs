@@ -3,5 +3,6 @@
     public static class Keys
     {
         public const string Profile = "Profile";
+        public const string MaxIngredients = "MaxIngredients";
     }
 }

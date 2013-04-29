@@ -1,4 +1,5 @@
-﻿using Codell.Pies.Core.Domain;
+﻿using Codell.Pies.Common.Configuration;
+using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.BDD;
 using Codell.Pies.Common;
@@ -13,11 +14,12 @@ namespace Codell.Pies.Tests.Core.Domain.AddingIngredientsSpecs
         protected override void Given()
         {
             _description = "cinnamon";
+            MockFor<ISettings>().Setup(settings => settings.Get<int>(Keys.MaxIngredients)).Returns(100);
         }
 
         protected override void When()
         {
-            Sut.AddIngredient(_description);
+            Sut.AddIngredient(_description, GetDependency<ISettings>());
         }
 
         [Observation]
@@ -53,12 +55,43 @@ namespace Codell.Pies.Tests.Core.Domain.AddingIngredientsSpecs
         protected override void Given()
         {
             _description = "cinnamon";
-            Sut.AddIngredient(_description);
+            MockFor<ISettings>().Setup(settings => settings.Get<int>(Keys.MaxIngredients)).Returns(100);
+            Sut.AddIngredient(_description, GetDependency<ISettings>());
         }
 
         protected override void When()
         {
-            Sut.AddIngredient(_description);
+            Sut.AddIngredient(_description, GetDependency<ISettings>());
+        }
+
+        [Observation]
+        public void Then_should_not_announce_that_the_ingredient_was_added()
+        {
+            Verify<IngredientAddedEvent>().WasNotPublished();
+        }
+    }
+
+    [Concern(typeof(Pie))]
+    public class When_trying_add_an_ingredient_but_the_max_ingredients_has_been_reached : PieSpecBase
+    {
+        private int _max;
+
+        protected override void Given()
+        {
+            _max = 1;
+            MockFor<ISettings>().Setup(settings => settings.Get<int>(Keys.MaxIngredients)).Returns(_max);
+            Sut.AddIngredient("cinnamon", GetDependency<ISettings>());
+        }
+
+        protected override void When()
+        {
+            Sut.AddIngredient("blueberries", GetDependency<ISettings>());
+        }
+
+        [Observation]
+        public void Then_should_announce_that_the_max_ingredients_have_been_reached()
+        {
+            Verify<MaxIngredientsReachedEvent>(e => e.Message == string.Format(Resources.MaxIngredientsReached, _max)).WasPublished();
         }
 
         [Observation]

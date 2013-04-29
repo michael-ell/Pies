@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.Creators.Domain;
@@ -12,8 +13,9 @@ namespace Codell.Pies.Tests.Core.Domain
     public abstract class PieSpecBase : AggregateRootSpecBase<Pie>
     {
         private readonly List<Ingredient> _ingredients;
+        private PieCreator _creator;
         protected IReadOnlyList<Ingredient> Ingredients { get { return _ingredients; } }
-        protected Ingredient Filler { get; private set; }
+        protected Ingredient Filler { get; private set; }        
 
         protected PieSpecBase()
         {
@@ -23,7 +25,8 @@ namespace Codell.Pies.Tests.Core.Domain
 
         protected override Pie CreateSut()
         {
-            return New.Domain().Pie();
+            _creator = New.Domain().Pie();
+            return _creator;
         }
 
         private void OnEventPublished(IPublishableEvent @event)
@@ -42,6 +45,12 @@ namespace Codell.Pies.Tests.Core.Domain
                     Filler = updated.Filler;
                 }
             }
+        }
+
+        public Ingredient AddIngredient(string description)
+        {
+            Sut.AddIngredient(description, _creator.Settings);
+            return IngredientFor(description);
         }
 
         public Ingredient IngredientFor(string description)

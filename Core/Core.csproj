@@ -88,6 +88,7 @@
     <Compile Include="Events\IIngredientsUpdatedEvent.cs" />
     <Compile Include="Events\IngredientPercentageUpdatedEvent.cs" />
     <Compile Include="Events\IngredientAddedEvent.cs" />
+    <Compile Include="Events\MaxIngredientsReachedEvent.cs" />
     <Compile Include="Events\PieCaptionUpdatedEvent.cs" />
     <Compile Include="Events\PieCreatedEvent.cs" />
     <Compile Include="Events\IngredientDeletedEvent.cs" />

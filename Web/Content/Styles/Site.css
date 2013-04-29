@@ -156,7 +156,6 @@ table {
     width: 250px;
 }
 
-
 td.ingredient{
     width: 255px;
     padding-right: 10px;
@@ -167,6 +166,8 @@ td.ingredient{
 }
 
 .kitchen{
+    width: 48%;
+    padding: 10px;
     border: 1px #dfdfdf solid;
     -webkit-border-top-left-radius: 10px;
     border-top-left-radius: 10px;
@@ -182,12 +183,7 @@ td.ingredient{
     -moz-border-radius-bottomright: 10px;
     height: 100%;
     vertical-align: top;
-    min-height: 435px;
-}
-
-.kitchen {
-    width: 48%;
-    padding: 10px;
+    min-height: 449px;
 }
 
 .kitchen-top {
