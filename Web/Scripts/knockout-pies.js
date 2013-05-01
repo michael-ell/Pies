@@ -21,6 +21,18 @@ ko.bindingHandlers.onEnter = {
     }
 };
 
+ko.bindingHandlers.message = {
+    init: function (el) {
+        $(el).hide();
+    },
+    update: function (el, valueAccessor) {
+        if (valueAccessor()) {
+            $(el).fadeIn(1000);
+            setTimeout(function () { $(el).fadeOut(1000); }, 3000);
+        }
+    }    
+};
+
 ko.bindingHandlers.slider = {
     init: function (el, valueAccessor, allBindingsAccessor) {
         var opts = {

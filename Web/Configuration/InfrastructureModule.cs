@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Common.Mapping;
+using Codell.Pies.Web.Authentication;
 
 namespace Codell.Pies.Web.Configuration
 {
@@ -11,6 +12,7 @@ namespace Codell.Pies.Web.Configuration
             base.Load(builder);
             builder.Register(c => AutoMapperEngine.Configure(new AutoMapperConfiguration())).SingleInstance();
             builder.RegisterType<AppSettings>().As<ISettings>();
+            //builder.RegisterType<OpenIdGateway>().As<IOpenIdGateway>();
         }
     }
 }

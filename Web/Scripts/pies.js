@@ -26,7 +26,7 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
     self.ingredientToAdd = ko.observable('');
     self.editableIngredients = ko.observableArray();
     self.tags = ko.observable();
-    self.message = ko.observable();
+    self.pieMessage = ko.observable();
     
     self.caption.subscribe(function (caption) {
         if (caption) {
@@ -69,8 +69,7 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
         ingredient.reverting = false;
     };
     hub.client.showMessage = function(data) {
-        self.message(data);
-        setTimeout(function () {self.message(''); }, 3000);
+        self.pieMessage(data);
     };
     $.connection.hub.start().done(function () {
         hub.server.join(dto.id);

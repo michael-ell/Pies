@@ -62,6 +62,15 @@
     <Reference Include="Common.Logging.Log4Net">
       <HintPath>..\packages\Common.Logging.Log4Net.2.0.1\lib\net20\Common.Logging.Log4Net.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.0.13117\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
@@ -177,12 +186,16 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Authentication\IOpenIdGateway.cs" />
+    <Compile Include="Authentication\OpenIdGateway.cs" />
+    <Compile Include="Authentication\OpenIdUser.cs" />
     <Compile Include="Configuration\AutofacConfigurationModule.cs" />
     <Compile Include="Configuration\AutofacServiceLocator.cs" />
     <Compile Include="Configuration\AutoMapperConfiguration.cs" />
     <Compile Include="Configuration\Configure.cs" />
     <Compile Include="Configuration\InfrastructureModule.cs" />
     <Compile Include="Configuration\NcqrsModule.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\PieController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -211,10 +224,65 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Styles\Images\animated-overlay.gif" />
+    <Content Include="Content\Styles\Images\blogger.ico" />
+    <Content Include="Content\Styles\Images\blogger.ico.gif" />
+    <Content Include="Content\Styles\Images\blogger.ico.png" />
+    <Content Include="Content\Styles\Images\claimid.ico" />
+    <Content Include="Content\Styles\Images\claimid.ico.gif" />
+    <Content Include="Content\Styles\Images\claimid.ico.png" />
+    <Content Include="Content\Styles\Images\clickpass.ico" />
+    <Content Include="Content\Styles\Images\clickpass.ico.gif" />
+    <Content Include="Content\Styles\Images\clickpass.ico.png" />
+    <Content Include="Content\Styles\Images\facebook.gif" />
+    <Content Include="Content\Styles\Images\facebook.ico" />
+    <Content Include="Content\Styles\Images\facebook.ico.gif" />
+    <Content Include="Content\Styles\Images\facebook.ico.png" />
     <Content Include="Content\Styles\Images\facebook_24_24.png" />
     <Content Include="Content\Styles\Images\facebook_no_circle_24_24.png" />
+    <Content Include="Content\Styles\Images\flickr.ico" />
+    <Content Include="Content\Styles\Images\flickr.ico.gif" />
+    <Content Include="Content\Styles\Images\flickr.ico.png" />
+    <Content Include="Content\Styles\Images\google.gif" />
+    <Content Include="Content\Styles\Images\google.ico" />
+    <Content Include="Content\Styles\Images\google.ico.gif" />
+    <Content Include="Content\Styles\Images\google.ico.png" />
+    <Content Include="Content\Styles\Images\google_profile.ico" />
+    <Content Include="Content\Styles\Images\google_profile.ico.gif" />
+    <Content Include="Content\Styles\Images\google_profile.ico.png" />
+    <Content Include="Content\Styles\Images\launchpad.ico" />
+    <Content Include="Content\Styles\Images\launchpad.ico.gif" />
+    <Content Include="Content\Styles\Images\launchpad.ico.png" />
+    <Content Include="Content\Styles\Images\linkedin.ico" />
+    <Content Include="Content\Styles\Images\linkedin.ico.gif" />
+    <Content Include="Content\Styles\Images\linkedin.ico.png" />
     <Content Include="Content\Styles\Images\linkedin_24_24.png" />
+    <Content Include="Content\Styles\Images\livejournal.ico" />
+    <Content Include="Content\Styles\Images\livejournal.ico.gif" />
+    <Content Include="Content\Styles\Images\livejournal.ico.png" />
+    <Content Include="Content\Styles\Images\mailru.ico" />
+    <Content Include="Content\Styles\Images\mailru.ico.gif" />
+    <Content Include="Content\Styles\Images\mailru.ico.png" />
+    <Content Include="Content\Styles\Images\myopenid.gif" />
+    <Content Include="Content\Styles\Images\myopenid.ico" />
+    <Content Include="Content\Styles\Images\myopenid.ico.gif" />
+    <Content Include="Content\Styles\Images\myopenid.ico.png" />
+    <Content Include="Content\Styles\Images\openid-inputicon.gif" />
+    <Content Include="Content\Styles\Images\openid-providers-en.png" />
+    <Content Include="Content\Styles\Images\openid-providers-ru.png" />
+    <Content Include="Content\Styles\Images\openid.gif" />
+    <Content Include="Content\Styles\Images\openid.ico" />
+    <Content Include="Content\Styles\Images\openid.ico.gif" />
+    <Content Include="Content\Styles\Images\openid.ico.png" />
     <Content Include="Content\Styles\Images\pies.png" />
+    <Content Include="Content\Styles\Images\rambler.ico" />
+    <Content Include="Content\Styles\Images\rambler.ico.gif" />
+    <Content Include="Content\Styles\Images\rambler.ico.png" />
+    <Content Include="Content\Styles\Images\technorati.ico" />
+    <Content Include="Content\Styles\Images\technorati.ico.gif" />
+    <Content Include="Content\Styles\Images\technorati.ico.png" />
+    <Content Include="Content\Styles\Images\twitter.ico" />
+    <Content Include="Content\Styles\Images\twitter.ico.gif" />
+    <Content Include="Content\Styles\Images\twitter.ico.png" />
     <Content Include="Content\Styles\Images\twitterT_24_24.png" />
     <Content Include="Content\Styles\Images\twitterT_no_circle_24_24.png" />
     <Content Include="Content\Styles\Images\twitter_24_24.png" />
@@ -232,7 +300,29 @@
     <Content Include="Content\Styles\Images\ui-icons_454545_256x240.png" />
     <Content Include="Content\Styles\Images\ui-icons_888888_256x240.png" />
     <Content Include="Content\Styles\Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Styles\Images\verisign.gif" />
+    <Content Include="Content\Styles\Images\verisign.ico" />
+    <Content Include="Content\Styles\Images\verisign.ico.gif" />
+    <Content Include="Content\Styles\Images\verisign.ico.png" />
+    <Content Include="Content\Styles\Images\vidoop.ico" />
+    <Content Include="Content\Styles\Images\vidoop.ico.gif" />
+    <Content Include="Content\Styles\Images\vidoop.ico.png" />
+    <Content Include="Content\Styles\Images\vkontakte.ico" />
+    <Content Include="Content\Styles\Images\vkontakte.ico.gif" />
+    <Content Include="Content\Styles\Images\vkontakte.ico.png" />
+    <Content Include="Content\Styles\Images\winliveid.ico" />
+    <Content Include="Content\Styles\Images\winliveid.ico.gif" />
+    <Content Include="Content\Styles\Images\winliveid.ico.png" />
+    <Content Include="Content\Styles\Images\wordpress.ico" />
+    <Content Include="Content\Styles\Images\wordpress.ico.gif" />
+    <Content Include="Content\Styles\Images\wordpress.ico.png" />
+    <Content Include="Content\Styles\Images\yahoo.gif" />
+    <Content Include="Content\Styles\Images\yahoo.ico" />
+    <Content Include="Content\Styles\Images\yahoo.ico.gif" />
+    <Content Include="Content\Styles\Images\yahoo.ico.png" />
     <Content Include="Content\Styles\jquery-ui.css" />
+    <Content Include="Content\Styles\openid-shadow.css" />
+    <Content Include="Content\Styles\openid.css" />
     <Content Include="Content\Styles\Site.css" />
     <Content Include="Content\Styles\spectrum.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -303,6 +393,8 @@
     <Content Include="Log4Net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\highcharts-exporting.js" />
+    <Content Include="Scripts\openid-en.js" />
+    <Content Include="Scripts\openid-jquery.js" />
     <Content Include="Scripts\pies.js" />
     <Content Include="Scripts\highcharts.js" />
     <None Include="Scripts\linq-vsdoc.js" />
@@ -330,6 +422,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Pie\Create.cshtml" />
     <Content Include="Views\Pie\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
