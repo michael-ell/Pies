@@ -9,16 +9,10 @@ namespace Codell.Pies.Web.Authentication
 {
     public class OpenIdGateway : IOpenIdGateway
     {
-        private readonly OpenIdRelyingParty _openId;
-
-        public OpenIdGateway()
+        public IAuthenticationRequest CreateRequest(string identifier)
         {
-            _openId = new OpenIdRelyingParty();
-        }
-
-        public IAuthenticationRequest GetRequest(string openIdIdentifier)
-        {
-            var request = _openId.CreateRequest(Identifier.Parse(openIdIdentifier));
+            var openId = new OpenIdRelyingParty();
+            var request = openId.CreateRequest(Identifier.Parse(identifier));
             var fields = new ClaimsRequest
             {
                 Email = DemandLevel.Require,
@@ -32,17 +26,17 @@ namespace Codell.Pies.Web.Authentication
 
         public OpenIdUser GetUser()
         {
+            var openId = new OpenIdRelyingParty();
             OpenIdUser user = null;
-            var response = _openId.GetResponse();
+            var response = openId.GetResponse();
             if (response != null && response.Status == AuthenticationStatus.Authenticated)
             {
-                user = ResponseIntoUser(response);
+                user = ToUser(response);
             }
-
             return user;
         }
 
-        private OpenIdUser ResponseIntoUser(IAuthenticationResponse response)
+        private OpenIdUser ToUser(IAuthenticationResponse response)
         {
             OpenIdUser user = null;
             var claimResponseUntrusted = response.GetUntrustedExtension<ClaimsResponse>();
@@ -56,7 +50,6 @@ namespace Codell.Pies.Web.Authentication
             {
                 user = new OpenIdUser(claimResponseUntrusted, response.ClaimedIdentifier);
             }
-
             return user;
         }
 

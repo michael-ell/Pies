@@ -12,7 +12,7 @@ namespace Codell.Pies.Web.Configuration
             base.Load(builder);
             builder.Register(c => AutoMapperEngine.Configure(new AutoMapperConfiguration())).SingleInstance();
             builder.RegisterType<AppSettings>().As<ISettings>();
-            //builder.RegisterType<OpenIdGateway>().As<IOpenIdGateway>();
+            builder.RegisterType<OpenIdGateway>().As<IOpenIdGateway>();
         }
     }
 }
