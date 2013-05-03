@@ -5,7 +5,7 @@ using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
-namespace Codell.Pies.Web.Authentication
+namespace Codell.Pies.Web.Security
 {
     public class OpenIdGateway : IOpenIdGateway
     {

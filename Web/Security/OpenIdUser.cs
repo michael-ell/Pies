@@ -1,7 +1,7 @@
 ﻿using System;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 
-namespace Codell.Pies.Web.Authentication
+namespace Codell.Pies.Web.Security
 {
     public class OpenIdUser
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using DotNetOpenAuth.OpenId.RelyingParty;
 
-namespace Codell.Pies.Web.Authentication
+namespace Codell.Pies.Web.Security
 {
     public interface IOpenIdGateway
     {

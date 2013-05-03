@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Common.Mapping;
-using Codell.Pies.Web.Authentication;
+using Codell.Pies.Web.Security;
 
 namespace Codell.Pies.Web.Configuration
 {

@@ -186,9 +186,12 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="Authentication\IOpenIdGateway.cs" />
-    <Compile Include="Authentication\OpenIdGateway.cs" />
-    <Compile Include="Authentication\OpenIdUser.cs" />
+    <Compile Include="Security\Identity.cs" />
+    <Compile Include="Security\IOpenIdGateway.cs" />
+    <Compile Include="Security\IPiesIdentity.cs" />
+    <Compile Include="Security\OpenIdAuthorizeAttribute.cs" />
+    <Compile Include="Security\OpenIdGateway.cs" />
+    <Compile Include="Security\OpenIdUser.cs" />
     <Compile Include="Configuration\AutofacConfigurationModule.cs" />
     <Compile Include="Configuration\AutofacServiceLocator.cs" />
     <Compile Include="Configuration\AutoMapperConfiguration.cs" />

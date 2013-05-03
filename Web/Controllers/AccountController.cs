@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using Codell.Pies.Common;
-using Codell.Pies.Web.Authentication;
+using Codell.Pies.Web.Security;
 using DotNetOpenAuth.Messaging;
 
 namespace Codell.Pies.Web.Controllers
@@ -11,8 +11,7 @@ namespace Codell.Pies.Web.Controllers
 
         public AccountController(IOpenIdGateway gateway)
         {
-            Verify.NotNull(gateway, "gateway");
-            
+            Verify.NotNull(gateway, "gateway");            
             _gateway = gateway;
         }
 
