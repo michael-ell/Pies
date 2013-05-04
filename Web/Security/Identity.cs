@@ -17,8 +17,7 @@ namespace Codell.Pies.Web.Security
             get 
             { 
                 return _user.Nickname.IsNotEmpty() ? _user.Nickname 
-                                                   : (_user.FullName.IsNotEmpty() ? _user.FullName 
-                                                                                  : _user.Email); 
+                                                   : (_user.FullName.IsNotEmpty() ? _user.FullName : _user.Email); 
             }
         }
 

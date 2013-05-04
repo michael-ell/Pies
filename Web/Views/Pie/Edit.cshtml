@@ -4,7 +4,7 @@
 {
     <script type="text/javascript">
         $(function() {
-            var $scope = $('#create');
+            var $scope = $('#edit');
             $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
             var pie = new pies.cr8.Pie(@Html.Raw(Model.ToJson()), 
                                        { updateCaption : '@Url.Action("UpdateCaption")',
@@ -18,12 +18,12 @@
         });
     </script>
 }
-<div id="create">
+<div id="edit">
     <div class="kitchen">
         <table class="kitchen-top">
             <tr>
                 <td class="label">Caption</td>
-                <td class="ingredient"><input class="caption" type="text" data-bind="blur: caption"/></td>
+                <td class="ingredient"><input type="text" data-bind="value: caption, blur: caption"/></td>
                 <td></td>
             </tr>
             <tr>
@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <td>Tags</td>
-                <td><input class="tags" type="text" data-bind="blur: tags"/></td>
+                <td><input type="text" class="tags" data-bind="value: tags, blur: tags"/></td>
                 <td></td>
             </tr>
             <tr>

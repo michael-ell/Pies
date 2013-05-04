@@ -10,7 +10,7 @@ namespace Codell.Pies.Testing.Creators.ReadModels
         public PieCreator(IFixtureContext context) : base(context, new Pie())
         {
             Creation.Caption = Guid.NewGuid().ToString();
-            Creation.Ingredients = new List<Ingredient>{New.ReadModels().Ingredient()};
+            Creation.EditableIngredients = new List<Ingredient>{New.ReadModels().Ingredient()};
             Creation.CreatedOn = DateTime.Now;
         }
     }

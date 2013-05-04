@@ -162,7 +162,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientPercentageSpecs
         [Observation(Skip = "tbd")]
         public void Then_should_announce_all_ingredients()
         {
-            //Verify<IngredientAddedEvent>(e => e.Ingredients.Contains()).WasPublished();
+            //Verify<IngredientAddedEvent>(e => e.EditableIngredients.Contains()).WasPublished();
         }
     }
 
@@ -205,7 +205,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientPercentageSpecs
         [Observation(Skip = "tbd")]
         public void Then_should_announce_all_ingredients()
         {
-            //Verify<IngredientAddedEvent>(e => e.Ingredients.Contains()).WasPublished();
+            //Verify<IngredientAddedEvent>(e => e.EditableIngredients.Contains()).WasPublished();
         }
     }
 
@@ -241,7 +241,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientPercentageSpecs
         [Observation(Skip = "tbd")]
         public void Then_should_announce_all_ingredients()
         {
-            //Verify<IngredientAddedEvent>(e => e.Ingredients.Contains()).WasPublished();
+            //Verify<IngredientAddedEvent>(e => e.EditableIngredients.Contains()).WasPublished();
         }
     }
 
@@ -280,7 +280,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientPercentageSpecs
         [Observation(Skip = "tbd")]
         public void Then_should_announce_all_ingredients()
         {
-            //Verify<IngredientAddedEvent>(e => e.Ingredients.Contains()).WasPublished();
+            //Verify<IngredientAddedEvent>(e => e.EditableIngredients.Contains()).WasPublished();
         }
     }
 }

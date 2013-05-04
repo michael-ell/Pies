@@ -20,12 +20,12 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
     var self = this;
     self.id = dto.id;
     self.caption = ko.observable(dto.caption);
-    self.allIngredients = ko.observableArray(dto.ingredients);
+    self.allIngredients = ko.observableArray(dto.allIngredients);
     self.pieActions = pieActions;
     self.ingredientActions = ingredientActions;
     self.ingredientToAdd = ko.observable('');
     self.editableIngredients = ko.observableArray();
-    self.tags = ko.observable();
+    self.tags = ko.observable(dto.tags);
     self.pieMessage = ko.observable();
     
     self.caption.subscribe(function (caption) {

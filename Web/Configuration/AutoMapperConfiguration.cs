@@ -10,6 +10,7 @@ namespace Codell.Pies.Web.Configuration
         public void Configure()
         {
             Mapper.CreateMap<Ingredient, IngredientModel>();
+            Mapper.CreateMap<Pie, PieModel>().ForMember(model => model.Tags, opt => opt.MapFrom(pie => string.Join(" ", pie.Tags)));
         }
     }
 }

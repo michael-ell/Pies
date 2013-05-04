@@ -53,9 +53,21 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         }
 
         [Observation]
+        public void Then_should_save_the_pie_with_no_ingredients()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.EditableIngredients != null && !pie.EditableIngredients.Any())));
+        }
+
+        [Observation]
         public void Then_should_save_the_pie_with_the_filler()
         {
-            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.Ingredients.Contains(_expectedFiller))));
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.Filler == _expectedFiller)));
+        }
+
+        [Observation]
+        public void Then_should_save_the_pie_with_empty_tags()
+        {
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.Tags != null && !pie.Tags.Any())));
         }
 
         [Observation]
@@ -114,13 +126,13 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         [Observation]
         public void Then_should_update_the_ingredients_to_reflect_the_change()
         {
-            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
+            ExpectedIngredients.ForEach(ingredient => Pie.EditableIngredients.Should().Contain(ingredient));
         }
 
         [Observation]
-        public void Then_should_include_the_filler_as_part_of_the_ingredients()
+        public void Then_should_update_the_filler()
         {
-            Pie.Ingredients.Should().Contain(ExpectedFiller);
+            Pie.Filler.Should().Be(ExpectedFiller);
         }
 
         [Observation]
@@ -152,13 +164,13 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         [Observation]
         public void Then_should_update_the_ingredients_to_reflect_the_change()
         {
-            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
+            ExpectedIngredients.ForEach(ingredient => Pie.EditableIngredients.Should().Contain(ingredient));
         }
 
         [Observation]
-        public void Then_should_include_the_filler_as_part_of_the_ingredients()
+        public void Then_should_update_the_filler()
         {
-            Pie.Ingredients.Should().Contain(ExpectedFiller);
+            Pie.Filler.Should().Be(ExpectedFiller);
         }
 
         [Observation]
@@ -184,49 +196,13 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         [Observation]
         public void Then_should_update_the_ingredients_to_reflect_the_change()
         {
-            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
+            ExpectedIngredients.ForEach(ingredient => Pie.EditableIngredients.Should().Contain(ingredient));
         }
 
         [Observation]
-        public void Then_should_include_the_filler_as_part_of_the_ingredients()
+        public void Then_should_update_the_filler()
         {
-            Pie.Ingredients.Should().Contain(ExpectedFiller);
-        }
-
-        [Observation]
-        public void Then_should_save_the_pie()
-        {
-            MockFor<IRepository>().Verify(repo => repo.Save(Pie));
-        }
-    }
-
-    [Concern(typeof(PieDenormalizer))]
-    public class When_an_ingredients_percentage_is_updated_that_eliminated_filler : IngredientUpdatedPieDenormalizerSpecBase<IngredientPercentageUpdatedEvent>
-    {
-        private IngredientPercentageUpdatedEvent _event;
-
-        protected override IngredientPercentageUpdatedEvent GetEvent()
-        {
-            _event = New.Events().IngredientPercentageUpdatedEvent().WithNoFiller();
-            return _event;
-        }
-
-        protected override void When()
-        {
-            Sut.Handle(PublishedIngredientUpdatedEvent);
-        }
-
-        [Observation]
-        public void Then_should_only_contain_the_ingredients()
-        {
-            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
-            Pie.Ingredients.Count().Should().Be(ExpectedIngredients.Count);
-        }
-
-        [Observation]
-        public void Then_should_not_include_the_filler_as_part_of_the_ingredients()
-        {
-            MockFor<IMappingEngine>().Verify(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Filler), Times.Never());
+            Pie.Filler.Should().Be(ExpectedFiller);
         }
 
         [Observation]
@@ -252,7 +228,7 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         [Observation]
         public void Then_should_update_the_ingredients_to_reflect_the_change()
         {
-            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
+            ExpectedIngredients.ForEach(ingredient => Pie.EditableIngredients.Should().Contain(ingredient));
         }
 
         [Observation]
@@ -284,7 +260,7 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         [Observation]
         public void Then_should_update_the_ingredients_to_reflect_the_change()
         {
-            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
+            ExpectedIngredients.ForEach(ingredient => Pie.EditableIngredients.Should().Contain(ingredient));
         }
 
         [Observation]
@@ -316,7 +292,7 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         [Observation]
         public void Then_should_update_the_ingredients_to_reflect_the_change()
         {
-            ExpectedIngredients.ForEach(ingredient => Pie.Ingredients.Should().Contain(ingredient));
+            ExpectedIngredients.ForEach(ingredient => Pie.EditableIngredients.Should().Contain(ingredient));
         }
 
         [Observation]
