@@ -186,7 +186,10 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Extensions\HttpExtensions.cs" />
+    <Compile Include="Security\AnonymousIdentity.cs" />
     <Compile Include="Security\Identity.cs" />
+    <Compile Include="Security\IdentityModelBinder.cs" />
     <Compile Include="Security\IOpenIdGateway.cs" />
     <Compile Include="Security\IPiesIdentity.cs" />
     <Compile Include="Security\OpenIdAuthorizeAttribute.cs" />
@@ -426,6 +429,7 @@
     <Content Include="Views\Pie\Edit.cshtml" />
     <Content Include="Views\Pie\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

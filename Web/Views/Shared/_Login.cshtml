@@ -1,0 +1,8 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <span>Hello @User.Identity.Name</span>
+}
+else
+{
+    <a class="nav-identity" href="@Url.Action("Login", "Account")">Sign in</a>     
+}

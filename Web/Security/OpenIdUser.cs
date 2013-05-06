@@ -5,15 +5,26 @@ namespace Codell.Pies.Web.Security
 {
     public class OpenIdUser
     {
-        public string Email { get; set; }
+        public static OpenIdUser Empty = new OpenIdUser();
 
-        public string Nickname { get; set; }
+        public string Email { get; private set; }
 
-        public string FullName { get; set; }
+        public string Nickname { get; private set; }
 
-        public bool IsSignedByProvider { get; set; }
+        public string FullName { get; private set; }
 
-        public string ClaimedIdentifier { get; set; }
+        public bool IsSignedByProvider { get; private set; }
+
+        public string ClaimedIdentifier { get; private set; }
+
+        private OpenIdUser()
+        {
+            Email = string.Empty;
+            Nickname = string.Empty;
+            FullName = string.Empty;
+            IsSignedByProvider = false;
+            ClaimedIdentifier = string.Empty;
+        }
 
         public OpenIdUser(string data)
         {

@@ -8,6 +8,7 @@ using Autofac.Integration.Mvc;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Web.App_Start;
 using Codell.Pies.Web.Configuration;
+using Codell.Pies.Web.Security;
 using Elmah;
 using StackExchange.Profiling;
 
@@ -24,6 +25,7 @@ namespace Codell.Pies.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             RegisterDependencyResolver();
             RegisterViewEngines();
+            RegisterModelBinders();
             SetupProfiler();
         }
 
@@ -37,6 +39,11 @@ namespace Codell.Pies.Web
         {
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
+        }
+
+        private void RegisterModelBinders()
+        {
+            ModelBinders.Binders.Add(typeof(IPiesIdentity), new IdentityModelBinder());
         }
 
         private void SetupProfiler()

@@ -101,13 +101,18 @@ table {
     padding-bottom: 10px;
 }
 
-.nav-item {
+.nav-item, .nav-identity {
     text-decoration: none;
+    color: #ffffff;
+}
+
+.nav-item {
     width: 100px;
     padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    color: #ffffff;
+}
+
+.nav-identity {
+    float: right; 
 }
 
 .container
