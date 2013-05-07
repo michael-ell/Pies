@@ -15,7 +15,7 @@ namespace Codell.Pies.Web.Controllers
             _gateway = gateway;
         }
 
-        [AllowAnonymous]
+        [HttpGet]
         public ActionResult Login()
         {
             var user = _gateway.GetUser();
@@ -29,8 +29,8 @@ namespace Codell.Pies.Web.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(string openid_identifier)
         {
             var response = _gateway.CreateRequest(openid_identifier);

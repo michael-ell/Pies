@@ -3,6 +3,7 @@ using Codell.Pies.Web.Extensions;
 
 namespace Codell.Pies.Web.Controllers
 {
+    [AllowAnonymous]
     public abstract class ControllerBase : Controller
     {
          public JsonResult JsonResult(object data)

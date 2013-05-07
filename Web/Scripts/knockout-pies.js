@@ -134,6 +134,11 @@ ko.bindingHandlers.pieChart = {
                         showInLegend: true
                     }
                 },
+                legend: {
+                    itemStyle : {
+                        fontSize: '16px'
+                    }
+                },
                 series: [{
                     type: 'pie',
                     name: 'Percent',                                     
