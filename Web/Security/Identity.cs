@@ -1,4 +1,5 @@
 ﻿using Codell.Pies.Common;
+using Codell.Pies.Common.Security;
 
 namespace Codell.Pies.Web.Security
 {
@@ -31,7 +32,7 @@ namespace Codell.Pies.Web.Security
             get { return true; }
         }
 
-        public OpenIdUser User
+        public IUser User
         {
             get { return _user; }
         }

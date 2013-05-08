@@ -1,6 +1,7 @@
 ﻿using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Web.Security;
 using Codell.Pies.Common;
 

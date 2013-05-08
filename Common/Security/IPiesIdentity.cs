@@ -1,9 +1,9 @@
 ﻿using System.Security.Principal;
 
-namespace Codell.Pies.Web.Security
+namespace Codell.Pies.Common.Security
 {
     public interface IPiesIdentity : IIdentity
     {
-        OpenIdUser User { get; }
+        IUser User { get; }
     }
 }

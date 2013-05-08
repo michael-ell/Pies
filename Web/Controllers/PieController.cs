@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Commands;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
@@ -12,6 +13,7 @@ using System.Linq;
 
 namespace Codell.Pies.Web.Controllers
 {
+    [AllowAnonymous]
     public class PieController : ControllerBase
     {
         private readonly ICommandService _commandService;
@@ -37,10 +39,10 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(IPiesIdentity identity)
         {
             var id = Guid.NewGuid();
-            _commandService.Execute(new CreatePieCommand(id));
+            _commandService.Execute(new CreatePieCommand(id, identity.User));
             var pie = _repository.FindById<Guid, Pie>(id);
             return View("Edit", _mapper.Map<Pie, PieModel>(pie));
         }

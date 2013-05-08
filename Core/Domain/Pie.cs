@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Codell.Pies.Common;
 using Codell.Pies.Common.Configuration;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Events;
 using Ncqrs.Domain;
 
@@ -23,10 +24,10 @@ namespace Codell.Pies.Core.Domain
             Init();
         }
 
-        public Pie(Guid id) : base(id)
+        public Pie(Guid id, IUser user) : base(id)
         {
             Init();
-            ApplyEvent(new PieCreatedEvent(Resources.Unknown, _ingredients, new Ingredient(Guid.NewGuid(), "Filler", Max, _colors.Filler)));
+            ApplyEvent(new PieCreatedEvent(user, string.Empty, _ingredients, new Ingredient(Guid.NewGuid(), "Filler", Max, _colors.Filler)));
         }
 
         private void Init()

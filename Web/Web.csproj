@@ -191,7 +191,6 @@
     <Compile Include="Security\Identity.cs" />
     <Compile Include="Security\IdentityModelBinder.cs" />
     <Compile Include="Security\IOpenIdGateway.cs" />
-    <Compile Include="Security\IPiesIdentity.cs" />
     <Compile Include="Security\OpenIdAuthorizeAttribute.cs" />
     <Compile Include="Security\OpenIdGateway.cs" />
     <Compile Include="Security\OpenIdUser.cs" />

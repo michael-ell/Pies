@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac.Integration.Mvc;
 using Codell.Pies.Common.Configuration;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Web.App_Start;
 using Codell.Pies.Web.Configuration;
 using Codell.Pies.Web.Security;

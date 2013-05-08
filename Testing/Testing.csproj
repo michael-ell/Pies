@@ -128,6 +128,8 @@
     <Compile Include="BDD\ObservationAttribute.cs" />
     <Compile Include="BDD\SpecificationCommand.cs" />
     <Compile Include="BDD\TimeThisAttribute.cs" />
+    <Compile Include="Creators\Common\NewExtensions.cs" />
+    <Compile Include="Creators\Common\UserCreator.cs" />
     <Compile Include="Creators\Domain\IngredientCreator.cs" />
     <Compile Include="Creators\Domain\NewExtensions.cs" />
     <Compile Include="Creators\Domain\PieCreator.cs" />

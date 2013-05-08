@@ -12,6 +12,7 @@
     <div>
         <input type="text" data-bind="autocomplete: {sourceUrl: '@Url.Action("GetTags", "Search")' }, selected: selectedTag"/>
         <a href="#" data-bind="click: find">Search</a>
+        <a href="@Url.Action("FindMyPies", "Search")">My Pies</a>
     </div>    
     <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
     <script type="text/html" id="pie-template">

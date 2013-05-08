@@ -5,6 +5,7 @@ using DotNetOpenAuth.Messaging;
 
 namespace Codell.Pies.Web.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : ControllerBase
     {
         private readonly IOpenIdGateway _gateway;

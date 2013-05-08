@@ -1,11 +1,12 @@
 ﻿using System;
+using Codell.Pies.Common.Security;
 using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 
 namespace Codell.Pies.Web.Security
 {
-    public class OpenIdUser
+    public class OpenIdUser : IUser
     {
-        public static OpenIdUser Empty = new OpenIdUser();
+        public static OpenIdUser Anonymous = new OpenIdUser();
 
         public string Email { get; private set; }
 
@@ -38,7 +39,7 @@ namespace Codell.Pies.Web.Security
 
         private void AddClaimInfo(ClaimsResponse claim, string identifier)
         {
-            Email = claim.Email;
+            Email = claim.Email.ToLower();
             FullName = claim.FullName;
             Nickname = claim.Nickname ?? claim.Email;
             IsSignedByProvider = claim.IsSignedByProvider;

@@ -3,6 +3,7 @@ using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Testing.FluentFixtures;
 using Moq;
+using Codell.Pies.Testing.Creators.Common;
 
 namespace Codell.Pies.Testing.Creators.Domain
 {
@@ -15,7 +16,7 @@ namespace Codell.Pies.Testing.Creators.Domain
         public PieCreator(IFixtureContext context) : base(context, null)
         {
             Id = Guid.NewGuid();
-            var pie = new Pie(Id); 
+            var pie = new Pie(Id, New.Common().User()); 
             Creation = pie;
             MockSettings = new Mock<ISettings>();
             MockSettings.Setup(settings => settings.Get<int>(Keys.MaxIngredients)).Returns(100);
