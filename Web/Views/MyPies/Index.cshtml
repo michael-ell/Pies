@@ -1,0 +1,26 @@
+﻿@using Codell.Pies.Web.Extensions
+@model IEnumerable<Codell.Pies.Web.Models.PieModel>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            ko.applyBindings(new pies.Index(@Html.Raw(Model.ToJson())), $('#pies')[0]);
+        });
+    </script>    
+}
+<div id="pies">
+    <div data-bind="template: { name: 'pie-template',
+                                foreach: pies,
+                                afterRender: function (el) {
+                                    $('#edit', $(el)).button({ icons: { primary: 'ui-icon-pencil' }, text: false });
+                                    $('#delete', $(el)).button({ icons: { primary: 'ui-icon-trash' }, text: false });
+                                } }">        
+    </div>        
+    <script type="text/html" id="pie-template">
+        <div class="pie" data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
+        <div class="clear">
+            <a href="@Url.Action("Edit")" id="edit">Edit</a>  
+            <a href="#" id="delete">Delete</a>  
+        </div>
+    </script>    
+</div>

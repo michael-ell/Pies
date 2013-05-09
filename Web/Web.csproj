@@ -186,6 +186,7 @@
       <Link>Properties\VersionInfo.cs</Link>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\MyPiesController.cs" />
     <Compile Include="Extensions\HttpExtensions.cs" />
     <Compile Include="Security\AnonymousIdentity.cs" />
     <Compile Include="Security\Identity.cs" />
@@ -425,10 +426,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Pie\Edit.cshtml" />
+    <Content Include="Views\Shared\Edit.cshtml" />
     <Content Include="Views\Pie\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\MyPies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

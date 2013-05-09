@@ -47,13 +47,6 @@ namespace Codell.Pies.Web.Controllers
             return View("Edit", _mapper.Map<Pie, PieModel>(pie));
         }
 
-        [HttpGet]
-        public ActionResult Edit(Guid id)
-        {
-            var pie = _repository.FindById<Guid, Pie>(id);
-            return View(_mapper.Map<Pie, PieModel>(pie));
-        }
-
         [HttpPost]
         public void UpdateCaption(UpdateCaptionModel model)
         {

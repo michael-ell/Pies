@@ -15,6 +15,7 @@ using Pie = Codell.Pies.Core.ReadModels.Pie;
 
 namespace Codell.Pies.Web.Controllers
 {
+    [AllowAnonymous]
     public class SearchController : ControllerBase
     {
         private readonly IRepository _repository;
@@ -29,7 +30,6 @@ namespace Codell.Pies.Web.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public JsonResult GetTags(string term)
         {
@@ -37,17 +37,11 @@ namespace Codell.Pies.Web.Controllers
             return Json(tags, JsonRequestBehavior.AllowGet);
         }
 
-        [AllowAnonymous]
+
         [HttpGet]
         public JsonResult Find(string tag)
         {
             return Find(pie => pie.Tags.Contains<string>(new SearchableTag(tag)));    
-        }
-
-        [HttpGet]
-        public JsonResult FindMyPies(IPiesIdentity identity)
-        {
-            return Find(pie => pie.UserEmail == identity.User.Email);   
         }
 
         private JsonResult Find(Expression<Func<Pie, bool>> predicate)
