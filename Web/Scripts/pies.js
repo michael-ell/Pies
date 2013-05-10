@@ -8,11 +8,11 @@ pies.Index = function(pies, findUrl) {
     self.findUrl = findUrl;
     self.find = function () {
         if (self.selectedTag()) {
-            $.get(findUrl + '/' + self.selectedTag(), function (data) {
+            $.get(self.findUrl + '/' + self.selectedTag(), function (data) {
                 self.pies($.parseJSON(data));
             });
         }
-    };
+    };  
 };
 
 pies.cr8 = pies.cr8 || {};

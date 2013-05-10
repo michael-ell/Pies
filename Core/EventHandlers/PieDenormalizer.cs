@@ -17,7 +17,8 @@ namespace Codell.Pies.Core.EventHandlers
                                    IEventHandler<IngredientPercentageUpdatedEvent>,
                                    IEventHandler<IngredientDescriptionUpdatedEvent>,
                                    IEventHandler<IngredientColorUpdatedEvent>,
-                                   IEventHandler<ProposedIngredientPercentageChangedEvent>
+                                   IEventHandler<ProposedIngredientPercentageChangedEvent>,
+                                   IEventHandler<PieDeletedEvent>
     {
         private readonly IRepository _repository;
         private readonly IMappingEngine _mapper;
@@ -102,6 +103,11 @@ namespace Codell.Pies.Core.EventHandlers
         private Pie GetPieFor(IPublishableEvent evnt)
         {
             return _repository.FindById<Guid, Pie>(evnt.EventSourceId);
+        }
+
+        public void Handle(IPublishedEvent<PieDeletedEvent> evnt)
+        {
+            _repository.DeleteById<Guid, Pie>(evnt.EventSourceId);
         }
     }
 }

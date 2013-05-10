@@ -13,9 +13,9 @@ namespace Codell.Pies.Core.Commands
         [AggregateRootId]
         public Guid Id { get; set; }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
 
-        public ISettings Settings { get; set; }
+        public ISettings Settings { get; private set; }
 
         public AddIngredientCommand(Guid id, string description)
         {

@@ -345,4 +345,27 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
             MockFor<IRepository>().Verify(repo => repo.Save(_pie));
         }         
     }
+
+    [Concern(typeof(PieDenormalizer))]
+    public class When_a_pie_is_deleted : EventHandlerSpecBase<PieDenormalizer>
+    {
+        private PublishedEvent<PieDeletedEvent> _event;
+
+        protected override void Given()
+        {
+            _event = PublishedEvent.For(new PieDeletedEvent());
+        }
+
+        protected override void When()
+        {
+            Sut.Handle(_event);
+        }
+
+
+        [Observation]
+        public void Then_should_remove_the_pie_read_model()
+        {
+             MockFor<IRepository>().Verify(repo => repo.DeleteById<Guid, Pie>(_event.EventSourceId));
+        }
+    }
 }

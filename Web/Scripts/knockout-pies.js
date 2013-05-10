@@ -193,10 +193,10 @@ ko.bindingHandlers.pieChartTitle = {
 };
 
 ko.bindingHandlers.autocomplete = {
-    init: function (element, valueAccessor, allBindingsAccessor) {
+    init: function (el, valueAccessor, allBindingsAccessor) {
         var allBindings = allBindingsAccessor(),
             options = valueAccessor();
-        $(element).autocomplete({
+        $(el).autocomplete({
             autoFocus: true,
             delay: 500,
             minLength: 1,
@@ -213,9 +213,16 @@ ko.bindingHandlers.autocomplete = {
             this.select();
         }).addClass(options.classes);
 
-        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
-            $(element).autocomplete("destroy");
+        ko.utils.domNodeDisposal.addDisposeCallback(el, function () {
+            $(el).autocomplete("destroy");
         });
+    }
+};
+
+ko.bindingHandlers.href = {
+    init: function(el, valueAccessor, allBindingsAccessor) {
+        var allBindings = allBindingsAccessor() || { href: '', args: '' };
+        $(el).attr('href', allBindings.args ? allBindings.href + '/' + allBindings.args : allBindings.href);
     }
 };
 

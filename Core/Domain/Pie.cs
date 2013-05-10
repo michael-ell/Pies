@@ -18,6 +18,7 @@ namespace Codell.Pies.Core.Domain
         private Colors _colors;
         private string _nextColor;
         private IEnumerable<string> _tags;
+        private bool _deleted;
 
         public Pie()
         {
@@ -220,6 +221,19 @@ namespace Codell.Pies.Core.Domain
         protected void OnPieTagsUpdated(PieTagsUpdatedEvent @event)
         {
             _tags = @event.NewTags;
+        }
+
+        public void Delete()
+        {
+            if (!_deleted)
+            {
+                ApplyEvent(new PieDeletedEvent());
+            }
+        }
+
+        protected void OnPieDeleted(PieDeletedEvent @event)
+        {
+            _deleted = true;
         }
     }
 }

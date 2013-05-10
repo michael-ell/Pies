@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.Creators.Domain;
