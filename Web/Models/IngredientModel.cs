@@ -1,10 +1,14 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Codell.Pies.Web.Models
 {
     [DataContract]
     public class IngredientModel
     {
+        [DataMember(Name = "id")]
+        public Guid Id { get; set; }
+
         [DataMember(Name = "percent")]
         public int Percent { get; set; }
 

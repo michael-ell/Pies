@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Codell.Pies.Common;
 using Codell.Pies.Core.Domain;
@@ -56,20 +55,19 @@ namespace Codell.Pies.Web.EventHandlers
 
         private void PublishIngredientsUpdated(IIngredientsUpdatedEvent @event, Guid pieId)
         {                       
-            var ingredients = @event.Ingredients.Select(ingredient => ToDto(ingredient, pieId));
-            var filler = ToDto(@event.Filler, pieId);
+            var ingredients = @event.Ingredients.Select(ingredient => ToDto(ingredient));
+            var filler = ToDto(@event.Filler);
             SendTo(pieId).ingredientsUpdated(new { ingredients, filler });                    
         }
 
-        private dynamic ToDto(Ingredient ingredient, Guid pieId)
+        private dynamic ToDto(Ingredient ingredient)
         {
             return new
             {
                 id = ingredient.Id,
                 percent = ingredient.Percent,
                 description = ingredient.Description,
-                color = ingredient.Color,
-                pieId
+                color = ingredient.Color
             };
         }
 

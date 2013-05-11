@@ -19,12 +19,19 @@ pies.cr8 = pies.cr8 || {};
 pies.cr8.Pie = function (dto, pieActions, ingredientActions) {    
     var self = this;
     self.id = dto.id;
-    self.caption = ko.observable(dto.caption);
-    self.allIngredients = ko.observableArray(dto.allIngredients);
     self.pieActions = pieActions;
     self.ingredientActions = ingredientActions;
+
+    function toObservables(ingredients) {
+        return $.map(ingredients, function (i) {
+            return new pies.cr8.Ingredient(self.id, i, self.ingredientActions);
+        });
+    }
+
+    self.caption = ko.observable(dto.caption);
+    self.allIngredients = ko.observableArray(dto.allIngredients);
     self.ingredientToAdd = ko.observable('');
-    self.editableIngredients = ko.observableArray();
+    self.editableIngredients = ko.observableArray(toObservables(dto.editableIngredients));
     self.tags = ko.observable(dto.tags);
     self.pieMessage = ko.observable();
     
@@ -45,19 +52,17 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
                 self.ingredientToAdd('');
             });
         }
-    };    
+    };
 
     var hub = $.connection.pie;
     hub.client.captionUpdated = function(data) {
         self.caption(data);
     };
     hub.client.ingredientsUpdated = function (data) {
-        var ingredients = $.map(data.ingredients, function (i) {
-            return new pies.cr8.Ingredient(i, self.ingredientActions);
-        });
+        var ingredients = toObservables(data.ingredients);
         self.editableIngredients(ingredients);
         if (data.filler.percent > 0) {
-            ingredients.push(new pies.cr8.Ingredient(data.filler));
+            ingredients.push(new pies.cr8.Ingredient(self.id, data.filler));
         }
         self.allIngredients(ingredients);
     };
@@ -76,13 +81,13 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
     });
 };
 
-pies.cr8.Ingredient = function (dto, actions) {
+pies.cr8.Ingredient = function (pieId, dto, actions) {
     var self = this;
+    self.pieId = pieId,
     self.id = dto.id;
     self.percent = ko.observable(dto.percent);
     self.description = ko.observable(dto.description);
     self.color = ko.observable(dto.color);
-    self.pieId = dto.pieId,
     self.formattedPercent = ko.computed(function () {
         return self.percent() + '%';
     });

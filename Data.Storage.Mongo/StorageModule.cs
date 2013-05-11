@@ -4,6 +4,7 @@ using System.Linq;
 using Autofac;
 using Codell.Pies.Common;
 using Codell.Pies.Common.Extensions;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Data.Storage.Configuration;
@@ -74,6 +75,7 @@ namespace Codell.Pies.Data.Storage.Mongo
             //Register all potential types that are serialized to avoid potential deserialization issues when new features are added
             //and to avoid 'Unknown discriminator...' exception when deserializing any polymorphic classes....
             RegisterClassMapsFor(AppDomain.CurrentDomain.GetProjectTypesImplementing(typeof(SourcedEvent)));
+            RegisterClassMapsFor(AppDomain.CurrentDomain.GetProjectTypesImplementing(typeof(IUser)));
         }
 
         private void RegisterRootClassMaps()
