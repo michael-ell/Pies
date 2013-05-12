@@ -6,7 +6,7 @@
         $(function() {
             var $scope = $('#edit');
             $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
-            var pie = new pies.cr8.Pie(@Html.Raw(Model.ToJson()), 
+            var pie = new cc.pies.cr8.Pie(@Html.Raw(Model.ToJson()), 
                                        { updateCaption : '@Url.Action("UpdateCaption", "Pie")',
                                          updateTags : '@Url.Action("UpdateTags", "Pie")'},
                                        { add: '@Url.Action("AddIngredient", "Pie")', 

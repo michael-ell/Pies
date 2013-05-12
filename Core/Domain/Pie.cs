@@ -188,6 +188,7 @@ namespace Codell.Pies.Core.Domain
         protected void OnIngredientDeleted(IngredientDeletedEvent @event)
         {
             _ingredients.Remove(IngredientFor(@event.Deleted.Id));
+            _filler = @event.Filler;
         }
 
         private bool TryToGetIngredient(Guid id, out Ingredient ingredient)

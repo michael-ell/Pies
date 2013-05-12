@@ -150,6 +150,13 @@ table {
 .pie {
     width: 33%;
     float: left;
+    position: relative;
+}
+
+.pie-toolbar {
+    position: absolute;
+    top: 6px;
+    right: 0;
 }
 
 .label {

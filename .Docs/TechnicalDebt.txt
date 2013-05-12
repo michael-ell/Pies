@@ -15,3 +15,4 @@
 - why parse Json needed in pies when searching results found?
 - why searchcontroller gettags not working when sending back as JsonNet result?
 - check in Pie domain on actions where pie is deleted
+- how to test domain state when a new instance is replayed...simulate replaying events on a domain

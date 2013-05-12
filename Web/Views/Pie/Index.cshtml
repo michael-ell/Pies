@@ -3,8 +3,8 @@
 @section Scripts
 {
     <script type="text/javascript">
-        $(function () {
-            ko.applyBindings(new pies.Index(@Html.Raw(Model.ToJson()), '@Url.Action("Find", "Search")'), $('#pies')[0]);
+        $(function() {
+            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.ToJson()), { findUrl: '@Url.Action("Find", "Search")' }), $('#pies')[0]);
         });
     </script>    
 }
@@ -15,8 +15,9 @@
     </div>    
     <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
     <script type="text/html" id="pie-template">
-        <div class="pie" data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
-
+        <div class="pie">
+            <div data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
+        </div>
     </script>    
 </div>
 

@@ -19,7 +19,8 @@ namespace Codell.Pies.Web.EventHandlers
                                IEventHandler<ProposedIngredientPercentageChangedEvent>,
                                IEventHandler<PercentageRejectedEvent>,
                                IEventHandler<IngredientDeletedEvent>,
-                               IEventHandler<MaxIngredientsReachedEvent>
+                               IEventHandler<MaxIngredientsReachedEvent>,
+                               IEventHandler<PieDeletedEvent>
     {
         public void Handle(IPublishedEvent<PieCaptionUpdatedEvent> @event)
         {  
@@ -91,6 +92,11 @@ namespace Codell.Pies.Web.EventHandlers
         public void Handle(IPublishedEvent<MaxIngredientsReachedEvent> @event)
         {
             SendTo(@event.EventSourceId).showMessage(@event.Payload.Message);
+        }
+
+        public void Handle(IPublishedEvent<PieDeletedEvent> @event)
+        {
+            SendTo(@event.EventSourceId).pieDeleted(new {id = @event.EventSourceId});
         }
 
         private dynamic SendTo(Guid pieId)

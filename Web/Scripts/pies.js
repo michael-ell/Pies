@@ -1,22 +1,55 @@
-﻿var pies = pies || {};
+﻿var cc = cc || {};
+cc.pies = cc.pies || {};
 
-pies.Index = function(pies, findUrl) {
+cc.pies.index = pies.index || {};
+cc.pies.index.ViewModel = function(pies, options) {
     var self = this;
+    options = options || { findUrl: ''};
+    options.editing = options.editing || { isEditable: false, actions: { delete: '' } };
     self.tags = ko.observableArray();
     self.selectedTag = ko.observable();
-    self.pies = ko.observableArray(pies);
-    self.findUrl = findUrl;
+    self.pies = ko.observableArray();
+    self.findUrl = options.findUrl;
     self.find = function () {
         if (self.selectedTag()) {
             $.get(self.findUrl + '/' + self.selectedTag(), function (data) {
                 self.pies($.parseJSON(data));
             });
         }
-    };  
+    };
+    
+    if (options.editing.isEditable === true) {
+        self.pies($.map(pies, function (pie) { return new cc.pies.index.Pie(pie, options.editing.actions); }));
+
+        var hub = $.connection.pie;
+        hub.client.pieDeleted = function (data) {
+            for (var i = 0, len = self.pies.length; i < len; i++) {
+                var pie = self.pies[i]();
+                if (pie.id === data.id) {
+                    break;
+                }
+            }
+        };
+        $.connection.hub.start().done(function () {
+            hub.server.join(self.id);
+        });        
+    } else {
+        self.pies(pies);
+    }
 };
 
-pies.cr8 = pies.cr8 || {};
-pies.cr8.Pie = function (dto, pieActions, ingredientActions) {    
+cc.pies.index.Pie = function (dto, actions) {
+    var self = this;
+    self.actions = actions;
+    self.isDeleted = ko.observable(false);
+    self.delete = function() {
+        $.ajax({ url: self.actions.delete + '/' + self.id, type: 'DELETE'});
+    };
+    $.extend(self, dto);
+};
+
+cc.pies.cr8 = pies.cr8 || {};
+cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {    
     var self = this;
     self.id = dto.id;
     self.pieActions = pieActions;
@@ -24,7 +57,7 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
 
     function toObservables(ingredients) {
         return $.map(ingredients, function (i) {
-            return new pies.cr8.Ingredient(self.id, i, self.ingredientActions);
+            return new cc.pies.cr8.Ingredient(self.id, i, self.ingredientActions);
         });
     }
 
@@ -81,7 +114,7 @@ pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
     });
 };
 
-pies.cr8.Ingredient = function (pieId, dto, actions) {
+cc.pies.cr8.Ingredient = function (pieId, dto, actions) {
     var self = this;
     self.pieId = pieId,
     self.id = dto.id;
