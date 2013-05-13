@@ -9,7 +9,7 @@ namespace Codell.Pies.Core.Events
     [Serializable]
     public class PieCreatedEvent : SourcedEvent, IIngredientsUpdatedEvent
     {
-        public IUser User { get; set; }
+        public IUser Owner { get; set; }
 
         public string Caption { get; private set; }
 
@@ -19,7 +19,7 @@ namespace Codell.Pies.Core.Events
 
         public PieCreatedEvent(IUser user, string caption, IEnumerable<Ingredient> ingredients, Ingredient filler)
         {
-            User = user;
+            Owner = user;
             Caption = caption;
             Ingredients = ingredients;
             Filler = filler;

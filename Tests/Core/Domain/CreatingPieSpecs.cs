@@ -36,7 +36,7 @@ namespace Codell.Pies.Tests.Core.Domain.CreatingPieSpecs
         [Observation]
         public void Then_should_announce_the_user_associated_who_owns_the_pie()
         {
-            Verify<PieCreatedEvent>(e => e.User == _expectedUser);
+            Verify<PieCreatedEvent>(e => e.Owner == _expectedUser);
         }
 
         [Observation]

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Codell.Pies.Common;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Microsoft.AspNet.SignalR;
@@ -96,13 +97,23 @@ namespace Codell.Pies.Web.EventHandlers
 
         public void Handle(IPublishedEvent<PieDeletedEvent> @event)
         {
-            SendTo(@event.EventSourceId).pieDeleted(new {id = @event.EventSourceId});
+            SendTo(@event.Payload.Owner).pieDeleted(new { id = @event.EventSourceId });
         }
 
         private dynamic SendTo(Guid pieId)
         {
+            return SendTo(pieId.ToString());
+        }
+
+        private dynamic SendTo(IUser user)
+        {
+            return SendTo(user.Email);
+        }
+
+        private dynamic SendTo(string name)
+        {
             //Need to resolve context as this is called via event bus and not created by signalr
-            return GlobalHost.ConnectionManager.GetHubContext<PieHub>().Clients.Group(pieId.ToString());
+            return GlobalHost.ConnectionManager.GetHubContext<PieHub>().Clients.Group(name);
         }
 
         public Task Join(string pieId)

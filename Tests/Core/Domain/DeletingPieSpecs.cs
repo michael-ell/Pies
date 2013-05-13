@@ -17,6 +17,12 @@ namespace Codell.Pies.Tests.Core.Domain.DeletingPieSpecs
         {
             Verify<PieDeletedEvent>().WasPublished();
         }
+
+        [Observation]
+        public void Then_should_announce_the_owner_of_the_pie_that_was_deleted()
+        {
+            Verify<PieDeletedEvent>(e => e.Owner == Owner).WasPublished();
+        }
     }
 
     [Concern(typeof(Pie))]

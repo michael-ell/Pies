@@ -5,7 +5,7 @@ cc.pies.index = pies.index || {};
 cc.pies.index.ViewModel = function(pies, options) {
     var self = this;
     options = options || { findUrl: ''};
-    options.editing = options.editing || { isEditable: false, actions: { delete: '' } };
+    options.editing = options.editing || { isEditable: false, owner: '', actions: { delete: '' } };
     self.tags = ko.observableArray();
     self.selectedTag = ko.observable();
     self.pies = ko.observableArray();
@@ -23,15 +23,17 @@ cc.pies.index.ViewModel = function(pies, options) {
 
         var hub = $.connection.pie;
         hub.client.pieDeleted = function (data) {
-            for (var i = 0, len = self.pies.length; i < len; i++) {
-                var pie = self.pies[i]();
+            var unwrapped = self.pies();
+            for (var i = 0, len = unwrapped.length; i < len; i++) {
+                var pie = unwrapped[i];
                 if (pie.id === data.id) {
+                    self.pies.remove(pie);
                     break;
                 }
             }
         };
         $.connection.hub.start().done(function () {
-            hub.server.join(self.id);
+            hub.server.join(options.editing.owner);
         });        
     } else {
         self.pies(pies);
@@ -41,7 +43,6 @@ cc.pies.index.ViewModel = function(pies, options) {
 cc.pies.index.Pie = function (dto, actions) {
     var self = this;
     self.actions = actions;
-    self.isDeleted = ko.observable(false);
     self.delete = function() {
         $.ajax({ url: self.actions.delete + '/' + self.id, type: 'DELETE'});
     };
@@ -95,7 +96,7 @@ cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
         var ingredients = toObservables(data.ingredients);
         self.editableIngredients(ingredients);
         if (data.filler.percent > 0) {
-            ingredients.push(new pies.cr8.Ingredient(self.id, data.filler));
+            ingredients.push(new cc.pies.cr8.Ingredient(self.id, data.filler));
         }
         self.allIngredients(ingredients);
     };

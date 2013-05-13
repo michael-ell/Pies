@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
 using Codell.Pies.Testing.Creators.Domain;
@@ -14,7 +15,8 @@ namespace Codell.Pies.Tests.Core.Domain
         private readonly List<Ingredient> _ingredients;
         private PieCreator _creator;
         protected IReadOnlyList<Ingredient> Ingredients { get { return _ingredients; } }
-        protected Ingredient Filler { get; private set; }        
+        protected Ingredient Filler { get; private set; }
+        protected IUser Owner { get { return _creator.Owner; } }
 
         protected PieSpecBase()
         {

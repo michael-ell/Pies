@@ -13,6 +13,7 @@ using Codell.Pies.Testing.Helpers;
 using FluentAssertions;
 using Codell.Pies.Testing.Creators.Events;
 using Codell.Pies.Testing.Creators.ReadModels;
+using Codell.Pies.Testing.Creators.Common;
 
 namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
 {
@@ -43,7 +44,7 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         [Observation]
         public void Then_should_save_the_pie_with_the_users_email()
         {
-            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.UserEmail == _event.Payload.User.Email)));
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.UserEmail == _event.Payload.Owner.Email)));
         }
 
         [Observation]
@@ -353,14 +354,13 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
 
         protected override void Given()
         {
-            _event = PublishedEvent.For(new PieDeletedEvent());
+            _event = PublishedEvent.For(new PieDeletedEvent(New.Common().User()));
         }
 
         protected override void When()
         {
             Sut.Handle(_event);
         }
-
 
         [Observation]
         public void Then_should_remove_the_pie_read_model()

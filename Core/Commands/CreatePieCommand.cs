@@ -11,13 +11,13 @@ namespace Codell.Pies.Core.Commands
     public class CreatePieCommand : CommandBase
     {
         public Guid Id { get; private set; }
-        public IUser User { get; private set; }
+        public IUser Owner { get; private set; }
 
-        public CreatePieCommand(Guid id, IUser user)
+        public CreatePieCommand(Guid id, IUser owner)
         {
-            Verify.NotNull(user, "user");            
+            Verify.NotNull(owner, "owner");            
             Id = id;
-            User = user;
+            Owner = owner;
         }
     }
 }

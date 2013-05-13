@@ -19,16 +19,17 @@ namespace Codell.Pies.Core.Domain
         private string _nextColor;
         private IEnumerable<string> _tags;
         private bool _deleted;
+        private IUser _owner;
 
         public Pie()
         {
             Init();
         }
 
-        public Pie(Guid id, IUser user) : base(id)
+        public Pie(Guid id, IUser owner) : base(id)
         {
             Init();
-            ApplyEvent(new PieCreatedEvent(user, string.Empty, _ingredients, new Ingredient(Guid.NewGuid(), "Filler", Max, _colors.Filler)));
+            ApplyEvent(new PieCreatedEvent(owner, string.Empty, _ingredients, new Ingredient(Guid.NewGuid(), "Filler", Max, _colors.Filler)));
         }
 
         private void Init()
@@ -43,6 +44,7 @@ namespace Codell.Pies.Core.Domain
         protected void OnPieCreated(PieCreatedEvent @event)
         {
             _filler = @event.Filler;
+            _owner = @event.Owner;
         }
 
         private int Total
@@ -228,7 +230,7 @@ namespace Codell.Pies.Core.Domain
         {
             if (!_deleted)
             {
-                ApplyEvent(new PieDeletedEvent());
+                ApplyEvent(new PieDeletedEvent(_owner));
             }
         }
 

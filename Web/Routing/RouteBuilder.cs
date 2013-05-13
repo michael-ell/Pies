@@ -14,6 +14,7 @@ namespace Codell.Pies.Web.Routing
         public void Build(RouteCollection routes)
         {
             routes.MapRoute("", "search/find/{tag}", new { controller = "Search", action = "Find" });
+            //routes.MapRoute("", "MyPie/Edit/{id}");
             routes.MapRoute("", "MyPie/Delete/{id}");
             routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Pie", action = "Index", id = UrlParameter.Optional });
         }         

@@ -1,10 +1,10 @@
 ﻿@using Codell.Pies.Web.Extensions
-@model IEnumerable<Codell.Pies.Web.Models.PieModel>
+@model Codell.Pies.Web.Models.MyPies.IndexModel
 @section Scripts
 {
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.ToJson()), { editing: { isEditable: true, actions: { delete: '@Url.Action("Delete")' } } }), $('#pies')[0]);
+            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Email', actions: { delete: '@Url.Action("Delete")' } } }), $('#pies')[0]);
         });
     </script>    
 }

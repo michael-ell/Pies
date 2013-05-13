@@ -10,6 +10,7 @@ using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Models;
+using Codell.Pies.Web.Models.Shared;
 using Codell.Pies.Web.Security;
 using Pie = Codell.Pies.Core.ReadModels.Pie;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Codell.Pies.Web.Models
+namespace Codell.Pies.Web.Models.Pie
 {
     public class AddIngredientModel
     {

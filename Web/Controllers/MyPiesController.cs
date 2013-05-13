@@ -7,7 +7,8 @@ using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Commands;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
-using Codell.Pies.Web.Models;
+using Codell.Pies.Web.Models.MyPies;
+using Codell.Pies.Web.Models.Shared;
 using Ncqrs.Commanding.ServiceModel;
 
 namespace Codell.Pies.Web.Controllers
@@ -34,7 +35,7 @@ namespace Codell.Pies.Web.Controllers
         {
             var found = _repository.Find<Pie>(pie => pie.UserEmail == identity.User.Email);
             var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);            
-            return View(pies);  
+            return View( new IndexModel {Owner = identity.User, Pies = pies} );  
         }
 
         [HttpGet]

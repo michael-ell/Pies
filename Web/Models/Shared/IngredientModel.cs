@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Codell.Pies.Web.Models
+namespace Codell.Pies.Web.Models.Shared
 {
     [DataContract]
     public class IngredientModel
