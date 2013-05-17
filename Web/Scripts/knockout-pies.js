@@ -226,7 +226,9 @@ ko.bindingHandlers.href = {
     }
 };
 
-ko.utils.adjustColor = function(color, amt) {
+ko.utils.adjustColor = function (color, amt) {
+    if (amt === 0) return color;
+    
     var usePound = false;
     if (color[0] == "#") {
         color = color.slice(1);

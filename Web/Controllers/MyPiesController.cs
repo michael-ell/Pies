@@ -33,7 +33,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Index(IPiesIdentity identity)
         {
-            var found = _repository.Find<Pie>(pie => pie.UserEmail == identity.User.Email);
+            var found = _repository.Find<Pie>(pie => pie.UserEmail == identity.User.Email && pie.IsEmpty == false);
             var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);            
             return View( new IndexModel {Owner = identity.User, Pies = pies} );  
         }

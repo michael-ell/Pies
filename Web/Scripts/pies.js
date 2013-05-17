@@ -1,7 +1,7 @@
 ﻿var cc = cc || {};
 cc.pies = cc.pies || {};
 
-cc.pies.index = pies.index || {};
+cc.pies.index = cc.pies.index || {};
 cc.pies.index.ViewModel = function(pies, options) {
     var self = this;
     options = options || { findUrl: ''};

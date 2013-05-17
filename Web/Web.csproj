@@ -399,6 +399,10 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts-Tests\displaying-pies.js" />
+    <Content Include="Scripts-Tests\Jasmine\jasmine-adapter.js" />
+    <Content Include="Scripts-Tests\Jasmine\jasmine-html.js" />
+    <Content Include="Scripts-Tests\Jasmine\jasmine.js" />
     <Content Include="Scripts\highcharts-exporting.js" />
     <Content Include="Scripts\openid-en.js" />
     <Content Include="Scripts\openid-jquery.js" />
@@ -436,6 +440,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Readme\" />
+    <Folder Include="Scripts-Tests\Creators\" />
+    <Folder Include="Scripts-Tests\Helpers\" />
     <Folder Include="Views\Pie\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
