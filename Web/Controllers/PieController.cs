@@ -7,7 +7,6 @@ using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Commands;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
-using Codell.Pies.Web.Models;
 using Codell.Pies.Web.Models.Pie;
 using Codell.Pies.Web.Models.Shared;
 using Ncqrs.Commanding.ServiceModel;

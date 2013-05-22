@@ -1,0 +1,11 @@
+﻿@model IEnumerable<AuthenticationClientData>
+<div>
+    @using (Html.BeginForm("ExternalLogin", "Account", new {ViewBag.ReturnUrl}))
+    {
+        @Html.AntiForgeryToken()   
+        foreach (var provider in Model)
+        {
+            <button type="submit" name="provider" value="@provider.AuthenticationClient.ProviderName">@provider.DisplayName</button>
+        }             
+    }
+</div>

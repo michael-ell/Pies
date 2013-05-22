@@ -24,6 +24,7 @@ namespace Codell.Pies.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AuthConfig.RegisterAuth();
             RegisterDependencyResolver();
             RegisterViewEngines();
             RegisterModelBinders();

@@ -13,6 +13,7 @@ using Ncqrs.Commanding.ServiceModel;
 
 namespace Codell.Pies.Web.Controllers
 {
+    [Authorize]
     public class MyPiesController : ControllerBase
     {
         private readonly IRepository _repository;
