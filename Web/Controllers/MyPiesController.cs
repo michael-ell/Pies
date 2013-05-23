@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
-using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Commands;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Models.MyPies;
 using Codell.Pies.Web.Models.Shared;
+using Codell.Pies.Web.Security;
 using Ncqrs.Commanding.ServiceModel;
+using System.Linq;
 
 namespace Codell.Pies.Web.Controllers
 {
@@ -34,7 +35,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Index(IPiesIdentity identity)
         {
-            var found = _repository.Find<Pie>(pie => pie.UserEmail == identity.User.Email && pie.IsEmpty == false);
+            var found = _repository.Find<Pie>(pie => pie.OwnerId == identity.User.Id && pie.IsEmpty == false).OrderBy(pie => pie.Caption);
             var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);            
             return View( new IndexModel {Owner = identity.User, Pies = pies} );  
         }

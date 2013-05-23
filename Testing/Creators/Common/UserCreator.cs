@@ -1,4 +1,5 @@
-﻿using Codell.Pies.Common.Security;
+﻿using System;
+using Codell.Pies.Common.Security;
 using Codell.Pies.Testing.FluentFixtures;
 
 namespace Codell.Pies.Testing.Creators.Common
@@ -7,19 +8,21 @@ namespace Codell.Pies.Testing.Creators.Common
     {
         public UserCreator(IFixtureContext context) : base(context, null)
         {
-            Creation = new StubUser
-                           {
-                               Email = "abc@xyz.com",
-                               FullName = "Bob Marley",
-                               Nickname = "Rasta-man"
-                           };
+            Creation = new StubUser(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
         }
 
         private class StubUser : IUser
         {
-            public string Email { get; set; }
-            public string Nickname { get; set; }
-            public string FullName { get; set; }
+            public StubUser(string id, string name)
+            {
+                Id = id;
+                Name = name;
+            }
+
+            public string Id { get; private set; }
+
+            public string Name { get; private set; }
         }
     }
+
 }

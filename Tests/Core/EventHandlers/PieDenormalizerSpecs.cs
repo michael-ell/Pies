@@ -42,9 +42,9 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         }
 
         [Observation]
-        public void Then_should_save_the_pie_with_the_users_email()
+        public void Then_should_save_the_pie_with_the_owners_id()
         {
-            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.UserEmail == _event.Payload.Owner.Email)));
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.OwnerId == _event.Payload.Owner.Id)));
         }
 
         [Observation]

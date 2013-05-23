@@ -1,8 +1,5 @@
 ﻿using System.Web.Mvc;
-using Codell.Pies.Common;
 using Codell.Pies.Web.Security;
-using DotNetOpenAuth.AspNet;
-using DotNetOpenAuth.Messaging;
 using Microsoft.Web.WebPages.OAuth;
 
 namespace Codell.Pies.Web.Controllers
@@ -10,38 +7,12 @@ namespace Codell.Pies.Web.Controllers
     [Authorize]
     public class AccountController : ControllerBase
     {
-        private readonly IOpenIdGateway _gateway;
-
-        public AccountController(IOpenIdGateway gateway)
-        {
-            Verify.NotNull(gateway, "gateway");            
-            _gateway = gateway;
-        }
-
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
         {
-            //var user = _gateway.GetUser();
-            //if (user != null)
-            //{
-            //    var cookie = _gateway.CreateFormsAuthenticationCookie(user);
-            //    HttpContext.Response.Cookies.Add(cookie);
-
-            //    return new RedirectResult(Request.Params["ReturnUrl"] ?? "/");
-            //}
             return View();
         }
-
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public ActionResult Login(string openid_identifier)
-        //{
-        //    var response = _gateway.CreateRequest(openid_identifier);
-        //    return response != null ? response.RedirectingResponse.AsActionResult() : View();
-        //}
-
-
 
         [HttpGet]
         [ChildActionOnly]
@@ -66,7 +37,7 @@ namespace Codell.Pies.Web.Controllers
             var result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
             if (result.IsSuccessful)
             {
-
+                HttpContext.SetUser(result);
                 return RedirectToLocal(returnUrl);
             }
             return RedirectToAction("ExternalLoginFailure");
@@ -104,6 +75,5 @@ namespace Codell.Pies.Web.Controllers
                 OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
             }
         }
-
     }
 }

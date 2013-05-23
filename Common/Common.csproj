@@ -75,7 +75,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Security\IPiesIdentity.cs" />
     <Compile Include="Security\IUser.cs" />
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="Verify.cs" />
@@ -88,7 +87,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

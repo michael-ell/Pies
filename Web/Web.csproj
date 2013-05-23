@@ -211,15 +211,11 @@
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\MyPiesController.cs" />
-    <Compile Include="Extensions\HttpExtensions.cs" />
+    <Compile Include="Security\HttpContextExtensions.cs" />
     <Compile Include="Models\MyPies\IndexModel.cs" />
     <Compile Include="Security\AnonymousIdentity.cs" />
     <Compile Include="Security\Identity.cs" />
     <Compile Include="Security\IdentityModelBinder.cs" />
-    <Compile Include="Security\IOpenIdGateway.cs" />
-    <Compile Include="Security\OpenIdAuthorizeAttribute.cs" />
-    <Compile Include="Security\OpenIdGateway.cs" />
-    <Compile Include="Security\OpenIdUser.cs" />
     <Compile Include="Configuration\AutofacConfigurationModule.cs" />
     <Compile Include="Configuration\AutofacServiceLocator.cs" />
     <Compile Include="Configuration\AutoMapperConfiguration.cs" />
@@ -249,6 +245,8 @@
     <Compile Include="Models\Pie\UpdateTagsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Routing\RouteBuilder.cs" />
+    <Compile Include="Security\IPiesIdentity.cs" />
+    <Compile Include="Security\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -352,8 +350,6 @@
     <Content Include="Content\Styles\Images\yahoo.ico.gif" />
     <Content Include="Content\Styles\Images\yahoo.ico.png" />
     <Content Include="Content\Styles\jquery-ui.css" />
-    <Content Include="Content\Styles\openid-shadow.css" />
-    <Content Include="Content\Styles\openid.css" />
     <Content Include="Content\Styles\Site.css" />
     <Content Include="Content\Styles\spectrum.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -428,8 +424,6 @@
     <Content Include="Scripts-Tests\Jasmine\jasmine-html.js" />
     <Content Include="Scripts-Tests\Jasmine\jasmine.js" />
     <Content Include="Scripts\highcharts-exporting.js" />
-    <Content Include="Scripts\openid-en.js" />
-    <Content Include="Scripts\openid-jquery.js" />
     <Content Include="Scripts\pies.js" />
     <Content Include="Scripts\highcharts.js" />
     <None Include="Scripts\linq-vsdoc.js" />

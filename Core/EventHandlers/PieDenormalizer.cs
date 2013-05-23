@@ -38,7 +38,7 @@ namespace Codell.Pies.Core.EventHandlers
             _repository.Save(new Pie
                                  {
                                      Id = evnt.EventSourceId, 
-                                     UserEmail = evnt.Payload.Owner.Email,
+                                     OwnerId = evnt.Payload.Owner.Id,
                                      Caption = evnt.Payload.Caption,
                                      EditableIngredients = new List<Ingredient>(),
                                      Filler = filler,

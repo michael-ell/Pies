@@ -152,6 +152,7 @@
     <Compile Include="Web\Routing\OutboundTester.cs" />
     <Compile Include="Web\Routing\RoutingTesterBase.cs" />
     <Compile Include="Web\Routing\Verify.cs" />
+    <Compile Include="Web\Security\UserSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

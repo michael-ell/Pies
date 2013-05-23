@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
-using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Commands;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Models.Pie;
 using Codell.Pies.Web.Models.Shared;
+using Codell.Pies.Web.Security;
 using Ncqrs.Commanding.ServiceModel;
 using System.Linq;
 

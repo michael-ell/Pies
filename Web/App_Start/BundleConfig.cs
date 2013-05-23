@@ -8,8 +8,6 @@ namespace Codell.Pies.Web.App_Start
         {
             public const string Scripts = "~/scripts";
             public const string Styles = "~/content/styles";
-            public const string OpenIdScripts = "~/scripts/openid";
-            public const string OpenIdStyles = "~/content/styles/openid";
         }
 
         public static void RegisterBundles(BundleCollection bundles)
@@ -31,10 +29,6 @@ namespace Codell.Pies.Web.App_Start
                                                                 "~/scripts/knockout-pies.js",
                                                                 "~/scripts/messages.js",
                                                                 "~/scripts/pies.js"));
-            bundles.Add(new StyleBundle(Names.OpenIdStyles).Include("~/content/styles/openid-shadow.css",
-                                                                    "~/content/styles/openid.css"));
-            bundles.Add(new ScriptBundle(Names.OpenIdScripts).Include("~/scripts/openid-jquery.js",
-                                                                      "~/scripts/openid-en.js"));
         }
     }
 }

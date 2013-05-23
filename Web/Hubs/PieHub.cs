@@ -107,7 +107,7 @@ namespace Codell.Pies.Web.EventHandlers
 
         private dynamic SendTo(IUser user)
         {
-            return SendTo(user.Email);
+            return SendTo(user.Id);
         }
 
         private dynamic SendTo(string name)

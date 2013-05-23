@@ -4,7 +4,7 @@
 {
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Email', actions: { delete: '@Url.Action("Delete")' } } }), $('#pies')[0]);
+            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { delete: '@Url.Action("Delete")' } } }), $('#pies')[0]);
         });
     </script>    
 }
