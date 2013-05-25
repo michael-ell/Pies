@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Codell.Pies.Web.Security;
 using Microsoft.Web.WebPages.OAuth;
+using WebMatrix.WebData;
 
 namespace Codell.Pies.Web.Controllers
 {
@@ -47,6 +48,14 @@ namespace Codell.Pies.Web.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            HttpContext.ClearUser();
+            return RedirectToAction("Index", "Pie");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

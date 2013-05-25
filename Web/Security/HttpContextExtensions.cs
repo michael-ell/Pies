@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using System.Web.Security;
-using Codell.Pies.Common.Security;
 using Codell.Pies.Common;
 using DotNetOpenAuth.AspNet;
 
@@ -16,6 +15,11 @@ namespace Codell.Pies.Web.Security
             var encrypted = FormsAuthentication.Encrypt(ticket);
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
             context.Response.Cookies.Add(cookie);           
+        }
+
+        public static void ClearUser(this HttpContextBase context)
+        {
+            FormsAuthentication.SignOut();
         }
 
         public static IPiesIdentity GetIdentity(this HttpContextBase context)
