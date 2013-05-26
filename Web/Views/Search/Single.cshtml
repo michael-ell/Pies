@@ -4,7 +4,7 @@
 {
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new cc.pies.cr8.Pie(@Html.Raw(Model.ToJson())), $('.pie')[0]);
+            ko.applyBindings(@Html.Raw(Model.ToJson()), $('.pie')[0]);
         });
     </script>
 }
