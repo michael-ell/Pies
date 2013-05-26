@@ -112,7 +112,7 @@ ko.bindingHandlers.pieChart = {
         var map = ko.bindingHandlers.pieChart.chartMap(allBindingsAccessor);
         var obs = ko.utils.unwrapObservable(valueAccessor());
         var data = ko.bindingHandlers.pieChart.data(obs, map);
-        var opts = ko.bindingHandlers.pieChart.options(allBindingsAccessor); 
+        var opts = ko.bindingHandlers.pieChart.options(allBindingsAccessor);
         ko.bindingHandlers.pieChart.instance =
             new Highcharts.Chart({
                 chart: {

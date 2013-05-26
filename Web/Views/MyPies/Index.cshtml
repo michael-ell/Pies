@@ -14,6 +14,7 @@
                                 afterRender: function (el) {
                                     $('#edit', $(el)).button({ icons: { primary: 'ui-icon-pencil' }, text: false });
                                     $('#delete', $(el)).button({ icons: { primary: 'ui-icon-trash' }, text: false });
+                                    $('#email', $(el)).button({ icons: { primary: 'ui-icon-mail-closed' }, text: false });
                                 } }">        
     </div>        
     <script type="text/html" id="pie-template">
@@ -22,6 +23,7 @@
             <div class="pie-toolbar">
                 <a id="edit" data-bind="href:'@Url.Action("Edit")', args: $data.id">Edit</a>  
                 <a id="delete" href="#" data-bind="click: $data.delete">Delete</a>  
+                <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id">Email</a>  
             </div>
         </div>
     </script>    
