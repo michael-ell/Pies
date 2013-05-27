@@ -38,12 +38,21 @@
             <span class="s">s</span>
             <span class="period">.</span>     
         </div> 
-        <div class="nav-bar">
+        <div class="tabs">
+            <ul>
+                @Html.Tab("Home", "Index", "Pie")
+                @Html.Tab("Bake", "Create", "Pie")
+                @Html.Tab("My Pies", "Index", "MyPies")
+            </ul>
+  @*          <a href="#" style="position: relative; float: right">Sign In</a>*@
+@*            @Html.Partial("_Login")*@
+        </div>
+@*        <div class="nav-bar">
             <a class="nav-item" href="@Url.Action("Index", "Pie")">Home</a>
             <a class="nav-item" href="@Url.Action("Create", "Pie")">Bake</a>
             <a class="nav-item" href="@Url.Action("Index", "MyPies")">My Pies</a>
             @Html.Partial("_Login")
-        </div>
+        </div>*@
         <div class="container">
             @RenderBody()
             <div id="error" class="important"></div>

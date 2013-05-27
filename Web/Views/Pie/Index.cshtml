@@ -4,14 +4,16 @@
 {
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.ToJson()), { findUrl: '@Url.Action("Find", "Search")' }), $('#pies')[0]);
+            var $scope = $('#pies');
+            $('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});            
+            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.ToJson()), { findUrl: '@Url.Action("Find", "Search")' }), $scope[0]);
         });
     </script>    
 }
 <div id="pies">
     <div>
         <input type="text" data-bind="autocomplete: {sourceUrl: '@Url.Action("GetTags", "Search")' }, selected: selectedTag"/>
-        <a href="#" data-bind="click: find">Search</a>
+        <a id="search" href="#" data-bind="click: find">Search</a>
     </div>    
     <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
     <script type="text/html" id="pie-template">
