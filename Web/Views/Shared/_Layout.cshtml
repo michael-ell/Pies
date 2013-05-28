@@ -31,7 +31,7 @@
     <body>
         <div class="top-nav">Codell Concepts Inc.</div> 
         <div class="title">    
-            <img src="~/Content/Styles/Images/pies.png" alt="" title="What's in the pie?"/>
+            <img src="~/Content/Styles/Images/pies.png" alt="" title="What's in your pie?"/>
             <span class="p">P</span>
             <span class="i">i</span>
             <span class="e">e</span>
@@ -44,16 +44,9 @@
                 @Html.Tab("Bake", "Create", "Pie")
                 @Html.Tab("My Pies", "Index", "MyPies")
             </ul>
-  @*          <a href="#" style="position: relative; float: right">Sign In</a>*@
-@*            @Html.Partial("_Login")*@
-        </div>
-@*        <div class="nav-bar">
-            <a class="nav-item" href="@Url.Action("Index", "Pie")">Home</a>
-            <a class="nav-item" href="@Url.Action("Create", "Pie")">Bake</a>
-            <a class="nav-item" href="@Url.Action("Index", "MyPies")">My Pies</a>
             @Html.Partial("_Login")
-        </div>*@
-        <div class="container">
+        </div>
+        <div class="container clear">
             @RenderBody()
             <div id="error" class="important"></div>
         </div>

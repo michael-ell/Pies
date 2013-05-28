@@ -3,11 +3,11 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) 
     {
         @Html.AntiForgeryToken()
-        <a class="nav-identity" href="javascript:document.getElementById('logoutForm').submit()">Sign out</a>
+        <a class="sign-in-out" href="javascript:document.getElementById('logoutForm').submit()">Sign out</a>
     }  
-    <span class="nav-identity">Hello @User.Identity.Name</span>    
+    <span class="greeting sign-in-out">Hello @User.Identity.Name</span>    
 }
 else
 {
-    <a class="nav-identity" href="@Url.Action("Login", "Account")">Sign in</a>     
+    <a class="sign-in-out" href="@Url.Action("Login", "Account")">Sign in</a>     
 }
