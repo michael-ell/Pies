@@ -6,6 +6,10 @@
     height: 100%;
 }
 
+h3, a, a:visited {
+    color: #4e769f;    
+}
+
 input[type=text], .ingredient-desc {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -27,11 +31,6 @@ table {
 a {
     text-decoration: none;
     outline: none;
-    color: #4e769f;
-}
-
-a:visited {
-    color: #4e769f;  
 }
 
 a:hover {
@@ -186,6 +185,10 @@ a:hover {
     box-shadow: -2px 2px 0 #FFF;
 }
 
+.sign-in {
+    text-align: center;
+}
+
 .sign-in-out {
     float: right; 
     top: -4px; 
@@ -208,6 +211,7 @@ a:hover {
     border-radius: 10px;
     overflow: auto;
     margin-bottom: 10px;
+    min-height: 431px;
 }
 
 .important {

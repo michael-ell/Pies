@@ -127,20 +127,21 @@ namespace Codell.Pies.Web.Extensions
             return htmlHelper.HiddenFor(expression);
         }
 
-        public static MvcHtmlString Tab(this HtmlHelper helper, string text, string action, string controller)
+        public static MvcHtmlString Tab(this HtmlHelper helper, string text, string action, string controller, string altAction = "", string altController = "")
         {
             var routeData = helper.ViewContext.RouteData.Values;
             var currentController = routeData["controller"];
-            var currentAction = routeData["action"];
-            var html = new MvcHtmlString("");
+            var currentAction = (string)routeData["action"];
 
-            if (String.Equals(action, currentAction as string, StringComparison.OrdinalIgnoreCase) && 
-                String.Equals(controller, currentController as string, StringComparison.OrdinalIgnoreCase))
+            if ((String.Equals(action, currentAction, StringComparison.OrdinalIgnoreCase) &&
+                 String.Equals(controller, currentController as string, StringComparison.OrdinalIgnoreCase)) ||
+                (String.Equals(altAction, currentAction, StringComparison.OrdinalIgnoreCase) &&
+                 String.Equals(altController, currentController as string, StringComparison.OrdinalIgnoreCase))                
+                )
             {
                 return new MvcHtmlString(string.Format("<li class='selected'>{0}</li>", helper.ActionLink(text, action, controller, null, new { @class = "currentMenuItem" })));
             }
             return new MvcHtmlString(string.Format("<li>{0}</li>", helper.ActionLink(text, action, controller, null, new { @class = "currentMenuItem" })));
         }
-
     }
 }

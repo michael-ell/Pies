@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<AuthenticationClientData>
 <div>
+    <p>Do you already have an account on one of these sites? Click the button to <b>sign in</b> with it here:</p>
+
     @using (Html.BeginForm("ExternalLogin", "Account", new {ViewBag.ReturnUrl}))
     {
         @Html.AntiForgeryToken()   
@@ -9,3 +11,8 @@
         }             
     }
 </div>
+<script type="text/javascript">
+    $(function() {
+        $('button[name="provider"]').button();
+    });
+</script>
