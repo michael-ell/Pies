@@ -11,9 +11,12 @@
     </script>    
 }
 <div id="pies">
-    <div>
-        <input type="text" data-bind="autocomplete: {sourceUrl: '@Url.Action("GetTags", "Search")' }, selected: selectedTag"/>
-        <a id="search" href="#" data-bind="click: find">Search</a>
+    <div class="search-bar">
+        &nbsp;
+        <div>
+            <input type="text"  placeholder="Search" data-bind="autocomplete: {sourceUrl: '@Url.Action("GetTags", "Search")' }, selected: selectedTag"/>
+            <a id="search" href="#" data-bind="click: find">Search</a>
+        </div>
     </div>    
     <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
     <script type="text/html" id="pie-template">
