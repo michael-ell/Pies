@@ -7,15 +7,14 @@ cc.pies.index.ViewModel = function(pies, options) {
     options = options || { findUrl: ''};
     options.editing = options.editing || { isEditable: false, owner: '', actions: { delete: '' } };
     self.tags = ko.observableArray();
-    self.selectedTag = ko.observable();
+    self.selectedTag = ko.observable('');
     self.pies = ko.observableArray();
     self.findUrl = options.findUrl;
     self.find = function () {
-        if (self.selectedTag()) {
-            $.get(self.findUrl + '/' + self.selectedTag(), function (data) {
-                self.pies($.parseJSON(data));
-            });
-        }
+        var tag = self.selectedTag() || '';
+        $.get(self.findUrl + '/' + tag, function (data) {
+            self.pies($.parseJSON(data));
+        });
     };
     
     if (options.editing.isEditable === true) {
@@ -36,7 +35,8 @@ cc.pies.index.ViewModel = function(pies, options) {
             hub.server.join(options.editing.owner);
         });        
     } else {
-        self.pies(pies);
+        self.find();
+        //self.pies(pies);
     }
 };
 

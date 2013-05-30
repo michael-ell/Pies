@@ -10,7 +10,6 @@ using Codell.Pies.Web.Models.Pie;
 using Codell.Pies.Web.Models.Shared;
 using Codell.Pies.Web.Security;
 using Ncqrs.Commanding.ServiceModel;
-using System.Linq;
 
 namespace Codell.Pies.Web.Controllers
 {
@@ -35,8 +34,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var pies = _repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12);
-            return View(_mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(pies));
+            return View(new List<PieModel>());
         }
 
         [HttpGet]

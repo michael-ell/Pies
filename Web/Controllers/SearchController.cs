@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
@@ -35,11 +34,22 @@ namespace Codell.Pies.Web.Controllers
             return Json(tags, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetAll()
+        {
+            return ToJsonResult(_repository.GetAll<Pie>());
+        }
+
+        [HttpGet]
+        public JsonResult GetRecent()
+        {
+            return ToJsonResult(_repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12));
+        }
 
         [HttpGet]
         public JsonResult Find(string tag)
         {
-            return Find(pie => pie.Tags.Contains<string>(new SearchableTag(tag)));    
+            return tag.IsEmpty() ? GetRecent() : ToJsonResult(_repository.Find<Pie>(pie => pie.Tags.Contains<string>(new SearchableTag(tag))));
         }
 
         [HttpGet]
@@ -49,11 +59,10 @@ namespace Codell.Pies.Web.Controllers
             return View(pie == null ? new PieModel() : _mapper.Map<Pie, PieModel>(pie));
         }
 
-        private JsonResult Find(Expression<Func<Pie, bool>> predicate)
+        private JsonResult ToJsonResult(IEnumerable<Pie> found)
         {
-            var found = _repository.Find(predicate);
             var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);
-            return JsonResult(pies);               
+            return JsonResult(pies);             
         }
     }
 }
