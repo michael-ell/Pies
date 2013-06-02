@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Codell.Pies.Core.Repositories;
 
@@ -12,7 +13,17 @@ namespace Codell.Pies.Data.Storage.RavenDB
             throw new NotImplementedException();
         }
 
+        public long Count<TEntity>()
+        {
+            throw new NotImplementedException();
+        }
+
         public TEntity FindById<TId, TEntity>(TId id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<TEntity> Get<TEntity>()
         {
             throw new NotImplementedException();
         }

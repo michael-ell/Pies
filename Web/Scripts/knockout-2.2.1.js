@@ -446,7 +446,7 @@ ko.utils = new (function () {
 
         stringifyJson: function (data, replacer, space) {   // replacer and space are optional
             if ((typeof JSON == "undefined") || (typeof JSON.stringify == "undefined"))
-                throw new Error("Cannot find JSON.stringify(). Some browsers (e.g., IE < 8) don't support it natively, but you can overcome this by adding a script reference to json2.js, downloadable from http://www.json.org/json2.js");
+                throw new Error("Cannot Get JSON.stringify(). Some browsers (e.g., IE < 8) don't support it natively, but you can overcome this by adding a script reference to json2.js, downloadable from http://www.json.org/json2.js");
             return JSON.stringify(ko.utils.unwrapObservable(data), replacer, space);
         },
 
@@ -712,7 +712,7 @@ ko.exportSymbol('utils.domNodeDisposal.removeDisposeCallback', ko.utils.domNodeD
 
             // As of jQuery 1.7.1, jQuery parses the HTML by appending it to some dummy parent nodes held in an in-memory document fragment.
             // Unfortunately, it never clears the dummy parent nodes from the document fragment, so it leaks memory over time.
-            // Fix this by finding the top-most dummy parent element, and detaching it from its owner fragment.
+            // Fix this by Geting the top-most dummy parent element, and detaching it from its owner fragment.
             if (elems && elems[0]) {
                 // Find the top-most parent element that's a direct child of a document fragment
                 var elem = elems[0];
@@ -794,7 +794,7 @@ ko.memoization = (function () {
         unmemoize: function (memoId, callbackParams) {
             var callback = memos[memoId];
             if (callback === undefined)
-                throw new Error("Couldn't find any memo with ID " + memoId + ". Perhaps it's already been unmemoized.");
+                throw new Error("Couldn't Get any memo with ID " + memoId + ". Perhaps it's already been unmemoized.");
             try {
                 callback.apply(null, callbackParams || []);
                 return true;
@@ -1745,7 +1745,7 @@ ko.exportSymbol('jsonExpressionRewriting.insertPropertyAccessorsIntoJson', ko.ex
                 depth++;
         }
         if (!allowUnbalanced)
-            throw new Error("Cannot find closing comment tag to match: " + startComment.nodeValue);
+            throw new Error("Cannot Get closing comment tag to match: " + startComment.nodeValue);
         return null;
     }
 
@@ -2058,7 +2058,7 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
 
                 // Optimization: Don't store the binding context on this node if it's definitely the same as on node.parentNode, because
                 // we can easily recover it just by scanning up the node's ancestors in the DOM
-                // (note: here, parent node means "real DOM parent" not "virtual parent", as there's no O(1) way to find the virtual parent)
+                // (note: here, parent node means "real DOM parent" not "virtual parent", as there's no O(1) way to Get the virtual parent)
                 if (bindingContextMayDifferFromDomParentElement)
                     ko.storedBindingContextForNode(node, bindingContextInstance);
 
@@ -2766,7 +2766,7 @@ ko.templateEngine.prototype['makeTemplateSource'] = function(template, templateD
         templateDocument = templateDocument || document;
         var elem = templateDocument.getElementById(template);
         if (!elem)
-            throw new Error("Cannot find template with ID " + template);
+            throw new Error("Cannot Get template with ID " + template);
         return new ko.templateSources.domElement(elem);
     } else if ((template.nodeType == 1) || (template.nodeType == 8)) {
         // Anonymous template
@@ -3257,7 +3257,7 @@ ko.utils.compareArrays = (function () {
             // smlIndexMax keeps the time complexity of this algorithm linear.
             var limitFailedCompares = smlIndexMax * 10, failedCompares,
                 a, d, notInSmlItem, notInBigItem;
-            // Go through the items that have been added and deleted and try to find matches between them.
+            // Go through the items that have been added and deleted and try to Get matches between them.
             for (failedCompares = a = 0; (dontLimitMoves || failedCompares < limitFailedCompares) && (notInSmlItem = notInSml[a]); a++) {
                 for (d = 0; notInBigItem = notInBig[d]; d++) {
                     if (notInSmlItem['value'] === notInBigItem['value']) {

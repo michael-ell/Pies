@@ -227,6 +227,20 @@ a:hover {
     text-align: center;
 }
 
+.page-bar {
+    clear: left;
+    text-align: center;
+}
+
+.page-bar span {
+    cursor: default;
+}
+
+.page-bar a {
+    margin-left: 8px;
+    padding: 0 3px;
+}
+
 .kitchen, .preview, .pie-preview, .share-pie {
     display: inline-block;
 }

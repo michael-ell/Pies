@@ -53,7 +53,7 @@ jasmine.getGlobal = function() {
  * @ignore
  * @private
  * @param base {Object} bound 'this' for the function
- * @param name {Function} function to find
+ * @param name {Function} function to Get
  */
 jasmine.bindOriginal_ = function(base, name) {
   var original = base[name];
@@ -2338,7 +2338,7 @@ jasmine.Spec.prototype.explodes = function() {
 
 jasmine.Spec.prototype.spyOn = function(obj, methodName, ignoreMethodDoesntExist) {
   if (obj == jasmine.undefined) {
-    throw "spyOn could not find an object to spy upon for " + methodName + "()";
+    throw "spyOn could not Get an object to spy upon for " + methodName + "()";
   }
 
   if (!ignoreMethodDoesntExist && obj[methodName] === jasmine.undefined) {

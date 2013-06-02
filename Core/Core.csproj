@@ -82,6 +82,7 @@
     <Compile Include="Domain\Ingredient.cs" />
     <Compile Include="Domain\SearchableTag.cs" />
     <Compile Include="Domain\Tags.cs" />
+    <Compile Include="EventHandlers\Cleaner.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
     <Compile Include="EventHandlers\TagDenormalizer.cs" />
     <Compile Include="Events\PieDeletedEvent.cs" />

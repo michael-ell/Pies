@@ -1,4 +1,4 @@
-// ==ClosureCompiler==
+﻿// ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
@@ -664,7 +664,7 @@ function normalizeTimeTickInterval(tickInterval, unitsOption) {
 		count,
 		i;
 		
-	// loop through the units to find the one that best fits the tickInterval
+	// loop through the units to Get the one that best fits the tickInterval
 	for (i = 0; i < units.length; i++) {
 		unit = units[i];
 		interval = timeUnits[unit[0]];
@@ -874,7 +874,7 @@ function stableSort(arr, sortFunction) {
 }
 
 /**
- * Non-recursive method to find the lowest member of an array. Math.min raises a maximum
+ * Non-recursive method to Get the lowest member of an array. Math.min raises a maximum
  * call stack size exceeded error in Chrome when trying to apply more than 150.000 points. This
  * method is slightly slower, but safe.
  */
@@ -891,7 +891,7 @@ function arrayMin(data) {
 }
 
 /**
- * Non-recursive method to find the lowest member of an array. Math.min raises a maximum
+ * Non-recursive method to Get the lowest member of an array. Math.min raises a maximum
  * call stack size exceeded error in Chrome when trying to apply more than 150.000 points. This
  * method is slightly slower, but safe.
  */
@@ -6825,7 +6825,7 @@ Axis.prototype = {
 						key,
 						cropped = series.cropped,
 						xExtremes = series.xAxis.getExtremes(),
-						//findPointRange,
+						//GetPointRange,
 						//pointRange,
 						j,
 						hasModifyValue = !!series.modifyValue;
@@ -6853,7 +6853,7 @@ Axis.prototype = {
 					}
 
 					// processData can alter series.pointRange, so this goes after
-					//findPointRange = series.pointRange === null;
+					//GetPointRange = series.pointRange === null;
 
 					xData = series.processedXData;
 					yData = series.processedYData;
@@ -7517,7 +7517,7 @@ Axis.prototype = {
 		}
 
 		// Now we're finished detecting min and max, crop and group series data. This
-		// is in turn needed in order to find tick positions in ordinal axes. 
+		// is in turn needed in order to Get tick positions in ordinal axes. 
 		if (isXAxis && !secondPass) {
 			each(axis.series, function (series) {
 				series.processData(axis.min !== axis.oldMin || axis.max !== axis.oldMax);
@@ -7554,7 +7554,7 @@ Axis.prototype = {
 		axis.minorTickInterval = options.minorTickInterval === 'auto' && axis.tickInterval ?
 				axis.tickInterval / 5 : options.minorTickInterval;
 
-		// find the tick positions
+		// Get the tick positions
 		axis.tickPositions = tickPositions = options.tickPositions ?
 			[].concat(options.tickPositions) : // Work on a copy (#1565)
 			(tickPositioner && tickPositioner.apply(axis, [axis.min, axis.max]));
@@ -8143,7 +8143,7 @@ Axis.prototype = {
 					// Reorganize the indices
 					i = (i === tickPositions.length - 1) ? 0 : i + 1;
 	
-					// linked axes need an extra check to find out if
+					// linked axes need an extra check to Get out if
 					if (!isLinked || (pos >= axis.min && pos <= axis.max)) {
 	
 						if (!ticks[pos]) {
@@ -8967,7 +8967,7 @@ Pointer.prototype = {
 		if (tooltip && pointer.options.tooltip.shared && !(hoverSeries && hoverSeries.noSharedTooltip)) {
 			points = [];
 
-			// loop over all series and find the ones with points closest to the mouse
+			// loop over all series and Get the ones with points closest to the mouse
 			i = series.length;
 			for (j = 0; j < i; j++) {
 				if (series[j].visible &&
@@ -12829,7 +12829,7 @@ Series.prototype = {
 		// if-else conditional for max performance.
 		if (dataLength > turboThreshold) {
 			
-			// find the first non-null point
+			// Get the first non-null point
 			i = 0;
 			while (firstPoint === null && i < dataLength) {
 				firstPoint = data[i];
@@ -12993,14 +12993,14 @@ Series.prototype = {
 			// only crop if it's actually spilling out
 			} else if (processedXData[0] < min || processedXData[dataLength - 1] > max) {
 
-				// iterate up to find slice start
+				// iterate up to Get slice start
 				for (i = 0; i < dataLength; i++) {
 					if (processedXData[i] >= min) {
 						cropStart = mathMax(0, i - 1);
 						break;
 					}
 				}
-				// proceed to find slice end
+				// proceed to Get slice end
 				for (; i < dataLength; i++) {
 					if (processedXData[i] > max) {
 						cropEnd = i + 1;
@@ -13245,7 +13245,7 @@ Series.prototype = {
 			point = points[i];
 			// Set this range's low to the last range's high plus one
 			low = points[i - 1] ? high + 1 : 0;
-			// Now find the new high
+			// Now Get the new high
 			high = points[i + 1] ?
 				mathMax(0, mathFloor((point.clientX + (points[i + 1] ? points[i + 1].clientX : axisLength)) / 2)) :
 				axisLength;
@@ -14783,7 +14783,7 @@ var SplineSeries = extendClass(Series, {
 			rightContY,
 			ret;
 
-		// find control points
+		// Get control points
 		if (lastPoint && nextPoint) {
 		
 			var lastX = lastPoint.plotX,
@@ -15039,7 +15039,7 @@ var ColumnSeries = extendClass(Series, {
 	},
 
 	/**
-	 * Translate each point to the plot area coordinate system and find shape positions
+	 * Translate each point to the plot area coordinate system and Get shape positions
 	 */
 	translate: function () {
 		var series = this,
@@ -15923,7 +15923,7 @@ var PieSeries = {
 						distance,
 						slotI;
 	
-					// find the closest slot index
+					// Get the closest slot index
 					for (slotI = 0; slotI < slotsLength; slotI++) {
 						distance = mathAbs(slots[slotI] - labelPos[1]);
 						if (distance < closest) {
@@ -15942,7 +15942,7 @@ var PieSeries = {
 							slotIndex++;
 						}
 					} else {
-						// Slot is taken, find next free slot below. In the next run, the next slice will find the
+						// Slot is taken, Get next free slot below. In the next run, the next slice will Get the
 						// slot above these, because it is the closest one
 						while (slots[slotIndex] === null) { // make sure it is not taken
 							slotIndex++;

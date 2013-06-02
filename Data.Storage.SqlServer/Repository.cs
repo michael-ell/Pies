@@ -25,9 +25,19 @@ namespace Codell.Pies.Data.Storage.SqlServer
             _session.SaveOrUpdate(toSave);
         }
 
+        public long Count<TEntity>()
+        {
+            throw new NotImplementedException();
+        }
+
         public TEntity FindById<TId, TEntity>(TId id)
         {
             return _session.Get<TEntity>(id);
+        }
+
+        public IQueryable<TEntity> Get<TEntity>()
+        {
+            return _session.Query<TEntity>();
         }
 
         public IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate)

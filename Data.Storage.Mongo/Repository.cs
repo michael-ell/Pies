@@ -27,6 +27,11 @@ namespace Codell.Pies.Data.Storage.Mongo
             CollectionFor<TEntity>().Save(toSave);
         }
 
+        public long Count<TEntity>()
+        {
+            return CollectionFor<TEntity>().Count();
+        }
+
         public TEntity FindById<TId, TEntity>(TId id)
         {
             return CollectionFor<TEntity>().FindOneById(BsonValue.Create(id));
@@ -37,13 +42,13 @@ namespace Codell.Pies.Data.Storage.Mongo
             return CollectionFor<TEntity>().FindAll().ToList();
         }
 
-        public IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate)
-        {            
-            return CollectionFor<TEntity>().AsQueryable<TEntity>().Where(predicate).ToList();
+        public IQueryable<TEntity> Get<TEntity>()
+        {
+            return CollectionFor<TEntity>().AsQueryable<TEntity>();
         }
 
-        public IEnumerable<TEntity> FindByExpression<TEntity>(Expression<Func<TEntity, bool>> predicate)
-        {
+        public IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate)
+        {            
             return CollectionFor<TEntity>().AsQueryable<TEntity>().Where(predicate).ToList();
         }
 

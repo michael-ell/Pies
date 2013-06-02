@@ -4,7 +4,7 @@ cc.pies = cc.pies || {};
 cc.pies.index = cc.pies.index || {};
 cc.pies.index.ViewModel = function(pies, options) {
     var self = this;
-    options = options || { findUrl: ''};
+    options = options || { findUrl: '' };
     options.editing = options.editing || { isEditable: false, owner: '', actions: { delete: '' } };
     self.tags = ko.observableArray();
     self.selectedTag = ko.observable('');
@@ -34,9 +34,9 @@ cc.pies.index.ViewModel = function(pies, options) {
         $.connection.hub.start().done(function () {
             hub.server.join(options.editing.owner);
         });        
-    } else {
-        self.find();
-        //self.pies(pies);
+    } else {        
+        //self.find();
+        self.pies(pies);
     }
 };
 

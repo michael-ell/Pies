@@ -17,17 +17,27 @@ namespace Codell.Pies.Core.Repositories
             _stores = new ConcurrentDictionary<Type, object>();
         }
 
-        public void Save<T>(T toSave)
+        public void Save<TEntity>(TEntity toSave)
         {
-            var store = GetStoreFor<T>();
+            var store = GetStoreFor<TEntity>();
             if (!store.Contains(toSave))
                 store.Add(toSave);
+        }
+
+        public long Count<T>()
+        {
+            return GetStoreFor<T>().Count;
         }
 
         public T FindById<TId, T>(TId id)
         {
             var predicate = new PredicateFactory<T>();
             return GetStoreFor<T>().SingleOrDefault(predicate.Create("Id", id));
+        }
+
+        public IQueryable<TEntity> Get<TEntity>()
+        {
+            return GetStoreFor<TEntity>().AsQueryable();
         }
 
         public IEnumerable<TEntity> Find<TEntity>(Expression<Func<TEntity, bool>> predicate)

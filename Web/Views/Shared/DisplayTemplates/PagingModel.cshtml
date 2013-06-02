@@ -1,0 +1,14 @@
+﻿@model Codell.Pies.Web.Models.Shared.PagingModel
+<div class="page-bar">
+    @for (var page = 1; page < Model.TotalPages + 1; page++)
+    {
+        if (page == Model.CurrentPage)
+        {
+            <span>@page</span>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "Home", new {page})">@page</a>
+        }
+    }
+</div>

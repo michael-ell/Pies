@@ -14,7 +14,21 @@ namespace Codell.Pies.Tests.Web.Routing
         public void Then_should_route_to_searching_for_pies_by_tag()
         {
             const string expected = "xxx";
-            Verify.Url("~/search/find/" + expected).MapsTo(new { controller = "Search", action = "Find", tag = expected });
+            Verify.Url("~/search/find/" + expected).MapsTo(new { controller = "Search", action = "Get", tag = expected });
+        }
+    }
+
+    public class When_asking_for_a_page_of_pies : ContextBase
+    {
+        protected override void When()
+        {
+        }
+
+        [Observation]
+        public void Then_should_route_to_getting_the_page_for_pies()
+        {
+            const string expected = "xxx";
+            Verify.Url("~/home/page/" + expected).MapsTo(new { controller = "Home", action = "Index", page = expected });
         }
     }
 

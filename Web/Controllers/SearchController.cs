@@ -47,6 +47,13 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetPage(int page)
+        {
+            const int pageSize = 10;
+            return ToJsonResult(_repository.Get<Pie>().Skip(page - 1 * pageSize).Take(pageSize).OrderByDescending(pie => pie.CreatedOn).ToList());
+        }
+
+        [HttpGet]
         public JsonResult Find(string tag)
         {
             return tag.IsEmpty() ? GetRecent() : ToJsonResult(_repository.Find<Pie>(pie => pie.Tags.Contains<string>(new SearchableTag(tag))));

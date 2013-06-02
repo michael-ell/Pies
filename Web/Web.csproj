@@ -210,7 +210,11 @@
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyPiesController.cs" />
+    <Compile Include="Models\Home\IndexModel.cs" />
+    <Compile Include="Models\Pie\IndexModel.cs" />
+    <Compile Include="Models\Shared\PagingModel.cs" />
     <Compile Include="Security\HttpContextExtensions.cs" />
     <Compile Include="Models\MyPies\IndexModel.cs" />
     <Compile Include="Security\AnonymousIdentity.cs" />
@@ -457,6 +461,8 @@
     <Content Include="Views\Account\_ExternalLogin.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Search\Single.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PagingModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,5 +1,5 @@
 ﻿@using Codell.Pies.Web.Extensions
-@model Codell.Pies.Web.Models.Pie.IndexModel
+@model Codell.Pies.Web.Models.Home.IndexModel
 @section Scripts
 {
     <script type="text/javascript">
@@ -18,11 +18,11 @@
             <a id="search" href="#" data-bind="click: find">Search</a>
         </div>
     </div>    
-    <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
+    <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>   
+    @Html.DisplayFor(m => m.Paging)     
     <script type="text/html" id="pie-template">
         <div class="pie">
             <div data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
         </div>
     </script>    
 </div>
-

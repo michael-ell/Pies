@@ -34,7 +34,7 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new List<PieModel>());
+            return View(new IndexModel());
         }
 
         [HttpGet]

@@ -705,7 +705,7 @@ intellisense.annotate(jQuery.fn, {
   'add': function() {
     /// <signature>
     ///   <summary>Add elements to the set of matched elements.</summary>
-    ///   <param name="selector" type="String">A string representing a selector expression to find additional elements to add to the set of matched elements.</param>
+    ///   <param name="selector" type="String">A string representing a selector expression to Get additional elements to add to the set of matched elements.</param>
     ///   <returns type="jQuery" />
     /// </signature>
     /// <signature>
@@ -725,7 +725,7 @@ intellisense.annotate(jQuery.fn, {
     /// </signature>
     /// <signature>
     ///   <summary>Add elements to the set of matched elements.</summary>
-    ///   <param name="selector" type="String">A string representing a selector expression to find additional elements to add to the set of matched elements.</param>
+    ///   <param name="selector" type="String">A string representing a selector expression to Get additional elements to add to the set of matched elements.</param>
     ///   <param name="context" type="Element">The point in the document at which the selector should begin matching; similar to the context argument of the $(selector, context) method.</param>
     ///   <returns type="jQuery" />
     /// </signature>

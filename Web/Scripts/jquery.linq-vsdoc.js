@@ -765,13 +765,13 @@ jQuery.extend({ Enumerable: (function ()
 
         Get: function (key)
         {
-            /// <summary>get value. if not find key then return undefined.</summary>
+            /// <summary>get value. if not Get key then return undefined.</summary>
             /// <returns type="T"></returns>
         },
 
         Set: function (key, value)
         {
-            /// <summary>set value. if complete set value then return true, not find key then return false.</summary>
+            /// <summary>set value. if complete set value then return true, not Get key then return false.</summary>
             /// <returns type="Boolean"></returns>
         },
 

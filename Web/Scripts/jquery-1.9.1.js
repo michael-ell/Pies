@@ -196,7 +196,7 @@ jQuery.fn = jQuery.prototype = {
 				return ( context || rootjQuery ).find( selector );
 
 			// HANDLE: $(expr, context)
-			// (which is just equivalent to: $(context).find(expr)
+			// (which is just equivalent to: $(context).Get(expr)
 			} else {
 				return this.constructor( context ).find( selector );
 			}
@@ -592,7 +592,7 @@ jQuery.extend({
 	noop: function() {},
 
 	// Evaluates a script in a global context
-	// Workarounds based on findings by Jim Driscoll
+	// Workarounds based on Getings by Jim Driscoll
 	// http://weblogs.java.net/blog/driscoll/archive/2009/09/08/eval-javascript-global-context
 	globalEval: function( data ) {
 		if ( data && jQuery.trim( data ) ) {
@@ -1626,13 +1626,13 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ){
 	// If a data property was specified
 	if ( getByName ) {
 
-		// First Try to find as-is property data
+		// First Try to Get as-is property data
 		ret = thisCache[ name ];
 
 		// Test for null|undefined property data
 		if ( ret == null ) {
 
-			// Try to find the camelCased property
+			// Try to Get the camelCased property
 			ret = thisCache[ jQuery.camelCase( name ) ];
 		}
 	} else {
@@ -2733,7 +2733,7 @@ jQuery.event = {
 			selector = handleObjIn.selector;
 		}
 
-		// Make sure that the handler has a unique ID, used to find/remove it later
+		// Make sure that the handler has a unique ID, used to Get/remove it later
 		if ( !handler.guid ) {
 			handler.guid = jQuery.guid++;
 		}
@@ -4045,7 +4045,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// Check if getElementsByClassName can be trusted
 	support.getByClassName = assert(function( div ) {
-		// Opera can't find a second classname (in 9.6)
+		// Opera can't Get a second classname (in 9.6)
 		div.innerHTML = "<div class='hidden e'></div><div class='hidden'></div>";
 		if ( !div.getElementsByClassName || !div.getElementsByClassName("e").length ) {
 			return false;
@@ -4094,7 +4094,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 		};
 
-	// ID find and filter
+	// ID Get and filter
 	if ( support.getIdNotName ) {
 		Expr.find["ID"] = function( id, context ) {
 			if ( typeof context.getElementById !== strundefined && !documentIsXML ) {
@@ -5576,7 +5576,7 @@ jQuery.fn.extend({
 			jQuery.find( selector, this[ i ], ret );
 		}
 
-		// Needed because $( selector, context ) becomes $( context ).find( selector )
+		// Needed because $( selector, context ) becomes $( context ).Get( selector )
 		ret = this.pushStack( len > 1 ? jQuery.unique( ret ) : ret );
 		ret.selector = ( this.selector ? this.selector + " " : "" ) + selector;
 		return ret;
@@ -8111,7 +8111,7 @@ jQuery.extend({
 
 /* Handles responses to an ajax request:
  * - sets all responseXXX fields accordingly
- * - finds the right dataType (mediates between content-type and expected dataType)
+ * - Gets the right dataType (mediates between content-type and expected dataType)
  * - returns the corresponding response
  */
 function ajaxHandleResponses( s, jqXHR, responses ) {
