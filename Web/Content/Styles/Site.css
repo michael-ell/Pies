@@ -236,7 +236,7 @@ a:hover {
     cursor: default;
 }
 
-.page-bar a {
+.page-bar a, .page-bar span {
     margin-left: 8px;
     padding: 0 3px;
 }

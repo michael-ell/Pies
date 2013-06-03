@@ -4,5 +4,6 @@
     {
         public const string Profile = "Profile";
         public const string MaxIngredients = "MaxIngredients";
+        public const string EmptyPieLifetimeMinutes = "EmptyPieLifetimeMinutes";
     }
 }

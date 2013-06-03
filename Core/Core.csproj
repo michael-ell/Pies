@@ -101,6 +101,7 @@
     <Compile Include="ReadModels\Ingredient.cs" />
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ReadModels\Tag.cs" />
+    <Compile Include="Repositories\IDeleteEmptyPies.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />
     <Compile Include="ValueTypes\ContextualBrokenRules.cs" />

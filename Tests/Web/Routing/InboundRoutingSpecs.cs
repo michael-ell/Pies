@@ -3,21 +3,6 @@ using Codell.Pies.Web.Routing;
 
 namespace Codell.Pies.Tests.Web.Routing
 {
-    [Concern(typeof(RouteBuilder))]
-    public class When_finding_pies_by_tags: ContextBase
-    {
-        protected override void When()
-        {
-        }
-
-        [Observation]
-        public void Then_should_route_to_searching_for_pies_by_tag()
-        {
-            const string expected = "xxx";
-            Verify.Url("~/search/find/" + expected).MapsTo(new { controller = "Search", action = "Get", tag = expected });
-        }
-    }
-
     public class When_asking_for_a_page_of_pies : ContextBase
     {
         protected override void When()
@@ -29,6 +14,21 @@ namespace Codell.Pies.Tests.Web.Routing
         {
             const string expected = "xxx";
             Verify.Url("~/home/page/" + expected).MapsTo(new { controller = "Home", action = "Index", page = expected });
+        }
+    }
+
+    [Concern(typeof(RouteBuilder))]
+    public class When_finding_pies_by_tags: ContextBase
+    {
+        protected override void When()
+        {
+        }
+
+        [Observation]
+        public void Then_should_route_to_searching_for_pies_by_tag()
+        {
+            const string expected = "xxx";
+            Verify.Url("~/home/find/" + expected).MapsTo(new { controller = "Home", action = "Find", tag = expected });
         }
     }
 

@@ -79,6 +79,7 @@
     <Compile Include="CollectionFactory.cs" />
     <Compile Include="CollectionNameMap.cs" />
     <Compile Include="DateTimeSerializer.cs" />
+    <Compile Include="DeleteEmptyPies.cs" />
     <Compile Include="ICollectionFactory.cs" />
     <Compile Include="ICollectionNameMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

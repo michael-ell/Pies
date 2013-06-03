@@ -129,6 +129,7 @@
     <Compile Include="Core\Domain\UpdatingPieCaptionSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingIngredientPercentageSpecs.cs" />
     <Compile Include="Core\Domain\UpdatingPieTagsSpecs.cs" />
+    <Compile Include="Core\EventHandlers\CleanerSpecs.cs" />
     <Compile Include="Core\EventHandlers\IngredientUpdatedPieDenormalizerSpecBase.cs" />
     <Compile Include="Core\EventHandlers\PieDenormalizerSpecs.cs" />
     <Compile Include="Core\EventHandlers\TagDenormalizerSpecs.cs" />

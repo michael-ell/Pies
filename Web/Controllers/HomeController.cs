@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
 using Codell.Pies.Core.Domain;
+using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Models.Home;
 using Codell.Pies.Web.Models.Shared;
@@ -41,12 +42,19 @@ namespace Codell.Pies.Web.Controllers
                                              .OrderByDescending(pie => pie.CreatedOn)
                                              .ToList();
             //var totalPages = _repository.Count<Pie>() / pageSize;
-            var totalPages = _repository.Get<Pie>().Count(pie => pie.IsEmpty == false) / pageSize;
+            var totalPages = (_repository.Get<Pie>().Count(pie => pie.IsEmpty == false) + (pageSize - 1)) / pageSize;
             return View(new IndexModel
                             {
                                 Pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(pies),
                                 Paging = new PagingModel{CurrentPage = page.Value, TotalPages = totalPages}
                             });
+        }
+
+        [HttpGet]
+        public JsonResult GetTags(string term)
+        {
+            var tags = _repository.Find<Tag>(tag => tag.Value.Contains(new SearchableTag(term))).Select(tag => tag.Value).ToList();
+            return Json(tags, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

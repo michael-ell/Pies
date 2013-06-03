@@ -34,6 +34,7 @@ namespace Codell.Pies.Data.Storage.Mongo
             builder.RegisterType<EventStore>().As<IEventStore>();
             builder.RegisterType<CollectionFactory>().As<ICollectionFactory>();
             builder.RegisterType<Repository>().As<IRepository>();
+            builder.RegisterType<DeleteEmptyPies>().As<IDeleteEmptyPies>();
             builder.RegisterType<Migrator>().As<IMigrator>();
             builder.RegisterType<Bootstrapper>().As<IBootstrapper>();
             RegisterCollectionNameMaps(builder);

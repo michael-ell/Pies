@@ -153,4 +153,7 @@
   <data name="MaxIngredientsReached" xml:space="preserve">
     <value>Sorry, our pies can only hold {0} ingredients.</value>
   </data>
+  <data name="FailedToPurgeEmptyPies" xml:space="preserve">
+    <value>Failed to purge empty pies.</value>
+  </data>
 </root>
