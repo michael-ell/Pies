@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
@@ -29,12 +28,6 @@ namespace Codell.Pies.Web.Controllers
             _commandService = commandService;
             _repository = repository;
             _mapper = mapper;
-        }
-
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View(new IndexModel());
         }
 
         [HttpGet]

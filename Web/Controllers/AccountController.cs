@@ -54,7 +54,7 @@ namespace Codell.Pies.Web.Controllers
         public ActionResult LogOff()
         {
             HttpContext.ClearUser();
-            return RedirectToAction("Index", "Pie");
+            return RedirectToAction("Index", "Home");
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
@@ -63,7 +63,7 @@ namespace Codell.Pies.Web.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Pie");
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ExternalLoginResult : ActionResult

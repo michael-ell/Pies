@@ -61,6 +61,10 @@ a:hover {
     clear: both;
 }
 
+.center {
+    text-align: center;
+}
+
 .title {
     background-color: #f6f6f6;
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
+using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
@@ -17,20 +18,22 @@ namespace Codell.Pies.Web.Controllers
     {
         private readonly IRepository _repository;
         private readonly IMappingEngine _mapper;
+        private readonly ISettings _settings;
 
-        public HomeController(IRepository repository, IMappingEngine mapper)
+        public HomeController(IRepository repository, IMappingEngine mapper, ISettings settings)
         {
             Verify.NotNull(repository, "repository");
             Verify.NotNull(mapper, "mapper");
                         
             _repository = repository;
             _mapper = mapper;
+            _settings = settings;
         }
 
         [HttpGet]
         public ActionResult Index(int? page)
         {
-            const int pageSize = 2;
+            var pageSize = _settings.Get<int>(Keys.PiesPerPage);
             if (!page.HasValue || page.Value < 1)
             {
                 page = 1;
