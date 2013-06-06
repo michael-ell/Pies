@@ -15,9 +15,23 @@
         @Scripts.Render(BundleConfig.Names.Scripts)
         @MiniProfiler.RenderIncludes()
         <script type="text/javascript">
-            $(function() {
-                $(document).ajaxError(function (evnt, xhr) {
-                    $('#error').text(xhr.responseText);
+            $(function () {
+                $.ajaxSetup({ cache: false });
+                $(document).ajaxError(function () {
+                    window.location.replace('@Url.Action("Default", "Error")');
+                    //$('#error').dialog('open');
+                });
+                $('#error').dialog({
+                    autoOpen: false,
+                    title: 'Oops!',
+                    modal: true,
+                    resizable: false,
+                    draggable: false,
+                    buttons: {
+                        Ok: function () {
+                            $(this).dialog("close");
+                        }
+                    }
                 });
                 if (typeof window.console === "undefined" || typeof window.console.log === "undefined") {
                     window.console = {};
@@ -48,7 +62,7 @@
         </div>
         <div class="container clear">
             @RenderBody()
-            <div id="error" class="important"></div>
+            <div id="error" class="center">Sorry, an unexpected error has occurred.</div>
         </div>
     </body>
 </html>

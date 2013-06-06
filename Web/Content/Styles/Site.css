@@ -6,7 +6,7 @@
     height: 100%;
 }
 
-h3, a, a:visited {
+h3, a, a:visited, #error {
     color: #4e769f;    
 }
 
@@ -103,6 +103,11 @@ a:hover {
     vertical-align: middle;
 }
 
+#error {
+    height: 90px;
+    line-height: 90px;
+}
+
 .tabs {
     background-color: transparent;
     padding-bottom: 0;
@@ -186,10 +191,6 @@ a:hover {
 .tabs ul>li.selected:after{
     -webkit-box-shadow: -2px 2px 0 #FFF;
     box-shadow: -2px 2px 0 #FFF;
-}
-
-.sign-in {
-    text-align: center;
 }
 
 .sign-in-out {
