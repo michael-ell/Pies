@@ -137,7 +137,9 @@ ko.bindingHandlers.pieChart = {
                 legend: {
                     itemStyle : {
                         fontSize: '16px'
-                    }
+                    },
+                    borderWidth: 0,
+                    useHTML: true
                 },
                 series: [{
                     type: 'pie',

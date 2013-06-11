@@ -11,20 +11,27 @@
 <div id="pies">
     <div data-bind="template: { name: 'pie-template',
                                 foreach: pies,
-                                afterRender: function (el) {
-                                    $('#edit', $(el)).button({ icons: { primary: 'ui-icon-pencil' }, text: false });
-                                    $('#delete', $(el)).button({ icons: { primary: 'ui-icon-trash' }, text: false });
-                                    $('#email', $(el)).button({ icons: { primary: 'ui-icon-mail-closed' }, text: false });
-                                } }">        
+                                //afterRender: function (el) {
+                                //    $('#edit', $(el)).button({ icons: { primary: 'ui-icon-pencil' }, text: false });
+                                //    $('#delete', $(el)).button({ icons: { primary: 'ui-icon-trash' }, text: false });
+                                //    $('#email', $(el)).button({ icons: { primary: 'ui-icon-mail-closed' }, text: false });}
+                              }">        
     </div>        
     <script type="text/html" id="pie-template">
         <div class="pie">
             <div data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
-            <div class="pie-toolbar">
+ @*           <div class="pie-toolbar">
                 <a id="edit" data-bind="href:'@Url.Action("Edit")', args: $data.id">Edit</a>  
                 <a id="delete" href="#" data-bind="click: $data.delete">Delete</a>  
-                <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id">Email</a>  
-            </div>
+                <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id">Email</a> 
+            </div>*@
+            <ul class="pie-toolbar">
+                <li><a data-bind="href:'@Url.Action("Edit")', args: $data.id" title="Edit"><img src="@Url.Content("~/content/styles/images/pencil_24_24.png")" alt="Edit"/></a></li>
+                <li><a href="#" data-bind="click: $data.delete" title="Delete"><img src="@Url.Content("~/content/styles/images/trash_24_24.png")" alt="Delete"/></a></li>
+                <li><a data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id" title="Email"><img src="@Url.Content("~/content/styles/images/mail_24_24.png")" alt="Email"/></a></li>
+                <li><a href="#" title="Facebook"><img src="@Url.Content("~/content/styles/images/facebook_no_circle_24_24.png")" alt="Facebook"/></a></li>
+                <li><a href="#" title="Twitter"><img src="@Url.Content("~/content/styles/images/twitter_no_circle_24_24.png")" alt="Twitter"/></a></li>
+             </ul>
         </div>
     </script>    
 </div>

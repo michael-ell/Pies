@@ -273,9 +273,30 @@ a:hover {
     position: relative;
 }
 
-.pie-toolbar {
+/*.pie-toolbar {
     position: relative;
     text-align: center;
+    margin: 0 auto;
+}*/
+
+ul.pie-toolbar {
+    text-align: center;
+    list-style: none;
+    position: relative;
+    left: -17px;
+}
+
+ul.pie-toolbar>li {
+    display: inline-block
+}
+
+ul.pie-toolbar a {
+    float: left;
+    outline: none;
+}
+
+ul.pie-toolbar a>img {
+    border: 0;
 }
 
 .label {

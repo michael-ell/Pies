@@ -297,6 +297,7 @@
     <Content Include="Content\Styles\Images\mailru.ico" />
     <Content Include="Content\Styles\Images\mailru.ico.gif" />
     <Content Include="Content\Styles\Images\mailru.ico.png" />
+    <Content Include="Content\Styles\Images\mail_24_24.png" />
     <Content Include="Content\Styles\Images\myopenid.gif" />
     <Content Include="Content\Styles\Images\myopenid.ico" />
     <Content Include="Content\Styles\Images\myopenid.ico.gif" />
@@ -308,6 +309,7 @@
     <Content Include="Content\Styles\Images\openid.ico" />
     <Content Include="Content\Styles\Images\openid.ico.gif" />
     <Content Include="Content\Styles\Images\openid.ico.png" />
+    <Content Include="Content\Styles\Images\pencil_24_24.png" />
     <Content Include="Content\Styles\Images\pies.png" />
     <Content Include="Content\Styles\Images\rambler.ico" />
     <Content Include="Content\Styles\Images\rambler.ico.gif" />
@@ -315,6 +317,7 @@
     <Content Include="Content\Styles\Images\technorati.ico" />
     <Content Include="Content\Styles\Images\technorati.ico.gif" />
     <Content Include="Content\Styles\Images\technorati.ico.png" />
+    <Content Include="Content\Styles\Images\trash_24_24.png" />
     <Content Include="Content\Styles\Images\twitter.ico" />
     <Content Include="Content\Styles\Images\twitter.ico.gif" />
     <Content Include="Content\Styles\Images\twitter.ico.png" />
