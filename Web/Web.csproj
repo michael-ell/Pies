@@ -268,6 +268,9 @@
     <Content Include="Content\Styles\Images\clickpass.ico" />
     <Content Include="Content\Styles\Images\clickpass.ico.gif" />
     <Content Include="Content\Styles\Images\clickpass.ico.png" />
+    <Content Include="Content\Styles\Images\delete-26.png" />
+    <Content Include="Content\Styles\Images\edit-26.png" />
+    <Content Include="Content\Styles\Images\facebook-26.png" />
     <Content Include="Content\Styles\Images\facebook.gif" />
     <Content Include="Content\Styles\Images\facebook.ico" />
     <Content Include="Content\Styles\Images\facebook.ico.gif" />
@@ -277,6 +280,7 @@
     <Content Include="Content\Styles\Images\flickr.ico" />
     <Content Include="Content\Styles\Images\flickr.ico.gif" />
     <Content Include="Content\Styles\Images\flickr.ico.png" />
+    <Content Include="Content\Styles\Images\dropshadow.png" />
     <Content Include="Content\Styles\Images\google.gif" />
     <Content Include="Content\Styles\Images\google.ico" />
     <Content Include="Content\Styles\Images\google.ico.gif" />
@@ -298,6 +302,7 @@
     <Content Include="Content\Styles\Images\mailru.ico.gif" />
     <Content Include="Content\Styles\Images\mailru.ico.png" />
     <Content Include="Content\Styles\Images\mail_24_24.png" />
+    <Content Include="Content\Styles\Images\message_outline-26.png" />
     <Content Include="Content\Styles\Images\myopenid.gif" />
     <Content Include="Content\Styles\Images\myopenid.ico" />
     <Content Include="Content\Styles\Images\myopenid.ico.gif" />
@@ -318,6 +323,7 @@
     <Content Include="Content\Styles\Images\technorati.ico.gif" />
     <Content Include="Content\Styles\Images\technorati.ico.png" />
     <Content Include="Content\Styles\Images\trash_24_24.png" />
+    <Content Include="Content\Styles\Images\twitter-26.png" />
     <Content Include="Content\Styles\Images\twitter.ico" />
     <Content Include="Content\Styles\Images\twitter.ico.gif" />
     <Content Include="Content\Styles\Images\twitter.ico.png" />
