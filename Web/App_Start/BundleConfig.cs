@@ -27,7 +27,7 @@ namespace Codell.Pies.Web.App_Start
                                                                 //"~/scripts/highcharts-exporting.js",
                                                                 "~/scripts/spectrum.js",
                                                                 "~/scripts/knockout-pies.js",
-                                                                "~/scripts/messages.js",
+                                                                "~/scripts/jquery.mHub.signalR.js",
                                                                 "~/scripts/pies.js"));
         }
     }

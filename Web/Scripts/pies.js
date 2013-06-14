@@ -19,9 +19,8 @@ cc.pies.index.ViewModel = function(pies, options) {
     
     if (options.editing.isEditable === true) {
         self.pies($.map(pies, function (pie) { return new cc.pies.index.Pie(pie, options.editing.actions); }));
-
-        var hub = $.connection.pie;
-        hub.client.pieDeleted = function (data) {
+        $.mhub.init(options.editing.owner);
+        $.mhub.subscribe($.mhub.messages.pieDeleted, function(data) {
             var unwrapped = self.pies();
             for (var i = 0, len = unwrapped.length; i < len; i++) {
                 var pie = unwrapped[i];
@@ -30,10 +29,7 @@ cc.pies.index.ViewModel = function(pies, options) {
                     break;
                 }
             }
-        };
-        $.connection.hub.start().done(function () {
-            hub.server.join(options.editing.owner);
-        });        
+        });       
     } else {        
         //self.find();
         self.pies(pies);
@@ -49,7 +45,7 @@ cc.pies.index.Pie = function (dto, actions) {
     $.extend(self, dto);
 };
 
-cc.pies.cr8 = pies.cr8 || {};
+cc.pies.cr8 = cc.pies.cr8 || {};
 cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {    
     var self = this;
     self.id = dto.id;
@@ -88,30 +84,27 @@ cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
         }
     };
 
-    var hub = $.connection.pie;
-    hub.client.captionUpdated = function(data) {
+    $.mhub.init(dto.id);    
+    $.mhub.subscribe($.mhub.messages.captionUpdated, function (data) {
         self.caption(data);
-    };
-    hub.client.ingredientsUpdated = function (data) {
+    });    
+    $.mhub.subscribe($.mhub.messages.ingredientsUpdated, function(data) {
         var ingredients = toObservables(data.ingredients);
         self.editableIngredients(ingredients);
         if (data.filler.percent > 0) {
             ingredients.push(new cc.pies.cr8.Ingredient(self.id, data.filler));
         }
         self.allIngredients(ingredients);
-    };
-    hub.client.percentageChanged = function (data) {
+    });    
+    $.mhub.subscribe($.mhub.messages.percentageChanged, function (data) {
         var ingredient = Enumerable.From(self.editableIngredients()).Single(function (i) { return i.id === data.id; });
         ingredient.message(data.message);
         ingredient.reverting = true;
         ingredient.percent(data.currentPercent);
         ingredient.reverting = false;
-    };
-    hub.client.showMessage = function(data) {
+    });    
+    $.mhub.subscribe($.mhub.messages.messageReceived, function (data) {
         self.pieMessage(data);
-    };
-    $.connection.hub.start().done(function () {
-        hub.server.join(dto.id);
     });
 };
 

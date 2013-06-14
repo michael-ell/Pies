@@ -41,6 +41,7 @@ local.properties
 *.user
 *.sln.docstates
 *.log
+_Chutzpah.*
 
 # Build results
 [Dd]ebug/
