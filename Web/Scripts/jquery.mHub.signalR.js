@@ -6,14 +6,16 @@
     messageReceived: 'mr'
 };
 
-$.mhub.init = function (group) {
-    
+$.mhub.init = function(name) {
     $.mhub.create($.mhub.messages.pieDeleted);
     $.mhub.create($.mhub.messages.captionUpdated);
     $.mhub.create($.mhub.messages.ingredientsUpdated);
     $.mhub.create($.mhub.messages.percentageChanged);
     $.mhub.create($.mhub.messages.messageReceived);
+    $.mhub.start(name);
+};
 
+$.mhub.start = function(name) {
     var hub = $.connection.pie;
     hub.client.pieDeleted = function (data) {
         $.mhub.send($.mhub.messages.pieDeleted, data);
@@ -31,8 +33,8 @@ $.mhub.init = function (group) {
         $.mhub.send($.mhub.messages.messageReceived, data);
     };
     $.connection.hub.start().done(function () {
-        if(group) {
-            hub.server.join(group);
+        if (name) {
+            hub.server.join(name);
         }
     });
-}
+};

@@ -434,10 +434,13 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts-Testing\Creators\ingredient.js" />
+    <Content Include="Scripts-Testing\Creators\pie.js" />
     <Content Include="Scripts-Tests\displaying-pies.js" />
-    <Content Include="Scripts.Testing\Helpers\matchers.js" />
-    <Content Include="Scripts.Testing\Jasmine\jasmine-adapter.js" />
-    <Content Include="Scripts.Testing\Jasmine\jasmine.js" />
+    <Content Include="Scripts-Testing\Helpers\testing.js" />
+    <Content Include="Scripts-Testing\Helpers\matchers.js" />
+    <Content Include="Scripts-Testing\Jasmine\jasmine-adapter.js" />
+    <Content Include="Scripts-Testing\Jasmine\jasmine.js" />
     <Content Include="Scripts\highcharts-exporting.js" />
     <Content Include="Scripts\pies.js" />
     <Content Include="Scripts\highcharts.js" />
@@ -478,7 +481,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Readme\" />
-    <Folder Include="Scripts.Testing\Creators\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
