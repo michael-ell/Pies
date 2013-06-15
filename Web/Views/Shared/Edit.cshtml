@@ -1,23 +1,5 @@
 ﻿@using Codell.Pies.Web.Extensions
 @model Codell.Pies.Web.Models.Shared.PieModel
-@section Scripts
-{
-    <script type="text/javascript">
-        $(function() {
-            var $scope = $('#edit');
-            $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
-            var pie = new cc.pies.cr8.Pie(@Html.Raw(Model.ToJson()), 
-                                       { updateCaption : '@Url.Action("UpdateCaption", "Pie")',
-                                         updateTags : '@Url.Action("UpdateTags", "Pie")'},
-                                       { add: '@Url.Action("AddIngredient", "Pie")', 
-                                         updatePercentage: '@Url.Action("UpdateIngredientPercentage", "Pie")', 
-                                         updateDescription: '@Url.Action("UpdateIngredientDescription", "Pie")', 
-                                         updateColor: '@Url.Action("UpdateIngredientColor", "Pie")', 
-                                         delete: '@Url.Action("DeleteIngredient", "Pie")' });
-            ko.applyBindings(pie, $scope[0]);
-        });
-    </script>
-}
 <div id="edit">
     <div class="kitchen">
         <table class="kitchen-top">
@@ -101,5 +83,23 @@
         </table>
     </script>
 </div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            var $scope = $('#edit');
+            $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
+            var pie = new cc.pies.edit.Pie(@Html.Raw(Model.ToJson()), 
+                                       { updateCaption : '@Url.Action("UpdateCaption", "Pie")',
+                                           updateTags : '@Url.Action("UpdateTags", "Pie")'},
+                                       { add: '@Url.Action("AddIngredient", "Pie")', 
+                                           updatePercentage: '@Url.Action("UpdateIngredientPercentage", "Pie")', 
+                                           updateDescription: '@Url.Action("UpdateIngredientDescription", "Pie")', 
+                                           updateColor: '@Url.Action("UpdateIngredientColor", "Pie")', 
+                                           delete: '@Url.Action("DeleteIngredient", "Pie")' });
+            ko.applyBindings(pie, $scope[0]);
+        });
+    </script>
+}
 
 

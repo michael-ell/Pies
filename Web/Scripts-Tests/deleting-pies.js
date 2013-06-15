@@ -21,7 +21,7 @@ describe("Deleting Pies - ", function () {
             pieToDelete = new cr8.Pie();
             actions = new cr8.Actions();
             spyOn($, 'ajax').andCallFake(function() {});            
-            sut = new cc.pies.index.Pie([pieToDelete], new cr8.Options().withEditing());
+            sut = new cc.pies.Pie([pieToDelete], new cr8.Options().withEditing());
             
             sut.delete();
         });
@@ -42,7 +42,7 @@ describe("Deleting Pies - ", function () {
             this.addMatchers(testing.matchers);
             testing.setup();
             pieToDelete = new cr8.Pie();
-            sut = new cc.pies.index.ViewModel([pieToDelete], new cr8.Options().withEditing());
+            sut = new cc.pies.Index([pieToDelete], new cr8.Options().withEditing());
 
             $.mhub.send($.mhub.messages.pieDeleted, pieToDelete);
         });

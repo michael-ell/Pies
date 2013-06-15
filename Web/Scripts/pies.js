@@ -1,8 +1,7 @@
 ﻿var cc = cc || {};
 cc.pies = cc.pies || {};
 
-cc.pies.index = cc.pies.index || {};
-cc.pies.index.ViewModel = function(pies, options) {
+cc.pies.Index = function(pies, options) {
     var self = this;
     options = options || { findUrl: '' };
     options.editing = options.editing || { isEditable: false, owner: '', actions: { delete: '' } };
@@ -18,7 +17,7 @@ cc.pies.index.ViewModel = function(pies, options) {
     };
     
     if (options.editing.isEditable === true) {
-        self.pies($.map(pies, function (pie) { return new cc.pies.index.Pie(pie, options.editing.actions); }));
+        self.pies($.map(pies, function (pie) { return new cc.pies.Pie(pie, options.editing.actions); }));
         $.mhub.init(options.editing.owner);
         $.mhub.subscribe($.mhub.messages.pieDeleted, function(data) {
             var unwrapped = self.pies();
@@ -35,7 +34,7 @@ cc.pies.index.ViewModel = function(pies, options) {
     }
 };
 
-cc.pies.index.Pie = function (model, actions) {
+cc.pies.Pie = function (model, actions) {
     var self = this;
     self.actions = actions;
     self.delete = function() {
@@ -44,8 +43,8 @@ cc.pies.index.Pie = function (model, actions) {
     $.extend(self, model);
 };
 
-cc.pies.cr8 = cc.pies.cr8 || {};
-cc.pies.cr8.Pie = function (model, pieActions, ingredientActions) {    
+cc.pies.edit = cc.pies.edit|| {};
+cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
     var self = this;
     self.id = model.id;
     self.pieActions = pieActions;
@@ -53,7 +52,7 @@ cc.pies.cr8.Pie = function (model, pieActions, ingredientActions) {
 
     function toObservables(ingredients) {
         return $.map(ingredients, function (i) {
-            return new cc.pies.cr8.Ingredient(self.id, i, self.ingredientActions);
+            return new cc.pies.edit.Ingredient(self.id, i, self.ingredientActions);
         });
     }
 
@@ -91,7 +90,7 @@ cc.pies.cr8.Pie = function (model, pieActions, ingredientActions) {
         var ingredients = toObservables(data.ingredients);
         self.editableIngredients(ingredients);
         if (data.filler.percent > 0) {
-            ingredients.push(new cc.pies.cr8.Ingredient(self.id, data.filler));
+            ingredients.push(new cc.pies.edit.Ingredient(self.id, data.filler));
         }
         self.allIngredients(ingredients);
     });    
@@ -107,7 +106,7 @@ cc.pies.cr8.Pie = function (model, pieActions, ingredientActions) {
     });
 };
 
-cc.pies.cr8.Ingredient = function (pieId, model, actions) {
+cc.pies.edit.Ingredient = function (pieId, model, actions) {
     var self = this;
     self.pieId = pieId,
     self.id = model.id;

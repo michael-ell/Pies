@@ -19,7 +19,7 @@ describe("Editing Pies - ", function () {
             testing.setup();
 
             spyOn($.mhub, 'init');
-            sut = new cc.pies.cr8.Pie(new cr8.Pie());
+            sut = new cc.pies.edit.Pie(new cr8.Pie());
         });
 
 
@@ -34,7 +34,7 @@ describe("Editing Pies - ", function () {
         beforeEach(function () {
             this.addMatchers(testing.matchers);
             testing.setup();          
-            sut = new cc.pies.cr8.Pie(new cr8.Pie());
+            sut = new cc.pies.edit.Pie(new cr8.Pie());
 
             $.mhub.send($.mhub.messages.captionUpdated, expectedCaption);
         });

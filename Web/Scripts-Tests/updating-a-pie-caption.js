@@ -20,7 +20,7 @@ describe("Updating a pie caption - ", function () {
             testing.setup();
             
             spyOn($, 'post').andCallFake(function () { });
-            sut = new cc.pies.cr8.Pie(new cr8.Pie(), new cr8.Actions());
+            sut = new cc.pies.edit.Pie(new cr8.Pie(), new cr8.Actions());
 
             sut.caption(expectedCaption);
         });
@@ -39,7 +39,7 @@ describe("Updating a pie caption - ", function () {
             testing.setup();
 
             expectedCaption = "my awesome pie";
-            sut = new cc.pies.cr8.Pie(new cr8.Pie(), new cr8.Actions());
+            sut = new cc.pies.edit.Pie(new cr8.Pie(), new cr8.Actions());
 
             $.mhub.send($.mhub.messages.captionUpdated, expectedCaption);
         });

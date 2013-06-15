@@ -17,7 +17,7 @@ describe("Displaying Pies - ", function () {
             this.addMatchers(testing.matchers);
             testing.setup();
             expectedPies = [cr8.Pie()];
-            sut = new cc.pies.index.ViewModel(expectedPies, new cr8.Options().noEditing());
+            sut = new cc.pies.Index(expectedPies, new cr8.Options().noEditing());
         });
 
         it("should display the pies", function () {
@@ -38,7 +38,7 @@ describe("Displaying Pies - ", function () {
             spyOn($.mhub, 'init');
             options = new cr8.Options().withEditing();
             expectedPies = [cr8.Pie()];                
-            sut = new cc.pies.index.ViewModel(expectedPies, options);
+            sut = new cc.pies.Index(expectedPies, options);
         });
 
         it("should start listening to messages for the pies owner", function() {
@@ -68,7 +68,7 @@ describe("Displaying Pies - ", function () {
                     callback(JSON.stringify(expectedPies));
                 }
             });
-            sut = new cc.pies.index.ViewModel([], new cr8.Options());
+            sut = new cc.pies.Index([], new cr8.Options());
             sut.selectedTag(expectedTag);
             sut.find();
         });
@@ -95,7 +95,7 @@ describe("Displaying Pies - ", function () {
                     callback(JSON.stringify(expectedPies));
                 }
             });
-            sut = new cc.pies.index.ViewModel([], new cr8.Options());
+            sut = new cc.pies.Index([], new cr8.Options());
             sut.find();
         });
 

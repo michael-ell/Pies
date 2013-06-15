@@ -1,16 +1,6 @@
 ﻿@using Codell.Pies.Common
 @using Codell.Pies.Web.Extensions
 @model Codell.Pies.Web.Models.Home.IndexModel
-@section Scripts
-{
-    <script type="text/javascript">
-        $(function() {
-            var $scope = $('#pies');
-            $('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});            
-            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.Pies.ToJson()), { findUrl: '@Url.Action("Find", "Home")' }), $scope[0]);
-        });
-    </script>    
-}
 <div id="pies">
     <div class="search-bar">
         &nbsp;        
@@ -33,3 +23,13 @@
         </div>
     </script>    
 </div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            var $scope = $('#pies');
+            $('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});            
+            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { findUrl: '@Url.Action("Find", "Home")' }), $scope[0]);
+        });
+    </script>    
+}

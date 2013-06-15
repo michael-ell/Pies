@@ -1,13 +1,5 @@
 ﻿@using Codell.Pies.Web.Extensions
 @model Codell.Pies.Web.Models.MyPies.IndexModel
-@section Scripts
-{
-    <script type="text/javascript">
-        $(function() {
-            ko.applyBindings(new cc.pies.index.ViewModel(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { delete: '@Url.Action("Delete")' } } }), $('#pies')[0]);
-        });
-    </script>    
-}
 <div id="pies">
     <div data-bind="template: { name: 'pie-template',
                                 foreach: pies,
@@ -20,7 +12,7 @@
     <script type="text/html" id="pie-template">
         <div class="pie">
             <div data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
- @*           <div class="pie-toolbar">
+            @*           <div class="pie-toolbar">
                 <a id="edit" data-bind="href:'@Url.Action("Edit")', args: $data.id">Edit</a>  
                 <a id="delete" href="#" data-bind="click: $data.delete">Delete</a>  
                 <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id">Email</a> 
@@ -31,7 +23,15 @@
                 <li><a data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id" title="Email"><img src="@Url.Content("~/content/styles/images/message_outline-26.png")" alt="Email"/></a></li>
                 <li><a href="#" title="Facebook"><img src="@Url.Content("~/content/styles/images/facebook-26.png")" alt="Facebook"/></a></li>
                 <li><a href="#" title="Twitter"><img src="@Url.Content("~/content/styles/images/twitter-26.png")" alt="Twitter"/></a></li>
-             </ul>
+            </ul>
         </div>
     </script>    
 </div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function() {
+            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { delete: '@Url.Action("Delete")' } } }), $('#pies')[0]);
+        });
+    </script>    
+}
