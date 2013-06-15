@@ -31,24 +31,23 @@ cc.pies.index.ViewModel = function(pies, options) {
             }
         });       
     } else {        
-        //self.find();
         self.pies(pies);
     }
 };
 
-cc.pies.index.Pie = function (dto, actions) {
+cc.pies.index.Pie = function (model, actions) {
     var self = this;
     self.actions = actions;
     self.delete = function() {
-        $.ajax({ url: self.actions.delete + '/' + self.id, type: 'DELETE'});
+        $.ajax({ url: self.actions.delete + '/' + self.id, type: 'delete'});
     };
-    $.extend(self, dto);
+    $.extend(self, model);
 };
 
 cc.pies.cr8 = cc.pies.cr8 || {};
-cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {    
+cc.pies.cr8.Pie = function (model, pieActions, ingredientActions) {    
     var self = this;
-    self.id = dto.id;
+    self.id = model.id;
     self.pieActions = pieActions;
     self.ingredientActions = ingredientActions;
 
@@ -58,11 +57,11 @@ cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
         });
     }
 
-    self.caption = ko.observable(dto.caption);
-    self.allIngredients = ko.observableArray(dto.allIngredients);
+    self.caption = ko.observable(model.caption);
+    self.allIngredients = ko.observableArray(model.allIngredients);
     self.ingredientToAdd = ko.observable('');
-    self.editableIngredients = ko.observableArray(toObservables(dto.editableIngredients));
-    self.tags = ko.observable(dto.tags);
+    self.editableIngredients = ko.observableArray(toObservables(model.editableIngredients));
+    self.tags = ko.observable(model.tags);
     self.pieMessage = ko.observable();
     
     self.caption.subscribe(function (caption) {
@@ -84,7 +83,7 @@ cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
         }
     };
 
-    $.mhub.init(dto.id);    
+    $.mhub.init(model.id);    
     $.mhub.subscribe($.mhub.messages.captionUpdated, function (data) {
         self.caption(data);
     });    
@@ -108,13 +107,13 @@ cc.pies.cr8.Pie = function (dto, pieActions, ingredientActions) {
     });
 };
 
-cc.pies.cr8.Ingredient = function (pieId, dto, actions) {
+cc.pies.cr8.Ingredient = function (pieId, model, actions) {
     var self = this;
     self.pieId = pieId,
-    self.id = dto.id;
-    self.percent = ko.observable(dto.percent);
-    self.description = ko.observable(dto.description);
-    self.color = ko.observable(dto.color);
+    self.id = model.id;
+    self.percent = ko.observable(model.percent);
+    self.description = ko.observable(model.description);
+    self.color = ko.observable(model.color);
     self.formattedPercent = ko.computed(function () {
         return self.percent() + '%';
     });

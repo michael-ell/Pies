@@ -10,7 +10,7 @@ cr8.Pie = function () {
         if (!other) return false;
         return self.id == other.id &&
                self.caption == other.caption &&
-               testing.verify.matchingArray(self.allIngredients, other.allIngredient) &&
+               testing.verify.matchingArray(self.allIngredients, other.allIngredients) &&
                testing.verify.matchingArray(self.editableIngredients, other.editableIngredients) &&
                testing.verify.matchingArray(self.tags, other.tags);
     };

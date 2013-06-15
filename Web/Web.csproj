@@ -434,11 +434,15 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts-Testing\Creators\actions.js" />
     <Content Include="Scripts-Testing\Creators\ingredient.js" />
+    <Content Include="Scripts-Testing\Creators\options.js" />
     <Content Include="Scripts-Testing\Creators\pie.js" />
+    <Content Include="Scripts-Tests\updating-a-pie-caption.js" />
+    <Content Include="Scripts-Tests\editing-pies.js" />
+    <Content Include="Scripts-Tests\deleting-pies.js" />
     <Content Include="Scripts-Tests\displaying-pies.js" />
     <Content Include="Scripts-Testing\Helpers\testing.js" />
-    <Content Include="Scripts-Testing\Helpers\matchers.js" />
     <Content Include="Scripts-Testing\Jasmine\jasmine-adapter.js" />
     <Content Include="Scripts-Testing\Jasmine\jasmine.js" />
     <Content Include="Scripts\highcharts-exporting.js" />
