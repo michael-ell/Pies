@@ -10,7 +10,7 @@
 /// <reference path="../scripts-testing/creators/options.js" />
 /// <reference path="../scripts-testing/creators/actions.js" />
 /// 
-describe("Updating a pie caption - ", function () {
+describe("Updating a pie caption: ", function () {
 
     describe("When a user enters a caption for a pie that is empty", function () {
         var sut;
@@ -62,7 +62,7 @@ describe("Updating a pie caption - ", function () {
         beforeEach(function () {
             this.addMatchers(testing.setup());
 
-            expectedCaption = "my awesome pie";
+            expectedCaption = "my stellar pie";
             sut = new cc.pies.edit.Pie(new cr8.Pie(), new cr8.Actions());
 
             $.mhub.send($.mhub.messages.captionUpdated, expectedCaption);

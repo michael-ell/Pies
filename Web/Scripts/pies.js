@@ -86,9 +86,9 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
     $.mhub.subscribe($.mhub.messages.captionUpdated, function (data) {
         self.caption(data);
     });    
-    $.mhub.subscribe($.mhub.messages.ingredientsUpdated, function(data) {
+    $.mhub.subscribe($.mhub.messages.ingredientsUpdated, function(data) {        
+        self.editableIngredients(toObservables(data.ingredients));
         var ingredients = toObservables(data.ingredients);
-        self.editableIngredients(ingredients);
         if (data.filler.percent > 0) {
             ingredients.push(new cc.pies.edit.Ingredient(self.id, data.filler));
         }
@@ -119,7 +119,7 @@ cc.pies.edit.Ingredient = function (pieId, model, actions) {
     self.message = ko.observable();
     self.actions = actions;
     self.remove = function() {
-        $.ajax({ url: self.actions.delete, type: 'DELETE', data: { id: self.id, pieId: self.pieId } });
+        $.ajax({ url: self.actions.delete, type: 'delete', data: { id: self.id, pieId: self.pieId } });
     };
     self.reverting = false;
     self.percent.subscribe(function (newPercent) {

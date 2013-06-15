@@ -246,7 +246,7 @@ a:hover {
     padding: 0 3px;
 }
 
-.kitchen, .preview, .pie-preview, .share-pie {
+.kitchen, .preview {
     display: inline-block;
 }
 
@@ -272,12 +272,6 @@ a:hover {
     float: left;
     position: relative;
 }
-
-/*.pie-toolbar {
-    position: relative;
-    text-align: center;
-    margin: 0 auto;
-}*/
 
 ul.pie-toolbar
 {
@@ -327,8 +321,11 @@ ul.pie-toolbar a:hover {
     opacity: 0.8;
 }
 
-ul.pie-toolbar a>img {
+ul.pie-toolbar a>img
+{
     border: 0;
+    height: 24px;
+    width: 24px;
 }
 
 .label {
@@ -408,25 +405,6 @@ td.ingredient{
     width: 49%;
     overflow: hidden;
     position: relative;
-}
-
-.pie-preview {    
-    width: 90%;
-}
-.share-pie{
-    width: 10%;
-    height: 96%;
-    position: absolute;
-    right: 0;
-    padding-top: 10px;
-}
-
-.share-pie img {
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto;
-    padding-bottom: 10px;
-    cursor: pointer;
 }
 
 .ingredient-container {

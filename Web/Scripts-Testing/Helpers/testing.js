@@ -76,13 +76,18 @@ testing.matchers = {
 };
 
 testing.verify = {
-    matchingArray: function(expected, actual) {
+    matchingArray: function(expected, actual, comparer) {
         if (expected && actual) {
             if (expected.length !== actual.length) {
                 return false;
             }
             for (var i = 0; i < expected.length; i++) {
-                if (expected[i].matches && $.isFunction(expected[i].matches)) {
+                if (comparer && $.isFunction(comparer)) {
+                    if (!comparer(expected[i], actual[i])) {
+                        return false;
+                    }
+                }
+                else if (expected[i].matches && $.isFunction(expected[i].matches)) {
                     if (!expected[i].matches(actual[i])) {
                         return false;
                     }

@@ -10,7 +10,7 @@
 /// <reference path="../scripts-testing/creators/options.js" />
 /// <reference path="../scripts-testing/creators/actions.js" />
 /// 
-describe("Deleting Pies - ", function () {
+describe("Deleting Pies: ", function () {
     describe("When deleting a pie", function () {
         var sut, pieToDelete, actions;
         

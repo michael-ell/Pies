@@ -9,7 +9,7 @@
 /// <reference path="../scripts-testing/creators/ingredient.js" />
 /// <reference path="../scripts-testing/creators/options.js" />
 /// 
-describe("Displaying Pies - ", function () {
+describe("Displaying Pies: ", function () {
     describe("When displaying pies that are NOT editable", function () {
         var sut, expectedPies;
 

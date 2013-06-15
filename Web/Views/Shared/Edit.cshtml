@@ -37,18 +37,7 @@
                                                         } }">            
         </div>                      
     </div>
-    <div class="preview" >
-        <div class ="pie-preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
-        <div class="share-pie">
-            <img src="@Url.Content("~/content/styles/images/facebook_24_24.png")" alt="Facebook"/>
-            <img src="@Url.Content("~/content/styles/images/twitter_24_24.png")" alt="Facebook"/>
-            <img src="@Url.Content("~/content/styles/images/linkedin_24_24.png")" alt="Facebook"/>
-            <img src="@Url.Content("~/content/styles/images/twittert_24_24.png")" alt="Facebook"/>
-            <img src="@Url.Content("~/content/styles/images/facebook_no_circle_24_24.png")" alt="Facebook"/>
-            <img src="@Url.Content("~/content/styles/images/twitter_no_circle_24_24.png")" alt="Twitter"/>
-            <img src="@Url.Content("~/content/styles/images/twittert_no_circle_24_24.png")" alt="Facebook"/>
-        </div>
-    </div>
+    <div class ="preview" id="chart" data-bind="pieChart: allIngredients, pieChartTitle: caption, pieOptions: { dataMap: { text: 'description', value: 'percent', color: 'color' } }"></div>
     <script type="text/html" id="ingredient-template">
         <table class="ingredient-container">
             <tr>
@@ -91,12 +80,12 @@
             $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
             var pie = new cc.pies.edit.Pie(@Html.Raw(Model.ToJson()), 
                                        { updateCaption : '@Url.Action("UpdateCaption", "Pie")',
-                                           updateTags : '@Url.Action("UpdateTags", "Pie")'},
+                                         updateTags : '@Url.Action("UpdateTags", "Pie")'},
                                        { add: '@Url.Action("AddIngredient", "Pie")', 
-                                           updatePercentage: '@Url.Action("UpdateIngredientPercentage", "Pie")', 
-                                           updateDescription: '@Url.Action("UpdateIngredientDescription", "Pie")', 
-                                           updateColor: '@Url.Action("UpdateIngredientColor", "Pie")', 
-                                           delete: '@Url.Action("DeleteIngredient", "Pie")' });
+                                         updatePercentage: '@Url.Action("UpdateIngredientPercentage", "Pie")', 
+                                         updateDescription: '@Url.Action("UpdateIngredientDescription", "Pie")', 
+                                         updateColor: '@Url.Action("UpdateIngredientColor", "Pie")', 
+                                         delete: '@Url.Action("DeleteIngredient", "Pie")' });
             ko.applyBindings(pie, $scope[0]);
         });
     </script>
