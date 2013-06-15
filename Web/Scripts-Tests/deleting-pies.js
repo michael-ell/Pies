@@ -15,20 +15,19 @@ describe("Deleting Pies - ", function () {
         var sut, pieToDelete, actions;
         
         beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();
+            this.addMatchers(testing.setup());
             
             pieToDelete = new cr8.Pie();
             actions = new cr8.Actions();
             spyOn($, 'ajax').andCallFake(function() {});            
-            sut = new cc.pies.Pie([pieToDelete], new cr8.Options().withEditing());
+            sut = new cc.pies.Pie(pieToDelete, actions);
             
             sut.delete();
         });
 
 
         it("should delete the pie", function() {
-            expect($.ajax).toHaveBeenCalledWithArgumentContaining({
+            expect($.ajax).toHaveBeenCalledWithArgument({
                 url: actions.delete + "/" + pieToDelete.id,
                 type: 'delete'
             });
@@ -39,8 +38,8 @@ describe("Deleting Pies - ", function () {
         var sut, pieToDelete;
 
         beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();
+            this.addMatchers(testing.setup());
+            
             pieToDelete = new cr8.Pie();
             sut = new cc.pies.Index([pieToDelete], new cr8.Options().withEditing());
 

@@ -4,6 +4,7 @@ testing.setup = function () {
     $.mhub.start = function () {
         //do nothing...
     };
+    return testing.matchers;
 };
 
 testing.matchers = {
@@ -56,6 +57,21 @@ testing.matchers = {
             }
         }
         return false;
+    },
+    
+    toHaveBeenCalledWithArgument: function (expected) {
+        if (!this.actual.wasCalled) return false;
+
+        for (var property in expected) {
+            for (var i = 0; i < this.actual.argsForCall.length; i++) {
+                for (var j = 0; j < this.actual.argsForCall[i].length; j++) {
+                    if (this.actual.argsForCall[i][j][property] && this.actual.argsForCall[i][j][property] != expected[property]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 };
 

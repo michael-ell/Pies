@@ -15,8 +15,7 @@ describe("Editing Pies - ", function () {
         var sut;
 
         beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();
+            this.addMatchers(testing.setup());
 
             spyOn($.mhub, 'init');
             sut = new cc.pies.edit.Pie(new cr8.Pie());
@@ -26,22 +25,5 @@ describe("Editing Pies - ", function () {
         it("should listen to messages related to the pie", function () {
             expect($.mhub.init).toHaveBeenCalledWith(sut.id);
         });
-    });
-
-    describe("When a pies caption is updated", function () {
-        var sut, expectedCaption;
-        
-        beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();          
-            sut = new cc.pies.edit.Pie(new cr8.Pie());
-
-            $.mhub.send($.mhub.messages.captionUpdated, expectedCaption);
-        });
-
-
-        it("should display the new caption", function() {
-            expect(sut.caption()).toBe(expectedCaption);
-        });
-    });   
+    });  
 });

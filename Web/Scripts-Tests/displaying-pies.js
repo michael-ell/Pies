@@ -14,8 +14,8 @@ describe("Displaying Pies - ", function () {
         var sut, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();
+            this.addMatchers(testing.setup());
+
             expectedPies = [cr8.Pie()];
             sut = new cc.pies.Index(expectedPies, new cr8.Options().noEditing());
         });
@@ -32,8 +32,7 @@ describe("Displaying Pies - ", function () {
         var sut, options, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();
+            this.addMatchers(testing.setup());
 
             spyOn($.mhub, 'init');
             options = new cr8.Options().withEditing();
@@ -57,8 +56,7 @@ describe("Displaying Pies - ", function () {
         var sut, options, expectedTag, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();
+            this.addMatchers(testing.setup());
 
             options = new cr8.Options().withEditing();
             expectedPies = [new cr8.Pie()];
@@ -85,8 +83,7 @@ describe("Displaying Pies - ", function () {
         var sut, options, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.matchers);
-            testing.setup();
+            this.addMatchers(testing.setup());
 
             options = new cr8.Options().withEditing();
             expectedPies = [new cr8.Pie()];
