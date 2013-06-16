@@ -8,5 +8,6 @@ cr8.Actions = function () {
     self.updatePercentage = "www.update.percentage.com";
     self.updateDescription = "www.update.description.com";
     self.updateColor = "www.update.color.com";
+    self.delete = "www.delete.com";
     return self;
 };

@@ -440,6 +440,7 @@
     <Content Include="Scripts-Testing\Creators\options.js" />
     <Content Include="Scripts-Testing\Creators\pie.js" />
     <Content Include="Scripts-Tests\adding-ingredients.js" />
+    <Content Include="Scripts-Tests\removing-ingredients.js" />
     <Content Include="Scripts-Tests\updating-ingredient-color.js" />
     <Content Include="Scripts-Tests\updating-ingredient-description.js" />
     <Content Include="Scripts-Tests\updating-ingredient-percentage.js" />
