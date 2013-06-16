@@ -25,3 +25,16 @@ cr8.IngredientsUpdated = function () {
     };
     return self;
 };
+
+cr8.ChangePercentage = function () {
+    var self = this;
+    self.id = 'z';
+    self.currentPercent = 30;
+    self.message = "some message";
+    self.for = function(ingredient) {
+        self.id = ingredient.id;
+        self.currentPercent = ingredient.percent + 5;
+        return self;
+    };
+    return self;
+};

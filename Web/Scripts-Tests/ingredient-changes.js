@@ -33,38 +33,4 @@ describe("Ingredient changes: ", function () {
             expect(testing.verify.matchingArray(updated.ingredients, sut.editableIngredients())).toBe(true);
         });
     });
-
-    describe("When a percentage for an ingredient is changed", function () {
-        //var sut, actions, expectedIngredient;
-
-        //beforeEach(function () {
-        //    this.addMatchers(testing.setup());
-
-        //    spyOn($, 'post').andCallFake(function(url, data, success) {
-        //        success();
-        //    });
-        //    expectedIngredient = "blueberries";
-        //    actions = new cr8.Actions();
-        //    sut = new cc.pies.edit.Pie(new cr8.Pie(), actions, actions);
-        //    sut.ingredientToAdd(expectedIngredient);
-            
-        //    sut.addIngredient();
-        //});        
-
-        //it("should call the correct location that adds the ingredient", function () {
-        //    expect($.post.calls[0].args[0]).toBe(actions.add);
-        //});
-
-        //it("should add the ingredient to the correct pie", function () {
-        //    expect($.post.calls[0].args[1].id).toBe(sut.id);
-        //});
-
-        //it("should update the tags for the pie", function () {
-        //    expect($.post.calls[0].args[1].description).toBe(expectedIngredient);
-        //});
-
-        //it("should clear the ingredient that was added", function() {
-        //    expect(sut.ingredientToAdd()).toBe('');
-        //});
-    });
 });

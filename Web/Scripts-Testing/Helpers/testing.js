@@ -1,6 +1,7 @@
 ﻿var testing = testing || {};
 
 testing.setup = function () {
+    $.mhub.reset();
     $.mhub.start = function () {
         //do nothing...
     };
