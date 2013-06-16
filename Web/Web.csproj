@@ -433,6 +433,7 @@
     <Content Include="Autofac.config" />
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
+    <Content Include="jsTestDriver.conf" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts-Testing\Creators\actions.js" />
     <Content Include="Scripts-Testing\Creators\ingredient.js" />
