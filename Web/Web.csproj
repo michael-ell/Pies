@@ -231,7 +231,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\PieController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Hubs\PieHub.cs" />
@@ -486,10 +485,10 @@
     <Content Include="Views\MyPies\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLogin.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Search\Single.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PagingModel.cshtml" />
     <Content Include="Views\Error\Default.cshtml" />
+    <Content Include="Views\Home\Single.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

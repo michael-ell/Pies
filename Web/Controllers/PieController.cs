@@ -80,5 +80,12 @@ namespace Codell.Pies.Web.Controllers
         {
             _commandService.Execute(new UpdatePieTagsCommand(model.Id, model.Tags));
         }
+
+        [HttpGet]
+        public ActionResult Join(Guid id)
+        {
+            var pie = _repository.FindById<Guid, Pie>(id);
+            return View("Edit", _mapper.Map<Pie, PieModel>(pie));
+        }
     }
 }

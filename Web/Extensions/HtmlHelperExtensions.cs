@@ -61,18 +61,6 @@ namespace Codell.Pies.Web.Extensions
 
         private static readonly SelectListItem[] SingleEmptyItem = new[] { new SelectListItem { Text = Resources.SelectPrompt, Value = "" } };
 
-        public static MvcHtmlString SpanFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
-        {
-            var text = expression.Compile()(htmlHelper.ViewData.Model).SafeToString();
-            if (string.IsNullOrEmpty(text))
-                return MvcHtmlString.Create("&nbsp");
-            
-            var span = new TagBuilder("span");
-            span.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
-            span.SetInnerText(text);
-            return MvcHtmlString.Create(span.ToString());
-        } 
-
         public static string Version(this HtmlHelper htmlHelper)
         {
             return InformationAssembly().GetName().Version.ToString();
@@ -142,6 +130,55 @@ namespace Codell.Pies.Web.Extensions
                 return new MvcHtmlString(string.Format("<li class='selected'>{0}</li>", helper.ActionLink(text, action, controller, null, new { @class = "currentMenuItem" })));
             }
             return new MvcHtmlString(string.Format("<li>{0}</li>", helper.ActionLink(text, action, controller, null, new { @class = "currentMenuItem" })));
+        }
+
+        public static MvcHtmlString Tab(this HtmlHelper helper, string text, TabAction primary,  params TabAction[] alternates)
+        {
+            var routeData = helper.ViewContext.RouteData.Values;
+            var current = new TabAction((string) routeData["action"], (string)routeData["controller"]);
+            alternates = alternates ?? new TabAction[0];
+
+            if (primary.Equals(current) || alternates.Any(action => action.Equals(current)))
+            {
+                return new MvcHtmlString(string.Format("<li class='selected'>{0}</li>", helper.ActionLink(text, primary.Action, primary.Controller, null, new { @class = "currentMenuItem" })));
+            }
+            return new MvcHtmlString(string.Format("<li>{0}</li>", helper.ActionLink(text, primary.Action, primary.Controller, null, new { @class = "currentMenuItem" })));
+        }
+    }
+
+    public class TabAction
+    {
+        public TabAction(string action, string controller)
+        {
+            Verify.NotWhitespace(action, "action");
+            Verify.NotWhitespace(controller, "controller");
+
+            Action = action;
+            Controller = controller;
+        }
+
+        public string Action { get; private set; }
+        public string Controller { get; private set; }
+
+        protected bool Equals(TabAction other)
+        {
+            return string.Equals(Action, other.Action) && string.Equals(Controller, other.Controller);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((TabAction) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return ((Action != null ? Action.GetHashCode() : 0)*397) ^ (Controller != null ? Controller.GetHashCode() : 0);
+            }
         }
     }
 }

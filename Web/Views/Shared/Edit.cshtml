@@ -6,7 +6,9 @@
             <tr>
                 <td class="label">Caption</td>
                 <td class="ingredient"><input type="text" data-bind="value: caption, blur: caption"/></td>
-                <td></td>
+                <td>
+                    <a id="invite" href="mailto:?body=@Url.Encode(Url.Action("Join", "Pie", new{@Model.Id}, Request.Url.Scheme))" title="Invite a friend to help">Invite</a>
+                </td>
             </tr>
             <tr>
                 <td class="label">Ingredient</td>
@@ -14,7 +16,7 @@
                     <input class="ingredient" type="text" data-bind="value: ingredientToAdd, onEnter: addIngredient"/>                                          
                 </td>
                 <td>
-                    <a href="#" id="add" data-bind="click: addIngredient">Add</a>                                      
+                    <a id="add" href="#" data-bind="click: addIngredient" title="Add the ingredient">Add</a>                                      
                 </td>
             </tr>
             <tr>
@@ -77,6 +79,7 @@
     <script type="text/javascript">
         $(function() {
             var $scope = $('#edit');
+            $('#invite', $scope).button({icons: {primary: "ui-icon-transferthick-e-w"}, text: false});
             $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
             var pie = new cc.pies.edit.Pie(@Html.Raw(Model.ToJson()), 
                                        { updateCaption : '@Url.Action("UpdateCaption", "Pie")',

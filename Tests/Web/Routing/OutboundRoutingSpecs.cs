@@ -12,9 +12,9 @@ namespace Codell.Pies.Tests.Web.Routing
         }
 
         [Observation]
-        public void Then_should_route_to_the_search_controller_and_find_action()
+        public void Then_should_route_to_the_home_controller_and_find_action()
         {
-            Verify.RouteData(new { controller = "search", action = "find"}).Generates("/search/find");
+            Verify.RouteData(new { controller = "home", action = "find" }).Generates("/home/find");
         }
     }
 

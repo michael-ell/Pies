@@ -5,7 +5,7 @@
     <div class="search-bar">
         &nbsp;        
         <div>
-            <input type="text"  placeholder="Search" data-bind="autocomplete: {sourceUrl: '@Url.Action("GetTags", "Home")' }, selected: selectedTag"/>
+            <input type="text"  placeholder="Search" data-bind="autocomplete: {sourceUrl: '@Url.Action("GetTags")' }, selected: selectedTag"/>
             <a id="search" href="#" data-bind="click: find">Search</a>
         </div>
     </div> 
@@ -29,7 +29,7 @@
         $(function() {
             var $scope = $('#pies');
             $('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});            
-            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { findUrl: '@Url.Action("Find", "Home")' }), $scope[0]);
+            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { findUrl: '@Url.Action("Find")' }), $scope[0]);
         });
     </script>    
 }

@@ -15,12 +15,12 @@
             @*           <div class="pie-toolbar">
                 <a id="edit" data-bind="href:'@Url.Action("Edit")', args: $data.id">Edit</a>  
                 <a id="delete" href="#" data-bind="click: $data.delete">Delete</a>  
-                <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id">Email</a> 
+                <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id">Email</a> 
             </div>*@
             <ul class="pie-toolbar">
                 <li><a data-bind="href:'@Url.Action("Edit")', args: $data.id" title="Edit"><img src="@Url.Content("~/content/styles/images/edit-26.png")" alt="Edit"/></a></li>
                 <li><a href="#" data-bind="click: $data.delete" title="Delete"><img src="@Url.Content("~/content/styles/images/delete-26.png")" alt="Delete"/></a></li>
-                <li><a data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Single", "Search", new{}, Request.Url.Scheme))', args: $data.id" title="Email"><img src="@Url.Content("~/content/styles/images/message_outline-26.png")" alt="Email"/></a></li>
+                <li><a data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id" title="Email"><img src="@Url.Content("~/content/styles/images/message_outline-26.png")" alt="Email"/></a></li>
                 <li><a href="#" title="Facebook"><img src="@Url.Content("~/content/styles/images/facebook-26.png")" alt="Facebook"/></a></li>
                 <li><a href="#" title="Twitter"><img src="@Url.Content("~/content/styles/images/twitter-26.png")" alt="Twitter"/></a></li>
             </ul>

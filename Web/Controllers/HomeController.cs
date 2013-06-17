@@ -74,6 +74,13 @@ namespace Codell.Pies.Web.Controllers
             return tag.IsEmpty() ? GetRecent() : ToJsonResult(_repository.Find<Pie>(pie => pie.Tags.Contains<string>(new SearchableTag(tag))));
         }
 
+        [HttpGet]
+        public ActionResult Share(Guid id)
+        {
+            var pie = _repository.FindById<Guid, Pie>(id);
+            return View("Single", pie == null ? new PieModel() : _mapper.Map<Pie, PieModel>(pie));
+        }
+
         private JsonResult ToJsonResult(IEnumerable<Pie> found)
         {
             var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);
