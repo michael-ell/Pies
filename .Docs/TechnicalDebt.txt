@@ -16,3 +16,4 @@
 - how to test domain state when a new instance is replayed...simulate replaying events on a domain.
 - delete openid images.
 - May want to allow same named ingredients e.g Google
+- HtmlExtension, alternates are not really alternates, should just route to what they are doing...not create another pie!

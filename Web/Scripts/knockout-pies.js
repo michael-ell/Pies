@@ -26,7 +26,8 @@ ko.bindingHandlers.message = {
         $(el).hide();
     },
     update: function (el, valueAccessor) {
-        if (valueAccessor()) {
+        var obs = valueAccessor();
+        if (obs()) {
             $(el).fadeIn(1000);
             setTimeout(function () { $(el).fadeOut(1000); }, 3000);
         }

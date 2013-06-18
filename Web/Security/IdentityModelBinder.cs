@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using Codell.Pies.Common.Security;
 
 namespace Codell.Pies.Web.Security
 {

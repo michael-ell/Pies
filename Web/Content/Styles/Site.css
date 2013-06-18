@@ -281,14 +281,14 @@ ul.pie-toolbar
     left: -17px;
 }
 
-ul.pie-toolbar:before, ul.pie-toolbar:after {
+/*ul.pie-toolbar:before, ul.pie-toolbar:after {
     content: "";
     height: 5px;
     display: block;
     background: center url("images/dropshadow.png") no-repeat
-}
+}*/
 
-ul.pie-toolbar:before {
+/*ul.pie-toolbar:before {
     margin-bottom: 5px;
 	-webkit-transform: rotate(180deg);
 	-moz-transform: rotate(180deg);
@@ -296,16 +296,11 @@ ul.pie-toolbar:before {
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
      
-}
+}*/
 
-ul.pie-toolbar:after {
+/*ul.pie-toolbar:after {
     margin-top: 3px;
-    /*-moz-box-shadow: 0px 3px 4px 1px  rgb(170, 170, 170);
-    -webkit-box-shadow: 0px 3px 4px 1px  rgb(170, 170, 170);
-    box-shadow: 0px 3px 4px 1px  rgb(170, 170, 170);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;*/
-}
+}*/
 
 ul.pie-toolbar>li {
     display: inline-block
@@ -314,18 +309,18 @@ ul.pie-toolbar>li {
 ul.pie-toolbar a {
     float: left;
     outline: none;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
 }
 
 ul.pie-toolbar a:hover {
-    opacity: 0.8;
+    /*opacity: 0.8;*/
 }
 
 ul.pie-toolbar a>img
 {
     border: 0;
-    height: 24px;
-    width: 24px;
+    height: 40px;
+    width: 40px;
 }
 
 .label {
