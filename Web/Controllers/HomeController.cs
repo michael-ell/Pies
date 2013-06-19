@@ -67,7 +67,6 @@ namespace Codell.Pies.Web.Controllers
             return ToJsonResult(_repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12));
         }
 
-
         [HttpGet]
         public JsonResult Find(string tag)
         {
@@ -77,8 +76,11 @@ namespace Codell.Pies.Web.Controllers
         [HttpGet]
         public ActionResult Share(Guid id)
         {
-            var pie = _repository.FindById<Guid, Pie>(id);
-            return View("Single", pie == null ? new PieModel() : _mapper.Map<Pie, PieModel>(pie));
+            var pie = _repository.FindById<Guid, Pie>(id) ?? new Pie();
+            return View("Index", new IndexModel
+                                        {
+                                            Pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(new[] { pie }),
+                                        });
         }
 
         private JsonResult ToJsonResult(IEnumerable<Pie> found)

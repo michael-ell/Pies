@@ -4,6 +4,7 @@ using System.Linq;
 using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
+using Codell.Pies.Core.Services;
 using Codell.Pies.Testing.Creators.Domain;
 using Codell.Pies.Testing.Ncqrs;
 using Ncqrs.Eventing.ServiceModel.Bus;
@@ -50,7 +51,8 @@ namespace Codell.Pies.Tests.Core.Domain
 
         public Ingredient AddIngredient(string description)
         {
-            Sut.AddIngredient(description, _creator.Settings);
+            _creator.MockCleaner.Setup(cleaner => cleaner.Clean(description)).Returns(new Cleaner.Result(false, description));
+            Sut.AddIngredient(description, _creator.Cleaner, _creator.Settings);
             return IngredientFor(description);
         }
 

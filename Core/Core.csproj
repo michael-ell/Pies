@@ -102,6 +102,9 @@
     <Compile Include="ReadModels\Pie.cs" />
     <Compile Include="ReadModels\Tag.cs" />
     <Compile Include="Repositories\IDeleteEmptyPies.cs" />
+    <Compile Include="Services\Cleaner.cs" />
+    <Compile Include="Services\DoNothingCleaner.cs" />
+    <Compile Include="Services\ICleaner.cs" />
     <Compile Include="ValueTypes\BrokenRule.cs" />
     <Compile Include="Domain\BusinessRuleException.cs" />
     <Compile Include="ValueTypes\ContextualBrokenRules.cs" />

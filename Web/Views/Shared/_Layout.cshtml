@@ -54,7 +54,7 @@
         </div> 
         <div class="tabs">
             <ul>
-                @Html.Tab("Home", new TabAction("Index", "Home"))
+                @Html.Tab("Home", new TabAction("Index", "Home"), new TabAction("Share", "Home"))
                 @Html.Tab("Bake", new TabAction("Create", "Pie"), new TabAction("Edit", "MyPies"), new TabAction("Join", "Pie"))
                 @Html.Tab("My Pies",  new TabAction("Index", "MyPies"))
             </ul>

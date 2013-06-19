@@ -510,7 +510,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PagingModel.cshtml" />
     <Content Include="Views\Error\Default.cshtml" />
-    <Content Include="Views\Home\Single.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

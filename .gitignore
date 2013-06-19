@@ -42,6 +42,7 @@ local.properties
 *.sln.docstates
 *.log
 _Chutzpah.*
+.Docs/Wireframes/
 
 # Build results
 [Dd]ebug/

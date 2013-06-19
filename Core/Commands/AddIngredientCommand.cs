@@ -2,6 +2,7 @@
 using Codell.Pies.Common;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Domain;
+using Codell.Pies.Core.Services;
 using Ncqrs.Commanding;
 using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 
@@ -15,6 +16,8 @@ namespace Codell.Pies.Core.Commands
 
         public string Description { get; private set; }
 
+        public ICleaner Cleaner { get; private set; }
+
         public ISettings Settings { get; private set; }
 
         public AddIngredientCommand(Guid id, string description)
@@ -23,6 +26,7 @@ namespace Codell.Pies.Core.Commands
             
             Id = id;
             Description = description;
+            Cleaner = ServiceLocator.Instance.Find<ICleaner>();
             Settings = ServiceLocator.Instance.Find<ISettings>();
         }
     }

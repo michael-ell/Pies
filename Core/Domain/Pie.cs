@@ -5,6 +5,7 @@ using Codell.Pies.Common;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Events;
+using Codell.Pies.Core.Services;
 using Ncqrs.Domain;
 
 namespace Codell.Pies.Core.Domain
@@ -65,7 +66,7 @@ namespace Codell.Pies.Core.Domain
             _caption = @event.NewCaption;
         }
 
-        public void AddIngredient(string description, ISettings settings)
+        public void AddIngredient(string description, ICleaner cleaner, ISettings settings)
         {
             if (_ingredients.Exists(i => string.Equals(description, i.Description))) return;
 
@@ -76,7 +77,8 @@ namespace Codell.Pies.Core.Domain
             }
             else
             {
-                var toAdd = new Ingredient(Guid.NewGuid(), description, 0, _nextColor);
+                var result = cleaner.Clean(description);
+                var toAdd = new Ingredient(Guid.NewGuid(), result.CleanValue, 0, _nextColor);
                 ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients, _filler));                
             }
 

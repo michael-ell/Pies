@@ -34,6 +34,33 @@ ko.bindingHandlers.message = {
     }    
 };
 
+ko.bindingHandlers.autocomplete = {
+    init: function (el, valueAccessor, allBindingsAccessor) {
+        var allBindings = allBindingsAccessor(),
+            options = valueAccessor();
+        $(el).autocomplete({
+            autoFocus: true,
+            delay: 500,
+            minLength: 1,
+            source: options.sourceUrl,
+            select: function (event, ui) {
+                allBindings.selected(ui.item.value);
+            },
+            change: function (event, ui) {
+                allBindings.selected(ui.item == null ? null : ui.item.value);
+            }
+        }).on('paste', function () {
+            return false;
+        }).focus(function () {
+            this.select();
+        }).addClass(options.classes);
+
+        ko.utils.domNodeDisposal.addDisposeCallback(el, function () {
+            $(el).autocomplete("destroy");
+        });
+    }
+};
+
 ko.bindingHandlers.slider = {
     init: function (el, valueAccessor, allBindingsAccessor) {
         var opts = {
@@ -193,33 +220,6 @@ ko.bindingHandlers.pieChartTitle = {
            ko.bindingHandlers.pieChart.instance.setTitle({ text: ko.bindingHandlers.pieChart.title(ko.utils.unwrapObservable(valueAccessor())) });
        }
     },
-};
-
-ko.bindingHandlers.autocomplete = {
-    init: function (el, valueAccessor, allBindingsAccessor) {
-        var allBindings = allBindingsAccessor(),
-            options = valueAccessor();
-        $(el).autocomplete({
-            autoFocus: true,
-            delay: 500,
-            minLength: 1,
-            source: options.sourceUrl,
-            select: function (event, ui) {
-                allBindings.selected(ui.item.value);
-            },
-            change: function (event, ui) {
-                allBindings.selected(ui.item == null ? null : ui.item.value);
-            }
-        }).on('paste', function () {
-            return false;
-        }).focus(function () {
-            this.select();
-        }).addClass(options.classes);
-
-        ko.utils.domNodeDisposal.addDisposeCallback(el, function () {
-            $(el).autocomplete("destroy");
-        });
-    }
 };
 
 ko.bindingHandlers.href = {
