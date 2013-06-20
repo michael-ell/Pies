@@ -32,7 +32,8 @@ namespace Codell.Pies.Web.EventHandlers
         {
             //var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
             //var view = _controller.Render("_EditableIngredient", model);
-            PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
+            var added = @event.Payload.Added.Id;
+            PublishIngredientsUpdated(@event.Payload, @event.EventSourceId, ingredient => ingredient.Id == added ? @event.Payload.Message : "");
         }
 
         public void Handle(IPublishedEvent<IngredientPercentageUpdatedEvent> @event)
@@ -52,24 +53,31 @@ namespace Codell.Pies.Web.EventHandlers
 
         public void Handle(IPublishedEvent<IngredientDescriptionUpdatedEvent> @event)
         {
-            PublishIngredientsUpdated(@event.Payload, @event.EventSourceId);
+            var updated = @event.Payload.Id;
+            PublishIngredientsUpdated(@event.Payload, @event.EventSourceId, ingredient => ingredient.Id == updated ? @event.Payload.Message : "");
         }
 
         private void PublishIngredientsUpdated(IIngredientsUpdatedEvent @event, Guid pieId)
-        {                       
-            var ingredients = @event.Ingredients.Select(ingredient => ToDto(ingredient));
-            var filler = ToDto(@event.Filler);
+        {
+            PublishIngredientsUpdated(@event, pieId, ingredient => "");
+        }
+
+        private void PublishIngredientsUpdated(IIngredientsUpdatedEvent @event, Guid pieId, Func<Ingredient, string> messageResolver)
+        {
+            var ingredients = @event.Ingredients.Select(ingredient => ToModel(ingredient, messageResolver(ingredient)));
+            var filler = ToModel(@event.Filler);
             SendTo(pieId).ingredientsUpdated(new { ingredients, filler });                    
         }
 
-        private dynamic ToDto(Ingredient ingredient)
+        private dynamic ToModel(Ingredient ingredient, string message = "")
         {
             return new
             {
                 id = ingredient.Id,
                 percent = ingredient.Percent,
                 description = ingredient.Description,
-                color = ingredient.Color
+                color = ingredient.Color,
+                message
             };
         }
 

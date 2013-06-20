@@ -14,11 +14,14 @@ namespace Codell.Pies.Core.Events
 
         public Ingredient Filler { get; private set; }
 
-        public IngredientAddedEvent(Ingredient added, IEnumerable<Ingredient> allIngredients, Ingredient filler)
+        public string Message { get; set; }
+
+        public IngredientAddedEvent(Ingredient added, IEnumerable<Ingredient> allIngredients, Ingredient filler, string message = "")
         {
             Added = added;
             Ingredients = allIngredients;
             Filler = filler;
+            Message = message;
         }
     }
 }

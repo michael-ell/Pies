@@ -156,4 +156,7 @@
   <data name="FailedToPurgeEmptyPies" xml:space="preserve">
     <value>Failed to purge empty pies.</value>
   </data>
+  <data name="DirtyWordDetected" xml:space="preserve">
+    <value>Please keep it PG.</value>
+  </data>
 </root>

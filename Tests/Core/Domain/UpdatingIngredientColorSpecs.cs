@@ -40,7 +40,7 @@ namespace Codell.Pies.Tests.Core.Domain.UpdatingIngredientColorSpecs
 
         protected override void When()
         {
-            Sut.UpdateIngredientDescription(_ingredientToUpdate.Id, _ingredientToUpdate.Color);
+            Sut.UpdateIngredientColor(_ingredientToUpdate.Id, _ingredientToUpdate.Color);
         }
 
         [Observation]

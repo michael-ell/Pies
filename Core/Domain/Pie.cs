@@ -79,9 +79,8 @@ namespace Codell.Pies.Core.Domain
             {
                 var result = cleaner.Clean(description);
                 var toAdd = new Ingredient(Guid.NewGuid(), result.CleanValue, 0, _nextColor);
-                ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients, _filler));                
+                ApplyEvent(new IngredientAddedEvent(toAdd, _ingredients, _filler, result.WasDirty ? Resources.DirtyWordDetected : ""));                
             }
-
         }
 
         protected void OnIngredientAdded(IngredientAddedEvent @event)
@@ -146,14 +145,15 @@ namespace Codell.Pies.Core.Domain
         {
         }
 
-        public void UpdateIngredientDescription(Guid id, string newDescription)
+        public void UpdateIngredientDescription(Guid id, string newDescription, ICleaner cleaner)
         {
             Ingredient ingredient;
             if (TryToGetIngredient(id, out ingredient))
             {
                 if (ingredient.Description != newDescription)
                 {
-                    ApplyEvent(new IngredientDescriptionUpdatedEvent(id, newDescription, _ingredients, _filler));
+                    var result = cleaner.Clean(newDescription);
+                    ApplyEvent(new IngredientDescriptionUpdatedEvent(id, result.CleanValue, _ingredients, _filler, result.WasDirty ? Resources.DirtyWordDetected : ""));
                 }
             }
         }

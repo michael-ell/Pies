@@ -70,6 +70,15 @@ namespace Codell.Pies.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please keep it PG..
+        /// </summary>
+        public static string DirtyWordDetected {
+            get {
+                return ResourceManager.GetString("DirtyWordDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is already a unit of work created for this context..
         /// </summary>
         public static string ExistingUnitOfWork {

@@ -51,14 +51,14 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
     self.ingredientActions = ingredientActions;
 
     function toObservables(ingredients) {
-        return $.map(ingredients, function (i) {
-            return new cc.pies.edit.Ingredient(self.id, i, self.ingredientActions);
+        return $.map(ingredients, function (ingredient) {
+            return new cc.pies.edit.Ingredient(self.id, ingredient, self.ingredientActions);
         });
     }
 
     self.caption = ko.observable(model.caption);
     self.allIngredients = ko.observableArray(model.allIngredients);
-    self.ingredientToAdd = ko.observable('');
+    self.ingredientToAdd = ko.observable();
     self.editableIngredients = ko.observableArray(toObservables(model.editableIngredients));
     self.tags = ko.observable(model.tags);
     self.pieMessage = ko.observable();
@@ -116,7 +116,7 @@ cc.pies.edit.Ingredient = function (pieId, model, actions) {
     self.formattedPercent = ko.computed(function () {
         return self.percent() + '%';
     });
-    self.message = ko.observable();
+    self.message = ko.observable(model.message);
     self.actions = actions;
     self.remove = function() {
         $.ajax({ url: self.actions.delete, type: 'delete', data: { id: self.id, pieId: self.pieId } });

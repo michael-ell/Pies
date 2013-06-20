@@ -74,6 +74,12 @@ namespace Codell.Pies.Tests.Core.Domain.AddingIngredientsSpecs
         {
             Verify<IngredientAddedEvent>(e => e.Added.Description == _expectedCleanDescription).WasPublished();
         }
+
+        [Observation]
+        public void Then_should_announce_that_a_dirty_word_was_detected()
+        {
+            Verify<IngredientAddedEvent>(e => e.Message == Resources.DirtyWordDetected).WasPublished();
+        }
     }
 
     [Concern(typeof(Pie))]
