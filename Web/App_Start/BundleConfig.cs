@@ -29,6 +29,7 @@ namespace Codell.Pies.Web.App_Start
                                                                 "~/scripts/knockout-pies.js",
                                                                 "~/scripts/jquery.mHub.signalR.js",
                                                                 "~/scripts/pies.js"));
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

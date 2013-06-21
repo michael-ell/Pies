@@ -455,6 +455,9 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <Content Include="jsTestDriver.conf" />
+    <None Include="Properties\PublishProfiles\pies - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\pies - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\pies.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts-Testing\Creators\actions.js" />
     <Content Include="Scripts-Testing\Creators\ingredient.js" />

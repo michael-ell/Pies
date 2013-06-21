@@ -17,3 +17,5 @@
 - delete openid images.
 - May want to allow same named ingredients e.g Google
 - HtmlExtension, alternates are not really alternates, should just route to what they are doing...not create another pie!
+- How to publish diff config file settings to azure
+- Get Optimization working...
