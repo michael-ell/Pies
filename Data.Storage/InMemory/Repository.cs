@@ -5,14 +5,15 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Codell.Pies.Common;
+using Codell.Pies.Core.Repositories;
 
-namespace Codell.Pies.Core.Repositories
+namespace Codell.Pies.Data.Storage.InMemory
 {
-    public class InMemoryRepository : IRepository
+    public class Repository : IRepository
     {
         private readonly ConcurrentDictionary<Type, object> _stores;
 
-        public InMemoryRepository()
+        public Repository()
         {
             _stores = new ConcurrentDictionary<Type, object>();
         }
