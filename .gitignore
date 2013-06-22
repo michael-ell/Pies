@@ -167,3 +167,5 @@ pip-log.txt
 packages
 Web/Web.Debug.config
 Web/Web.Release.config
+.Docs/Free Trial-6-21-2013-credentials.publishsettings
+.Docs/pies.azurewebsites.net-PROD.PublishSettings

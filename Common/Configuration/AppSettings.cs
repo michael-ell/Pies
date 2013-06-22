@@ -8,7 +8,7 @@ namespace Codell.Pies.Common.Configuration
         public T Get<T>(string key)
         {
             var value = ConfigurationManager.AppSettings.Get(key);
-            if (value.IsEmpty()) throw new ApplicationException(string.Format(Resources.MissingAppSetting, key));
+            if (value == null) throw new ApplicationException(string.Format(Resources.MissingAppSetting, key));
             return (T)Convert.ChangeType(value, typeof(T));
         }
     }
