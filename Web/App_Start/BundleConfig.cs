@@ -6,8 +6,8 @@ namespace Codell.Pies.Web.App_Start
     {
         public static class Names
         {
-            public const string Scripts = "~/scripts";
-            public const string Styles = "~/content/styles";
+            public const string Scripts = "~/bundle/scripts";
+            public const string Styles = "~/bundle/styles";
         }
 
         public static void RegisterBundles(BundleCollection bundles)
@@ -29,7 +29,6 @@ namespace Codell.Pies.Web.App_Start
                                                                 "~/scripts/knockout-pies.js",
                                                                 "~/scripts/jquery.mHub.signalR.js",
                                                                 "~/scripts/pies.js"));
-            BundleTable.EnableOptimizations = false;
         }
     }
 }

@@ -19,7 +19,7 @@
             </div>*@
             <ul class="pie-toolbar">
                 <li><a data-bind="href:'@Url.Action("Edit")', args: $data.id" title="Edit"><img src="@Url.Content("~/content/styles/images/jquerymobile-icon.png")" alt="Edit"/></a></li>
-                <li><a href="#" data-bind="click: $data.delete" title="Delete"><img src="@Url.Content("~/content/styles/images/dribbble-icon.png")" alt="Delete"/></a></li>
+                <li><a href="#" data-bind="click: $data.remove" title="Delete"><img src="@Url.Content("~/content/styles/images/dribbble-icon.png")" alt="Delete"/></a></li>
                 <li><a data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id" title="Email"><img src="@Url.Content("~/content/styles/images/html5-icon.png")" alt="Email"/></a></li>
                 <li><a href="#" title="Facebook"><img src="@Url.Content("~/content/styles/images/facebook-icon.png")" alt="Facebook"/></a></li>
                 <li><a href="#" title="Twitter"><img src="@Url.Content("~/content/styles/images/twitter-icon.png")" alt="Twitter"/></a></li>
@@ -31,7 +31,7 @@
 {
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { delete: '@Url.Action("Delete")' } } }), $('#pies')[0]);
+            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { remove: '@Url.Action("Delete")' } } }), $('#pies')[0]);
         });
     </script>    
 }

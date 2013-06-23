@@ -4,7 +4,7 @@ cc.pies = cc.pies || {};
 cc.pies.Index = function(pies, options) {
     var self = this;
     options = options || { findUrl: '' };
-    options.editing = options.editing || { isEditable: false, owner: '', actions: { delete: '' } };
+    options.editing = options.editing || { isEditable: false, owner: '', actions: { remove: '' } };
     self.tags = ko.observableArray();
     self.selectedTag = ko.observable('');
     self.pies = ko.observableArray();
@@ -37,8 +37,8 @@ cc.pies.Index = function(pies, options) {
 cc.pies.Pie = function (model, actions) {
     var self = this;
     self.actions = actions;
-    self.delete = function() {
-        $.ajax({ url: self.actions.delete + '/' + self.id, type: 'delete'});
+    self.remove = function() {
+        $.ajax({ url: self.actions.remove + '/' + self.id, type: 'delete'});
     };
     $.extend(self, model);
 };
@@ -50,7 +50,7 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
     self.pieActions = pieActions;
     self.ingredientActions = ingredientActions;
 
-    function toObservables(ingredients) {
+    function toViewModels(ingredients) {
         return $.map(ingredients, function (ingredient) {
             return new cc.pies.edit.Ingredient(self.id, ingredient, self.ingredientActions);
         });
@@ -59,7 +59,7 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
     self.caption = ko.observable(model.caption);
     self.allIngredients = ko.observableArray(model.allIngredients);
     self.ingredientToAdd = ko.observable();
-    self.editableIngredients = ko.observableArray(toObservables(model.editableIngredients));
+    self.editableIngredients = ko.observableArray(toViewModels(model.editableIngredients));
     self.tags = ko.observable(model.tags);
     self.pieMessage = ko.observable();
     
@@ -87,8 +87,8 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
         self.caption(data);
     });    
     $.mhub.subscribe($.mhub.messages.ingredientsUpdated, function(data) {        
-        self.editableIngredients(toObservables(data.ingredients));
-        var ingredients = toObservables(data.ingredients);
+        self.editableIngredients(toViewModels(data.ingredients));
+        var ingredients = toViewModels(data.ingredients);
         if (data.filler.percent > 0) {
             ingredients.push(new cc.pies.edit.Ingredient(self.id, data.filler));
         }
@@ -119,7 +119,7 @@ cc.pies.edit.Ingredient = function (pieId, model, actions) {
     self.message = ko.observable(model.message);
     self.actions = actions;
     self.remove = function() {
-        $.ajax({ url: self.actions.delete, type: 'delete', data: { id: self.id, pieId: self.pieId } });
+        $.ajax({ url: self.actions.remove, type: 'delete', data: { id: self.id, pieId: self.pieId } });
     };
     self.reverting = false;
     self.percent.subscribe(function (newPercent) {

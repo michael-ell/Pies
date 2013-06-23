@@ -473,7 +473,7 @@
     <Content Include="Scripts-Tests\tagging-pies.js" />
     <Content Include="Scripts-Tests\updating-a-pie-caption.js" />
     <Content Include="Scripts-Tests\editing-pies.js" />
-    <Content Include="Scripts-Tests\deleting-pies.js" />
+    <Content Include="Scripts-Tests\removing-pies.js" />
     <Content Include="Scripts-Tests\displaying-pies.js" />
     <Content Include="Scripts-Testing\Helpers\testing.js" />
     <Content Include="Scripts-Testing\Jasmine\jasmine-adapter.js" />
@@ -570,6 +570,24 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Target Name="CustomCollectFiles">
+    <ItemGroup>
+      <_CustomFiles Include="..\.PublishExtras\**\*" />
+      <FilesForPackagingFromProject Include="%(_CustomFiles.Identity)">
+        <DestinationRelativePath>%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <CopyAllFilesToSingleFolderForPackageDependsOn>
+      CustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForPackageDependsOn>
+    <CopyAllFilesToSingleFolderForMsdeployDependsOn>
+      CustomCollectFiles;
+      $(CopyAllFilesToSingleFolderForPackageDependsOn);
+    </CopyAllFilesToSingleFolderForMsdeployDependsOn>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -115,6 +115,7 @@
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)*.dll" "$(SolutionDir)Web\bin" /I /Y
+xcopy "$(TargetDir)*Mongo*.dll" "$(SolutionDir).PublishExtras\bin" /I /Y
 xcopy "$(TargetDir)*.dll" "$(SolutionDir)Tests.Integration\$(OutDir)" /I /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

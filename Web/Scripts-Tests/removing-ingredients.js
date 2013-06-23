@@ -27,7 +27,7 @@ describe("Removing ingredients: ", function () {
 
 
         it("should call the correct location that removes the ingredient", function () {
-            expect($.ajax.calls[0].args[0].url).toBe(actions.delete);
+            expect($.ajax.calls[0].args[0].url).toBe(actions.remove);
             expect($.ajax.calls[0].args[0].type).toBe('delete');
         });
 
