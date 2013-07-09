@@ -73,23 +73,52 @@
             </tr>      
         </table>
     </script>
+    @if (!Request.IsAuthenticated)
+    {
+        <div id="signIn">
+            <div class="center">            
+                <p>Wanna manage your pies?</p>
+                <a href="@Url.Action("Login", "Account", new {returnUrl = @Url.Action("Create", "Pie")})">Yes please</a>
+                <a id="no" href="#">No thanks</a>
+            </div>
+        </div>
+    }
 </div>
+
 @section Scripts
 {
     <script type="text/javascript">
         $(function() {
             var $scope = $('#edit');
-            $('#invite', $scope).button({icons: {primary: "ui-icon-transferthick-e-w"}, text: false});
-            $('#add', $scope).button({icons: {primary: "ui-icon-plus"}, text: false});
-            var pie = new cc.pies.edit.Pie(@Html.Raw(Model.ToJson()), 
-                                       { updateCaption : '@Url.Action("UpdateCaption", "Pie")',
-                                         updateTags : '@Url.Action("UpdateTags", "Pie")'},
-                                       { add: '@Url.Action("AddIngredient", "Pie")', 
-                                         updatePercentage: '@Url.Action("UpdateIngredientPercentage", "Pie")', 
-                                         updateDescription: '@Url.Action("UpdateIngredientDescription", "Pie")', 
-                                         updateColor: '@Url.Action("UpdateIngredientColor", "Pie")', 
-                                         remove: '@Url.Action("DeleteIngredient", "Pie")' });
+            $('#invite', $scope).button({ icons: { primary: "ui-icon-transferthick-e-w" }, text: false });
+            $('#add', $scope).button({ icons: { primary: "ui-icon-plus" }, text: false });
+            var pie = new cc.pies.edit.Pie(@Html.Raw(Model.ToJson()),
+                {
+                    updateCaption: '@Url.Action("UpdateCaption", "Pie")',
+                    updateTags: '@Url.Action("UpdateTags", "Pie")'
+                },
+                {
+                    add: '@Url.Action("AddIngredient", "Pie")',
+                    updatePercentage: '@Url.Action("UpdateIngredientPercentage", "Pie")',
+                    updateDescription: '@Url.Action("UpdateIngredientDescription", "Pie")',
+                    updateColor: '@Url.Action("UpdateIngredientColor", "Pie")',
+                    remove: '@Url.Action("DeleteIngredient", "Pie")'
+                });
             ko.applyBindings(pie, $scope[0]);
+            @if (!Request.IsAuthenticated)
+            {
+                <text>
+                var $signIn = $('#signIn', $scope); 
+                $('a', $signIn).button();
+                $('#no', $signIn).click(function(){ $signIn.dialog('close'); });
+                $signIn.dialog({
+                    modal: true,
+                    title: 'Sign In',
+                    resizable: false,
+                    draggable: false
+                });                
+                </text>
+            }
         });
     </script>
 }

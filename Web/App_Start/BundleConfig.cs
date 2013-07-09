@@ -6,8 +6,8 @@ namespace Codell.Pies.Web.App_Start
     {
         public static class Names
         {
-            public const string Scripts = "~/bundle/scripts";
-            public const string Styles = "~/bundle/styles";
+            public const string Scripts = "~/content/scripts/bundle";
+            public const string Styles = "~/content/styles/bundle";
         }
 
         public static void RegisterBundles(BundleCollection bundles)

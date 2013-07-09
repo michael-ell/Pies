@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<AuthenticationClientData>
 <div>
-    <p>Wanna manage your pies?</p>
     <p>Do you already have an account on one of these sites? Click the button to <b>sign in</b> with it here:</p>
 
     @using (Html.BeginForm("ExternalLogin", "Account", new {ViewBag.ReturnUrl}))

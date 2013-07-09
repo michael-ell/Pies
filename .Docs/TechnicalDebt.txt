@@ -18,7 +18,6 @@
 - May want to allow same named ingredients e.g Google
 - HtmlExtension, alternates are not really alternates, should just route to what they are doing...not create another pie!
 - How to publish diff config file settings to azure
-- Get Optimization working...
 - Elmah & Mongo
 - add a way to allow all data storage to be in config file and app settings determine which one to load
 
