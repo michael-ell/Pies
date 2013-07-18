@@ -43,6 +43,7 @@ local.properties
 *.log
 _Chutzpah.*
 .Docs/Wireframes/
+artifacts
 
 # Build results
 [Dd]ebug/

@@ -38,12 +38,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Nuget", ".Nuget", "{477058
 	ProjectSection(SolutionItems) = preProject
 		.Nuget\NuGet.Config = .Nuget\NuGet.Config
 		.Nuget\nuget.exe = .Nuget\nuget.exe
-		.Nuget\NuGet.targets = .Nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fakes", "Fakes\Fakes.csproj", "{AA8FC513-D02A-41FA-8F07-C3EBEE0726E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Storage.RavenDB", "Data.Storage.RavenDB\Data.Storage.RavenDB.csproj", "{C1F21F34-99D0-436B-B7CE-916A4C57477D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Build", ".Build", "{FCCC9B6A-0612-4388-A928-377FB5D22C4C}"
+	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+		build.proj = build.proj
+		deploy.cmd = deploy.cmd
+		pies.deployment = pies.deployment
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
