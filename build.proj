@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Test">
 
-  <UsingTask TaskName="Xunit.Runner.MSBuild.xunit" AssemblyFile="packages\xunit.runners.1.9.1\tools\xunit.runner.msbuild.dll" />
+  <UsingTask TaskName="Xunit.Runner.MSBuild.xunit" AssemblyFile=".build\xunit.runner.msbuild.dll" />
   <UsingTask TaskName="MSBuild.Community.Tasks.XmlUpdate" AssemblyFile=".build\MSBuild.Community.Tasks.dll" />
 
   <PropertyGroup>
