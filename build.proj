@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Test">
 
   <UsingTask TaskName="Xunit.Runner.MSBuild.xunit" AssemblyFile="packages\xunit.runners.1.9.1\tools\xunit.runner.msbuild.dll" />
+  <UsingTask TaskName="MSBuild.Community.Tasks.XmlUpdate" AssemblyFile=".build\MSBuild.Community.Tasks.dll" />
 
   <PropertyGroup>
     <Platform Condition="'$(Platform)' == ''">Any CPU</Platform>
@@ -12,6 +13,37 @@
     <PrecompileTarget>$(BuildOutput)\precompiled</PrecompileTarget>
     <DeployTarget Condition="'$(DeployTarget)' == ''">$(BuildOutput)\deploy</DeployTarget>
   </PropertyGroup>
+   
+  <Target Name="Clean">
+    <ItemGroup>
+      <CleanFiles Include="**\bin\$(Configuration)\**" />
+      <CleanFiles Include="**\bin\*.*" />
+      <CleanFiles Include="**\obj\$(Configuration)\**" />
+      <CleanFiles Include="**\obj\*.*" />
+      <CleanFiles Include="$(BuildOutput)\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <DirsToClean Include="$(PrecompileTarget)"/>
+      <DirsToClean Include="$(DeployTarget)"/>
+    </ItemGroup>
+
+    <Delete Files="@(CleanFiles)" />
+    <RemoveDir Directories="@(DirsToClean)"/>
+  </Target> 
+  
+  <Target Name="Build" DependsOnTargets="Clean">
+    <MSBuild Projects="Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
+  </Target>  
+  
+  <Target Name="Test" DependsOnTargets="Build">
+    <ItemGroup>
+      <TestProjects Include="Tests\bin\$(Configuration)\*.Tests.dll" />
+    </ItemGroup>
+    
+    <xunit Assembly="%(TestProjects.Identity)" />
+
+    <Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>    
+  </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
@@ -32,20 +64,18 @@
     <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTarget)\Content\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTarget)\Views\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTarget)\Areas\%(RecursiveDir)"/>
+    <CallTarget Targets="UpdatePackagedConfig"/>
   </Target>
 
-  <Target Name="Test" DependsOnTargets="Build">
-    <ItemGroup>
-      <TestProjects Include="Tests\bin\$(Configuration)\*.Tests.dll" />
-    </ItemGroup>
-    
-    <xunit Assembly="%(TestProjects.Identity)" />
-
-    <Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>    
+  <Target Name="UpdatePackagedConfig">
+   <XmlUpdate
+      Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
+      XmlFileName="$(DeployTarget)/Web.config"
+      XPath="//configuration/system.web/compilation/@debug"
+      Value="false"
+    />    
   </Target>
 
-  <Target Name="Build">
-    <MSBuild Projects="Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
-  </Target>
+
 
 </Project>
