@@ -46,12 +46,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Storage.RavenDB", "Dat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Build", ".Build", "{FCCC9B6A-0612-4388-A928-377FB5D22C4C}"
 	ProjectSection(SolutionItems) = preProject
+		.deployment = .deployment
 		build.bat = build.bat
 		build.proj = build.proj
 		deploy.cmd = deploy.cmd
 		.build\MSBuild.Community.Tasks.dll = .build\MSBuild.Community.Tasks.dll
 		.build\MSBuild.Community.Tasks.targets = .build\MSBuild.Community.Tasks.targets
-		pies.deployment = pies.deployment
 	EndProjectSection
 EndProject
 Global
