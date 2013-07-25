@@ -12,6 +12,7 @@
     <BuildVersion Condition="'$(BuildVersion)' == ''">0.0.0.0</BuildVersion>
     <PrecompileTarget>$(BuildOutput)\precompiled</PrecompileTarget>
     <DeployTarget Condition="'$(DeployTarget)' == ''">$(BuildOutput)\deploy</DeployTarget>
+    <DeploySource></DeploySource>
   </PropertyGroup>
    
   <Target Name="Clean">
@@ -42,7 +43,7 @@
     
     <xunit Assembly="%(TestProjects.Identity)" />
 
-    <!--<Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>-->    
+    <Exec Command="$(DeploySource)packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>   
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
