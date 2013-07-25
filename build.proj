@@ -42,7 +42,7 @@
     
     <xunit Assembly="%(TestProjects.Identity)" />
 
-    <Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>    
+    <!--<Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>-->    
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
@@ -75,7 +75,5 @@
       Value="false"
     />    
   </Target>
-
-
 
 </Project>
