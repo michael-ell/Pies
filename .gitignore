@@ -15,7 +15,6 @@ local.properties
 .classpath
 .settings/
 .loadpath
-log*/
 
 # External tool builders
 .externalToolBuilders/
@@ -45,6 +44,7 @@ log*/
 _Chutzpah.*
 .Docs/Wireframes/
 artifacts
+log*/
 
 # Build results
 [Dd]ebug/
@@ -167,7 +167,5 @@ pip-log.txt
 .DS_Store
 
 packages
-Web/Web.Debug.config
-Web/Web.Release.config
 .Docs/Free Trial-6-21-2013-credentials.publishsettings
 .Docs/pies.azurewebsites.net-PROD.PublishSettings

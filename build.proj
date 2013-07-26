@@ -65,7 +65,6 @@
     <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTarget)\Content\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTarget)\Views\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTarget)\Areas\%(RecursiveDir)"/>
-    <CallTarget Targets="UpdatePackagedConfig"/>
   </Target>
 
   <Target Name="UpdatePackagedConfig">

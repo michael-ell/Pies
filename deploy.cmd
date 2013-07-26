@@ -67,7 +67,7 @@ IF NOT DEFINED MSBUILD_PATH (
 echo Handling .NET Web Application deployment.
 
 :: 1. Build to the temporary path
-%MSBUILD_PATH% build.proj /nologo /verbosity:m /t:Package /p:Configuration=Release;DeployTarget="%DEPLOYMENT_TEMP%";DeploySource=%DEPLOYMENT_SOURCE%;BuildOutput=%DEPLOYMENT_TEMP%
+%MSBUILD_PATH% build.proj /nologo /verbosity:n /t:Package /p:Configuration=Release;DeployTarget="%DEPLOYMENT_TEMP%";DeploySource=%DEPLOYMENT_SOURCE%;BuildOutput=%DEPLOYMENT_TEMP%
 ::
 ::IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 ::  %MSBUILD_PATH% "%DEPLOYMENT_SOURCE%\Web\web.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
