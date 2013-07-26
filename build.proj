@@ -8,7 +8,7 @@
     <Platform Condition="'$(Platform)' == ''">Any CPU</Platform>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <ProductVersion Condition="'$(ProductVersion)' == ''">0.0.0.0</ProductVersion>
-    <BuildOutput>artifacts</BuildOutput>    
+    <BuildOutput Condition="'$(BuildOutput)' == ''">artifacts</BuildOutput>    
     <BuildVersion Condition="'$(BuildVersion)' == ''">0.0.0.0</BuildVersion>
     <PrecompileTarget>$(BuildOutput)\precompiled</PrecompileTarget>
     <DeployTarget Condition="'$(DeployTarget)' == ''">$(BuildOutput)\deploy</DeployTarget>
@@ -47,7 +47,7 @@
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
     <!--<AspNetMerge ExePath="Lib\MSBuild\Microsoft\WebDeployment\v10.0" ApplicationPath="$(PrecompiledAppOutput)" Debug="false" SingleAssemblyName="Pies.Web.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\Pies.Web.dll" />-->
     <ItemGroup>
       <AppAssemblies Include="$(PrecompileTarget)\bin\*.*" Exclude="$(PrecompileTarget)\bin\*.Fakes.dll;$(PrecompileTarget)\bin\*.Test*.dll;$(PrecompileTarget)\bin\*.pdb"/>
