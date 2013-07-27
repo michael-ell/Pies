@@ -47,7 +47,7 @@
       <TestProjects Include="Tests\bin\$(Configuration)\*.Tests.dll" />
     </ItemGroup>
     
-    <xunit Assembly="%(TestProjects.Identity)" />
+    <!--<xunit Assembly="%(TestProjects.Identity)" />-->
 
     <!--<Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>-->   
   </Target>  
