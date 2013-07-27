@@ -9,7 +9,7 @@
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <ProductVersion Condition="'$(ProductVersion)' == ''">0.0.0.0</ProductVersion>
     <DeployTemp Condition="'$(DeployTemp)' == ''">artifacts</DeployTemp>  
-    <DeployTarget Condition="'$(DeployTarget)' == ''">$(DeployTemp)\deploy</DeployTarget>
+    <DeployTarget Condition="'$(DeployTarget)' == ''">$(DeployTemp)\wwwroot</DeployTarget>
     <DeploySource></DeploySource>    
     <BuildVersion Condition="'$(BuildVersion)' == ''">0.0.0.0</BuildVersion>
     <PrecompileTarget>$(DeployTemp)\precompiled</PrecompileTarget>
@@ -26,13 +26,16 @@
     <ItemGroup>
       <DirsToClean Include="$(PrecompileTarget)"/>
     </ItemGroup>
-
     <Delete Files="@(CleanFiles)" />
     <RemoveDir Directories="@(DirsToClean)"/>
   </Target> 
   
   <Target Name="Initialize">
     <MakeDir Directories="$(PrecompileTarget)"/>
+    <Message Text="DeployTemp: $(DeployTemp)"/>
+    <Message Text="DeploySource: $(DeploySource)"/>
+    <Message Text="DeployTarget: $(DeployTemp)"/>
+    <Message Text="PrecompileTarget: $(PrecompileTarget)"/>
   </Target>
   
   <Target Name="Build" DependsOnTargets="Clean; Initialize">
@@ -46,11 +49,11 @@
     
     <xunit Assembly="%(TestProjects.Identity)" />
 
-    <Exec Command="$(DeployTarget)\packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>   
+    <!--<Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>-->   
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
     <!--<AspNetMerge ExePath="Lib\MSBuild\Microsoft\WebDeployment\v10.0" ApplicationPath="$(PrecompileTarget)" Debug="false" SingleAssemblyName="Pies.Web.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\Pies.Web.dll" />-->
     <ItemGroup>
       <AppAssemblies Include="$(PrecompileTarget)\bin\*.*" Exclude="$(PrecompileTarget)\bin\*.Fakes.dll;$(PrecompileTarget)\bin\*.Test*.dll;$(PrecompileTarget)\bin\*.pdb"/>
