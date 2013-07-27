@@ -53,7 +53,7 @@
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
-    <AspNetCompiler PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
+    <AspNetCompiler VirtualPath="/Pies" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
     <!--<AspNetMerge ExePath="Lib\MSBuild\Microsoft\WebDeployment\v10.0" ApplicationPath="$(PrecompileTarget)" Debug="false" SingleAssemblyName="Pies.Web.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\Pies.Web.dll" />-->
     <CallTarget Targets="UpdatePackagedConfig"/>          
     <ItemGroup>
