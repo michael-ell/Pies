@@ -8,11 +8,11 @@
     <Platform Condition="'$(Platform)' == ''">Any CPU</Platform>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <ProductVersion Condition="'$(ProductVersion)' == ''">0.0.0.0</ProductVersion>
-    <BuildOutput Condition="'$(BuildOutput)' == ''">artifacts</BuildOutput>    
+    <DeployTemp Condition="'$(DeployTemp)' == ''">artifacts</DeployTemp>  
+    <DeployTarget Condition="'$(DeployTarget)' == ''">$(DeployTemp)\deploy</DeployTarget>
+    <DeploySource></DeploySource>    
     <BuildVersion Condition="'$(BuildVersion)' == ''">0.0.0.0</BuildVersion>
-    <PrecompileTarget>$(BuildOutput)\precompiled</PrecompileTarget>
-    <DeployTarget Condition="'$(DeployTarget)' == ''">$(BuildOutput)\deploy</DeployTarget>
-    <DeploySource></DeploySource>
+    <PrecompileTarget>$(DeployTemp)\precompiled</PrecompileTarget>
   </PropertyGroup>
    
   <Target Name="Clean">
@@ -21,7 +21,7 @@
       <CleanFiles Include="**\bin\*.*" />
       <CleanFiles Include="**\obj\$(Configuration)\**" />
       <CleanFiles Include="**\obj\*.*" />
-      <CleanFiles Include="$(BuildOutput)\**" />
+      <CleanFiles Include="$(DeployTemp)\**" />
     </ItemGroup>
     <ItemGroup>
       <DirsToClean Include="$(PrecompileTarget)"/>
@@ -61,13 +61,13 @@
       <AppViews Include="$(PrecompileTarget)\views\**\*.*"/>
       <AppAreas Include="$(PrecompileTarget)\areas\**\*.*"/>
     </ItemGroup>
-    <Copy SourceFiles="@(AppAssemblies)" DestinationFolder="$(DeployTarget)\bin\"/>
-    <Copy SourceFiles="@(AppConfigFiles)" DestinationFolder="$(DeployTarget)"/>
-    <Copy SourceFiles="@(AppData)" DestinationFolder="$(DeployTarget)\App_Data\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(AppScripts)" DestinationFolder="$(DeployTarget)\Scripts\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTarget)\Content\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTarget)\Views\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTarget)\Areas\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(AppAssemblies)" DestinationFolder="$(DeployTemp)\bin\"/>
+    <Copy SourceFiles="@(AppConfigFiles)" DestinationFolder="$(DeployTemp)"/>
+    <Copy SourceFiles="@(AppData)" DestinationFolder="$(DeployTemp)\App_Data\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(AppScripts)" DestinationFolder="$(DeployTemp)\Scripts\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTemp)\Content\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTemp)\Views\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTemp)\Areas\%(RecursiveDir)"/>
     <CallTarget Targets="UpdatePackagedConfig"/>
     <RemoveDir Directories="$(PrecompileTarget)"/>  
   </Target>
@@ -75,7 +75,7 @@
   <Target Name="UpdatePackagedConfig">
    <XmlUpdate
       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
-      XmlFileName="$(DeployTarget)/Web.config"
+      XmlFileName="$(DeployTemp)/Web.config"
       XPath="//configuration/system.web/compilation/@debug"
       Value="false"
     />    
