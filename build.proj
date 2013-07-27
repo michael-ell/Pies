@@ -49,12 +49,13 @@
     
     <!--<xunit Assembly="%(TestProjects.Identity)" />-->
 
-    <!--<Exec Command="packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>-->   
+    <!--<Exec Command="$(DeploySource)\packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>-->   
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
+    <AspNetCompiler PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
     <!--<AspNetMerge ExePath="Lib\MSBuild\Microsoft\WebDeployment\v10.0" ApplicationPath="$(PrecompileTarget)" Debug="false" SingleAssemblyName="Pies.Web.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\Pies.Web.dll" />-->
+    <CallTarget Targets="UpdatePackagedConfig"/>          
     <ItemGroup>
       <AppAssemblies Include="$(PrecompileTarget)\bin\*.*" Exclude="$(PrecompileTarget)\bin\*.Fakes.dll;$(PrecompileTarget)\bin\*.Test*.dll;$(PrecompileTarget)\bin\*.pdb"/>
       <AppConfigFiles Include="$(PrecompileTarget)\*.config" Exclude="$(PrecompileTarget)\packages.config"/>
@@ -71,14 +72,13 @@
     <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTemp)\Content\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTemp)\Views\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTemp)\Areas\%(RecursiveDir)"/>
-    <CallTarget Targets="UpdatePackagedConfig"/>
     <RemoveDir Directories="$(PrecompileTarget)"/>  
   </Target>
 
   <Target Name="UpdatePackagedConfig">
    <XmlUpdate
       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
-      XmlFileName="$(DeployTemp)/Web.config"
+      XmlFileName="$(PrecompileTarget)\Web.config"
       XPath="//configuration/system.web/compilation/@debug"
       Value="false"
     />    
