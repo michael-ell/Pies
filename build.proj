@@ -39,7 +39,7 @@
   </Target>
   
   <Target Name="Build" DependsOnTargets="Clean; Initialize">
-    <MSBuild Projects="Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
+    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
   </Target>  
   
   <Target Name="Test" DependsOnTargets="Build">
@@ -53,7 +53,9 @@
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false"/>
+    <Exec Command="$(DeploySource)\.build\aspnet_compiler.exe -v temp -p $(DeploySource)\Web $(PrecompileTarget) "/>
+
+    <!--<AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false"/>-->
     <!--<AspNetMerge ExePath="Lib\MSBuild\Microsoft\WebDeployment\v10.0" ApplicationPath="$(PrecompileTarget)" Debug="false" SingleAssemblyName="Pies.Web.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\Pies.Web.dll" />-->
     <CallTarget Targets="UpdatePackagedConfig"/>          
     <ItemGroup>
