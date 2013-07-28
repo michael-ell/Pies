@@ -53,12 +53,12 @@
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">
-    <AspNetCompiler VirtualPath="/Pies" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false" Force="true" Clean="true"/>
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false"/>
     <!--<AspNetMerge ExePath="Lib\MSBuild\Microsoft\WebDeployment\v10.0" ApplicationPath="$(PrecompileTarget)" Debug="false" SingleAssemblyName="Pies.Web.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\Pies.Web.dll" />-->
     <CallTarget Targets="UpdatePackagedConfig"/>          
     <ItemGroup>
       <AppAssemblies Include="$(PrecompileTarget)\bin\*.*" Exclude="$(PrecompileTarget)\bin\*.Fakes.dll;$(PrecompileTarget)\bin\*.Test*.dll;$(PrecompileTarget)\bin\*.pdb"/>
-      <AppConfigFiles Include="$(PrecompileTarget)\*.config" Exclude="$(PrecompileTarget)\packages.config"/>
+      <AppConfigFiles Include="$(PrecompileTarget)\*.config" Exclude="$(PrecompileTarget)\packages.config;$(PrecompileTarget)\web.debug.config;$(PrecompileTarget)\web.release.config;"/>
       <AppData Include="$(PrecompileTarget)\app_data\**\*.*"/>
       <AppScripts Include="$(PrecompileTarget)\scripts\**\*.js"/>
       <AppContent Include="$(PrecompileTarget)\content\**\*.*"/>
