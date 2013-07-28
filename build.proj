@@ -10,9 +10,8 @@
     <ProductVersion Condition="'$(ProductVersion)' == ''">0.0.0.0</ProductVersion>
     <DeployTemp Condition="'$(DeployTemp)' == ''">artifacts</DeployTemp>  
     <DeployTarget Condition="'$(DeployTarget)' == ''">$(DeployTemp)\wwwroot</DeployTarget>
-    <DeploySource></DeploySource>    
+    <DeploySource></DeploySource>           
     <BuildVersion Condition="'$(BuildVersion)' == ''">0.0.0.0</BuildVersion>
-    <PrecompileTarget>$(DeployTemp)\precompiled</PrecompileTarget>
   </PropertyGroup>
    
   <Target Name="Clean">
@@ -35,11 +34,10 @@
     <Message Text="DeployTemp: $(DeployTemp)"/>
     <Message Text="DeploySource: $(DeploySource)"/>
     <Message Text="DeployTarget: $(DeployTemp)"/>
-    <Message Text="PrecompileTarget: $(PrecompileTarget)"/>
   </Target>
   
   <Target Name="Build" DependsOnTargets="Clean; Initialize">
-    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
+    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);MvcBuildViews=true" />
   </Target>  
   
   <Target Name="Test" DependsOnTargets="Build">
@@ -52,20 +50,15 @@
     <!--<Exec Command="$(DeploySource)\packages\Chutzpah.2.4.3\tools\chutzpah.console.exe ../../../Web/Scripts-Tests"/>-->   
   </Target>  
 
-  <Target Name="Package" DependsOnTargets="Test">
-    <Exec Command="$(DeploySource)\.build\aspnet_compiler.exe -v temp -p $(DeploySource)\Web $(PrecompileTarget) "/>
-
-    <!--<AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" TargetPath="$(PrecompileTarget)" Updateable="false"/>-->
-    <!--<AspNetMerge ExePath="Lib\MSBuild\Microsoft\WebDeployment\v10.0" ApplicationPath="$(PrecompileTarget)" Debug="false" SingleAssemblyName="Pies.Web.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\Pies.Web.dll" />-->
-    <CallTarget Targets="UpdatePackagedConfig"/>          
+  <Target Name="Package" DependsOnTargets="Test">   
     <ItemGroup>
-      <AppAssemblies Include="$(PrecompileTarget)\bin\*.*" Exclude="$(PrecompileTarget)\bin\*.Fakes.dll;$(PrecompileTarget)\bin\*.Test*.dll;$(PrecompileTarget)\bin\*.pdb"/>
-      <AppConfigFiles Include="$(PrecompileTarget)\*.config" Exclude="$(PrecompileTarget)\packages.config;$(PrecompileTarget)\web.debug.config;$(PrecompileTarget)\web.release.config;"/>
-      <AppData Include="$(PrecompileTarget)\app_data\**\*.*"/>
-      <AppScripts Include="$(PrecompileTarget)\scripts\**\*.js"/>
-      <AppContent Include="$(PrecompileTarget)\content\**\*.*"/>
-      <AppViews Include="$(PrecompileTarget)\views\**\*.*"/>
-      <AppAreas Include="$(PrecompileTarget)\areas\**\*.*"/>
+      <AppAssemblies Include="$(DeploySource)\Web\bin\*.*" Exclude="$(DeploySource)\Web\bin\*.Fakes.dll;$(DeploySource)\Web\bin\*.Test*.dll;$(DeploySource)\Web\bin\*.pdb"/>
+      <AppConfigFiles Include="$(DeploySource)\Web\*.config" Exclude="$(DeploySource)\Web\packages.config;$(DeploySource)\Web\web.debug.config;$(DeploySource)\Web\web.release.config;"/>
+      <AppData Include="$(DeploySource)\Web\app_data\**\*.*"/>
+      <AppScripts Include="$(DeploySource)\Web\scripts\**\*.js"/>
+      <AppContent Include="$(DeploySource)\Web\content\**\*.*"/>
+      <AppViews Include="$(DeploySource)\Web\views\**\*.*"/>
+      <AppAreas Include="$(DeploySource)\Web\areas\**\*.*"/>
     </ItemGroup>
     <Copy SourceFiles="@(AppAssemblies)" DestinationFolder="$(DeployTemp)\bin\"/>
     <Copy SourceFiles="@(AppConfigFiles)" DestinationFolder="$(DeployTemp)"/>
@@ -74,13 +67,13 @@
     <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTemp)\Content\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTemp)\Views\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTemp)\Areas\%(RecursiveDir)"/>
-    <RemoveDir Directories="$(PrecompileTarget)"/>  
-  </Target>
+    <CallTarget Targets="UpdatePackagedConfig"/>      
+  </Target>  
 
   <Target Name="UpdatePackagedConfig">
    <XmlUpdate
       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
-      XmlFileName="$(PrecompileTarget)\Web.config"
+      XmlFileName="$(DeployTemp)\Web.config"
       XPath="//configuration/system.web/compilation/@debug"
       Value="false"
     />    
