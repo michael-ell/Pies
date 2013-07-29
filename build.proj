@@ -38,8 +38,8 @@
   </Target>
   
   <Target Name="Build" DependsOnTargets="Clean; Initialize">
-    <!--<MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);MvcBuildViews=true" />-->
-    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);" />
+    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);MvcBuildViews=true;PrecompilePath=$(Precompiled)" />
+    <!--<MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);" />-->
   </Target>  
   
   <Target Name="Test" DependsOnTargets="Build">
@@ -73,8 +73,8 @@
     <CallTarget Targets="UpdatePackagedConfig"/>-->      
   </Target>  
   
-  <Target Name="Precompile" AfterTargets="Build">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" Force="true" Clean="true" TargetPath="$(Precompiled)" />  
+  <Target Name="Precompile" AfterTargets="Package">
+    <!--<AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" Force="true" Clean="true" TargetPath="$(Precompiled)" />-->  
 <!--<AspNetMerge ExePath=".build" ApplicationPath="$(DeploySource)" Debug="false" SingleAssemblyName="WestJet.WestNet.Travel.WebClient.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\WestJet.WestNet.Travel.WebClient.dll" />-->        
     <ItemGroup>
       <AppAssemblies Include="$(Precompiled)\bin\*.*" Exclude="$(Precompiled)\bin\*.Fakes.dll;$(Precompiled)\bin\*.Test*.dll;$(Precompiled)\bin\*.pdb"/>

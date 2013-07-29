@@ -15,6 +15,7 @@
     <AssemblyName>Codell.Pies.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews Condition=" '$(MvcBuildViews)' == '' ">false</MvcBuildViews>
+    <PrecompilePath Condition=" '$(PrecompilePath)' == '' "></PrecompilePath>    
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -550,7 +551,7 @@
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" Force="true" Clean="true" TargetPath="$(PrecompilePath)" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>
