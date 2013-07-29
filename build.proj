@@ -38,7 +38,7 @@
   </Target>
   
   <Target Name="Build" DependsOnTargets="Clean; Initialize">
-    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);MvcBuildViews=true;PrecompilePath=$(Precompiled)" />
+    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);MvcBuildViews=true" />
     <!--<MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);" />-->
   </Target>  
   
@@ -53,8 +53,9 @@
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">   
-    <!--<ItemGroup>
+    <ItemGroup>
       <AppAssemblies Include="$(DeploySource)\Web\bin\*.*" Exclude="$(DeploySource)\Web\bin\*.Fakes.dll;$(DeploySource)\Web\bin\*.Test*.dll;$(DeploySource)\Web\bin\*.pdb"/>
+      <AppGlobal Include="$(DeploySource)\Web\Global.*"/>
       <AppConfigFiles Include="$(DeploySource)\Web\*.config" Exclude="$(DeploySource)\Web\packages.config;$(DeploySource)\Web\web.debug.config;$(DeploySource)\Web\web.release.config;"/>
       <AppData Include="$(DeploySource)\Web\app_data\**\*.*"/>
       <AppScripts Include="$(DeploySource)\Web\scripts\**\*.js"/>
@@ -64,18 +65,18 @@
     </ItemGroup>
     
     <Copy SourceFiles="@(AppAssemblies)" DestinationFolder="$(DeployTemp)\bin\"/>
+    <Copy SourceFiles="@(AppGlobal)" DestinationFolder="$(DeployTemp)"/>
     <Copy SourceFiles="@(AppConfigFiles)" DestinationFolder="$(DeployTemp)"/>
     <Copy SourceFiles="@(AppData)" DestinationFolder="$(DeployTemp)\App_Data\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppScripts)" DestinationFolder="$(DeployTemp)\Scripts\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTemp)\Content\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTemp)\Views\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTemp)\Areas\%(RecursiveDir)"/>
-    <CallTarget Targets="UpdatePackagedConfig"/>-->      
+    <CallTarget Targets="UpdatePackagedConfig"/>      
   </Target>  
   
-  <Target Name="Precompile" AfterTargets="Package">
-    <!--<AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" Force="true" Clean="true" TargetPath="$(Precompiled)" />-->  
-<!--<AspNetMerge ExePath=".build" ApplicationPath="$(DeploySource)" Debug="false" SingleAssemblyName="WestJet.WestNet.Travel.WebClient.Views" RemoveCompiledFiles="true" CopyAttributes="true" AssemblyInfo="$(PrecompiledAppOutput)\bin\WestJet.WestNet.Travel.WebClient.dll" />-->        
+  <!--<Target Name="Precompile" AfterTargets="Package">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" Force="true" Clean="true" TargetPath="$(Precompiled)" />  
     <ItemGroup>
       <AppAssemblies Include="$(Precompiled)\bin\*.*" Exclude="$(Precompiled)\bin\*.Fakes.dll;$(Precompiled)\bin\*.Test*.dll;$(Precompiled)\bin\*.pdb"/>
       <AppConfigFiles Include="$(Precompiled)\*.config" Exclude="$(Precompiled)\packages.config;$(Precompiled)\web.debug.config;$(Precompiled)\web.release.config;"/>
@@ -95,7 +96,7 @@
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTemp)\Areas\%(RecursiveDir)"/>
     <CallTarget Targets="UpdatePackagedConfig"/> 
     <RemoveDir Directories="$(Precompiled)"/>  
-  </Target>
+  </Target>-->
 
   <Target Name="UpdatePackagedConfig">
    <XmlUpdate
