@@ -45,6 +45,7 @@ _Chutzpah.*
 .Docs/Wireframes/
 artifacts
 log*/
+precompiled
 
 # Build results
 [Dd]ebug/
