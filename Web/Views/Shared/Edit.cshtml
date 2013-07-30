@@ -7,7 +7,7 @@
                 <td class="label">Caption</td>
                 <td class="ingredient"><input type="text" data-bind="value: caption, blur: caption, onEnter: addIngredient"/></td>
                 <td>
-                    <a id="invite" href="mailto:?body=@Url.Encode(Url.Action("Join", "Pie", new{@Model.Id}, Request.Url.Scheme))" title="Invite a friend to help">Invite</a>
+                    <a id="invite" href="@Html.LetsMakeAPie(Url.Action("Join", "Pie", new{@Model.Id}, Request.Url.Scheme))" title="Invite a friend to help">Invite</a>
                 </td>
             </tr>
             <tr>

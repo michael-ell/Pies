@@ -115,6 +115,25 @@ namespace Codell.Pies.Web.Extensions
             return htmlHelper.HiddenFor(expression);
         }
 
+        public static string CheckOutMyPie(this HtmlHelper helper, string url)
+        {
+            var subject = EncodeQueryString("Check out my Pie");
+            var body = string.Format("{0}%0D%0A%0D%0A{1}", EncodeQueryString("Click the link below to check out my pie!"), EncodeQueryString(url));
+            return string.Format("mailto:?Subject={0}&Body={1}", subject, body);
+        }
+
+        public static string LetsMakeAPie(this HtmlHelper helper, string url)
+        {
+            var subject = EncodeQueryString("Let's make a Pie");
+            var body = string.Format("{0}%0D%0A%0D%0A{1}", EncodeQueryString("Click the link below to bake a pie with me!"), EncodeQueryString(url));
+            return string.Format("mailto:?Subject={0}&Body={1}", subject, body);
+        }
+
+        private static string EncodeQueryString(string queryString)
+        {
+            return HttpUtility.UrlPathEncode(queryString.Replace("%", "%25"));
+        }
+
         public static MvcHtmlString Tab(this HtmlHelper helper, string text, string action, string controller, string altAction = "", string altController = "")
         {
             var routeData = helper.ViewContext.RouteData.Values;

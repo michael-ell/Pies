@@ -38,8 +38,8 @@
   </Target>
   
   <Target Name="Build" DependsOnTargets="Clean; Initialize">
-    <!--<MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);MvcBuildViews=true" />-->
-    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);" />
+    <MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);MvcBuildViews=true;"/>
+    <!--<MSBuild Projects="$(DeploySource)\Pies.sln" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform);" />-->
   </Target>  
   
   <Target Name="Test" DependsOnTargets="Build">
@@ -53,7 +53,7 @@
   </Target>  
 
   <Target Name="Package" DependsOnTargets="Test">   
-    <!--<ItemGroup>
+    <ItemGroup>
       <AppAssemblies Include="$(DeploySource)\Web\bin\*.*" Exclude="$(DeploySource)\Web\bin\*.Fakes.dll;$(DeploySource)\Web\bin\*.Test*.dll;$(DeploySource)\Web\bin\*.pdb"/>
       <AppGlobal Include="$(DeploySource)\Web\Global.*"/>
       <AppConfigFiles Include="$(DeploySource)\Web\*.config" Exclude="$(DeploySource)\Web\packages.config;$(DeploySource)\Web\web.debug.config;$(DeploySource)\Web\web.release.config;"/>
@@ -72,10 +72,10 @@
     <Copy SourceFiles="@(AppContent)" DestinationFolder="$(DeployTemp)\Content\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTemp)\Views\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTemp)\Areas\%(RecursiveDir)"/>
-    <CallTarget Targets="UpdatePackagedConfig"/>-->      
+    <CallTarget Targets="UpdatePackagedConfig"/>      
   </Target>  
   
-  <Target Name="Precompile" AfterTargets="Package">
+  <!--<Target Name="Precompile" AfterTargets="Package">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(DeploySource)\Web" Force="true" Clean="true" TargetPath="$(Precompiled)" />  
     <CallTarget Targets="UpdatePackagedConfig"/>     
     <ItemGroup>
@@ -96,12 +96,12 @@
     <Copy SourceFiles="@(AppViews)" DestinationFolder="$(DeployTemp)\Views\%(RecursiveDir)"/>
     <Copy SourceFiles="@(AppAreas)" DestinationFolder="$(DeployTemp)\Areas\%(RecursiveDir)"/>
     <RemoveDir Directories="$(Precompiled)"/>  
-  </Target>
+  </Target>-->
 
   <Target Name="UpdatePackagedConfig">
    <XmlUpdate
       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
-      XmlFileName="$(Precompiled)\Web.config"
+      XmlFileName="$(DeployTemp)\Web.config"
       XPath="//configuration/system.web/compilation/@debug"
       Value="false"
     />    
