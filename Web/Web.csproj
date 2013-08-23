@@ -15,7 +15,8 @@
     <AssemblyName>Codell.Pies.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews Condition=" '$(MvcBuildViews)' == '' ">false</MvcBuildViews>
-    <PrecompilePath Condition=" '$(PrecompilePath)' == '' "></PrecompilePath>    
+    <PrecompilePath Condition=" '$(PrecompilePath)' == '' ">
+    </PrecompilePath>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -212,6 +213,8 @@
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Sencha\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Sencha\SenchaAreaRegistration.cs" />
     <Compile Include="Attributes\HandleErrorAttribute.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -259,6 +262,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Areas\Sencha\app\app.js" />
+    <Content Include="Areas\Sencha\app\view\Main.js" />
+    <Content Include="Areas\Sencha\Content\Styles\Site.css" />
+    <Content Include="Areas\Sencha\resources\css\app.css" />
+    <Content Include="Areas\Sencha\touch\build.xml" />
+    <Content Include="Areas\Sencha\touch\microloader\development.js" />
+    <Content Include="Areas\Sencha\touch\microloader\production.js" />
+    <Content Include="Areas\Sencha\touch\microloader\testing.js" />
+    <Content Include="Areas\Sencha\touch\sencha-touch-all-debug.js" />
+    <Content Include="Areas\Sencha\touch\sencha-touch-all.js" />
+    <Content Include="Areas\Sencha\touch\sencha-touch-debug.js" />
+    <Content Include="Areas\Sencha\touch\sencha-touch.js" />
+    <Content Include="Areas\Sencha\touch\version.txt" />
     <Content Include="Content\Styles\Images\animated-overlay.gif" />
     <Content Include="Content\Styles\Images\blogger.ico" />
     <Content Include="Content\Styles\Images\blogger.ico.gif" />
@@ -457,6 +473,10 @@
     <Content Include="ConnectionStrings.config" />
     <Content Include="Log4Net.config" />
     <Content Include="jsTestDriver.conf" />
+    <Content Include="Areas\Sencha\Views\Web.config" />
+    <Content Include="Areas\Sencha\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Sencha\touch\cmd\sencha.cfg" />
+    <Content Include="Areas\Sencha\app\app.json" />
     <None Include="Properties\PublishProfiles\pies - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\pies - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\pies.pubxml" />
@@ -519,6 +539,15 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Readme\" />
+    <Folder Include="Areas\Sencha\app\controller\" />
+    <Folder Include="Areas\Sencha\app\model\" />
+    <Folder Include="Areas\Sencha\app\store\" />
+    <Folder Include="Areas\Sencha\Models\" />
+    <Folder Include="Areas\Sencha\resources\icons\" />
+    <Folder Include="Areas\Sencha\resources\images\" />
+    <Folder Include="Areas\Sencha\resources\startup\" />
+    <Folder Include="Areas\Sencha\touch\resources\" />
+    <Folder Include="Areas\Sencha\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

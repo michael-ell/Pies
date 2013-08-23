@@ -8,6 +8,7 @@ namespace Codell.Pies.Web.App_Start
         {
             public const string Scripts = "~/scripts/bundle";
             public const string Styles = "~/content/styles/bundle";
+            public const string SenchaStyles = "~/areas/sencha/content/styles/bundle";
         }
 
         public static void RegisterBundles(BundleCollection bundles)
@@ -29,6 +30,7 @@ namespace Codell.Pies.Web.App_Start
                                                                 "~/scripts/knockout-pies.js",
                                                                 "~/scripts/jquery.mHub.signalR.js",
                                                                 "~/scripts/pies.js"));
+            bundles.Add(new StyleBundle(Names.SenchaStyles).Include("~/areas/sencha/content/styles/site.css"));
         }
     }
 }
