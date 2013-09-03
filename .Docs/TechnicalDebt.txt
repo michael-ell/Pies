@@ -29,3 +29,5 @@ Azure
 - compilation debug="true" even in release build???? 
 
 Sencha
+- build
+- theme
