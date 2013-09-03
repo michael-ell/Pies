@@ -8,7 +8,7 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return Redirect(Url.Content("~/areas/sencha/index.html"));
         }
     }
 }

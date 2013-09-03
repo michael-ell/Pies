@@ -28,3 +28,4 @@ Azure
 - Only deploy form github if tests pass?  That is, simulate CI
 - compilation debug="true" even in release build???? 
 
+Sencha

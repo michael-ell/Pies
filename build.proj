@@ -104,7 +104,12 @@
       XmlFileName="$(DeployTemp)\Web.config"
       XPath="//configuration/system.web/compilation/@debug"
       Value="false"
-    />    
+    />
+    <XmlUpdate
+       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
+       XmlFileName="$(DeployTemp)\Web.config"
+       XPath="//configuration/appSettings[@key='Profile']/@value"
+       Value="false"
+    />
   </Target>
-
 </Project>
