@@ -10,7 +10,7 @@ using Codell.Pies.Web.Models.Shared;
 namespace Codell.Pies.Web.Areas.Sencha.Controllers
 {
     [AllowAnonymous]
-    public class HomeController : Web.Controllers.ControllerBase
+    public class HomeController : Controller
     {
         private readonly IRepository _repository;
         private readonly IMappingEngine _mapper;
@@ -39,7 +39,7 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
         private JsonResult ToJsonResult(IEnumerable<Pie> found)
         {
             var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);
-            return JsonResult(pies);
+            return new JsonResult{Data = pies, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
         }
     }
 }

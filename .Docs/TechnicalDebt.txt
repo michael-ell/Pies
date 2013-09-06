@@ -20,6 +20,7 @@
 - How to publish diff config file settings to azure
 - Elmah & Mongo
 - add a way to allow all data storage to be in config file and app settings determine which one to load
+- ControllerBase returning JSON as string, not json
 
 
 Azure

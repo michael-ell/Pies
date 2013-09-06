@@ -25,10 +25,14 @@ Ext.application({
     requires: [
         'Ext.MessageBox'
     ],
+    
+    models: ['Pie', 'Ingredient'],
+    
+    controllers: ['Main'],
+    
+    stores: ['RecentPies'],
 
-    views: [
-        'Main'
-    ],
+    views: ['Main'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
