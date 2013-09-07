@@ -15,7 +15,7 @@ using System.Linq;
 namespace Codell.Pies.Web.Controllers
 {
     [Authorize]
-    public class MyPiesController : ControllerBase
+    public class MyPiesController : Controller
     {
         private readonly IRepository _repository;
         private readonly IMappingEngine _mapper;

@@ -223,6 +223,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyPiesController.cs" />
+    <Compile Include="Infrastructure\JsonNetResult.cs" />
     <Compile Include="Mobile\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -245,7 +246,6 @@
     <Compile Include="Configuration\InfrastructureModule.cs" />
     <Compile Include="Configuration\NcqrsModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\PieController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\ModelExtensions.cs" />

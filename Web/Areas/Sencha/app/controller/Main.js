@@ -4,7 +4,7 @@
     launch: function () {
         Ext.create('Pies.store.RecentPies', 
             {
-                listeners: { load: function (store, records, successful, operation, eOpts ) { } }
+                listeners: { load: function (store, records, successful, operation, eOpts) { debugger; } }
             });
     }    
 });

@@ -63,7 +63,7 @@ describe("Displaying Pies: ", function () {
             expectedTag = "abc";
             spyOn($, 'get').andCallFake(function (url, callback) {
                 if (url === options.findUrl + '/' + expectedTag) {
-                    callback(JSON.stringify(expectedPies));
+                    callback(expectedPies);
                 }
             });
             sut = new cc.pies.Index([], new cr8.Options());
@@ -89,7 +89,7 @@ describe("Displaying Pies: ", function () {
             expectedPies = [new cr8.Pie()];
             spyOn($, 'get').andCallFake(function (url, callback) {
                 if (url === options.findUrl + '/') {
-                    callback(JSON.stringify(expectedPies));
+                    callback(expectedPies);
                 }
             });
             sut = new cc.pies.Index([], new cr8.Options());

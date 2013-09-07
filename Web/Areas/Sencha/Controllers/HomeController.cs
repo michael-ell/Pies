@@ -5,6 +5,7 @@ using AutoMapper;
 using Codell.Pies.Common;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
+using Codell.Pies.Web.Infrastructure;
 using Codell.Pies.Web.Models.Shared;
 
 namespace Codell.Pies.Web.Areas.Sencha.Controllers
@@ -31,15 +32,15 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetRecent()
+        public JsonNetResult GetRecent()
         {
             return ToJsonResult(_repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12));
         }
 
-        private JsonResult ToJsonResult(IEnumerable<Pie> found)
+        private JsonNetResult ToJsonResult(IEnumerable<Pie> found)
         {
             var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);
-            return new JsonResult{Data = pies, JsonRequestBehavior = JsonRequestBehavior.AllowGet};
+            return new JsonNetResult {Data = pies};
         }
     }
 }

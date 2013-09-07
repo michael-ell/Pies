@@ -3,7 +3,7 @@
 namespace Codell.Pies.Web.Controllers
 {
     [AllowAnonymous]
-    public class ErrorController : ControllerBase
+    public class ErrorController : Controller
     {
         [HttpGet]
         public ActionResult Default()

@@ -12,7 +12,7 @@ cc.pies.Index = function(pies, options) {
     self.find = function () {
         var tag = self.selectedTag() || '';
         $.get(self.findUrl + '/' + tag, function (data) {
-            self.pies($.parseJSON(data));
+            self.pies(data);
         });
     };
     

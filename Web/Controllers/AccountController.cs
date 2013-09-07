@@ -5,7 +5,7 @@ using Microsoft.Web.WebPages.OAuth;
 namespace Codell.Pies.Web.Controllers
 {
     [Authorize]
-    public class AccountController : ControllerBase
+    public class AccountController : Controller
     {
         [HttpGet]
         [AllowAnonymous]
