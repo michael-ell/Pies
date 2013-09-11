@@ -44,6 +44,14 @@ _Chutzpah.*
 .Docs/Wireframes/
 artifacts
 precompiled
+Web/Areas/Sencha/build.xml
+Web/Areas/Sencha/packager*
+Web/Areas/Sencha/.sencha/
+Web/Areas/Sencha/resources/loading/
+Web/Areas/Sencha/resources/sass/
+Web/Areas/Sencha/-run/
+Web/Areas/Sencha/touch/resources/
+Web/Areas/Sencha/touch/*.txt
 
 # Build results
 [Dd]ebug/
