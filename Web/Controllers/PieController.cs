@@ -85,7 +85,9 @@ namespace Codell.Pies.Web.Controllers
         public ActionResult Join(Guid id)
         {
             var pie = _repository.FindById<Guid, Pie>(id);
-            return View("Edit", _mapper.Map<Pie, PieModel>(pie));
+            var model = _mapper.Map<Pie, PieModel>(pie);
+            model.Joining = true;
+            return View("Edit", model);
         }
     }
 }

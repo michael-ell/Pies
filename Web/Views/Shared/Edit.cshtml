@@ -73,7 +73,7 @@
             </tr>      
         </table>
     </script>
-    @if (!Request.IsAuthenticated)
+    @if (!Request.IsAuthenticated && !Model.Joining)
     {
         <div id="signIn">
             <div class="center">            
