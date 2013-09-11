@@ -52,6 +52,7 @@ Web/Areas/Sencha/resources/sass/
 Web/Areas/Sencha/-run/
 Web/Areas/Sencha/touch/resources/
 Web/Areas/Sencha/touch/*.txt
+Web/Areas/Sencha/build/Pies/native/
 
 # Build results
 [Dd]ebug/
@@ -148,7 +149,7 @@ Desktop.ini
 *.egg
 *.egg-info
 dist
-build
+# build
 eggs
 parts
 bin
