@@ -30,5 +30,5 @@ Azure
 - compilation debug="true" even in release build???? 
 
 Sencha
-- build
+- build and deploy (update 51 degree to redirect to build version???)
 - theme
