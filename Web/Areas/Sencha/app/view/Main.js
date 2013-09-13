@@ -21,19 +21,17 @@ Ext.define('Pies.view.Main', {
                         title: 'Home'
                     },
                     //{
+                    //    id: 'chart',
                     //    xtype: 'highchart',
                     //    series: [{
-                    //        dashStyle: 'DashDot',
-                    //        dataIndex: 'value'
+                    //        type: 'pie'
                     //    }],
-                    //    xField: 'month',
-                    //    store: store,
                     //    chartConfig: {
                     //        chart: {
-                    //            type: 'spline'
+                    //            type: 'pie'
                     //        },
                     //        title: {
-                    //            text: 'A simple graph'
+                    //            text: 'A Pie Chart'
                     //        }
                     //    }
                     //}

@@ -30,8 +30,6 @@ Ext.application({
     models: ['Pie', 'Ingredient'],
     
     controllers: ['Main'],
-    
-    stores: ['RecentPies'],
 
     views: ['Main'],
 

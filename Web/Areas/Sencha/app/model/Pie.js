@@ -1,7 +1,7 @@
 ﻿Ext.define('Pies.model.Pie', {
     extend: 'Ext.data.Model',
+    requires: 'Pies.model.Ingredient',
     config: {
-        fields: ['id', 'caption'],
-        //hasMany: { model: 'Pies.model.Ingredient', name: 'allIngredients' }
+        fields: ['id', 'caption', { name: 'allIngredients', type: 'Pies.model.Ingredient' }],
     }    
 });
