@@ -16,7 +16,9 @@
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
-    'Chart.ux.Highcharts': 'extensions/highcharts/highcharts.js'    
+    //'Chart.ux.Highcharts': 'extensions/highcharts/highcharts.js',    
+    //'Chart.ux.Highcharts.Serie': 'extensions/highcharts/serie.js',    
+    //'Chart.ux.Highcharts.PieSerie': 'extensions/highcharts/pieSerie.js'    
 });
 //</debug>
 
@@ -29,9 +31,11 @@ Ext.application({
     
     models: ['Pie', 'Ingredient'],
     
-    controllers: ['Main'],
+    controllers: ['Home'],
 
-    views: ['Main'],
+    views: ['Main', 'Home', 'Bake', 'MyPies', 'PieItem'],
+    
+    //stores: ['RecentPies'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

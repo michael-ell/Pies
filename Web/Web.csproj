@@ -274,10 +274,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Areas\Sencha\app.js" />
-    <Content Include="Areas\Sencha\app\controller\Main.js" />
+    <Content Include="Areas\Sencha\app\controller\Home.js" />
     <Content Include="Areas\Sencha\app\model\Ingredient.js" />
     <Content Include="Areas\Sencha\app\model\Pie.js" />
+    <Content Include="Areas\Sencha\app\store\Ingredients.js" />
     <Content Include="Areas\Sencha\app\store\RecentPies.js" />
+    <Content Include="Areas\Sencha\app\view\Bake.js" />
+    <Content Include="Areas\Sencha\app\view\MyPies.js" />
+    <Content Include="Areas\Sencha\app\view\Home.js" />
+    <Content Include="Areas\Sencha\app\view\PieItem.js" />
     <Content Include="Areas\Sencha\extensions\highcharts\pieSerie.js" />
     <Content Include="Areas\Sencha\extensions\highcharts\serie.js" />
     <Content Include="Areas\Sencha\extensions\highcharts\highcharts.js" />

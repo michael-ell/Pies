@@ -1,7 +1,8 @@
 ﻿Ext.define('Pies.store.RecentPies', {
     extend: 'Ext.data.Store',
-    requires: 'Pies.model.Pie',
+    requires: ['Pies.model.Pie'],
     config: {
+        storeId: 'recentPies',
         model: 'Pies.model.Pie',
         proxy: {
             type: 'ajax',

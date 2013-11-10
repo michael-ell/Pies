@@ -1123,7 +1123,7 @@ Ext.define("Chart.ux.Highcharts", {
   },
 
   //private
-  onResize : function() {
+  onResize: function () {
     this.callParent(arguments);
     this.update();
   },
