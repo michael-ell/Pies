@@ -16,15 +16,14 @@ Ext.define('Pies.view.Home', {
             {
                 xtype: 'dataview',
                 scrollable: 'vertical',
-                //store: Ext.getStore('recentPies'), // get or create store?
-                store: Ext.create('Pies.store.RecentPies'), // get or create store?
+                store: Ext.create('Pies.store.RecentPies'),
                 useComponents: true,
                 defaultType: 'pieItem'
             }
         ],
         listeners: {
             activate: function () {
-
+                Ext.getStore('recentPies').load();
                 //this.fireEvent('onLoadPies', this);
             }
         }

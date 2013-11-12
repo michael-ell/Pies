@@ -9,6 +9,6 @@
             url: '/sencha/home/getrecent',
             headers: { 'Content-Type': 'application/json;' }
         },
-        autoLoad: true
+        autoLoad: false
     }
 });
