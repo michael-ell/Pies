@@ -21,13 +21,20 @@ Ext.define('Pies.view.PieItem', {
         return Ext.create('Ext.chart.PolarChart', {
             height: 200, 
             colors: colors,
+            legend: {
+                position: 'bottom',
+            },
             store: Ext.create('Ext.data.Store', { model: 'Pies.model.Ingredient', data: ingredients }),
             series: [{
                 type: 'pie',
                 labelField: 'description',
-                xField: 'percent'
+                xField: 'percent',
+                renderer: function (sprite) {
+                    sprite.attr.doCallout = false;
+                    sprite.attr.label = '';
+                }
             }]
-        });        
+        });
     },
     updatePie: function (newPie, oldPie) {
         if (oldPie) {
