@@ -3,7 +3,8 @@ Ext.define('Pies.view.PieItem', {
     requires: [
         'Ext.chart.PolarChart',
         'Ext.chart.series.Pie',
-        'Pies.model.Ingredient'
+        'Pies.model.Ingredient',
+        'Pies.view.LegendItem'
     ],
     xtype: 'pieItem',
     config: {
@@ -18,12 +19,9 @@ Ext.define('Pies.view.PieItem', {
             colors.push(ingredients[i].color);
         }
         
-        return Ext.create('Ext.chart.PolarChart', {
+        var chart = Ext.create('Ext.chart.PolarChart', {
             height: 200, 
             colors: colors,
-            legend: {
-                position: 'bottom',
-            },
             store: Ext.create('Ext.data.Store', { model: 'Pies.model.Ingredient', data: ingredients }),
             series: [{
                 type: 'pie',
@@ -33,8 +31,28 @@ Ext.define('Pies.view.PieItem', {
                     sprite.attr.doCallout = false;
                     sprite.attr.label = '';
                 }
-            }]
+            }]         
         });
+        
+        var container =  Ext.create('Ext.Container', {
+            items: [
+                {
+                    xtype: 'container',
+                    html: '<div class="pie-caption">' + this.config.record.data.caption + '</div>'
+                },
+                chart,
+                {
+                    xtype: 'dataview',
+                    cls: 'legend',
+                    scrollable: false,
+                    store: chart.getLegendStore(),
+                    useComponents: true,
+                    defaultType: 'legendItem',
+                }
+            ]
+        });
+
+        return container;
     },
     updatePie: function (newPie, oldPie) {
         if (oldPie) {

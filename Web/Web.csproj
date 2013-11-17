@@ -280,6 +280,7 @@
     <Content Include="Areas\Sencha\app\store\Ingredients.js" />
     <Content Include="Areas\Sencha\app\store\RecentPies.js" />
     <Content Include="Areas\Sencha\app\view\Bake.js" />
+    <Content Include="Areas\Sencha\app\view\LegendItem.js" />
     <Content Include="Areas\Sencha\app\view\MyPies.js" />
     <Content Include="Areas\Sencha\app\view\Home.js" />
     <Content Include="Areas\Sencha\app\view\PieItem.js" />
@@ -289,6 +290,7 @@
     <Content Include="Areas\Sencha\index.html" />
     <Content Include="Areas\Sencha\app\view\Main.js" />
     <Content Include="Areas\Sencha\resources\css\app.css" />
+    <Content Include="Areas\Sencha\resources\css\site.css" />
     <Content Include="Areas\Sencha\touch\build.xml" />
     <Content Include="Areas\Sencha\touch\cmd\sencha.cfg" />
     <Content Include="Areas\Sencha\touch\microloader\development.js" />
