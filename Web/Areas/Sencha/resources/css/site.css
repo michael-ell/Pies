@@ -1,0 +1,48 @@
+.pie-caption, .legend-item {
+    font-weight: bold;
+    font-size: 14px; 
+    text-align: center;        
+}
+.pie-caption {
+    margin-top: 10px;
+}
+.legend {
+    margin: 0 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CCC;   
+}
+.legend-item-container {
+    text-align: center;  
+    margin-left: auto;
+    margin-right: auto;    
+}
+.legend-item {
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 1px;
+    display: inline-block;
+    padding: 10px 10px 10px 25px;
+    min-width: 46px;
+    position: relative;
+}
+.legend-marker {
+    margin-right: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    position: absolute;
+    top: 13px;
+    left: 9px;
+
+}
+/* Sencha overrides*/
+.x-scroll-view {
+    position: relative !important;
+}
+.x-scroll-container {
+    position: relative !important;
+}
+.x-scroll-scroller {
+    position: relative !important;
+}
