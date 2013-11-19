@@ -32,6 +32,7 @@ Azure
 Sencha
 - build and deploy (update 51 degree to redirect to build version???)
 - theme
+- caching and new deploys!!!!
 
 51 degree mobi
 - Redirects on ajax calls
