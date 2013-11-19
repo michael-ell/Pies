@@ -274,6 +274,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Areas\Sencha\app.js" />
+    <Content Include="Areas\Sencha\app\controller\Bake.js" />
+    <Content Include="Areas\Sencha\app\controller\MyPies.js" />
+    <Content Include="Areas\Sencha\app\controller\Main.js" />
     <Content Include="Areas\Sencha\app\controller\Home.js" />
     <Content Include="Areas\Sencha\app\model\Ingredient.js" />
     <Content Include="Areas\Sencha\app\model\Pie.js" />
@@ -291,6 +294,7 @@
     <Content Include="Areas\Sencha\app\view\Main.js" />
     <Content Include="Areas\Sencha\resources\css\app.css" />
     <Content Include="Areas\Sencha\resources\css\site.css" />
+    <Content Include="Areas\Sencha\scripts\jquery.signalR-1.0.1.js" />
     <Content Include="Areas\Sencha\touch\build.xml" />
     <Content Include="Areas\Sencha\touch\cmd\sencha.cfg" />
     <Content Include="Areas\Sencha\touch\microloader\development.js" />

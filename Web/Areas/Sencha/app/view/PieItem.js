@@ -38,13 +38,13 @@ Ext.define('Pies.view.PieItem', {
             items: [
                 {
                     xtype: 'container',
-                    html: '<div class="pie-caption">' + this.config.record.data.caption + '</div>'
+                    html: '<div class="header">' + this.config.record.data.caption + '</div>'
                 },
                 chart,
                 {
                     xtype: 'dataview',
                     cls: 'legend',
-                    scrollable: false,
+                    scrollable: null,
                     store: chart.getLegendStore(),
                     useComponents: true,
                     defaultType: 'legendItem',

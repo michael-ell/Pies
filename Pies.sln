@@ -29,6 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Storage.SqlServer", "D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Docs", ".Docs", "{CF596730-2054-4B86-8B7C-D25F5DA265A1}"
 	ProjectSection(SolutionItems) = preProject
+		.Docs\Architecture Options.txt = .Docs\Architecture Options.txt
 		.Docs\TechnicalDebt.txt = .Docs\TechnicalDebt.txt
 	EndProjectSection
 EndProject

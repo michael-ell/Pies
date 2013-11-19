@@ -1,9 +1,9 @@
-.pie-caption, .legend-item {
+.header, .legend-item {
     font-weight: bold;
     font-size: 14px; 
     text-align: center;        
 }
-.pie-caption {
+.header {
     margin-top: 10px;
 }
 .legend {

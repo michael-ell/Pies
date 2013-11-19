@@ -1,0 +1,21 @@
+Options:
+
+1)
+
+CQRS -> events -> handle -> publish -> redis -> subscribe -> publish -> node.js / socket.io -> sencha touch mobile client
+
+Q's
+- Azure and Redis
+- Azure and node.js
+- Publishing to redis from c#
+
+2)
+
+SignalR / jQuery / Sencha Touch
+
+- Start with this and move to 1 for learning Sencha and the other technologies above?
+- abstract with message / event bus -> sencha = this.application.fireEvent('xxx'. params)
+
+3)
+
+SignalR / jQuery / jQuery Mobile

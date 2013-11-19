@@ -22,13 +22,9 @@ Ext.Loader.setPath({
 Ext.application({
     name: 'Pies',
 
-    requires: ['Ext.MessageBox', 'Pies.store.RecentPies'],
-    
-    models: ['Pie', 'Ingredient'],
-    
-    controllers: ['Home'],
-
-    views: ['Main', 'Home', 'Bake', 'MyPies', 'PieItem'],
+    requires: ['Ext.MessageBox'],
+       
+    controllers: ['Main', 'Home', 'Bake', 'MyPies'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -53,6 +49,7 @@ Ext.application({
         Ext.fly('appLoadingIndicator').destroy();
 
         // Initialize the main view
+        //MVC video creates this differently????
         Ext.Viewport.add(Ext.create('Pies.view.Main'));
     },
 

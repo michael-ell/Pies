@@ -25,12 +25,12 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return Redirect(Url.Content("~/areas/sencha/index.html"));
-            //return Redirect(Url.Content("~/areas/sencha/build/pies/package/index.html"));
-        }
+        //[HttpGet]
+        //public ActionResult Index()
+        //{
+        //    return Redirect(Url.Content("~/areas/sencha/index.html"));
+        //    //return Redirect(Url.Content("~/areas/sencha/build/pies/package/index.html"));
+        //}
 
         [HttpGet]
         public JsonNetResult GetRecent()

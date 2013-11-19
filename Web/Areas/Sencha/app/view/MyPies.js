@@ -10,6 +10,11 @@ Ext.define('Pies.view.MyPies', {
                 docked: 'top',
                 xtype: 'titlebar',
                 title: 'My Pies'
+            },
+            {
+                xtype: 'container',
+                cls: 'header',
+                html: 'Sorry, also closed'
             }
         ]
     }

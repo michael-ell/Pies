@@ -47,7 +47,19 @@
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
-        }
+        },
+		{
+			"path": "http://code.jquery.com/jquery-1.9.1.min.js",
+			"remote": true
+		},
+		{
+			"path": "/scripts/jquery.signalR-1.0.1.js",
+			"remote": true
+		},
+        {
+            "path": "/signalr/hubs",
+            "remote": true
+        },
     ],
 
     /**

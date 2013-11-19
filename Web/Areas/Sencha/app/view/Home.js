@@ -21,11 +21,12 @@ Ext.define('Pies.view.Home', {
                 defaultType: 'pieItem'
             }
         ],
-        listeners: {
-            activate: function () {
-                Ext.getStore('recentPies').load();
-                //this.fireEvent('onLoadPies', this);
-            }
-        }
+        //listeners: {
+        //    //Controller ref / control listener
+        //    activate: function () {
+        //        //Ext.getStore('recentPies').load();
+        //        //this.fireEvent('onLoadPies', this);
+        //    }
+        //}
     }
 });
