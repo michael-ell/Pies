@@ -7,11 +7,11 @@ Ext.define('Pies.view.Bake', {
         title: 'Bake',
         iconCls: 'action',
         items: [
-            {
-                docked: 'top',
-                xtype: 'titlebar',
-                title: 'Bake'
-            },
+            //{
+            //    docked: 'top',
+            //    xtype: 'titlebar',
+            //    title: 'Bake'
+            //},
             {
                 xtype: 'fieldset',
                 items: [

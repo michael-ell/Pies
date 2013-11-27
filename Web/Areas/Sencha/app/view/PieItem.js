@@ -11,8 +11,6 @@ Ext.define('Pies.view.PieItem', {
         pie: {}       
     },
     applyPie: function () {
-        window.console.log(this.config.record.data.caption);
-
         var ingredients = this.config.record.data.allIngredients;
         var colors = [];
         for (var i = 0; i < ingredients.length; i++) {
@@ -34,7 +32,7 @@ Ext.define('Pies.view.PieItem', {
             }]         
         });
         
-        var container =  Ext.create('Ext.Container', {
+        var container = Ext.create('Ext.Container', {
             items: [
                 {
                     xtype: 'container',
@@ -51,7 +49,6 @@ Ext.define('Pies.view.PieItem', {
                 }
             ]
         });
-
         return container;
     },
     updatePie: function (newPie, oldPie) {

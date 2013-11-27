@@ -7,9 +7,9 @@
     margin-top: 10px;
 }
 .legend {
-    margin: 0 10px;
+    /*margin: 0 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #CCC;   
+    border-bottom: 1px solid #CCC; */  
 }
 .legend-item-container {
     text-align: center;  

@@ -11,6 +11,6 @@
         },
     },
     loadPies: function () {
-        Ext.getStore('recentPies').load();
+        //Ext.getStore('recentPies').load();
     }
 });
