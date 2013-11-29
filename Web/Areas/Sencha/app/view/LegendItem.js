@@ -19,5 +19,5 @@ Ext.define('Pies.view.LegendItem', {
         if (newLegend) {
             this.add(newLegend);
         }
-    },
+    }
 });

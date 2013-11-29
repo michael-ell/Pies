@@ -6,14 +6,14 @@
         refs: { home: '#home' },
         control: {
             home: {
-                activate: 'loadPies'
+                //activate: 'loadPies'
+                initialize: 'loadPies'
             }
-        },
+        }
     },
     loadPies: function () {
-        //debugger;
         //Ext.getStore('recentPies').load();
-        var carousel = arguments[0].query('carousel')[0];
+        var carousel = arguments[0].query('carousel')[0];        
         Ext.getStore('recentPies').load(function (recent) {
             Ext.each(recent, function (pie) {
                 var ingredients = pie.data.allIngredients;
@@ -50,7 +50,7 @@
                             scrollable: null,
                             store: chart.getLegendStore(),
                             useComponents: true,
-                            defaultType: 'legendItem',
+                            defaultType: 'legendItem'
                         }
                     ]
                 });

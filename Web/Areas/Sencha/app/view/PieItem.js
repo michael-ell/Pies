@@ -45,7 +45,7 @@ Ext.define('Pies.view.PieItem', {
                     scrollable: null,
                     store: chart.getLegendStore(),
                     useComponents: true,
-                    defaultType: 'legendItem',
+                    defaultType: 'legendItem'
                 }
             ]
         });
@@ -58,5 +58,5 @@ Ext.define('Pies.view.PieItem', {
         if (newPie) {
             this.add(newPie);
         }
-    },
+    }
 });

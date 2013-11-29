@@ -25,7 +25,7 @@ Ext.define('Pies.view.Home', {
                 id: 'pies',
                 store: Ext.create('Pies.store.RecentPies')
             }
-        ],
+        ]
         //listeners: {
         //    //Controller ref / control listener
         //    activate: function () {
