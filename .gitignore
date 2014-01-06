@@ -53,6 +53,8 @@ Web/Areas/Sencha/-run/
 Web/Areas/Sencha/touch/resources/
 Web/Areas/Sencha/touch/*.txt
 Web/Areas/Sencha/build/Pies/native/
+Web/Areas/Sencha/build/Pies/production/
+Web/Areas/Sencha/archive/
 
 # Build results
 [Dd]ebug/

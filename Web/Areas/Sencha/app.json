@@ -50,11 +50,13 @@
         },
 		{
 			"path": "http://code.jquery.com/jquery-1.9.1.min.js",
-			"remote": true
+			remote: true
 		},
 		{
-			"path": "/scripts/jquery.signalR-1.0.1.js",
-			"remote": true
+			"path" : "http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.min.js",
+			remote: true
+			//"path": "scripts/jquery.signalR-1.0.1.js",
+			//"skipFrameworkFile": true
 		},
         {
             "path": "/signalr/hubs",

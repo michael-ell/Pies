@@ -15,9 +15,11 @@
 
 //<debug>
 Ext.Loader.setPath({
-    'Ext': 'touch/src',  
+    'Ext': 'touch/src',
 });
 //</debug>
+
+//@require scripts/jquery.signalR-1.0.1.js
 
 Ext.application({
     name: 'Pies',

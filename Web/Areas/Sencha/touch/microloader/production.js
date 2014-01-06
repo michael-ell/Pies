@@ -284,7 +284,8 @@
             return;
         }
 
-        if (!isShared) {
+        //if (!isShared && version && version.length) {
+        if (!isShared) {            
             var onRequestSuccess = onSuccess,
                 version = asset.version,
                 remoteChecksumBlock;

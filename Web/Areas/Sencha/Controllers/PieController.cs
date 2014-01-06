@@ -6,6 +6,7 @@ using Codell.Pies.Core.Commands;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Infrastructure;
+using Codell.Pies.Web.Models.Pie;
 using Codell.Pies.Web.Models.Shared;
 using Codell.Pies.Web.Security;
 using Ncqrs.Commanding.ServiceModel;
@@ -37,6 +38,12 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
             _commandService.Execute(new CreatePieCommand(id, identity.User));
             var pie = _repository.FindById<Guid, Pie>(id);
             return new JsonNetResult { Data = _mapper.Map<Pie, PieModel>(pie) };
+        }
+
+        [HttpPost]
+        public void UpdateCaption(UpdateCaptionModel model)
+        {
+            _commandService.Execute(new UpdatePieCaptionCommand(model.Id, model.Caption));
         }
     }
 }
