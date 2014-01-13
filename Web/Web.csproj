@@ -286,6 +286,7 @@
     <Content Include="Areas\Sencha\app\view\LegendItem.js" />
     <Content Include="Areas\Sencha\app\view\MyPies.js" />
     <Content Include="Areas\Sencha\app\view\Home.js" />
+    <Content Include="Areas\Sencha\app\view\Pie.js" />
     <Content Include="Areas\Sencha\app\view\PieItem.js" />
     <Content Include="Areas\Sencha\extensions\highcharts\pieSerie.js" />
     <Content Include="Areas\Sencha\extensions\highcharts\serie.js" />

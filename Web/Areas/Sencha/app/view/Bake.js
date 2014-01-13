@@ -7,11 +7,6 @@ Ext.define('Pies.view.Bake', {
         title: 'Bake',
         iconCls: 'action',
         items: [
-            //{
-            //    docked: 'top',
-            //    xtype: 'titlebar',
-            //    title: 'Bake'
-            //},
             {
                 xtype: 'fieldset',
                 items: [
@@ -28,13 +23,14 @@ Ext.define('Pies.view.Bake', {
                     },
                     {
                         xtype: 'textfield',
-                        label: 'Ingredient',
-                        name: 'ingredient'
-                    },
-                    {
-                        xtype: 'textfield',
+                        id: 'tags',
                         label: 'Tags',
-                        name: 'tags'
+                        name: 'tags',
+                        listeners: {
+                            change: function () {
+                                this.fireEvent('onTagsChanged', this.getValue());
+                            }
+                        }
                     }
                 ]
             }
