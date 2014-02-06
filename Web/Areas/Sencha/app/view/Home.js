@@ -22,7 +22,6 @@ Ext.define('Pies.view.Home', {
             //}
             {
                 xtype: 'carousel',
-                id: 'pies',
                 store: Ext.create('Pies.store.RecentPies')
             }
         ]

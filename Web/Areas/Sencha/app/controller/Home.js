@@ -11,7 +11,7 @@
         }
     },
     loadPies: function () {
-        var carousel = arguments[0].query('carousel')[0];        
+        var carousel = arguments[0].down('.carousel');        
         Ext.getStore('recentPies').load(function (recent) {
             Ext.each(recent, function (pie) {
                 carousel.add({

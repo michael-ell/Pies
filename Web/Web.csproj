@@ -283,6 +283,7 @@
     <Content Include="Areas\Sencha\app\store\Ingredients.js" />
     <Content Include="Areas\Sencha\app\store\RecentPies.js" />
     <Content Include="Areas\Sencha\app\view\Bake.js" />
+    <Content Include="Areas\Sencha\app\view\EditIngredient.js" />
     <Content Include="Areas\Sencha\app\view\LegendItem.js" />
     <Content Include="Areas\Sencha\app\view\MyPies.js" />
     <Content Include="Areas\Sencha\app\view\Home.js" />

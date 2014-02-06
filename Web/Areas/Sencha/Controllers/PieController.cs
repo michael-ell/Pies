@@ -51,5 +51,11 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
         {
             _commandService.Execute(new UpdatePieTagsCommand(model.Id, model.Tags));
         }
+
+        [HttpPost]
+        public void AddIngredient(AddIngredientModel model)
+        {
+            _commandService.Execute(new AddIngredientCommand(model.Id, model.Description));
+        }
     }
 }
