@@ -27,7 +27,6 @@
             Pies.app.getController('Bake').getCaption().setValue(data);
         };
         hub.client.ingredientsUpdated = function (data) {
-            debugger;
         };
     },
     createPie: function () {

@@ -19,8 +19,6 @@ Ext.Loader.setPath({
 });
 //</debug>
 
-//@require scripts/jquery.signalR-1.0.1.js
-
 Ext.application({
     name: 'Pies',
 
