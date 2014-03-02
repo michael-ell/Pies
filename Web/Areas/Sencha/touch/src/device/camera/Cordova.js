@@ -1,9 +1,25 @@
 /**
  * @private
  */
-Ext.define('Ext.device.camera.PhoneGap', {
-
+Ext.define('Ext.device.camera.Cordova', {
+    alternateClassName: 'Ext.device.camera.PhoneGap',
     extend: 'Ext.device.camera.Abstract',
+
+    getPicture: function (onSuccess, onError, options){
+        try {
+            navigator.camera.getPicture(onSuccess, onError, options);
+        } catch (e) {
+            alert(e);
+        }
+    },
+
+    cleanup: function(onSuccess, onError) {
+        try {
+            navigator.camera.cleanup(onSuccess, onError);
+        } catch (e) {
+            alert(e);
+        }
+    },
 
     capture: function(args) {
         var onSuccess = args.success,
@@ -46,11 +62,6 @@ Ext.define('Ext.device.camera.PhoneGap', {
             options.targetHeight = args.height;
         }
 
-        try {
-            navigator.camera.getPicture(onSuccess, onError, options);
-        }
-        catch (e) {
-            alert(e);
-        }
+        this.getPicture(onSuccess, onError, options);
     }
 });

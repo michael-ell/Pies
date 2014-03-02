@@ -1,29 +1,30 @@
 ﻿Ext.define('Pies.controller.Home', {
     extend: 'Ext.app.Controller',
-    requires: ['Pies.store.RecentPies', 'Pies.view.Pie', 'Ext.carousel.Carousel'],
+    requires: ['Pies.view.Home'],
     config: {
-        views: ['Home'],
-        refs: { home: '#home' },
-        control: {
-            home: {
-                initialize: 'loadPies'
-            }
+        refs: {
+            home: '.homecard'
         }
     },
-    loadPies: function () {
-        var carousel = arguments[0].down('.carousel');        
-        Ext.getStore('recentPies').load(function (recent) {
-            Ext.each(recent, function (pie) {
-                carousel.add({
-                    xtype: 'pie',
-                    pie: {
-                        data: pie.data,
-                        showCaption: true,
-                        showLegend: true
-                    }                        
-                });
-            });
+    launch: function () {
+        var me = this;
+        setTimeout(function () {
+            me.getPies(me);
+        }, 0);
+    },
+    getPies: function (scope) {
+        Pies.app.fireEvent('busy');
+        Ext.Ajax.request({
+            url: '/sencha/home/getrecent',
+            method: 'GET',        
+            scope: scope,
+            success: scope.showPies,
+            callback: function () {
+                Pies.app.fireEvent('notBusy');
+            }
         });
-        carousel.setActiveItem(0);    
+    },
+    showPies: function (xhr, opts) {
+        opts.scope.getHome().setData(Ext.JSON.decode(xhr.responseText));
     }
 });

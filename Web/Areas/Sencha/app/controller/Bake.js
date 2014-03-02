@@ -3,7 +3,7 @@
     requires: ['Pies.model.Pie', 'Pies.view.EditIngredient', 'Ext.data.reader.Json'],
     config: {
         views: ['Bake'],
-        refs: { view: '#bake', caption: '#caption' },
+        refs: { view: '.bakecard', caption: '#caption' },
         control: {
             view: {
                 activate: 'createPie'

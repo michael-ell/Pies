@@ -275,8 +275,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Areas\Sencha\app.js" />
     <Content Include="Areas\Sencha\app\controller\Bake.js" />
-    <Content Include="Areas\Sencha\app\controller\MyPies.js" />
-    <Content Include="Areas\Sencha\app\controller\Main.js" />
     <Content Include="Areas\Sencha\app\controller\Home.js" />
     <Content Include="Areas\Sencha\app\model\Ingredient.js" />
     <Content Include="Areas\Sencha\app\model\Pie.js" />

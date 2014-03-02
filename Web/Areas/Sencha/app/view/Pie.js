@@ -1,12 +1,12 @@
 ﻿Ext.define("Pies.view.Pie", {
     extend: 'Ext.Container',
-    requires: ['Ext.chart.PolarChart', 'Ext.chart.series.Pie', 'Pies.model.Ingredient'],
+    requires: ['Pies.model.Ingredient', 'Pies.view.LegendItem', 'Ext.chart.PolarChart', 'Ext.chart.series.Pie'],
     xtype: 'pie',
     config: {
         pie: null
     },
-    applyPie: function (settings) {
-        var ingredients = settings.data.allIngredients;
+    applyPie: function (config) {
+        var ingredients = config.data.allIngredients;
         var colors = [];
         for (var i = 0; i < ingredients.length; i++) {
             colors.push(ingredients[i].color);
@@ -25,14 +25,14 @@
                 }
             }]
         });
-        if (settings.showCaption) {
+        if (config.showCaption) {
             this.add({
                 xtype: 'container',
-                html: '<div class="header">' + settings.data.caption + '</div>'
+                html: '<div class="header">' + config.data.caption + '</div>'
             });
         }
         this.add(chart);
-        if (settings.showLegend) {
+        if (config.showLegend) {
             this.add(
                 {
                     xtype: 'dataview',

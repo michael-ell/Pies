@@ -21,7 +21,7 @@ namespace Codell.Pies.Data.Storage.Mongo
         {
             var query = Query.And(Query.EQ("IsEmpty", true), Query.LT("CreatedOn", new BsonDateTime(value.ToUniversalTime())));
             var result = _factory.GetCollection<Pie>().Remove(query);
-            if (!result.Ok)
+            if (result != null && !result.Ok)
                 throw new ApplicationException(result.LastErrorMessage);
         }
     }

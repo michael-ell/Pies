@@ -115,7 +115,7 @@
        Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
        XmlFileName="$(DeployTemp)\51Degrees.mobi.config"
        XPath="//configuration/fiftyOne/redirect/@mobileHomePageUrl"
-       Value="~/areas/sencha/build/pies/package/index.html"
+       Value="~/areas/sencha/build/package/pies/index.html"
     />
   </Target>
 </Project>

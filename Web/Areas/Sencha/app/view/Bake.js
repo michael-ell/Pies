@@ -1,6 +1,6 @@
 Ext.define('Pies.view.Bake', {
     extend: 'Ext.Panel',
-    requires: ['Pies.view.Pie', 'Ext.TitleBar', 'Ext.form.FieldSet'],
+    requires: ['Pies.view.Pie', 'Ext.form.FieldSet'],
     xtype: 'bakecard', 
     config: {
         id: 'bake',
@@ -40,5 +40,5 @@ Ext.define('Pies.view.Bake', {
     updatePie: function (np, op) {
         if (op) { this.remove(op); }
         if (np) { this.add(np); }
-    },
+    }
 });

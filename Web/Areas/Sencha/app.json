@@ -44,6 +44,10 @@
             "x-bootstrap": true
         },
         {
+            "path": "bootstrap.js",
+            "x-bootstrap": true
+        },
+        {
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
@@ -55,13 +59,11 @@
 		{
 			"path" : "http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.min.js",
 			remote: true
-			//"path": "scripts/jquery.signalR-1.0.1.js",
-			//"skipFrameworkFile": true
 		},
         {
             "path": "/signalr/hubs",
             "remote": true
-        },
+        }
     ],
 
     /**

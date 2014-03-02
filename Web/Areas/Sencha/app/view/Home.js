@@ -1,36 +1,32 @@
 Ext.define('Pies.view.Home', {
     extend: 'Ext.Panel',
-    requires: ['Ext.TitleBar', 'Ext.dataview.DataView', 'Pies.store.RecentPies', 'Pies.view.PieItem'],
+    requires: ['Pies.view.Pie', 'Ext.carousel.Carousel'],
     xtype: 'homecard',
     config: {
-        id: 'home',
         title: 'Home',
         iconCls: 'home',
         layout: 'fit',
         items: [
-            //{
-            //    docked: 'top',
-            //    xtype: 'titlebar',
-            //    title: 'Home'
-            //},           
-            //{
-            //    xtype: 'dataview',
-            //    scrollable: 'vertical',
-            //    store: Ext.create('Pies.store.RecentPies'),
-            //    useComponents: true,
-            //    defaultType: 'pieItem'
-            //}
             {
                 xtype: 'carousel',
-                store: Ext.create('Pies.store.RecentPies')
+                direction: 'vertical',
+                indicator: false
             }
         ]
-        //listeners: {
-        //    //Controller ref / control listener
-        //    activate: function () {
-        //        Ext.getStore('recentPies').load();
-        //        //this.fireEvent('onLoadPies');
-        //    }
-        //}
+    },
+    applyData: function (data) {
+        var views = [];
+        Ext.each(data, function (pie) {
+            views.push({
+                xtype: 'pie',
+                pie: {
+                    data: pie,
+                    showCaption: true,
+                    showLegend: true
+                }
+            });
+        });
+        this.down('carousel').add(views);
+        return data;
     }
 });

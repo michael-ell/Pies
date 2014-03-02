@@ -55,6 +55,9 @@ Web/Areas/Sencha/touch/*.txt
 Web/Areas/Sencha/build/Pies/native/
 Web/Areas/Sencha/build/Pies/production/
 Web/Areas/Sencha/archive/
+Web/Areas/Sencha/.sencha_backup/
+Web/Areas/Sencha/build/temp/
+Web/Areas/Sencha/upgrade-temp/
 
 # Build results
 [Dd]ebug/
