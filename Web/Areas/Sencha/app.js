@@ -1,7 +1,7 @@
 Ext.application({
     name: 'Pies',
 
-    requires: ['Ext.MessageBox'],
+    requires: ['Pies.view.Main', 'Ext.MessageBox', 'Ext.LoadMask'],
 
     views: ['Main'],
     

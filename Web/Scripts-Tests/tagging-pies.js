@@ -16,9 +16,9 @@ describe("Tagging a pie caption: ", function () {
         var sut, actions, expectedTags;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
-            spyOn($, 'post').andCallFake(function () { });
+            spyOn($, 'post').and.callFake(function () { });
             expectedTags = "a b c";
             actions = new cr8.Actions();
             sut = new cc.pies.edit.Pie(new cr8.Pie(), actions);
@@ -28,15 +28,15 @@ describe("Tagging a pie caption: ", function () {
         
 
         it("should call the correct location that updates the tags", function () {
-            expect($.post.calls[0].args[0]).toBe(actions.updateTags);
+            expect($.post.calls.argsFor(0)[0]).toBe(actions.updateTags);
         });
 
         it("should update the correct pie", function () {
-            expect($.post.calls[0].args[1].id).toBe(sut.id);
+            expect($.post.calls.argsFor(0)[1].id).toBe(sut.id);
         });
 
         it("should update the tags for the pie", function () {
-            expect($.post.calls[0].args[1].tags).toBe(expectedTags);
+            expect($.post.calls.argsFor(0)[1].tags).toBe(expectedTags);
         });
     });
 });

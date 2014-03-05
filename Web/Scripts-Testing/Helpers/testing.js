@@ -32,47 +32,55 @@ testing.matchers = {
         return !array1 && !array2;
     },
 
-    toHaveItem: function (expected) {
-        if (this.actual && this.actual instanceof Array) {
-            for (var i = 0; i < this.actual.length; i++) {
-                if (expected.matches && $.isFunction(expected.matches) && expected.matches(this.actual[i])) {
-                    return true;
-                } else if (this.actual[i] === expected) {
-                    return true;
-                }
-            }
-        }
-        return this.actual === expected;
-    },
-    
-    toHaveBeenCalledWithArgumentContaining: function (expected) {
-        if (!this.actual.wasCalled) return false;
-
-        for (var property in expected) {
-            for (var i = 0; i < this.actual.argsForCall.length; i++) {
-                for (var j = 0; j < this.actual.argsForCall[i].length; j++) {
-                    if (this.actual.argsForCall[i][j][property] && this.actual.argsForCall[i][j][property] == expected[property]) {
-                        return true;
+    toHaveItem: function (util, customEqualityTesters) {
+        return {
+            compare: function(actual, expected) {
+                if (actual && actual instanceof Array) {
+                    for (var i = 0; i < actual.length; i++) {
+                        if (expected.matches && $.isFunction(expected.matches) && expected.matches(actual[i])) {
+                            return {pass: true};
+                        } else if (util.equals(actual[i], expected, customEqualityTesters)) {
+                            return {pass: true};
+                        }
                     }
                 }
+                return { pass: util.equals(actual, expected, customEqualityTesters) };
             }
-        }
-        return false;
+        };
     },
     
-    toHaveBeenCalledWithArgument: function (expected) {
-        if (!this.actual.wasCalled) return false;
-
-        for (var property in expected) {
-            for (var i = 0; i < this.actual.argsForCall.length; i++) {
-                for (var j = 0; j < this.actual.argsForCall[i].length; j++) {
-                    if (this.actual.argsForCall[i][j][property] && this.actual.argsForCall[i][j][property] != expected[property]) {
-                        return false;
+    toHaveBeenCalledWithArgumentContaining: function () {
+        return {
+            compare: function(actual, expected) {
+                for (var property in expected) {
+                    for (var i = 0; i < actual.calls.count(); i++) {
+                        for (var j = 0; j < actual.calls.argsFor(i).length; j++) {
+                            if (actual.calls.argsFor(i)[j][property] && actual.calls.argsFor(i)[j][property] == expected[property]) {
+                                return {pass: true};
+                            }
+                        }
                     }
                 }
+                return {pass: false};
             }
-        }
-        return true;
+        };
+    },
+    
+    toHaveBeenCalledWithArgument: function () {
+        return {
+            compare: function(actual, expected) {
+                for (var property in expected) {
+                    for (var i = 0; i < actual.calls.count(); i++) {
+                        for (var j = 0; j < actual.calls.argsFor(i).length; j++) {
+                            if (actual.calls.argsFor(i)[j][property] && actual.calls.argsFor(i)[j][property] != expected[property]) {
+                                return {pass: false};
+                            }
+                        }
+                    }
+                }
+                return {pass: true};
+            }
+        };
     }
 };
 

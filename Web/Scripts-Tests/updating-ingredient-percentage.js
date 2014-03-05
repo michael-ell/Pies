@@ -17,9 +17,9 @@ describe("Updating the percentage of an ingredient: ", function () {
         var sut, actions, expectedPieId, expectedPercentage;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
-            spyOn($, 'post').andCallFake(function () { });
+            spyOn($, 'post').and.callFake(function () { });
             var model = new cr8.Ingredient();
             expectedPieId = 'abc';
             expectedPercentage = model.percent + 5;            
@@ -30,19 +30,19 @@ describe("Updating the percentage of an ingredient: ", function () {
         });
 
         it("should call the correct location that updates the percentage", function () {
-            expect($.post.calls[0].args[0]).toBe(actions.updatePercentage);
+            expect($.post.calls.argsFor(0)[0]).toBe(actions.updatePercentage);
         });
         
         it("should update the correct pie", function () {
-            expect($.post.calls[0].args[1].pieId).toBe(expectedPieId);
+            expect($.post.calls.argsFor(0)[1].pieId).toBe(expectedPieId);
         });
 
         it("should update the correct ingredient", function () {
-            expect($.post.calls[0].args[1].id).toBe(sut.id);
+            expect($.post.calls.argsFor(0)[1].id).toBe(sut.id);
         });
 
         it("should update the ingredients percentage", function () {
-            expect($.post.calls[0].args[1].percent).toBe(expectedPercentage);
+            expect($.post.calls.argsFor(0)[1].percent).toBe(expectedPercentage);
         });
     });
 
@@ -50,7 +50,7 @@ describe("Updating the percentage of an ingredient: ", function () {
         var sut, changed;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             var model = new cr8.Pie();
             changed = new cr8.ChangePercentage().for(model.editableIngredients[0]);

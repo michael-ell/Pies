@@ -16,7 +16,7 @@ describe("Ingredient changes: ", function () {
         var sut, updated;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             updated = new cr8.IngredientsUpdated();
             sut = new cc.pies.edit.Pie(new cr8.Pie(), new cr8.Actions());

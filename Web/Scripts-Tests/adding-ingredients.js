@@ -16,9 +16,9 @@ describe("Adding ingredients to a pie: ", function () {
         var sut;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
-            spyOn($, 'post').andCallFake(function () {});
+            spyOn($, 'post').and.callFake(function () {});
             sut = new cc.pies.edit.Pie(new cr8.Pie(), new cr8.Actions());
             sut.ingredientToAdd('');
             
@@ -34,9 +34,9 @@ describe("Adding ingredients to a pie: ", function () {
         var sut, actions, expectedIngredient;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
-            spyOn($, 'post').andCallFake(function(url, data, success) {
+            spyOn($, 'post').and.callFake(function(url, data, success) {
                 success();
             });
             expectedIngredient = "blueberries";
@@ -48,15 +48,15 @@ describe("Adding ingredients to a pie: ", function () {
         });        
 
         it("should call the correct location that adds the ingredient", function () {
-            expect($.post.calls[0].args[0]).toBe(actions.add);
+            expect($.post.calls.argsFor(0)[0]).toBe(actions.add);
         });
 
         it("should add the ingredient to the correct pie", function () {
-            expect($.post.calls[0].args[1].id).toBe(sut.id);
+            expect($.post.calls.argsFor(0)[1].id).toBe(sut.id);
         });
 
         it("should update the tags for the pie", function () {
-            expect($.post.calls[0].args[1].description).toBe(expectedIngredient);
+            expect($.post.calls.argsFor(0)[1].description).toBe(expectedIngredient);
         });
 
         it("should clear the ingredient that was added", function() {

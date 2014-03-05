@@ -15,7 +15,7 @@ describe("Editing Ingredients: ", function () {
         var sut, model;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             spyOn($.mhub, 'init');
             model = new cr8.Ingredient();

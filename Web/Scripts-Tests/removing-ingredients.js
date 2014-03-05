@@ -15,9 +15,9 @@ describe("Removing ingredients: ", function () {
         var sut, actions, expectedPieId;
         
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
             
-            spyOn($, 'ajax').andCallFake(function() { });
+            spyOn($, 'ajax').and.callFake(function() { });
             expectedPieId = 'abc';
             actions = new cr8.Actions();
             sut = new cc.pies.edit.Ingredient(expectedPieId, new cr8.Ingredient(), actions);
@@ -27,16 +27,16 @@ describe("Removing ingredients: ", function () {
 
 
         it("should call the correct location that removes the ingredient", function () {
-            expect($.ajax.calls[0].args[0].url).toBe(actions.remove);
-            expect($.ajax.calls[0].args[0].type).toBe('delete');
+            expect($.ajax.calls.argsFor(0)[0].url).toBe(actions.remove);
+            expect($.ajax.calls.argsFor(0)[0].type).toBe('delete');
         });
 
         it("should remove the ingredient from the correct pie", function () {
-            expect($.ajax.calls[0].args[0].data.pieId).toBe(expectedPieId);
+            expect($.ajax.calls.argsFor(0)[0].data.pieId).toBe(expectedPieId);
         });
 
         it("should remove the correct ingredient", function () {
-            expect($.ajax.calls[0].args[0].data.id).toBe(sut.id);
+            expect($.ajax.calls.argsFor(0)[0].data.id).toBe(sut.id);
         });
     });    
 });

@@ -15,11 +15,11 @@ describe("Removing Pies: ", function () {
         var sut, pieToDelete, actions;
         
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
             
             pieToDelete = new cr8.Pie();
             actions = new cr8.Actions();
-            spyOn($, 'ajax').andCallFake(function() {});            
+            spyOn($, 'ajax').and.callFake(function() {});            
             sut = new cc.pies.Pie(pieToDelete, actions);
             
             sut.remove();
@@ -37,7 +37,7 @@ describe("Removing Pies: ", function () {
         var sut, pieToDelete;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
             
             pieToDelete = new cr8.Pie();
             sut = new cc.pies.Index([pieToDelete], new cr8.Options().withEditing());

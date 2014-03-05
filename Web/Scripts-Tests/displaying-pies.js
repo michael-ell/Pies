@@ -14,7 +14,7 @@ describe("Displaying Pies: ", function () {
         var sut, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             expectedPies = [cr8.Pie()];
             sut = new cc.pies.Index(expectedPies, new cr8.Options().noEditing());
@@ -32,7 +32,7 @@ describe("Displaying Pies: ", function () {
         var sut, options, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             spyOn($.mhub, 'init');
             options = new cr8.Options().withEditing();
@@ -56,12 +56,12 @@ describe("Displaying Pies: ", function () {
         var sut, options, expectedTag, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             options = new cr8.Options().withEditing();
             expectedPies = [new cr8.Pie()];
             expectedTag = "abc";
-            spyOn($, 'get').andCallFake(function (url, callback) {
+            spyOn($, 'get').and.callFake(function (url, callback) {
                 if (url === options.findUrl + '/' + expectedTag) {
                     callback(expectedPies);
                 }
@@ -83,11 +83,11 @@ describe("Displaying Pies: ", function () {
         var sut, options, expectedPies;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             options = new cr8.Options().withEditing();
             expectedPies = [new cr8.Pie()];
-            spyOn($, 'get').andCallFake(function (url, callback) {
+            spyOn($, 'get').and.callFake(function (url, callback) {
                 if (url === options.findUrl + '/') {
                     callback(expectedPies);
                 }

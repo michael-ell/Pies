@@ -16,9 +16,9 @@ describe("Updating a pie caption: ", function () {
         var sut;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
-            spyOn($, 'post').andCallFake(function () { });
+            spyOn($, 'post').and.callFake(function () { });
             sut = new cc.pies.edit.Pie(new cr8.Pie(), new cr8.Actions());
 
             sut.caption('');
@@ -33,9 +33,9 @@ describe("Updating a pie caption: ", function () {
         var sut, actions, expectedCaption;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
             
-            spyOn($, 'post').andCallFake(function () { });
+            spyOn($, 'post').and.callFake(function () { });
             expectedCaption = "my wicked pie";
             actions = new cr8.Actions();
             sut = new cc.pies.edit.Pie(new cr8.Pie(), actions);
@@ -44,15 +44,15 @@ describe("Updating a pie caption: ", function () {
         });
 
         it("should call the correct location that updates the caption", function () {
-            expect($.post.calls[0].args[0]).toBe(actions.updateCaption);
+            expect($.post.calls.argsFor(0)[0]).toBe(actions.updateCaption);
         });
         
         it("should update the correct pie", function () {
-            expect($.post.calls[0].args[1].id).toBe(sut.id);
+            expect($.post.calls.argsFor(0)[1].id).toBe(sut.id);
         });
         
         it("should update the pie caption to be the user entered caption", function () {
-            expect($.post.calls[0].args[1].caption).toBe(expectedCaption);
+            expect($.post.calls.argsFor(0)[1].caption).toBe(expectedCaption);
         });
     });
     
@@ -60,7 +60,7 @@ describe("Updating a pie caption: ", function () {
         var sut, expectedCaption;
         
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
             expectedCaption = "my stellar pie";
             sut = new cc.pies.edit.Pie(new cr8.Pie(), new cr8.Actions());

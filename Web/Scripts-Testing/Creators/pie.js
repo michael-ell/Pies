@@ -14,5 +14,8 @@ cr8.Pie = function () {
                testing.verify.matchingArray(self.editableIngredients, other.editableIngredients) &&
                testing.verify.matchingArray(self.tags, other.tags);
     };
+    self.toJSON = function() {
+        return JSON.stringify(self);
+    };
     return self;
 };

@@ -16,9 +16,9 @@ describe("Updating the description of an ingredient: ", function () {
         var sut, actions, expectedPieId, expectedDescription;
 
         beforeEach(function () {
-            this.addMatchers(testing.setup());
+            jasmine.addMatchers(testing.setup());
 
-            spyOn($, 'post').andCallFake(function () { });
+            spyOn($, 'post').and.callFake(function () { });
             var model = new cr8.Ingredient();
             expectedPieId = 'abc';
             expectedDescription = model.description + ' - x';            
@@ -29,19 +29,19 @@ describe("Updating the description of an ingredient: ", function () {
         });
 
         it("should call the correct location that updates the description", function () {
-            expect($.post.calls[0].args[0]).toBe(actions.updateDescription);
+            expect($.post.calls.argsFor(0)[0]).toBe(actions.updateDescription);
         });
         
         it("should update the correct pie", function () {
-            expect($.post.calls[0].args[1].pieId).toBe(expectedPieId);
+            expect($.post.calls.argsFor(0)[1].pieId).toBe(expectedPieId);
         });
 
         it("should update the correct ingredient", function () {
-            expect($.post.calls[0].args[1].id).toBe(sut.id);
+            expect($.post.calls.argsFor(0)[1].id).toBe(sut.id);
         });
 
         it("should update the ingredients description", function () {
-            expect($.post.calls[0].args[1].description).toBe(expectedDescription);
+            expect($.post.calls.argsFor(0)[1].description).toBe(expectedDescription);
         });
     });
 });
