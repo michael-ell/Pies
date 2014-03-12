@@ -753,7 +753,9 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Pies.controller.Bake": [],
   "Pies.controller.Home": [],
+  "Pies.controller.Main": [],
   "Pies.model.Ingredient": [],
+  "Pies.model.MenuItem": [],
   "Pies.model.Pie": [],
   "Pies.store.Ingredients": [],
   "Pies.store.RecentPies": [],
@@ -762,6 +764,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Pies.view.Home": [],
   "Pies.view.LegendItem": [],
   "Pies.view.Main": [],
+  "Pies.view.Menu": [],
   "Pies.view.MyPies": [],
   "Pies.view.Pie": [],
   "Pies.view.PieItem": []
@@ -1715,30 +1718,37 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.WindowsPhone": [],
   "Pies.controller.Bake": [],
   "Pies.controller.Home": [],
+  "Pies.controller.Main": [],
   "Pies.model.Ingredient": [],
+  "Pies.model.MenuItem": [],
   "Pies.model.Pie": [],
   "Pies.store.Ingredients": [],
   "Pies.store.RecentPies": [],
   "Pies.view.Bake": [
-    "widget.bakecard"
+    "widget.pies-bake"
   ],
   "Pies.view.EditIngredient": [
-    "widget.editIngredient"
+    "widget.pies-ei"
   ],
   "Pies.view.Home": [
-    "widget.homecard"
+    "widget.pies-home"
   ],
   "Pies.view.LegendItem": [
-    "widget.legendItem"
+    "widget.pies-legend"
   ],
-  "Pies.view.Main": [],
+  "Pies.view.Main": [
+    "widget.pies-main"
+  ],
+  "Pies.view.Menu": [
+    "widget.pies-menu"
+  ],
   "Pies.view.MyPies": [
-    "widget.mypiescard"
+    "widget.pies-mine"
   ],
   "Pies.view.Pie": [
-    "widget.pie"
+    "widget.pies-pie"
   ],
   "Pies.view.PieItem": [
-    "widget.pieItem"
+    "widget.pies-pieItem"
   ]
 });

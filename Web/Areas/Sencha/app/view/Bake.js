@@ -1,11 +1,8 @@
 Ext.define('Pies.view.Bake', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.Container',
     requires: ['Pies.view.Pie', 'Ext.form.FieldSet'],
-    xtype: 'bakecard', 
+    xtype: 'pies-bake', 
     config: {
-        id: 'bake',
-        title: 'Bake',
-        iconCls: 'action',
         scrollable: true,       
         items: [
             {
@@ -32,7 +29,8 @@ Ext.define('Pies.view.Bake', {
                 action: 'addIngredient'
             }
         ],
-        pie: null
+        pie: null,
+        title: 'Bake'
     },
     applyPie: function (pie) {
         return Ext.create('Pies.view.Pie', { pie: { data: pie } });

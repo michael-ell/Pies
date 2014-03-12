@@ -1,11 +1,9 @@
 Ext.application({
     name: 'Pies',
 
-    requires: ['Pies.view.Main', 'Ext.MessageBox', 'Ext.LoadMask'],
-
-    views: ['Main'],
+    requires: ['Ext.MessageBox', 'Ext.LoadMask'],
     
-    controllers: ['Home', 'Bake'],
+    controllers: ['Main', 'Home', 'Bake'],
 
     icon: {},
 
@@ -15,7 +13,6 @@ Ext.application({
 
     launch: function() {
         Ext.fly('appLoadingIndicator').destroy();
-        Ext.Viewport.add(Ext.create('Pies.view.Main'));
     },
 
     onUpdated: function() {

@@ -1,9 +1,7 @@
 Ext.define('Pies.view.MyPies', {
-    extend: 'Ext.Panel',
-    xtype: 'mypiescard', 
+    extend: 'Ext.Container',
+    xtype: 'pies-mine', 
     config: {
-        title: 'My Pies',
-        iconCls: 'user',
         items: [
             {
                 xtype: 'container',

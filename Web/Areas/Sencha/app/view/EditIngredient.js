@@ -1,6 +1,6 @@
 ﻿Ext.define('Pies.view.EditIngredient', {
     extend: 'Ext.Panel',
-    xtype: 'editIngredient',
+    xtype: 'pies-ei',
     config: {
         modal: true,
         hideOnMaskTap: true,

@@ -3,7 +3,7 @@
     requires: ['Pies.model.Pie', 'Pies.view.EditIngredient', 'Ext.data.reader.Json'],
     config: {
         views: ['Bake'],
-        refs: { view: '.bakecard', caption: '#caption' },
+        refs: { view: '.pies-bake', caption: '#caption' },
         control: {
             view: {
                 activate: 'createPie'
@@ -68,7 +68,7 @@
             jsonData: { id: this.getPie().id, description: '?' }
         });
         //if (!this.editor) {
-        //    this.editor = Ext.Viewport.add({ xtype: 'editIngredient' });
+        //    this.editor = Ext.Viewport.add({ xtype: 'pies-ei' });
         //}
         //this.editor.show();
     }

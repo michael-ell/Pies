@@ -3,22 +3,19 @@
     requires: ['Pies.view.Home'],
     config: {
         refs: {
-            home: '.homecard'
+            home: '.pies-home'
         }
     },
-    launch: function () {
-        var me = this;
-        setTimeout(function () {
-            me.getPies(me);
-        }, 0);
+    init: function() {
+        Pies.app.on('getPies', this.getPies, this);
     },
-    getPies: function (scope) {
+    getPies: function () {
         Pies.app.fireEvent('busy');
         Ext.Ajax.request({
             url: '/sencha/home/getrecent',
             method: 'GET',        
-            scope: scope,
-            success: scope.showPies,
+            scope: this,
+            success: this.showPies,
             callback: function () {
                 Pies.app.fireEvent('notBusy');
             }

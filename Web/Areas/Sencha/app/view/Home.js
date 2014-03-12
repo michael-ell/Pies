@@ -1,10 +1,8 @@
 Ext.define('Pies.view.Home', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.Container',
     requires: ['Pies.view.Pie', 'Ext.carousel.Carousel'],
-    xtype: 'homecard',
+    xtype: 'pies-home',
     config: {
-        title: 'Home',
-        iconCls: 'home',
         layout: 'fit',
         items: [
             {
@@ -18,7 +16,7 @@ Ext.define('Pies.view.Home', {
         var views = [];
         Ext.each(data, function (pie) {
             views.push({
-                xtype: 'pie',
+                xtype: 'pies-pie',
                 pie: {
                     data: pie,
                     showCaption: true,

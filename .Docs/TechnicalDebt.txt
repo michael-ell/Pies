@@ -34,9 +34,9 @@ Sencha
 - theme
 - caching and new deploys!!!!
 - Is RecentPiesStore even needed?
-- Sass / compass working / get rid of site.css
+- site.css still coming donw being requested?
 - Package Sencha nuget / mygit
-- Test HomeController
+- Remove PieItem view?
 
 51 degree mobi
 - Redirects on ajax calls

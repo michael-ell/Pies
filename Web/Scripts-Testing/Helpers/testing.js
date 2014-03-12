@@ -53,7 +53,7 @@ testing.matchers = {
         return {
             compare: function(actual, expected) {
                 for (var property in expected) {
-                    for (var i = 0; i < actual.calls.count(); i++) {
+                    for (var i = 0, x = actual.calls.count(); i < x ; i++) {
                         for (var j = 0; j < actual.calls.argsFor(i).length; j++) {
                             if (actual.calls.argsFor(i)[j][property] && actual.calls.argsFor(i)[j][property] == expected[property]) {
                                 return {pass: true};
@@ -70,7 +70,7 @@ testing.matchers = {
         return {
             compare: function(actual, expected) {
                 for (var property in expected) {
-                    for (var i = 0; i < actual.calls.count(); i++) {
+                    for (var i = 0, x = actual.calls.count(); i < x ; i++) {
                         for (var j = 0; j < actual.calls.argsFor(i).length; j++) {
                             if (actual.calls.argsFor(i)[j][property] && actual.calls.argsFor(i)[j][property] != expected[property]) {
                                 return {pass: false};

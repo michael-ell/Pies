@@ -6,7 +6,7 @@ Ext.define('Pies.view.PieItem', {
         'Pies.model.Ingredient',
         'Pies.view.LegendItem'
     ],
-    xtype: 'pieItem',
+    xtype: 'pies-pieItem',
     config: {
         pie: {}       
     },
@@ -45,7 +45,7 @@ Ext.define('Pies.view.PieItem', {
                     scrollable: null,
                     store: chart.getLegendStore(),
                     useComponents: true,
-                    defaultType: 'legendItem'
+                    defaultType: 'pies-legend'
                 }
             ]
         });

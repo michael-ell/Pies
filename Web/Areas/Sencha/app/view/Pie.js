@@ -1,7 +1,7 @@
 ﻿Ext.define("Pies.view.Pie", {
     extend: 'Ext.Container',
     requires: ['Pies.model.Ingredient', 'Pies.view.LegendItem', 'Ext.chart.PolarChart', 'Ext.chart.series.Pie'],
-    xtype: 'pie',
+    xtype: 'pies-pie',
     config: {
         pie: null
     },
@@ -40,7 +40,7 @@
                     scrollable: null,
                     store: chart.getLegendStore(),
                     useComponents: true,
-                    defaultType: 'legendItem'
+                    defaultType: 'pies-legend'
                 });
         }
     }
