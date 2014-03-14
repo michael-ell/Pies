@@ -108,13 +108,13 @@
     <XmlUpdate
        Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
        XmlFileName="$(DeployTemp)\Web.config"
-       XPath="//configuration/appSettings[@key='Profile']/@value"
+       XPath="//configuration/appSettings/add[@key='Profile']/@value"
        Value="false"
     />
     <XmlUpdate
        Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
        XmlFileName="$(DeployTemp)\Web.config"
-       XPath="//configuration/appSettings[@key='MobilePage']/@value"
+       XPath="//configuration/appSettings/add[@key='MobilePage']/@value"
        Value="~/areas/sencha/build/package/pies/index.html"
     />    
   </Target>
