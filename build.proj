@@ -113,9 +113,9 @@
     />
     <XmlUpdate
        Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
-       XmlFileName="$(DeployTemp)\51Degrees.mobi.config"
-       XPath="//configuration/fiftyOne/redirect/@mobileHomePageUrl"
+       XmlFileName="$(DeployTemp)\Web.config"
+       XPath="//configuration/appSettings[@key='MobilePage']/@value"
        Value="~/areas/sencha/build/package/pies/index.html"
-    />
+    />    
   </Target>
 </Project>

@@ -89,9 +89,6 @@
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="FiftyOne.Foundation">
-      <HintPath>..\packages\51Degrees.mobi.2.1.19.4\lib\NET40\FiftyOne.Foundation.dll</HintPath>
-    </Reference>
     <Reference Include="Glimpse.Core">
       <HintPath>..\packages\Glimpse.1.0.0\lib\net40\Glimpse.Core.dll</HintPath>
     </Reference>
@@ -206,6 +203,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
     </Reference>
+    <Reference Include="Wurfl">
+      <HintPath>..\packages\WURFL_Official_API.1.5.1\lib\Wurfl.dll</HintPath>
+    </Reference>
+    <Reference Include="Wurfl.Aspnet.Extensions">
+      <HintPath>..\packages\WURFL_Official_API.1.5.1\lib\Wurfl.Aspnet.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\.Shared\ProductInfo.cs">
@@ -220,17 +223,12 @@
     <Compile Include="Areas\Sencha\Controllers\PieController.cs" />
     <Compile Include="Areas\Sencha\SenchaAreaRegistration.cs" />
     <Compile Include="Attributes\HandleErrorAttribute.cs" />
+    <Compile Include="Attributes\MobileRedirectAttribute.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyPiesController.cs" />
     <Compile Include="Infrastructure\JsonNetResult.cs" />
-    <Compile Include="Mobile\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Mobile\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Infrastructure\Mobile.cs" />
     <Compile Include="Models\Home\IndexModel.cs" />
     <Compile Include="Models\Pie\IndexModel.cs" />
     <Compile Include="Models\Shared\PagingModel.cs" />
@@ -907,7 +905,6 @@
     <Content Include="jsTestDriver.conf" />
     <Content Include="Areas\Sencha\touch\cmd\sencha.cfg" />
     <Content Include="Areas\Sencha\app.json" />
-    <Content Include="51Degrees.mobi.config" />
     <Content Include="Areas\Sencha\resources\sass\.sass-cache\070e346794aee5b944d2edef91bb8c3b7e7a2df3\_Grid.scssc" />
     <Content Include="Areas\Sencha\resources\sass\.sass-cache\0819ab3daa8a55f21a84b982828fe45b9622a179\_Carousel.scssc" />
     <Content Include="Areas\Sencha\resources\sass\.sass-cache\0832f9b33ef49f15d830c43378a650f59c430f47\app.scssc" />
@@ -1054,13 +1051,13 @@
     <Content Include="Areas\Sencha\resources\sass\stylesheets\fonts\tizen\TizenSansMedium.ttf" />
     <Content Include="Areas\Sencha\resources\sass\stylesheets\fonts\tizen\TizenSansRegular.ttf" />
     <Content Include="Areas\Sencha\resources\sass\_sencha-overrides.scss" />
+    <Content Include="App_Data\wurfl.zip" />
     <None Include="Properties\PublishProfiles\pies - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\pies - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\pies.pubxml" />
     <Content Include="Scripts-Testing\Creators\xhr.js" />
     <Content Include="Scripts-Tests\Areas\Sencha\chutzpah.json" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Mobile\Default.aspx" />
     <Content Include="Scripts-Testing\Creators\actions.js" />
     <Content Include="Scripts-Testing\Creators\ingredient.js" />
     <Content Include="Scripts-Testing\Creators\options.js" />
@@ -1124,7 +1121,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Sencha\Models\" />
     <Folder Include="Areas\Sencha\resources\icons\" />
     <Folder Include="Areas\Sencha\resources\images\" />

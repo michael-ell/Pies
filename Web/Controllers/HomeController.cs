@@ -8,6 +8,7 @@ using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
+using Codell.Pies.Web.Attributes;
 using Codell.Pies.Web.Infrastructure;
 using Codell.Pies.Web.Models.Home;
 using Codell.Pies.Web.Models.Shared;
@@ -15,6 +16,7 @@ using Pie = Codell.Pies.Core.ReadModels.Pie;
 
 namespace Codell.Pies.Web.Controllers
 {
+    [MobileRedirect]
     [AllowAnonymous]
     public class HomeController : Controller
     {

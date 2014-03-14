@@ -7,5 +7,6 @@
         public const string EmptyPieLifetimeMinutes = "EmptyPieLifetimeMinutes";
         public const string PiesPerPage = "PiesPerPage";
         public const string ConnectionStringPrefix = "ConnectionStringPrefix";
+        public const string MobilePage = "MobilePage";
     }
 }

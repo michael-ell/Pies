@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
+using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Infrastructure;
@@ -15,22 +16,24 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
     {
         private readonly IRepository _repository;
         private readonly IMappingEngine _mapper;
+        private readonly ISettings _settings;
 
-        public HomeController(IRepository repository, IMappingEngine mapper)
+        public HomeController(IRepository repository, IMappingEngine mapper, ISettings settings)
         {
             Verify.NotNull(repository, "repository");
             Verify.NotNull(mapper, "mapper");
-            
+            Verify.NotNull(settings, "settings");
+                        
             _repository = repository;
             _mapper = mapper;
+            _settings = settings;
         }
 
-        //[HttpGet]
-        //public ActionResult Index()
-        //{
-        //    return Redirect(Url.Content("~/areas/sencha/index.html"));
-        //    //return Redirect(Url.Content("~/areas/sencha/build/pies/package/index.html"));
-        //}
+        [HttpGet]
+        public ActionResult Index()
+        {
+            return Redirect(Url.Content(_settings.Get<string>(Keys.MobilePage)));
+        }
 
         [HttpGet]
         public JsonNetResult GetRecent()
