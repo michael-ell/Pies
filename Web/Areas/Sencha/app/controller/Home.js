@@ -27,6 +27,7 @@
         return !results ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
     showPies: function (xhr, opts) {
+        debugger;
         opts.scope.getHome().setData(Ext.JSON.decode(xhr.responseText));
     }
 });

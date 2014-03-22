@@ -2,28 +2,17 @@
 @model Codell.Pies.Web.Models.MyPies.IndexModel
 <div id="pies">
     <div data-bind="template: { name: 'pie-template',
-                                foreach: pies,
-                                //afterRender: function (el) {
-                                //    $('#edit', $(el)).button({ icons: { primary: 'ui-icon-pencil' }, text: false });
-                                //    $('#delete', $(el)).button({ icons: { primary: 'ui-icon-trash' }, text: false });
-                                //    $('#email', $(el)).button({ icons: { primary: 'ui-icon-mail-closed' }, text: false });}
-                              }">        
+                                foreach: pies }">        
     </div>        
     <script type="text/html" id="pie-template">
         <div class="pie">
             <div data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
-            @*            <div class="center">
-                <a id="edit" data-bind="href:'@Url.Action("Edit")', args: $data.id">Edit</a>  
-                <a id="delete" href="#" data-bind="click: $data.delete">Delete</a>  
-                <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id">Email</a> 
-            </div>*@
-@*            <p><i class="fa fa-facebook fa-lg"></i></p>*@
             <ul class="pie-toolbar">
-                <li><a data-bind="href:'@Url.Action("Edit")', args: $data.id" title="Edit"><img src="@Url.Content("~/content/styles/images/jquerymobile-icon.png")" alt="Edit"/></a></li>
-                <li><a href="#" data-bind="click: $data.remove" title="Delete"><img src="@Url.Content("~/content/styles/images/dribbble-icon.png")" alt="Delete"/></a></li>
-                <li><a data-bind="href:'@Html.CheckOutMyPie(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id" title="Email"><img src="@Url.Content("~/content/styles/images/html5-icon.png")" alt="Email"/></a></li>
-                <li><a href="#" title="Facebook"><img src="@Url.Content("~/content/styles/images/facebook-icon.png")" alt="Facebook"/></a></li>
-                <li><a href="#" title="Twitter"><img src="@Url.Content("~/content/styles/images/twitter-icon.png")" alt="Twitter"/></a></li>
+                <li><a data-bind="href:'@Url.Action("Edit")', args: $data.id" title="Edit" class="edit"><i class="fa fa-pencil"></i></a></li>
+                <li><a href="#" data-bind="click: $data.remove" title="Delete" class="delete"><i class="fa fa-trash-o"></i></a></li>
+                <li><a data-bind="href:'@Html.CheckOutMyPie(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id" title="Email" class="email"><i class="fa fa-envelope-o"></i></a></li>
+                <li><a href="#" title="Facebook" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#" title="Twitter" class="twitter"><i class="fa fa-twitter"></i></a></li>
             </ul>
         </div>
     </script>    

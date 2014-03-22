@@ -706,6 +706,8 @@
     <Content Include="Areas\Sencha\touch\src\XTemplateCompiler.js" />
     <Content Include="Areas\Sencha\touch\src\XTemplateParser.js" />
     <Content Include="Areas\Sencha\touch\version.txt" />
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Styles\font-awesome.css" />
     <Content Include="Content\Styles\Images\animated-overlay.gif" />
     <Content Include="Content\Styles\Images\blogger.ico" />
     <Content Include="Content\Styles\Images\blogger.ico.gif" />
@@ -717,14 +719,12 @@
     <Content Include="Content\Styles\Images\clickpass.ico.gif" />
     <Content Include="Content\Styles\Images\clickpass.ico.png" />
     <Content Include="Content\Styles\Images\delete-26.png" />
-    <Content Include="Content\Styles\Images\dribbble-icon.png" />
     <Content Include="Content\Styles\Images\edit-26.png" />
     <Content Include="Content\Styles\Images\facebook-26.png" />
     <Content Include="Content\Styles\Images\facebook-icon.png" />
     <Content Include="Content\Styles\Images\facebook.gif" />
     <Content Include="Content\Styles\Images\facebook.ico" />
     <Content Include="Content\Styles\Images\facebook.ico.gif" />
-    <Content Include="Content\Styles\Images\facebook.ico.png" />
     <Content Include="Content\Styles\Images\facebook_24_24.png" />
     <Content Include="Content\Styles\Images\facebook_no_circle_24_24.png" />
     <Content Include="Content\Styles\Images\flickr.ico" />
@@ -738,8 +738,6 @@
     <Content Include="Content\Styles\Images\google_profile.ico" />
     <Content Include="Content\Styles\Images\google_profile.ico.gif" />
     <Content Include="Content\Styles\Images\google_profile.ico.png" />
-    <Content Include="Content\Styles\Images\html5-icon.png" />
-    <Content Include="Content\Styles\Images\jquerymobile-icon.png" />
     <Content Include="Content\Styles\Images\launchpad.ico" />
     <Content Include="Content\Styles\Images\launchpad.ico.gif" />
     <Content Include="Content\Styles\Images\launchpad.ico.png" />
@@ -792,7 +790,6 @@
     <Content Include="Content\Styles\Images\technorati.ico.png" />
     <Content Include="Content\Styles\Images\trash_24_24.png" />
     <Content Include="Content\Styles\Images\twitter-26.png" />
-    <Content Include="Content\Styles\Images\twitter-icon.png" />
     <Content Include="Content\Styles\Images\twitter.ico" />
     <Content Include="Content\Styles\Images\twitter.ico.gif" />
     <Content Include="Content\Styles\Images\twitter.ico.png" />
@@ -1053,6 +1050,10 @@
     <Content Include="Areas\Sencha\resources\sass\stylesheets\fonts\tizen\TizenSansRegular.ttf" />
     <Content Include="Areas\Sencha\resources\sass\_sencha-overrides.scss" />
     <Content Include="App_Data\wurfl.zip" />
+    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\pies - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\pies - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\pies.pubxml" />

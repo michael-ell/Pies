@@ -308,20 +308,43 @@ ul.pie-toolbar>li {
 
 ul.pie-toolbar a {
     float: left;
-    outline: none;
-    /*opacity: 0.5;*/
+    margin-right: 5px;
+    color: #fff;
+    font-size: 21px;
+    height: 31px;
+    width: 31px;
+    border-radius: 16px;
+    opacity: 0.5;   
 }
 
 ul.pie-toolbar a:hover {
-    /*opacity: 0.8;*/
+    opacity: 1;
 }
 
-ul.pie-toolbar a>img
-{
-    border: 0;
-    height: 40px;
-    width: 40px;
+ul.pie-toolbar a>i {
+    line-height: 30px;
 }
+
+ul.pie-toolbar a.edit {
+    background-color: #DB843D;
+}
+
+ul.pie-toolbar a.delete {
+    background-color: #89A54E;
+}
+
+ul.pie-toolbar a.email {
+    background-color: #BF3519;
+}
+
+ul.pie-toolbar a.facebook {
+    background-color: #3b5998;
+}
+
+ul.pie-toolbar a.twitter {
+    background-color: #49A9E2;
+}
+
 
 .label {
     width: 100px;

@@ -11,7 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
         <title>@Html.ProductName()</title>
         @RenderSection("Styles", required: false)
-@*<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">*@
         @Styles.Render(BundleConfig.Names.Styles)
         @Scripts.Render(BundleConfig.Names.Scripts)
         @MiniProfiler.RenderIncludes()
@@ -20,19 +19,6 @@
                 $.ajaxSetup({ cache: false });
                 $(document).ajaxError(function () {
                     window.location.replace('@Url.Action("Default", "Error")');
-                    //$('#error').dialog('open');
-                });
-                $('#error').dialog({
-                    autoOpen: false,
-                    title: 'Oops!',
-                    modal: true,
-                    resizable: false,
-                    draggable: false,
-                    buttons: {
-                        Ok: function () {
-                            $(this).dialog("close");
-                        }
-                    }
                 });
                 if (typeof window.console === "undefined" || typeof window.console.log === "undefined") {
                     window.console = {};
@@ -63,7 +49,6 @@
         </div>
         <div class="container clear">
             @RenderBody()
-            <div id="error" class="center">Sorry, an unexpected error has occurred.</div>
         </div>
     </body>
 </html>

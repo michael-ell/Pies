@@ -8,7 +8,6 @@ using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Infrastructure;
-using Codell.Pies.Web.Models.Home;
 using Codell.Pies.Web.Models.Shared;
 
 namespace Codell.Pies.Web.Areas.Sencha.Controllers
@@ -46,8 +45,13 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
         [HttpGet]
         public JsonNetResult Get(string id)
         {
-            Guid guid;
-            return Guid.TryParse(id, out guid) ? ToJsonResult(new[] {_repository.FindById<Guid, Pie>(guid)}) : GetRecent();
+            Pie pie = null; 
+            Guid guid;           
+            if (Guid.TryParse(id, out guid))
+            {
+                pie = _repository.FindById<Guid, Pie>(guid);
+            }
+            return ToJsonResult(new[] {pie ?? new Pie()});
         }
 
         [HttpGet]
