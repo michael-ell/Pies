@@ -40,7 +40,7 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
         [HttpGet]
         public JsonNetResult GetRecent()
         {
-            return ToJsonResult(_repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12));
+            return ToJsonResult(_repository.Find<Pie>(pie => pie.IsPrivate == false && pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12));
         }
 
         [HttpGet]

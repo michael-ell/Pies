@@ -35,6 +35,9 @@ namespace Codell.Pies.Web.Models.Shared
         [DataMember(Name = "tags")]
         public string Tags { get; set; }
 
+        [DataMember(Name = "isPrivate")]
+        public bool IsPrivate { get; set; }
+
         public bool Joining { get; set; }
     }
 }

@@ -4,6 +4,7 @@ cr8.Actions = function () {
     self.remove = "www.remove.com";
     self.updateCaption = "www.update.caption.com";
     self.updateTags = "www.update.tags.com";
+    self.updateIsPrivate = "www.update.is.private.com";
     self.add = "www.add.com";
     self.updatePercentage = "www.update.percentage.com";
     self.updateDescription = "www.update.description.com";

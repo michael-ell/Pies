@@ -11,7 +11,6 @@ describe("Displaying pies:", function () {
 
         beforeEach(function() {
             jasmine.addMatchers(testing.matchers);
-            jasmine.clock().install();
             sut = Ext.create('Pies.controller.Home', { application: App });
 
             home = { setData: function () {} };
@@ -27,7 +26,6 @@ describe("Displaying pies:", function () {
             });
 
             sut.getPies.call(sut);
-            jasmine.clock().tick(10);
         });
         
         it("should get the recent pies", function () {

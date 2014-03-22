@@ -18,6 +18,7 @@ namespace Codell.Pies.Core.EventHandlers
                                    IEventHandler<IngredientDescriptionUpdatedEvent>,
                                    IEventHandler<IngredientColorUpdatedEvent>,
                                    IEventHandler<ProposedIngredientPercentageChangedEvent>,
+                                   IEventHandler<IsPrivateUpdatedEvent>,
                                    IEventHandler<PieDeletedEvent>
     {
         private readonly IRepository _repository;
@@ -100,6 +101,13 @@ namespace Codell.Pies.Core.EventHandlers
             _repository.Save(pie);            
         }
 
+        public void Handle(IPublishedEvent<IsPrivateUpdatedEvent> evnt)
+        {
+            var pie = GetPieFor(evnt);
+            pie.IsPrivate = evnt.Payload.IsPrivate;
+            _repository.Save(pie);
+        }
+
         private Pie GetPieFor(IPublishableEvent evnt)
         {
             return _repository.FindById<Guid, Pie>(evnt.EventSourceId);
@@ -109,5 +117,7 @@ namespace Codell.Pies.Core.EventHandlers
         {
             _repository.DeleteById<Guid, Pie>(evnt.EventSourceId);
         }
+
+ 
     }
 }

@@ -24,6 +24,16 @@
                 <td><input type="text" class="tags" data-bind="value: tags, blur: tags"/></td>
                 <td></td>
             </tr>
+            @if (Request.IsAuthenticated)
+            {
+                <tr>
+                    <td></td>
+                    <td colspan="2">
+                        <input id="isPrivate" type="checkbox" data-bind="checked: isPrivate"/>
+                        <label for="isPrivate">For my eyes only</label>
+                    </td>
+                </tr>
+            }
             <tr>
                 <td></td>
                 <td>
@@ -60,7 +70,6 @@
                 <td>
                     <div class="ingredient-slider" id="percent" data-bind="slider: percent, sliderOptions: { min: 0, max: 100, step: 5, value: $data.percent() },
                                                                            sliderColor: color, colorOptions: { backgroundAdjust: 0, borderAdjust: -50 }"></div>
-
                 </td>
                 <td data-bind="text: formattedPercent"></td>
             </tr> 
@@ -95,7 +104,8 @@
             var pie = new cc.pies.edit.Pie(@Html.Raw(Model.ToJson()),
                 {
                     updateCaption: '@Url.Action("UpdateCaption", "Pie")',
-                    updateTags: '@Url.Action("UpdateTags", "Pie")'
+                    updateTags: '@Url.Action("UpdateTags", "Pie")',
+                    updateIsPrivate: '@Url.Action("UpdateIsPrivate", "Pie")'
                 },
                 {
                     add: '@Url.Action("AddIngredient", "Pie")',

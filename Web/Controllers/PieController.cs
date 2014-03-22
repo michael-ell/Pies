@@ -81,6 +81,12 @@ namespace Codell.Pies.Web.Controllers
             _commandService.Execute(new UpdatePieTagsCommand(model.Id, model.Tags));
         }
 
+        [HttpPost]
+        public void UpdateIsPrivate(UpdateIsPrivateModel model)
+        {
+            _commandService.Execute(new UpdateIsPrivateCommand(model.Id, model.IsPrivate));
+        }
+
         [HttpGet]
         public ActionResult Join(Guid id)
         {

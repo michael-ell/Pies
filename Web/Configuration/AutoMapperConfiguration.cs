@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Codell.Pies.Common.Mapping;
 using Codell.Pies.Core.ReadModels;
-using Codell.Pies.Web.Models;
 using Codell.Pies.Web.Models.Shared;
 
 namespace Codell.Pies.Web.Configuration

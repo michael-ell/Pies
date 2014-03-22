@@ -23,11 +23,13 @@ namespace Codell.Pies.Core.ReadModels
 
         public IEnumerable<string> Tags { get; set; }
 
+        public bool IsPrivate { get; set; }
+
         public bool IsEmpty { get; set; }
 
         public string OwnerId { get; set; }
 
-        public DateTime CreatedOn { get; set; }    
-   
+        public DateTime CreatedOn { get; set; }
+
     }
 }

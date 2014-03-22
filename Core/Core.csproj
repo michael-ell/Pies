@@ -72,6 +72,7 @@
     <Compile Include="Commands\CreatePieCommand.cs" />
     <Compile Include="Commands\DeleteIngredientCommand.cs" />
     <Compile Include="Commands\UpdateIngredientPercentageCommand.cs" />
+    <Compile Include="Commands\UpdateIsPrivateCommand.cs" />
     <Compile Include="Commands\UpdatePieCaptionCommand.cs" />
     <Compile Include="Commands\UpdatePieTagsCommand.cs" />
     <Compile Include="Cqrs\CommandResult.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="EventHandlers\Cleaner.cs" />
     <Compile Include="EventHandlers\PieDenormalizer.cs" />
     <Compile Include="EventHandlers\TagDenormalizer.cs" />
+    <Compile Include="Events\IsPrivateUpdatedEvent.cs" />
     <Compile Include="Events\PieDeletedEvent.cs" />
     <Compile Include="Events\IngredientDescriptionUpdatedEvent.cs" />
     <Compile Include="Events\IngredientColorUpdatedEvent.cs" />

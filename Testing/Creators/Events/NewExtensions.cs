@@ -57,6 +57,11 @@ namespace Codell.Pies.Testing.Creators.Events
             {
                 return new PieTagsUpdatedEventCreator(New.Context);
             }
+
+            public IsPrivateUpdatedEventCreator IsPrivateUpdatedEvent()
+            {
+                return new IsPrivateUpdatedEventCreator(New.Context);
+            }
         }
     }
 }

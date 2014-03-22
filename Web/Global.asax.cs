@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Autofac;
 using Autofac.Integration.Mvc;
+using Codell.Pies.Common;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Web.App_Start;
 using Codell.Pies.Web.Configuration;
@@ -34,6 +37,19 @@ namespace Codell.Pies.Web
         {
             var container = Configure.With<AutofacConfigurationModule>();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            Bootstrap(container);
+        }
+
+        private void Bootstrap(IContainer container)
+        {
+            IEnumerable<IBootstrapper> bootstrappers;
+            if (container.TryResolve(out bootstrappers))
+            {
+                foreach (var bootstrapper in bootstrappers)
+                {
+                    bootstrapper.Run();
+                }
+            }            
         }
 
         private void RegisterViewEngines()

@@ -24,7 +24,7 @@
     },
     _getShared: function() {
         var regex = new RegExp("[\\?&]share=([^&#]*)"), results = regex.exec(location.search);
-        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        return !results ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
     showPies: function (xhr, opts) {
         opts.scope.getHome().setData(Ext.JSON.decode(xhr.responseText));

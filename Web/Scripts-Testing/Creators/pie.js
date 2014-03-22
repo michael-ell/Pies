@@ -6,6 +6,7 @@ cr8.Pie = function () {
     self.allIngredients = [new cr8.Ingredient('a'), new cr8.Ingredient('b')];
     self.editableIngredients = [new cr8.Ingredient('b')];
     self.tags = ['x', 'y', 'z'];
+    self.isPrivate = false;
     self.matches = function (other) {
         if (!other) return false;
         return self.id == other.id &&

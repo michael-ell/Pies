@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EventStore;
 using Ncqrs.Eventing;
@@ -44,14 +45,22 @@ namespace Codell.Pies.Data.Storage
 
             using (var stream = _store.OpenStream(eventStream.SourceId, 0, int.MaxValue))
             {
-                foreach (var eventMessage in eventStream.Select(uncommittedEvent => new EventMessage { Body = uncommittedEvent.Payload }))
+                var list = new List<UncommittedEvent>(eventStream);
+                for (var i = 0; i < list.Count; i++)
                 {
-                    eventMessage.CommitId(eventStream.CommitId);
-                    stream.Add(eventMessage);
+                    var uncommitted = list[i];
+
+                    //For some reason, some uncommitted events are duplicated within seconds.  We are assuming the event sequence
+                    //should never equal the index, it should always be one greater to be a valid event.
+                    if (uncommitted.EventSequence != i)
+                    {
+                        var message = new EventMessage {Body = uncommitted.Payload};
+                        message.CommitId(eventStream.CommitId);
+                        stream.Add(message);
+                    }
                 }
                 try
                 {
-                    //stream.CommitChanges(Guid.NewGuid());
                     stream.CommitChanges(eventStream.CommitId);
                 }
                 catch (Exception)
@@ -62,7 +71,6 @@ namespace Codell.Pies.Data.Storage
                     }
                     throw;
                 }
-
             }
         }
     }

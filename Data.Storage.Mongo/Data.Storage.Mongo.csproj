@@ -87,6 +87,7 @@
     <Compile Include="Schema\Bootstrapper.cs" />
     <Compile Include="Schema\IMigration.cs" />
     <Compile Include="Schema\IMigrator.cs" />
+    <Compile Include="Schema\Migrations\Migration1.cs" />
     <Compile Include="Schema\Migrator.cs" />
     <Compile Include="Schema\MongoDatabaseExtensions.cs" />
     <Compile Include="StorageModule.cs" />
@@ -105,9 +106,7 @@
       <Name>Data.Storage</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Schema\Migrations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -228,6 +228,15 @@ namespace Codell.Pies.Core.Domain
             _tags = @event.NewTags;
         }
 
+        public void UpdateIsPrivate(bool isPrivate)
+        {
+            ApplyEvent(new IsPrivateUpdatedEvent(isPrivate));
+        }
+
+        protected void OnIsPiePrivateEvent(IsPrivateUpdatedEvent @event)
+        {                
+        }
+
         public void Delete()
         {
             if (!_deleted)

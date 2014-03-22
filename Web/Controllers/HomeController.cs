@@ -43,7 +43,7 @@ namespace Codell.Pies.Web.Controllers
                 page = 1;
             }
             var previous = (page.Value == 1 ? 0 : page.Value - 1) * pageSize;
-            var pies = _repository.Get<Pie>().Where(pie => pie.IsEmpty == false)
+            var pies = _repository.Get<Pie>().Where(pie => pie.IsPrivate == false && pie.IsEmpty == false)
                                              .Skip(previous)
                                              .Take(pageSize)
                                              .OrderByDescending(pie => pie.CreatedOn)

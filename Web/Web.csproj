@@ -231,6 +231,7 @@
     <Compile Include="Infrastructure\Mobile.cs" />
     <Compile Include="Models\Home\IndexModel.cs" />
     <Compile Include="Models\Pie\IndexModel.cs" />
+    <Compile Include="Models\Pie\UpdateIsPrivateModel.cs" />
     <Compile Include="Models\Shared\PagingModel.cs" />
     <Compile Include="Security\HttpContextExtensions.cs" />
     <Compile Include="Models\MyPies\IndexModel.cs" />
@@ -1071,6 +1072,7 @@
     <Content Include="Scripts-Tests\adding-ingredients.js" />
     <Content Include="Scripts-Tests\Areas\Sencha\home.controller.specs.js" />
     <Content Include="Scripts-Testing\Jasmine\Sencha\jasmine.html" />
+    <Content Include="Scripts-Tests\updating-is-private.js" />
     <Content Include="Scripts-Tests\removing-ingredients.js" />
     <Content Include="Scripts-Tests\updating-ingredient-color.js" />
     <Content Include="Scripts-Tests\updating-ingredient-description.js" />

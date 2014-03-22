@@ -34,19 +34,19 @@ cc.pies.Index = function(pies, options) {
     }
 };
 
-cc.pies.Pie = function (model, actions) {
+cc.pies.Pie = function (dto, actions) {
     var self = this;
     self.actions = actions;
     self.remove = function() {
         $.ajax({ url: self.actions.remove + '/' + self.id, type: 'delete'});
     };
-    $.extend(self, model);
+    $.extend(self, dto);
 };
 
 cc.pies.edit = cc.pies.edit|| {};
-cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
+cc.pies.edit.Pie = function (dto, pieActions, ingredientActions) {
     var self = this;
-    self.id = model.id;
+    self.id = dto.id;
     self.pieActions = pieActions;
     self.ingredientActions = ingredientActions;
 
@@ -56,11 +56,12 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
         });
     }
 
-    self.caption = ko.observable(model.caption);
-    self.allIngredients = ko.observableArray(model.allIngredients);
+    self.caption = ko.observable(dto.caption);
+    self.allIngredients = ko.observableArray(dto.allIngredients);
     self.ingredientToAdd = ko.observable();
-    self.editableIngredients = ko.observableArray(toViewModels(model.editableIngredients));
-    self.tags = ko.observable(model.tags);
+    self.editableIngredients = ko.observableArray(toViewModels(dto.editableIngredients));
+    self.tags = ko.observable(dto.tags);
+    self.isPrivate = ko.observable(dto.isPrivate);
     self.pieMessage = ko.observable();
     
     self.caption.subscribe(function (caption) {
@@ -72,6 +73,10 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
     self.tags.subscribe(function(tags) {
         $.post(self.pieActions.updateTags, { id: self.id, tags: tags });
     });
+    
+    self.isPrivate.subscribe(function (val) {
+        $.post(self.pieActions.updateIsPrivate, { id: self.id, isPrivate: val });
+    });
 
     self.addIngredient = function () {
         var description = self.ingredientToAdd();
@@ -82,7 +87,7 @@ cc.pies.edit.Pie = function (model, pieActions, ingredientActions) {
         }
     };
 
-    $.mhub.init(model.id);    
+    $.mhub.init(dto.id);    
     $.mhub.subscribe($.mhub.messages.captionUpdated, function (data) {
         self.caption(data);
     });    
