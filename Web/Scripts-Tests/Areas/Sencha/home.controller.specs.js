@@ -6,7 +6,7 @@
 ///
 describe("Displaying pies:", function () {
 
-    describe("When the application is launched", function() {
+    describe("When asking to display pies", function() {
         var sut, home, expectedPies;
 
         beforeEach(function() {
@@ -26,7 +26,7 @@ describe("Displaying pies:", function () {
                 return expectedPies;
             });
 
-            sut.launch.call(sut);
+            sut.getPies.call(sut);
             jasmine.clock().tick(10);
         });
         

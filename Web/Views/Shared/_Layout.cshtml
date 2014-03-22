@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
         <title>@Html.ProductName()</title>
         @RenderSection("Styles", required: false)
+@*<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">*@
         @Styles.Render(BundleConfig.Names.Styles)
         @Scripts.Render(BundleConfig.Names.Scripts)
         @MiniProfiler.RenderIncludes()

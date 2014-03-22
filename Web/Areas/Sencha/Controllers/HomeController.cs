@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
@@ -7,6 +8,7 @@ using Codell.Pies.Common.Configuration;
 using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Infrastructure;
+using Codell.Pies.Web.Models.Home;
 using Codell.Pies.Web.Models.Shared;
 
 namespace Codell.Pies.Web.Areas.Sencha.Controllers
@@ -30,15 +32,28 @@ namespace Codell.Pies.Web.Areas.Sencha.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            return Redirect(Url.Content(_settings.Get<string>(Keys.MobilePage)));
+            return Redirect(string.Format("{0}{1}", Url.Content(_settings.Get<string>(Keys.MobilePage)), id.IsEmpty() ? "" : "?share=" + id));
         }
 
         [HttpGet]
         public JsonNetResult GetRecent()
         {
             return ToJsonResult(_repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12));
+        }
+
+        [HttpGet]
+        public JsonNetResult Get(string id)
+        {
+            Guid guid;
+            return Guid.TryParse(id, out guid) ? ToJsonResult(new[] {_repository.FindById<Guid, Pie>(guid)}) : GetRecent();
+        }
+
+        [HttpGet]
+        public ActionResult Share(Guid id)
+        {
+            return Index(id.ToString());
         }
 
         private JsonNetResult ToJsonResult(IEnumerable<Pie> found)

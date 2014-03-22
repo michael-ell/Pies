@@ -14,6 +14,7 @@ namespace Codell.Pies.Web.App_Start
         {
             bundles.Add(new StyleBundle(Names.Styles).Include("~/content/styles/jquery-ui.css",
                                                               "~/content/styles/spectrum.css",         
+                                                              //"~/content/styles/font-awesome.css",         
                                                               "~/content/styles/site.css"));
             bundles.Add(new ScriptBundle(Names.Scripts).Include("~/scripts/jquery-{version}.js",
                                                                 "~/scripts/jquery-ui-{version}.js",

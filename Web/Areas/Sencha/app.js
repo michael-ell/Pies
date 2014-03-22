@@ -11,7 +11,7 @@ Ext.application({
 
     startupImage: {},
 
-    launch: function() {
+    launch: function () {
         Ext.fly('appLoadingIndicator').destroy();
     },
 

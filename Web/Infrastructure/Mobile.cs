@@ -70,7 +70,7 @@ namespace Codell.Pies.Web.Infrastructure
             {
                 if (Detection.IsMobile(context) && NotAlreadyInMobileSite(routeData) && HaveNotRequestedFullSite(routeData))
                 {
-                    return new RedirectToRouteResult(new RouteValueDictionary(new { action = "Index", controller = "Home", area = "Sencha"}));
+                    return new RedirectToRouteResult(new RouteValueDictionary(new { action = routeData.Values["action"], controller = routeData.Values["controller"], area = "Sencha"}));
                 }
                 return null;
             }

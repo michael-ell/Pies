@@ -11,8 +11,9 @@
     },
     getPies: function () {
         Pies.app.fireEvent('busy');
+        var shared = this._getShared();
         Ext.Ajax.request({
-            url: '/sencha/home/getrecent',
+            url: !shared ? '/sencha/home/getrecent': '/sencha/home/get/' + shared,
             method: 'GET',        
             scope: this,
             success: this.showPies,
@@ -20,6 +21,10 @@
                 Pies.app.fireEvent('notBusy');
             }
         });
+    },
+    _getShared: function() {
+        var regex = new RegExp("[\\?&]share=([^&#]*)"), results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
     showPies: function (xhr, opts) {
         opts.scope.getHome().setData(Ext.JSON.decode(xhr.responseText));

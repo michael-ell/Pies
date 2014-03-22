@@ -12,11 +12,12 @@
     <script type="text/html" id="pie-template">
         <div class="pie">
             <div data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
-@*            <div class="center">
+            @*            <div class="center">
                 <a id="edit" data-bind="href:'@Url.Action("Edit")', args: $data.id">Edit</a>  
                 <a id="delete" href="#" data-bind="click: $data.delete">Delete</a>  
                 <a id="email" data-bind="href:'mailto:?body=@Url.Encode(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id">Email</a> 
             </div>*@
+@*            <p><i class="fa fa-facebook fa-lg"></i></p>*@
             <ul class="pie-toolbar">
                 <li><a data-bind="href:'@Url.Action("Edit")', args: $data.id" title="Edit"><img src="@Url.Content("~/content/styles/images/jquerymobile-icon.png")" alt="Edit"/></a></li>
                 <li><a href="#" data-bind="click: $data.remove" title="Delete"><img src="@Url.Content("~/content/styles/images/dribbble-icon.png")" alt="Delete"/></a></li>
