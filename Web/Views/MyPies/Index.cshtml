@@ -11,17 +11,36 @@
                 <li><a data-bind="href:'@Url.Action("Edit")', args: $data.id" title="Edit" class="edit"><i class="fa fa-pencil"></i></a></li>
                 <li><a href="#" data-bind="click: $data.remove" title="Delete" class="delete"><i class="fa fa-trash-o"></i></a></li>
                 <li><a data-bind="href:'@Html.CheckOutMyPie(Url.Action("Share", "Home", new{}, Request.Url.Scheme))', args: $data.id" title="Email" class="email"><i class="fa fa-envelope-o"></i></a></li>
-                <li><a href="#" title="Facebook" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#" title="Twitter" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a title="Facebook" class="facebook comingSoon"><i class="fa fa-facebook"></i></a></li>
+                <li><a title="Twitter" class="twitter comingSoon"><i class="fa fa-twitter"></i></a></li>
             </ul>
         </div>
     </script>    
+</div>
+<div id="comingSoon">
+    <p class="center loud">Coming soon!</p>
 </div>
 @section Scripts
 {
     <script type="text/javascript">
         $(function() {
             ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { remove: '@Url.Action("Delete")' } } }), $('#pies')[0]);
+            $('#comingSoon').dialog({
+                modal: true,
+                title: 'Pies Feature',
+                resizable: false,
+                draggable: false,
+                autoOpen: false,
+                buttons: {
+                    Ok: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }                                
+            });          
+            $('.comingSoon').click(function() {
+                $('#comingSoon').dialog("open");
+            });            
         });
+
     </script>    
 }

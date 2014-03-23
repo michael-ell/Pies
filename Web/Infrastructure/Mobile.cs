@@ -35,7 +35,7 @@ namespace Codell.Pies.Web.Infrastructure
 
              public static bool IsMobile(HttpContextBase context)
              {
-                 return CurrentCapabilityFor(context, "is_wireless_device") && IsNotTablet(context);
+                 return CurrentCapabilityFor(context, "is_wireless_device") && IsSupported(context) && IsNotTablet(context);
              }
 
              private static bool IsNotTablet(HttpContextBase context)
@@ -56,6 +56,11 @@ namespace Codell.Pies.Web.Infrastructure
                  var value = manager.GetDeviceForRequest(context.Request.UserAgent).GetCapability(capability);
                  bool result;
                  return bool.TryParse(value, out result) && result;
+             }
+
+             private static bool IsSupported(HttpContextBase context)
+             {
+                 return context.Request.UserAgent.IndexOf("webkit", StringComparison.OrdinalIgnoreCase) != -1;
              }
          }
 

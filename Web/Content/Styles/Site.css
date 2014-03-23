@@ -224,6 +224,10 @@ a:hover {
     color: red;
 }
 
+.loud {
+    font-weight: bold;
+}
+
 .message {
     clear: both;
     padding-top: 5px;
@@ -281,27 +285,6 @@ ul.pie-toolbar
     left: -17px;
 }
 
-/*ul.pie-toolbar:before, ul.pie-toolbar:after {
-    content: "";
-    height: 5px;
-    display: block;
-    background: center url("images/dropshadow.png") no-repeat
-}*/
-
-/*ul.pie-toolbar:before {
-    margin-bottom: 5px;
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	transform: rotate(180deg);
-     
-}*/
-
-/*ul.pie-toolbar:after {
-    margin-top: 3px;
-}*/
-
 ul.pie-toolbar>li {
     display: inline-block
 }
@@ -344,7 +327,6 @@ ul.pie-toolbar a.facebook {
 ul.pie-toolbar a.twitter {
     background-color: #49A9E2;
 }
-
 
 .label {
     width: 100px;
