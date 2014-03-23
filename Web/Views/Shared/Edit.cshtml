@@ -86,9 +86,11 @@
     {
         <div id="signIn">
             <div class="center">            
-                <p>Wanna manage your pies?</p>
-                <a href="@Url.Action("Login", "Account", new {returnUrl = @Url.Action("Create", "Pie")})">Yes please</a>
+                <p>Sign in and be able to share, change and delete your pies.</p>
+                <p>
+                <a href="@Url.Action("Login", "Account", new {returnUrl = @Url.Action("Create", "Pie")})">Ok</a>
                 <a id="no" href="#">No thanks</a>
+                </p>
             </div>
         </div>
     }
