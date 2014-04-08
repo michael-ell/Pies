@@ -1,11 +1,14 @@
-﻿@using Codell.Pies.Web.Extensions
+﻿@using Codell.Pies.Web.App_Start
+@using Codell.Pies.Web.Extensions
 @model Codell.Pies.Web.Models.Shared.PieModel
 <div id="edit">
     <div class="kitchen">
         <table class="kitchen-top">
             <tr>
                 <td class="label">Caption</td>
-                <td class="ingredient"><input type="text" data-bind="value: caption, blur: caption, onEnter: addIngredient"/></td>
+                <td class="ingredient">
+                    <input type="text" data-bind="value: caption, blur: caption, onEnter: addIngredient"/>
+                </td>
                 <td>
                     <a id="invite" href="@Html.LetsMakeAPie(Url.Action("Join", "Pie", new{@Model.Id}, Request.Url.Scheme))" title="Invite a friend to help">Invite</a>
                 </td>
@@ -105,16 +108,16 @@
             $('#add', $scope).button({ icons: { primary: "ui-icon-plus" }, text: false });
             var pie = new cc.pies.edit.Pie(@Html.Raw(Model.ToJson()),
                 {
-                    updateCaption: '@Url.Action("UpdateCaption", "Pie")',
-                    updateTags: '@Url.Action("UpdateTags", "Pie")',
-                    updateIsPrivate: '@Url.Action("UpdateIsPrivate", "Pie")'
+                    updateCaption: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="UpdateCaption"})',                    
+                    updateTags: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="UpdateTags"})',                    
+                    updateIsPrivate: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="UpdateIsPrivate"})'
                 },
                 {
-                    add: '@Url.Action("AddIngredient", "Pie")',
-                    updatePercentage: '@Url.Action("UpdateIngredientPercentage", "Pie")',
-                    updateDescription: '@Url.Action("UpdateIngredientDescription", "Pie")',
-                    updateColor: '@Url.Action("UpdateIngredientColor", "Pie")',
-                    remove: '@Url.Action("DeleteIngredient", "Pie")'
+                    add: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="AddIngredient"})',
+                    updatePercentage: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="UpdateIngredientPercentage"})',
+                    updateDescription: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="UpdateIngredientDescription"})',
+                    updateColor: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="UpdateIngredientColor"})',
+                    remove: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Pie", action="DeleteIngredient"})'
                 });
             ko.applyBindings(pie, $scope[0]);
             @if (!Request.IsAuthenticated)

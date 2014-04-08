@@ -1,11 +1,12 @@
 ﻿@using Codell.Pies.Common
+@using Codell.Pies.Web.App_Start
 @using Codell.Pies.Web.Extensions
 @model Codell.Pies.Web.Models.Home.IndexModel
 <div id="pies">
     <div class="search-bar">
         &nbsp;        
         <div>
-            <input type="text"  placeholder="Search" data-bind="autocomplete: {sourceUrl: '@Url.Action("GetTags")' }, selected: selectedTag"/>
+            <input type="text" placeholder="Search" data-bind="autocomplete: {sourceUrl: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Home", action="GetTags"})'}, selected: selectedTag"/>
             <a id="search" href="#" data-bind="click: find">Search</a>
         </div>
     </div> 
@@ -28,8 +29,8 @@
     <script type="text/javascript">
         $(function() {
             var $scope = $('#pies');
-            $('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});            
-            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { findUrl: '@Url.Action("Find")' }), $scope[0]);
+            $('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});
+            ko.applyBindings(new cc.pies.Controller(@Html.Raw(Model.Pies.ToJson()), { findUrl: '@Url.RouteUrl(WebApiConfig.RouteNames.Find, new { httproute = "", controller = "Home", action="Find"})' }), $scope[0]);
         });
     </script>    
 }

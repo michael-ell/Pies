@@ -1,0 +1,27 @@
+Pies
+
+Background - How it came about
+------------------------------
+
+Bre asking what I do
+Came up with idea
+Increase in new technology
+CQRS presentation and possible approach for handling on UI
+Use it as a learning ground
+Challenging enough to flush out issues...not throw away
+
+
+Demo
+-------------------------------
+
+
+Technologies
+-------------------------------
+
+
+Why are we talking about Pies
+-------------------------------
+
+
+Possibilities
+--------------------------------

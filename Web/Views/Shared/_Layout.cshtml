@@ -18,6 +18,7 @@
             $(function () {
                 $.ajaxSetup({ cache: false });
                 $(document).ajaxError(function () {
+                    debugger;
                     window.location.replace('@Url.Action("Default", "Error")');
                 });
                 if (typeof window.console === "undefined" || typeof window.console.log === "undefined") {

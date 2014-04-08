@@ -1,9 +1,7 @@
 ﻿@using Codell.Pies.Web.Extensions
 @model Codell.Pies.Web.Models.MyPies.IndexModel
 <div id="pies">
-    <div data-bind="template: { name: 'pie-template',
-                                foreach: pies }">        
-    </div>        
+    <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
     <script type="text/html" id="pie-template">
         <div class="pie">
             <div data-bind="pieChart: $data, pieOptions: { chartMap: { data: 'allIngredients', title: 'caption' }, dataMap: { text: 'description', value: 'percent', color: 'color'} }"></div>
@@ -18,13 +16,13 @@
     </script>    
 </div>
 <div id="comingSoon">
-    <p class="center loud">Coming soon!</p>
+   <p class="center loud">Coming soon!</p> 
 </div>
 @section Scripts
 {
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new cc.pies.Index(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { remove: '@Url.Action("Delete")' } } }), $('#pies')[0]);
+            ko.applyBindings(new cc.pies.Controller(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { remove: '@Url.Action("Delete")' } } }), $('#pies')[0]);
             $('#comingSoon').dialog({
                 modal: true,
                 title: 'Pies Feature',
@@ -41,6 +39,5 @@
                 $('#comingSoon').dialog("open");
             });            
         });
-
     </script>    
 }

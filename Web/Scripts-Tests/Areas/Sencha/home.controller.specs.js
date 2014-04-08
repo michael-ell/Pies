@@ -30,7 +30,7 @@ describe("Displaying pies:", function () {
         
         it("should get the recent pies", function () {
             expect(Ext.Ajax.request).toHaveBeenCalledWithArgumentContaining({
-                url: '/sencha/home/getrecent',
+                url: '/api/home/getrecent',
                 method: 'GET'
             });
         });

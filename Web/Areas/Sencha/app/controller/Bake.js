@@ -31,7 +31,7 @@
     },
     createPie: function () {
         Ext.Ajax.request({         
-            url: '/sencha/pie/create',
+            url: '/api/pie/create',
             scope: this,            
             success: this.showPie
         });
@@ -51,20 +51,20 @@
     updateCaption: function (scope, caption) {
         console.log('updating caption to ' + caption + '...');
         Ext.Ajax.request({
-            url: '/sencha/pie/updateCaption',
+            url: '/api/pie/updateCaption',
             jsonData: { id: this.getPie().id, caption: caption }
         });
     },
     updateTags: function (scope, tags) {
         console.log('updating tags to ' + tags + '...');
         Ext.Ajax.request({
-            url: '/sencha/pie/updateTags',
+            url: '/api/pie/updateTags',
             jsonData: { id: this.getPie().id, tags: tags }
         });
     },
     addIngredient: function () {
         Ext.Ajax.request({
-            url: '/sencha/pie/addIngredient',
+            url: '/api/pie/addIngredient',
             jsonData: { id: this.getPie().id, description: '?' }
         });
         //if (!this.editor) {

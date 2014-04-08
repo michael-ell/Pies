@@ -22,6 +22,11 @@ namespace Codell.Pies.Web.Security
             FormsAuthentication.SignOut();
         }
 
+        public static IPiesIdentity GetIdentity(this HttpContext context)
+        {
+            return GetIdentity(new HttpContextWrapper(context));
+        }
+
         public static IPiesIdentity GetIdentity(this HttpContextBase context)
         {
             if (context == null || context.Request == null) return new AnonymousIdentity();   
@@ -37,5 +42,6 @@ namespace Codell.Pies.Web.Security
 
             return new Identity(new User(decryptedTicket.UserData));            
         }
+
     }
 }

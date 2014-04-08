@@ -12,6 +12,7 @@ namespace Codell.Pies.Tests
             builder.RegisterInstance(new Moq.Mock<IRepository>().Object);
             builder.RegisterInstance(new Moq.Mock<IUnitOfWork>().Object);
             builder.RegisterInstance(new Moq.Mock<ISurrogateSelector>().Object);
+            builder.RegisterInstance(new Moq.Mock<IDeleteEmptyPies>().Object);
         }
     }
 }

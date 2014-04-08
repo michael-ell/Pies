@@ -40,7 +40,7 @@ describe("Removing Pies: ", function () {
             jasmine.addMatchers(testing.setup());
             
             pieToDelete = new cr8.Pie();
-            sut = new cc.pies.Index([pieToDelete], new cr8.Options().withEditing());
+            sut = new cc.pies.Controller([pieToDelete], new cr8.Options().withEditing());
 
             $.mhub.send($.mhub.messages.pieDeleted, pieToDelete);
         });

@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 using Codell.Pies.Common;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Web.App_Start;
@@ -19,6 +20,8 @@ namespace Codell.Pies.Web
 {
     public class MvcApplication : HttpApplication
     {
+        private HttpConfiguration WebApiConfiguration { get { return GlobalConfiguration.Configuration; } }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -30,6 +33,7 @@ namespace Codell.Pies.Web
             RegisterDependencyResolver();
             RegisterViewEngines();
             RegisterModelBinders();
+            RegisterWebApiModelBinders();
             SetupProfiler();
         }
 
@@ -37,6 +41,7 @@ namespace Codell.Pies.Web
         {
             var container = Configure.With<AutofacConfigurationModule>();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            WebApiConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             Bootstrap(container);
         }
 
@@ -61,6 +66,11 @@ namespace Codell.Pies.Web
         private void RegisterModelBinders()
         {
             ModelBinders.Binders.Add(typeof(IPiesIdentity), new IdentityModelBinder());
+        }
+
+        private void RegisterWebApiModelBinders()
+        {
+            WebApiConfiguration.BindParameter(typeof(IPiesIdentity), new IdentityModelBinder());
         }
 
         private void SetupProfiler()

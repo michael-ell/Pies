@@ -13,7 +13,7 @@
         Pies.app.fireEvent('busy');
         var shared = this._getShared();
         Ext.Ajax.request({
-            url: !shared ? '/sencha/home/getrecent': '/sencha/home/get/' + shared,
+            url: !shared ? '/api/home/getrecent': '/api/home/get/' + shared,
             method: 'GET',        
             scope: this,
             success: this.showPies,

@@ -5,11 +5,8 @@ using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
 using Codell.Pies.Common.Configuration;
-using Codell.Pies.Core.Domain;
-using Codell.Pies.Core.ReadModels;
 using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Attributes;
-using Codell.Pies.Web.Infrastructure;
 using Codell.Pies.Web.Models.Home;
 using Codell.Pies.Web.Models.Shared;
 using Pie = Codell.Pies.Core.ReadModels.Pie;
@@ -58,25 +55,6 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetTags(string term)
-        {
-            var tags = _repository.Find<Tag>(tag => tag.Value.Contains(new SearchableTag(term))).Select(tag => tag.Value).ToList();
-            return Json(tags, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public JsonNetResult GetRecent()
-        {
-            return ToJsonResult(_repository.Find<Pie>(pie => pie.IsEmpty == false).OrderByDescending(pie => pie.CreatedOn).Take(12));
-        }
-
-        [HttpGet]
-        public JsonNetResult Find(string tag)
-        {
-            return tag.IsEmpty() ? GetRecent() : ToJsonResult(_repository.Find<Pie>(pie => pie.Tags.Contains<string>(new SearchableTag(tag))));
-        }
-
-        [HttpGet]
         public ActionResult Share(Guid id)
         {
             var pie = _repository.FindById<Guid, Pie>(id) ?? new Pie();
@@ -84,12 +62,6 @@ namespace Codell.Pies.Web.Controllers
                                         {
                                             Pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(new[] { pie }),
                                         });
-        }
-
-        private JsonNetResult ToJsonResult(IEnumerable<Pie> found)
-        {
-            var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);
-            return new JsonNetResult {Data = pies};
         }
     }
 }
