@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using AutoMapper;
 using Codell.Pies.Common;
@@ -40,18 +41,23 @@ namespace Codell.Pies.Web.Controllers
                 page = 1;
             }
             var previous = (page.Value == 1 ? 0 : page.Value - 1) * pageSize;
-            var pies = _repository.Get<Pie>().Where(pie => pie.IsPrivate == false && pie.IsEmpty == false)
+            var pies = _repository.Get<Pie>().Where(PieIsViewable())
                                              .Skip(previous)
                                              .Take(pageSize)
                                              .OrderByDescending(pie => pie.CreatedOn)
                                              .ToList();
             //var totalPages = _repository.Count<Pie>() / pageSize;
-            var totalPages = (_repository.Get<Pie>().Count(pie => pie.IsPrivate == false && pie.IsEmpty == false) + (pageSize - 1)) / pageSize;
+            var totalPages = (_repository.Get<Pie>().Count(PieIsViewable()) + (pageSize - 1)) / pageSize;
             return View(new IndexModel
                             {
                                 Pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(pies),
                                 Paging = new PagingModel{CurrentPage = page.Value, TotalPages = totalPages}
                             });
+        }
+
+        private Expression<Func<Pie, bool>> PieIsViewable()
+        {
+            return pie => pie.IsPrivate == false && pie.IsEmpty == false;
         }
 
         [HttpGet]

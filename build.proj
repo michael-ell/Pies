@@ -13,6 +13,8 @@
     <DeploySource></DeploySource>           
     <Precompiled>$(DeploySource)\precompiled</Precompiled>           
     <BuildVersion Condition="'$(BuildVersion)' == ''">0.0.0.0</BuildVersion>
+    <MicrosoftAuthenticationPath>//configuration/authentication.client/microsoft</MicrosoftAuthenticationPath>
+    <TwitterAuthenticationPath>//configuration/authentication.client/twitter</TwitterAuthenticationPath>
   </PropertyGroup>
    
   <Target Name="Clean">
@@ -116,6 +118,30 @@
        XmlFileName="$(DeployTemp)\Web.config"
        XPath="//configuration/appSettings/add[@key='MobilePage']/@value"
        Value="~/areas/sencha/build/package/pies/index.html"
-    />    
+    />
+    <XmlUpdate
+       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
+       XmlFileName="$(DeployTemp)\Web.config"
+       XPath="$(MicrosoftAuthenticationPath)/@key"
+       Value="000000004411586B"
+    />
+    <XmlUpdate
+       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
+       XmlFileName="$(DeployTemp)\Web.config"
+       XPath="$(MicrosoftAuthenticationPath)/@secret"
+       Value="mjmp3gEl5kTGm9YeN79d9L6CJMonW6Tf"
+    />
+    <XmlUpdate
+       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
+       XmlFileName="$(DeployTemp)\Web.config"
+       XPath="$(TwitterAuthenticationPath)/@key"
+       Value="smNM2hvRwXMEg9taLiPrFs9hq"
+    />
+    <XmlUpdate
+       Namespace="http://schemas.microsoft.com/.NetConfiguration.v2.0"
+       XmlFileName="$(DeployTemp)\Web.config"
+       XPath="$(TwitterAuthenticationPath)/@secret"
+       Value="9LFnjW7OW4uJ4aeSjugKcuuhHtWTTULeh4R8LSCaxF9ZcjUDyP"
+    />
   </Target>
 </Project>

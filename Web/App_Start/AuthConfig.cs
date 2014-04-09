@@ -1,4 +1,5 @@
-﻿using Microsoft.Web.WebPages.OAuth;
+﻿using Codell.Pies.Web.Security;
+using Microsoft.Web.WebPages.OAuth;
 
 namespace Codell.Pies.Web.App_Start
 {
@@ -6,9 +7,10 @@ namespace Codell.Pies.Web.App_Start
     {
         public static void RegisterAuth()
         {
-            OAuthWebSecurity.RegisterGoogleClient();
-            OAuthWebSecurity.RegisterMicrosoftClient(clientId: "000000004C0E9729", clientSecret: "SdfclQdBhKYKkFUX6-qrkZM-guaU-FDj");
-            OAuthWebSecurity.RegisterTwitterClient(consumerKey: "wMqGbIeeaXxYCHHcXa7CzA", consumerSecret: "4lttnxAhJznWujuAfQSz7MVHun6Eq3hd4gJeiYZ9KU4");
+            var configuration = new AuthenticationClientConfiguration();
+            OAuthWebSecurity.RegisterGoogleClient();      
+            OAuthWebSecurity.RegisterMicrosoftClient(configuration.Microsoft.Key, configuration.Microsoft.Secret);
+            OAuthWebSecurity.RegisterTwitterClient(configuration.Twitter.Key, configuration.Twitter.Secret);
 
             //OAuthWebSecurity.RegisterFacebookClient(
             //    appId: "",

@@ -47,7 +47,7 @@ namespace Codell.Pies.Web.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
-            return View();
+            return View("~/Views/Error/Default.cshtml");
         }
 
         [HttpPost]
