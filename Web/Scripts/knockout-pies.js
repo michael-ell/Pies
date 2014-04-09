@@ -52,7 +52,8 @@ ko.bindingHandlers.autocomplete = {
         }).on('paste', function () {
             return false;
         }).focus(function () {
-            this.select();
+            var me = this;
+            setTimeout(function() { me.select(); }, 0);
         }).addClass(options.classes);
 
         ko.utils.domNodeDisposal.addDisposeCallback(el, function () {

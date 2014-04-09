@@ -7,7 +7,8 @@
         &nbsp;        
         <div>
             <input type="text" placeholder="Search" data-bind="autocomplete: {sourceUrl: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "Home", action="GetTags"})'}, selected: selectedTag"/>
-            <a id="search" href="#" data-bind="click: find">Search</a>
+            <a title="Search" href="#" data-bind="click: find"><i class="fa fa-search"></i></a>
+ @*           <a id="search" href="#" data-bind="click: find">Search</a>*@
         </div>
     </div> 
     @if (Model.Pies.IsEmpty())
@@ -29,7 +30,7 @@
     <script type="text/javascript">
         $(function() {
             var $scope = $('#pies');
-            $('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});
+            //$('#search', $scope).button({icons: {primary: "ui-icon-search"}, text: false});
             ko.applyBindings(new cc.pies.Controller(@Html.Raw(Model.Pies.ToJson()), { findUrl: '@Url.RouteUrl(WebApiConfig.RouteNames.Find, new { httproute = "", controller = "Home", action="Find"})' }), $scope[0]);
         });
     </script>    

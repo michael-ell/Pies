@@ -46,7 +46,7 @@ namespace Codell.Pies.Web.Controllers
                                              .OrderByDescending(pie => pie.CreatedOn)
                                              .ToList();
             //var totalPages = _repository.Count<Pie>() / pageSize;
-            var totalPages = (_repository.Get<Pie>().Count(pie => pie.IsEmpty == false) + (pageSize - 1)) / pageSize;
+            var totalPages = (_repository.Get<Pie>().Count(pie => pie.IsPrivate == false && pie.IsEmpty == false) + (pageSize - 1)) / pageSize;
             return View(new IndexModel
                             {
                                 Pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(pies),
