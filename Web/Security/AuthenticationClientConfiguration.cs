@@ -1,5 +1,4 @@
 ﻿using System.Configuration;
-using Codell.Pies.Common;
 
 namespace Codell.Pies.Web.Security
 {
@@ -31,7 +30,7 @@ namespace Codell.Pies.Web.Security
         {
             var configuration = ConfigurationManager.GetSection(name) as TSection;
             if (configuration == null)
-                throw new ConfigurationErrorsException(string.Format(Resources.MissingConfiguration, name));
+                throw new ConfigurationErrorsException(string.Format(Common.Resources.MissingConfiguration, name));
             return configuration;
         }
     }

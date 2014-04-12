@@ -28,6 +28,7 @@ Azure
 - Precompile views?
 - Only deploy form github if tests pass?  That is, simulate CI
 - compilation debug="true" even in release build???? 
+- move to TFS?
 
 Sencha
 - build and deploy (update 51 degree to redirect to build version???)

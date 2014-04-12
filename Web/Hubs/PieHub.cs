@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Codell.Pies.Common;
 using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Domain;
 using Codell.Pies.Core.Events;
@@ -88,7 +87,7 @@ namespace Codell.Pies.Web.EventHandlers
 
         public void Handle(IPublishedEvent<PercentageRejectedEvent> @event)
         {
-            PublishPercentageChanged(@event.Payload.Id, @event.Payload.CurrentPercent, Resources.PercentRejected, @event.EventSourceId);
+            PublishPercentageChanged(@event.Payload.Id, @event.Payload.CurrentPercent, Common.Resources.PercentRejected, @event.EventSourceId);
         }
 
         private void PublishPercentageChanged(Guid ingredientId, int updatedPercentage, string message, Guid pieId)

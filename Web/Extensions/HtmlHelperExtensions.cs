@@ -11,6 +11,7 @@ using Codell.Pies.Common;
 using Codell.Pies.Common.Configuration;
 using Codell.Pies.Common.Extensions;
 using Codell.Pies.Core.Domain;
+using CommonResources = Codell.Pies.Common.Resources;
 
 namespace Codell.Pies.Web.Extensions
 {
@@ -59,7 +60,7 @@ namespace Codell.Pies.Web.Extensions
             return realModelType;
         }
 
-        private static readonly SelectListItem[] SingleEmptyItem = new[] { new SelectListItem { Text = Resources.SelectPrompt, Value = "" } };
+        private static readonly SelectListItem[] SingleEmptyItem = new[] { new SelectListItem { Text = CommonResources.SelectPrompt, Value = "" } };
 
         public static string Version(this HtmlHelper htmlHelper)
         {
@@ -69,9 +70,9 @@ namespace Codell.Pies.Web.Extensions
         public static string ProductName(this HtmlHelper htmlHelper)
         {
             var productInfo =  InformationAssembly().GetCustomAttributes(typeof (AssemblyProductAttribute), false).FirstOrDefault();
-            if (productInfo == null) return Resources.Unknown;
+            if (productInfo == null) return CommonResources.Unknown;
             var name = ((AssemblyProductAttribute) productInfo).Product;
-            return StringExtensions.IsEmpty(name) ? Resources.Unknown : name;
+            return StringExtensions.IsEmpty(name) ? CommonResources.Unknown : name;
         }
 
         public static string EncodedProductName(this HtmlHelper htmlHelper)
