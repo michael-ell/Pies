@@ -48,7 +48,8 @@ Web/Areas/Sencha/build.xml
 Web/Areas/Sencha/packager*
 Web/Areas/Sencha/.sencha/
 Web/Areas/Sencha/resources/loading/
-Web/Areas/Sencha/resources/sass/
+Web/Areas/Sencha/resources/sass/.sass-cache/
+Web/Areas/Sencha/resources/sass/stylesheets/
 Web/Areas/Sencha/-run/
 Web/Areas/Sencha/touch/resources/
 Web/Areas/Sencha/touch/*.txt
