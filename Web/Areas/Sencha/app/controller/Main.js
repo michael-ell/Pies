@@ -38,11 +38,11 @@
             }
         }
     },
-    menuSide: 'right',
+    menuSide: 'left',
     launch: function () {
         var me = this, main = me.getMain(), menu = me.getMenu(), views = me.getViews();
         Ext.Viewport.add(main);
-        Ext.Viewport.setMenu(menu, { side: me.menuSide });
+        Ext.Viewport.setMenu(menu, { side: me.menuSide, cover: false });
         menu.setData(views);
         main.setViews(views.map(function (item) { return item.view; }));
         Pies.app.fireEvent('getPies');
@@ -59,9 +59,11 @@
     showView: function (scope, index, target, record) {
         var main = this.getMain();
         this.hideMenu();
-        setTimeout(function () {            
-            main.setActiveItem(record.data.view);
+        setTimeout(function () {
+            var view = record.data.view;
+            main.setActiveItem(view);
             main.setTitle(record.data.title);
+            //main.setTitlebarButton(view.getTitlebarButton ? view.getTitlebarButton() : null);
         }, 0);
     }
 });

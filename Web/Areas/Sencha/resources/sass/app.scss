@@ -1,0 +1,93 @@
+$experimental-support-for-mozilla : false;
+$experimental-support-for-webkit : false;
+$experimental-support-for-opera : false;
+$experimental-support-for-microsoft : false;
+$experimental-support-for-khtml : false;
+
+$pies-label: 'pies';
+$pies-primary-color: #4E769F;
+$pies-menu-color: #A5A4A4;
+
+$font-color: #4A4A4A;
+//Remove all gradients, box and text shadows
+$include-highlights: false;
+$sheet-bg-color: #212529; //rgba(126, 129, 131, 0.85);
+
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+@import '_sencha-overrides';
+
+body{
+	color: $font-color;
+}
+.center {
+	text-align: center;
+}
+.titlebar {
+	background-color: $pies-primary-color;
+	border-style: none !important;
+}
+
+.header, .legend-item {
+    font-weight: bold;
+    font-size: 14px; 
+    text-align: center;        
+}
+.header {
+    margin-top: 10px;
+}
+.legend-item-container {
+    text-align: center;  
+    margin-left: auto;
+    margin-right: auto;    
+}
+.legend-item {
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 1px;
+    display: inline-block;
+    padding: 10px 10px 10px 25px;
+    min-width: 46px;
+    position: relative;
+}
+.legend-marker {
+    margin-right: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    position: absolute;
+    top: 13px;
+    left: 9px;
+}
+.user {
+	height: 60px;
+	width: 60px;	
+	border-radius: 30px;
+	border: 2px solid $pies-primary-color;
+	padding: 6px;
+	margin-bottom: 10px;
+}
+.user-photo {
+	color: $sheet-bg-color;
+	background-color: $pies-menu-color;
+	height: 44px;
+	width: 44px;	
+	border-radius: 22px;
+	font-size: 36px;
+}
+.user-name {
+	font-size: 90%;
+}
+.user-menu-item {
+	background-color: #333333;
+}
+.menu-item .x-dataview-item, .user-menu-item {
+	 padding: 15px;
+	 color: $pies-menu-color !important;
+	 border-bottom: 1px solid $pies-menu-color;
+}
+
+//Mixins
+@include icon('question');
+@include icon('chart');

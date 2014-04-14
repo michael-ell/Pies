@@ -1,0 +1,9 @@
+.x-mask-inner {
+	@include border-radius(10px);
+}
+.x-button {
+	color: $font-color;
+}
+.x-menu {
+	padding: 0;
+}

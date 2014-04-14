@@ -4,17 +4,30 @@
     xtype: 'pies-menu',
     config: {
         layout: 'vbox',
-        padding: '45 0 0 0',
         zIndex: 4,
+        width: '80%',
         items: [
-             {
-                 xtype: 'dataview',
-                 itemId: 'menu-items',
-                 scrollable: null,
-                 cls: 'menu-item',
-                 store: { model: 'Pies.model.MenuItem' },             
-                 itemTpl: '<div>{title}</div>'   
-             }
+            {
+                xtype: 'container',
+                layout: 'hbox',
+                cls: 'user-menu-item',
+                items: [
+                    { xtype: 'spacer' },
+                    {
+                        xtype: 'container',
+                        html: "<div class='center'><div class='user'><div class='user-photo'>?</div></div><div class='user-name'>Sign in</div></div>"
+                    },
+                    { xtype: 'spacer' }
+                ]
+            },
+            {
+                xtype: 'dataview',
+                itemId: 'menu-items',
+                scrollable: null,
+                cls: 'menu-item',
+                store: { model: 'Pies.model.MenuItem' },             
+                itemTpl: '<div>{title}</div>'   
+            }
         ]
     },
     applyData: function (data) {

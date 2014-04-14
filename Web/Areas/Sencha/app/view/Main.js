@@ -8,12 +8,12 @@ Ext.define('Pies.view.Main', {
             {
                 xtype: 'titlebar',
                 docked: 'top',
+                cls: 'titlebar',
                 items: [
                     {
                         xtype: 'button',
                         iconCls: 'list',
                         ui: 'plain',
-                        align: 'right',
                         action: 'toggleMenu'
                     }
                 ],
@@ -21,7 +21,8 @@ Ext.define('Pies.view.Main', {
             }
         ],
         views: null,
-        title: 'Pies'
+        title: 'Pies',
+        titlebarButton: null
     },
     applyViews: function (views) {
         this.add(views);
@@ -29,5 +30,12 @@ Ext.define('Pies.view.Main', {
     },
     applyTitle: function(title) {
         this.down('.titlebar').setTitle(title);
+    },
+    applyTitlebarButton: function (button) {
+        var tb = this.down('titlebar');
+        if (button) {
+            button.setAlign('right');
+            tb.items.add(button);
+        }
     }
 });

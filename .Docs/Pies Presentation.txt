@@ -18,6 +18,41 @@ Demo
 Technologies
 -------------------------------
 
+Asp.Net MVC 5
+Web API 2
+HTML
+CSS
+SignalR
+Knockout 
+jQuery
+jQuery UI
+Font Awesome
+xUnit
+Auto Mocking
+BDD / /FluentFixtures
+Jasmine
+Chutzpah
+Miniprofiler
+Moq
+
+Autofac
+AutoMapper
+WURFL
+Bundling / Minifcation in Web Optimization
+OAuth / Open Id
+CQRS
+Event Store
+
+
+Mongo
+RavenDB
+
+
+Azure
+Kudu
+GitHub
+MongoLab 
+
 
 Why are we talking about Pies
 -------------------------------

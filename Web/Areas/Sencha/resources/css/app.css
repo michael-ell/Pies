@@ -1498,13 +1498,13 @@ input, textarea {
 .x-html body {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  color: #333333;
+  color: #4a4a4a;
   font-size: 75%;
 }
 /* line 51, ../../../../../../../../sencha-touch-2/Sencha/Cmd/4.0.2.67/extensions/sencha-compass/gems/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h1, .x-html h2, .x-html h3, .x-html h4, .x-html h5, .x-html h6 {
   font-weight: normal;
-  color: #222222;
+  color: #393939;
 }
 /* line 52, ../../../../../../../../sencha-touch-2/Sencha/Cmd/4.0.2.67/extensions/sencha-compass/gems/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html h1 img, .x-html h2 img, .x-html h3 img, .x-html h4 img, .x-html h5 img, .x-html h6 img {
@@ -1685,11 +1685,11 @@ input, textarea {
 }
 /* line 88, ../../../../../../../../sencha-touch-2/Sencha/Cmd/4.0.2.67/extensions/sencha-compass/gems/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html .quiet {
-  color: #666666;
+  color: #7d7d7d;
 }
 /* line 89, ../../../../../../../../sencha-touch-2/Sencha/Cmd/4.0.2.67/extensions/sencha-compass/gems/gems/compass-0.12.2/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 .x-html .loud {
-  color: #111111;
+  color: #282828;
 }
 /* line 124, ../../touch/resources/themes/stylesheets/sencha-touch/base/src/_Class.scss */
 .x-html ul li {
@@ -4170,7 +4170,6 @@ body.x-desktop {
 .x-button, .x-button.x-button-back:after, .x-button.x-button-forward:after, .x-toolbar .x-button, .x-toolbar .x-button.x-button-back:after, .x-toolbar .x-button.x-button-forward:after {
   background-image: none;
   background-color: #cccccc;
-  background-image: linear-gradient(top, #f2f2f2, #d9d9d9 3%, #bfbfbf);
 }
 /* line 31, ../../touch/resources/themes/stylesheets/sencha-touch/default/mixins/_Class.scss */
 .x-button.x-button-pressing, .x-button.x-button-pressing:after, .x-button.x-button-pressed, .x-button.x-button-pressed:after, .x-button.x-button-active, .x-button.x-button-active:after, .x-toolbar .x-button.x-button-pressing, .x-toolbar .x-button.x-button-pressing:after, .x-toolbar .x-button.x-button-pressed, .x-toolbar .x-button.x-button-pressed:after, .x-toolbar .x-button.x-button-active, .x-toolbar .x-button.x-button-active:after {
@@ -4421,10 +4420,7 @@ body.x-desktop {
   color: #ffcccc;
   background-image: none;
   background-color: #cc0000;
-  background-image: linear-gradient(top, #ff1a1a, #e60000 3%, #b30000);
   border-radius: 0.2em;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0.1em 0.1em;
 }
 
 /* line 260, ../../touch/resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
@@ -4832,7 +4828,6 @@ body.x-desktop {
 .x-button.x-button-action-small.x-button-forward:after {
   background-image: none;
   background-color: #006bb6;
-  background-image: linear-gradient(top, #0398ff, #007ad0 3%, #005c9d);
 }
 /* line 31, ../../touch/resources/themes/stylesheets/sencha-touch/default/mixins/_Class.scss */
 .x-button.x-button-action.x-button-pressing, .x-button.x-button-action.x-button-pressing:after, .x-button.x-button-action.x-button-pressed, .x-button.x-button-action.x-button-pressed:after, .x-button.x-button-action.x-button-active, .x-button.x-button-action.x-button-active:after, .x-toolbar .x-button.x-button-action.x-button-pressing, .x-toolbar .x-button.x-button-action.x-button-pressing:after, .x-toolbar .x-button.x-button-action.x-button-pressed, .x-toolbar .x-button.x-button-action.x-button-pressed:after, .x-toolbar .x-button.x-button-action.x-button-active, .x-toolbar .x-button.x-button-action.x-button-active:after,
@@ -4904,7 +4899,6 @@ body.x-desktop {
 .x-button.x-button-confirm-small.x-button-forward:after {
   background-image: none;
   background-color: #6c9804;
-  background-image: linear-gradient(top, #a2e306, #7eb105 3%, #5b7f03);
 }
 /* line 31, ../../touch/resources/themes/stylesheets/sencha-touch/default/mixins/_Class.scss */
 .x-button.x-button-confirm.x-button-pressing, .x-button.x-button-confirm.x-button-pressing:after, .x-button.x-button-confirm.x-button-pressed, .x-button.x-button-confirm.x-button-pressed:after, .x-button.x-button-confirm.x-button-active, .x-button.x-button-confirm.x-button-active:after, .x-toolbar .x-button.x-button-confirm.x-button-pressing, .x-toolbar .x-button.x-button-confirm.x-button-pressing:after, .x-toolbar .x-button.x-button-confirm.x-button-pressed, .x-toolbar .x-button.x-button-confirm.x-button-pressed:after, .x-toolbar .x-button.x-button-confirm.x-button-active, .x-toolbar .x-button.x-button-confirm.x-button-active:after,
@@ -4976,7 +4970,6 @@ body.x-desktop {
 .x-button.x-button-decline-small.x-button-forward:after {
   background-image: none;
   background-color: #c70505;
-  background-image: linear-gradient(top, #f91f1f, #e00606 3%, #ae0404);
 }
 /* line 31, ../../touch/resources/themes/stylesheets/sencha-touch/default/mixins/_Class.scss */
 .x-button.x-button-decline.x-button-pressing, .x-button.x-button-decline.x-button-pressing:after, .x-button.x-button-decline.x-button-pressed, .x-button.x-button-decline.x-button-pressed:after, .x-button.x-button-decline.x-button-active, .x-button.x-button-decline.x-button-active:after, .x-toolbar .x-button.x-button-decline.x-button-pressing, .x-toolbar .x-button.x-button-decline.x-button-pressing:after, .x-toolbar .x-button.x-button-decline.x-button-pressed, .x-toolbar .x-button.x-button-decline.x-button-pressed:after, .x-toolbar .x-button.x-button-decline.x-button-active, .x-toolbar .x-button.x-button-decline.x-button-active:after,
@@ -5097,8 +5090,7 @@ body.x-desktop {
   padding: 0.7em;
   border-top: 1px solid #092e47;
   background-image: none;
-  background-color: rgba(126, 129, 131, 0.85);
-  background-image: linear-gradient(top, rgba(165, 167, 168, 0.85), rgba(139, 142, 143, 0.85) 3%, rgba(113, 116, 118, 0.85));
+  background-color: #212529;
   border-radius: 0;
 }
 
@@ -5198,15 +5190,14 @@ body.x-desktop {
 
 /* line 87, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_MessageBox.scss */
 .x-msgbox-dark .x-msgbox-text {
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
+  color: #eff1f3;
 }
 /* line 91, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_MessageBox.scss */
 .x-msgbox-dark .x-msgbox-input {
   background-image: none;
-  background-color: rgba(255, 255, 255, 0.85);
-  background-image: linear-gradient(top, rgba(229, 230, 230, 0.85), rgba(242, 242, 243, 0.85) 10%, rgba(255, 255, 255, 0.85) 65%, rgba(255, 255, 255, 0.85));
-  border: 0.1em solid rgba(230, 231, 231, 0.85);
+  background-color: #eff1f3;
+  background-image: linear-gradient(top, #d3d8dc, #e1e4e7 10%, #eff1f3 65%, #f1f2f4);
+  border: 0.1em solid #7e8b98;
 }
 
 /**
@@ -5253,13 +5244,11 @@ body.x-desktop {
 .x-toolbar-dark {
   background-image: none;
   background-color: #1468a2;
-  background-image: linear-gradient(top, #1e93e4, #1676b9 3%, #11598c);
   border-color: black;
 }
 /* line 48, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-dark .x-title {
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
 }
 /* line 53, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-dark.x-docked-top {
@@ -5304,7 +5293,6 @@ body.x-desktop {
 .x-toolbar-dark .x-field-select .x-component-outer.x-button-forward:after {
   background-image: none;
   background-color: #11598c;
-  background-image: linear-gradient(top, #1985d0, #1468a2 3%, #0e4b75);
 }
 /* line 31, ../../touch/resources/themes/stylesheets/sencha-touch/default/mixins/_Class.scss */
 .x-toolbar-dark .x-button.x-button-pressing, .x-toolbar-dark .x-button.x-button-pressing:after, .x-toolbar-dark .x-button.x-button-pressed, .x-toolbar-dark .x-button.x-button-pressed:after, .x-toolbar-dark .x-button.x-button-active, .x-toolbar-dark .x-button.x-button-active:after, .x-toolbar .x-toolbar-dark .x-button.x-button-pressing, .x-toolbar .x-toolbar-dark .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-dark .x-button.x-button-pressed, .x-toolbar .x-toolbar-dark .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-dark .x-button.x-button-active, .x-toolbar .x-toolbar-dark .x-button.x-button-active:after,
@@ -5329,20 +5317,17 @@ body.x-desktop {
 .x-toolbar-dark .x-form-label {
   font-weight: bold;
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
 }
 
 /* line 44, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-light {
   background-image: none;
   background-color: #1985d0;
-  background-image: linear-gradient(top, #4ca9e9, #1e93e4 3%, #1676b9);
   border-color: black;
 }
 /* line 48, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-light .x-title {
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
 }
 /* line 53, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-light.x-docked-top {
@@ -5375,7 +5360,6 @@ body.x-desktop {
 .x-toolbar-light .x-button, .x-toolbar-light .x-button.x-button-back:after, .x-toolbar-light .x-button.x-button-forward:after, .x-toolbar .x-toolbar-light .x-button, .x-toolbar .x-toolbar-light .x-button.x-button-back:after, .x-toolbar .x-toolbar-light .x-button.x-button-forward:after, .x-toolbar-light .x-field-select .x-component-outer, .x-toolbar-light .x-field-select .x-component-outer.x-button-back:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-back:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-forward:after {
   background-image: none;
   background-color: #1676b9;
-  background-image: linear-gradient(top, #359ee7, #1985d0 3%, #1468a2);
 }
 /* line 31, ../../touch/resources/themes/stylesheets/sencha-touch/default/mixins/_Class.scss */
 .x-toolbar-light .x-button.x-button-pressing, .x-toolbar-light .x-button.x-button-pressing:after, .x-toolbar-light .x-button.x-button-pressed, .x-toolbar-light .x-button.x-button-pressed:after, .x-toolbar-light .x-button.x-button-active, .x-toolbar-light .x-button.x-button-active:after, .x-toolbar .x-toolbar-light .x-button.x-button-pressing, .x-toolbar .x-toolbar-light .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-light .x-button.x-button-pressed, .x-toolbar .x-toolbar-light .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-light .x-button.x-button-active, .x-toolbar .x-toolbar-light .x-button.x-button-active:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed, .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar-light .x-field-select .x-component-outer.x-button-active, .x-toolbar-light .x-field-select .x-component-outer.x-button-active:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-active, .x-toolbar .x-toolbar-light .x-field-select .x-component-outer.x-button-active:after {
@@ -5387,20 +5371,17 @@ body.x-desktop {
 .x-toolbar-light .x-label, .x-toolbar-light .x-form-label {
   font-weight: bold;
   color: white;
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
 }
 
 /* line 44, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-neutral {
   background-image: none;
   background-color: #e0e0e0;
-  background-image: linear-gradient(top, #ffffff, #ededed 3%, #d3d3d3);
   border-color: #616161;
 }
 /* line 48, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-neutral .x-title {
   color: #070707;
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
 }
 /* line 53, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar-neutral.x-docked-top {
@@ -5433,7 +5414,6 @@ body.x-desktop {
 .x-toolbar-neutral .x-button, .x-toolbar-neutral .x-button.x-button-back:after, .x-toolbar-neutral .x-button.x-button-forward:after, .x-toolbar .x-toolbar-neutral .x-button, .x-toolbar .x-toolbar-neutral .x-button.x-button-back:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-forward:after, .x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-back:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-forward:after {
   background-image: none;
   background-color: #d3d3d3;
-  background-image: linear-gradient(top, #fafafa, #e0e0e0 3%, #c7c7c7);
 }
 /* line 31, ../../touch/resources/themes/stylesheets/sencha-touch/default/mixins/_Class.scss */
 .x-toolbar-neutral .x-button.x-button-pressing, .x-toolbar-neutral .x-button.x-button-pressing:after, .x-toolbar-neutral .x-button.x-button-pressed, .x-toolbar-neutral .x-button.x-button-pressed:after, .x-toolbar-neutral .x-button.x-button-active, .x-toolbar-neutral .x-button.x-button-active:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressing, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressing:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressed, .x-toolbar .x-toolbar-neutral .x-button.x-button-pressed:after, .x-toolbar .x-toolbar-neutral .x-button.x-button-active, .x-toolbar .x-toolbar-neutral .x-button.x-button-active:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active, .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressing:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-pressed:after, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active, .x-toolbar .x-toolbar-neutral .x-field-select .x-component-outer.x-button-active:after {
@@ -5445,7 +5425,6 @@ body.x-desktop {
 .x-toolbar-neutral .x-label, .x-toolbar-neutral .x-form-label {
   font-weight: bold;
   color: #070707;
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
 }
 
 /* line 89, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
@@ -5535,7 +5514,6 @@ body.x-desktop {
 .x-toolbar .x-field-search .x-component-outer {
   background-color: white;
   border-radius: 0.3em;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0.1em 0 inset, rgba(0, 0, 0, 0.5) 0 -0.1em 0 inset, rgba(0, 0, 0, 0.5) 0.1em 0 0 inset, rgba(0, 0, 0, 0.5) -0.1em 0 0 inset, rgba(0, 0, 0, 0.5) 0 0.15em 0.4em inset;
 }
 /* line 204, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar .x-form-label {
@@ -5593,10 +5571,7 @@ body.x-desktop {
   border-left: none;
   border-top-right-radius: 0.8em;
   border-bottom-right-radius: 0.8em;
-  -webkit-mask: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAABCAYAAACc0f2yAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADJJREFUeNpi/P//PwMjIyMbAwMDOxRzAjEXFHMDMQ8a5kXC6HLcSHo5kcwEmU9TABBgAOcTBAFcRiSpAAAAAElFTkSuQmCC');
-  -webkit-mask-position: right top;
-  -webkit-mask-repeat: repeat-y;
-  -webkit-mask-size: 3em 0.05em;
+  width: 0.5em !important;
 }
 /* line 282, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Toolbar.scss */
 .x-toolbar .x-field-select .x-input-text {
@@ -5613,8 +5588,7 @@ body.x-desktop {
 .x-menu {
   padding: 0.7em;
   background-image: none;
-  background-color: rgba(126, 129, 131, 0.85);
-  background-image: linear-gradient(top, rgba(165, 167, 168, 0.85), rgba(139, 142, 143, 0.85) 3%, rgba(113, 116, 118, 0.85));
+  background-color: #212529;
 }
 /* line 5, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Menu.scss */
 .x-menu .x-button {
@@ -5694,7 +5668,6 @@ body.x-desktop {
 .x-form-label {
   text-shadow: #fff 0 1px 1px;
   color: #333333;
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
   padding: 0.6em;
   background-color: #f7f7f7;
 }
@@ -6216,7 +6189,6 @@ body.x-desktop {
 .x-list .x-list-item.x-item-selected .x-dock-horizontal, .x-list .x-list-item.x-item-selected.x-list-item-tpl {
   background-image: none;
   background-color: #006bb6;
-  background-image: linear-gradient(top, #0398ff, #007ad0 3%, #005c9d);
   color: white;
 }
 /* line 53, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
@@ -6233,9 +6205,7 @@ body.x-desktop {
 .x-list-normal .x-list-header {
   background-image: none;
   background-color: #5ab5f5;
-  background-image: linear-gradient(top, #a2d6f9, #72c0f6 3%, #42abf4);
   color: #0a6aac;
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
   border-top: 1px solid #5ab5f5;
   border-bottom: 1px solid #0d87dc;
   font-weight: bold;
@@ -6250,15 +6220,6 @@ body.x-desktop {
 /* line 85, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
 .x-list-normal .x-list-item.x-list-item-tpl.x-list-footer-wrap, .x-list-normal .x-list-item.x-list-footer-wrap .x-dock-horizontal {
   border-bottom: 1px solid #dedede;
-}
-/* line 93, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
-.x-list-normal .x-list-item.x-item-pressed.x-list-item-tpl, .x-list-normal .x-list-item.x-item-pressed .x-dock-horizontal {
-  border-top-color: #b6e1ff;
-  background-color: #b6e1ff;
-}
-/* line 100, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
-.x-list-normal .x-list-item.x-item-selected.x-list-item-tpl, .x-list-normal .x-list-item.x-item-selected .x-dock-horizontal {
-  border-top-color: #006bb6;
 }
 
 /* line 108, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
@@ -6359,7 +6320,6 @@ body.x-desktop {
 .x-list-round.x-list-grouped .x-list-footer-wrap.x-item-selected > .x-dock-body {
   background-image: none;
   background-color: #006bb6;
-  background-image: linear-gradient(top, #0398ff, #007ad0 3%, #005c9d);
   color: white;
 }
 /* line 223, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/dataview/_List.scss */
@@ -6395,14 +6355,8 @@ body.x-desktop {
   margin: 0.7em;
   border-radius: 0.4em;
   background-clip: padding-box;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bbbbbb), color-stop(30%, white), color-stop(70%, white), color-stop(100%, #bbbbbb));
-  background: -webkit-linear-gradient(top, #bbbbbb 0%, white 30%, white 70%, #bbbbbb 100%);
 }
 
-/* line 21, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/picker/_Picker.scss */
-.x-picker-slot .x-scroll-view {
-  box-shadow: rgba(0, 0, 0, 0.4) -1px 0 1px;
-}
 /* line 26, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/picker/_Picker.scss */
 .x-picker-slot .x-scroll-view:first-child {
   box-shadow: none;
@@ -6415,8 +6369,6 @@ body.x-desktop {
   height: 2.5em;
   background-image: none;
   background-color: rgba(13, 148, 242, 0.3);
-  background-image: linear-gradient(top, rgba(85, 180, 246, 0.3), rgba(37, 159, 244, 0.3) 3%, rgba(11, 133, 218, 0.3));
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0.2em 0.2em;
 }
 
 /* line 43, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/picker/_Picker.scss */
@@ -6433,13 +6385,11 @@ body.x-desktop {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0.1em 0.3em;
   background-image: none;
   background-color: #1295f1;
-  background-image: linear-gradient(top, #5ab5f5, #2aa0f2 3%, #0d87dc);
 }
 /* line 57, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/picker/_Picker.scss */
 .x-picker-slot-title > div {
   font-size: 0.8em;
   color: #113b59;
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
 }
 
 /* line 66, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/picker/_Picker.scss */
@@ -6727,7 +6677,6 @@ body.x-desktop {
   border-bottom-color: #195884;
   background-image: none;
   background-color: #2583c4;
-  background-image: linear-gradient(top, #56a7df, #2b91d7 3%, #2175af);
 }
 /* line 140, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-light .x-tab {
@@ -6748,17 +6697,11 @@ body.x-desktop {
   color: white;
 }
 
-/* line 161, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
-.x-tabbar-light.x-docked-bottom .x-tab {
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
-}
 /* line 165, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-light.x-docked-bottom .x-tab-active {
   background-image: none;
   background-color: #2175af;
   background-image: linear-gradient(top, #195884, #1d6699 10%, #2175af 65%, #2176b1);
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
-  box-shadow: #1d6699 0 0 0.25em inset;
 }
 /* line 173, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-light.x-docked-bottom .x-tab-active .x-button-icon:before {
@@ -6779,7 +6722,6 @@ body.x-desktop {
   border-bottom-color: #061f31;
   background-image: none;
   background-color: #0e4b75;
-  background-image: linear-gradient(top, #1676b9, #11598c 3%, #0b3c5e);
 }
 /* line 140, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-dark .x-tab {
@@ -6800,17 +6742,11 @@ body.x-desktop {
   color: white;
 }
 
-/* line 161, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
-.x-tabbar-dark.x-docked-bottom .x-tab {
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
-}
 /* line 165, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-dark.x-docked-bottom .x-tab-active {
   background-image: none;
   background-color: #0b3c5e;
   background-image: linear-gradient(top, #061f31, #092e47 10%, #0b3c5e 65%, #0c3e60);
-  text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
-  box-shadow: #092e47 0 0 0.25em inset;
 }
 /* line 173, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-dark.x-docked-bottom .x-tab-active .x-button-icon:before {
@@ -6831,7 +6767,6 @@ body.x-desktop {
   border-bottom-color: #bababa;
   background-image: none;
   background-color: #e0e0e0;
-  background-image: linear-gradient(top, #ffffff, #ededed 3%, #d3d3d3);
 }
 /* line 140, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-neutral .x-tab {
@@ -6852,17 +6787,11 @@ body.x-desktop {
   color: black;
 }
 
-/* line 161, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
-.x-tabbar-neutral.x-docked-bottom .x-tab {
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
-}
 /* line 165, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-neutral.x-docked-bottom .x-tab-active {
   background-image: none;
   background-color: #d3d3d3;
   background-image: linear-gradient(top, #bababa, #c7c7c7 10%, #d3d3d3 65%, #d5d5d5);
-  text-shadow: rgba(255, 255, 255, 0.25) 0 0.08em 0;
-  box-shadow: #c7c7c7 0 0 0.25em inset;
 }
 /* line 173, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/tab/_Panel.scss */
 .x-tabbar-neutral.x-docked-bottom .x-tab-active .x-button-icon:before {
@@ -7006,26 +6935,52 @@ body.x-desktop {
   border-radius: 10px;
 }
 
-/* line 13, ../sass/app.scss */
+/* line 4, ../sass/_sencha-overrides.scss */
+.x-button {
+  color: #4a4a4a;
+}
+
+/* line 7, ../sass/_sencha-overrides.scss */
+.x-menu {
+  padding: 0;
+}
+
+/* line 20, ../sass/app.scss */
+body {
+  color: #4a4a4a;
+}
+
+/* line 23, ../sass/app.scss */
+.center {
+  text-align: center;
+}
+
+/* line 26, ../sass/app.scss */
+.titlebar {
+  background-color: #4e769f;
+  border-style: none !important;
+}
+
+/* line 31, ../sass/app.scss */
 .header, .legend-item {
   font-weight: bold;
   font-size: 14px;
   text-align: center;
 }
 
-/* line 18, ../sass/app.scss */
+/* line 36, ../sass/app.scss */
 .header {
   margin-top: 10px;
 }
 
-/* line 21, ../sass/app.scss */
+/* line 39, ../sass/app.scss */
 .legend-item-container {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 26, ../sass/app.scss */
+/* line 44, ../sass/app.scss */
 .legend-item {
   border: 1px solid #CCC;
   border-radius: 5px;
@@ -7037,7 +6992,7 @@ body.x-desktop {
   position: relative;
 }
 
-/* line 36, ../sass/app.scss */
+/* line 54, ../sass/app.scss */
 .legend-marker {
   margin-right: 4px;
   width: 11px;
@@ -7048,10 +7003,65 @@ body.x-desktop {
   left: 9px;
 }
 
-/* line 45, ../sass/app.scss */
-.menu-item .x-dataview-item {
-  padding: 10px;
-  margin: 5px;
-  color: #fff;
-  border-bottom: 1px solid #A5A4A4;
+/* line 63, ../sass/app.scss */
+.user {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  border: 2px solid #4e769f;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+/* line 71, ../sass/app.scss */
+.user-photo {
+  color: #212529;
+  background-color: #a5a4a4;
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  font-size: 36px;
+}
+
+/* line 79, ../sass/app.scss */
+.user-name {
+  font-size: 90%;
+}
+
+/* line 82, ../sass/app.scss */
+.user-menu-item {
+  background-color: #333333;
+}
+
+/* line 85, ../sass/app.scss */
+.menu-item .x-dataview-item, .user-menu-item {
+  padding: 15px;
+  color: #a5a4a4 !important;
+  border-bottom: 1px solid #a5a4a4;
+}
+
+/* line 260, ../../touch/resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-tab .x-button-icon.question:before,
+.x-button .x-button-icon.question:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-family: "Pictos";
+  content: "?";
+}
+
+/* line 260, ../../touch/resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
+.x-tab .x-button-icon.chart:before,
+.x-button .x-button-icon.chart:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  font-family: "Pictos";
+  content: "Z";
 }
