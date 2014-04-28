@@ -6,6 +6,7 @@
         layout: 'vbox',
         zIndex: 4,
         width: '80%',
+        padding: '45 0 0 0',
         items: [
             {
                 xtype: 'container',

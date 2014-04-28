@@ -34,8 +34,15 @@ Ext.define('Pies.view.Main', {
     applyTitlebarButton: function (button) {
         var tb = this.down('titlebar');
         if (button) {
-            button.setAlign('right');
-            tb.items.add(button);
+            button.config.align = 'right';
+            this._added = tb.add(button);
+        } else if (this._added) {
+            tb.remove(this._added);
         }
+    },
+    updateTitlebarButton: function (ntbb, otbb) {
+        var c = this.down('titlebar');
+        if (otbb) { c.remove(otbb); }
+        if (ntbb) { c.add(ntbb); }
     }
 });

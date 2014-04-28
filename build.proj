@@ -10,7 +10,7 @@
     <ProductVersion Condition="'$(ProductVersion)' == ''">0.0.0.0</ProductVersion>
     <DeployTemp Condition="'$(DeployTemp)' == ''">artifacts</DeployTemp>  
     <DeployTarget Condition="'$(DeployTarget)' == ''">$(DeployTemp)\wwwroot</DeployTarget>
-    <DeploySource></DeploySource>           
+    <DeploySource Condition="'$(DeploySource)' == ''">.</DeploySource>           
     <Precompiled>$(DeploySource)\precompiled</Precompiled>           
     <BuildVersion Condition="'$(BuildVersion)' == ''">0.0.0.0</BuildVersion>
     <MicrosoftAuthenticationPath>//configuration/authentication.client/microsoft</MicrosoftAuthenticationPath>

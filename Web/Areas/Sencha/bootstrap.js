@@ -761,13 +761,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "Pies.store.RecentPies": [],
   "Pies.view.Bake": [],
   "Pies.view.EditIngredient": [],
+  "Pies.view.EditPie": [],
   "Pies.view.Home": [],
   "Pies.view.LegendItem": [],
   "Pies.view.Main": [],
   "Pies.view.Menu": [],
   "Pies.view.MyPies": [],
-  "Pies.view.Pie": [],
-  "Pies.view.PieItem": []
+  "Pies.view.Pie": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Chart.ux.Highcharts": [
@@ -1730,6 +1730,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Pies.view.EditIngredient": [
     "widget.pies-ei"
   ],
+  "Pies.view.EditPie": [
+    "widget.pies-edit"
+  ],
   "Pies.view.Home": [
     "widget.pies-home"
   ],
@@ -1747,8 +1750,5 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Pies.view.Pie": [
     "widget.pies-pie"
-  ],
-  "Pies.view.PieItem": [
-    "widget.pies-pieItem"
   ]
 });

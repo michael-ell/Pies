@@ -3,10 +3,14 @@
     requires: ['Pies.model.Ingredient', 'Pies.view.LegendItem', 'Ext.chart.PolarChart', 'Ext.chart.series.Pie'],
     xtype: 'pies-pie',
     config: {
+        items: [{
+            itemId: 'caption',
+            tpl: '<div class="header">{.}</div>'
+        }],
         pie: null
     },
-    applyPie: function (config) {
-        var ingredients = config.data.allIngredients;
+    applyPie: function (pie) {
+        var ingredients = pie.allIngredients;
         var colors = [];
         for (var i = 0; i < ingredients.length; i++) {
             colors.push(ingredients[i].color);
@@ -25,23 +29,31 @@
                 }
             }]
         });
-        if (config.showCaption) {
-            this.add({
-                xtype: 'container',
-                html: '<div class="header">' + config.data.caption + '</div>'
-            });
+        return {
+            caption: pie.caption,
+            chart: chart,
+            legend: {
+                xtype: 'dataview',
+                cls: 'legend',
+                scrollable: null,
+                store: chart.getLegendStore(),
+                useComponents: true,
+                defaultType: 'pies-legend'
+            }
+        };
+    },
+    updatePie: function (np, op) {
+        if (op) {
+            this.remove(op.chart);
+            this.remove(op.legend);
         }
-        this.add(chart);
-        if (config.showLegend) {
-            this.add(
-                {
-                    xtype: 'dataview',
-                    cls: 'legend',
-                    scrollable: null,
-                    store: chart.getLegendStore(),
-                    useComponents: true,
-                    defaultType: 'pies-legend'
-                });
+        if (np) {
+            this.updateCaption(np.caption);
+            this.add(np.chart);
+            this.add(np.legend);
         }
+    },
+    updateCaption: function (caption) {
+        this.down('#caption').setData(caption);
     }
 });

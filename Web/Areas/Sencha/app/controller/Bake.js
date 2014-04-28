@@ -3,7 +3,7 @@
     requires: ['Pies.model.Pie', 'Pies.view.EditIngredient', 'Ext.data.reader.Json'],
     config: {
         views: ['Bake'],
-        refs: { view: '.pies-bake', caption: '#caption' },
+        refs: { view: '.pies-bake', caption: '.pies-edit #caption', preview: '.pies-bake .pies-pie' },
         control: {
             view: {
                 activate: 'createPie'
@@ -11,7 +11,7 @@
             caption: {
                 change: 'updateCaption'
             },
-            '#tags': {
+            '.pies-edit #tags': {
                 change: 'updateTags'
             },
             'button[action=addIngredient]': {
@@ -24,7 +24,9 @@
         this.callParent(arguments);
         var hub = $.connection.pie;
         hub.client.captionUpdated = function (data) {
-            Pies.app.getController('Bake').getCaption().setValue(data);
+            var c = Pies.app.getController('Bake');
+            c.getCaption().setValue(data);
+            c.getPreview().updateCaption(data);
         };
         hub.client.ingredientsUpdated = function (data) {
         };

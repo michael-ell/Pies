@@ -17,11 +17,7 @@ Ext.define('Pies.view.Home', {
         Ext.each(data, function (pie) {
             views.push({
                 xtype: 'pies-pie',
-                pie: {
-                    data: pie,
-                    showCaption: true,
-                    showLegend: true
-                }
+                pie: pie
             });
         });
         this.down('carousel').add(views);

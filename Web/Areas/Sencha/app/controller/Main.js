@@ -35,6 +35,10 @@
             },
             '.pies-menu #menu-items': {
                 itemtap: 'showView'
+            },
+            menu: {
+                show: 'menuShown',
+                hide: 'menuHidden'
             }
         }
     },
@@ -42,7 +46,7 @@
     launch: function () {
         var me = this, main = me.getMain(), menu = me.getMenu(), views = me.getViews();
         Ext.Viewport.add(main);
-        Ext.Viewport.setMenu(menu, { side: me.menuSide, cover: false });
+        Ext.Viewport.setMenu(menu, { side: me.menuSide, cover: true });
         menu.setData(views);
         main.setViews(views.map(function (item) { return item.view; }));
         Pies.app.fireEvent('getPies');
@@ -58,12 +62,18 @@
     },
     showView: function (scope, index, target, record) {
         var main = this.getMain();
+        var view = record.data.view;
         this.hideMenu();
-        setTimeout(function () {
-            var view = record.data.view;
-            main.setActiveItem(view);
-            main.setTitle(record.data.title);
-            //main.setTitlebarButton(view.getTitlebarButton ? view.getTitlebarButton() : null);
-        }, 0);
+        if (main.getActiveItem() != view) {
+            setTimeout(function() {
+                main.setActiveItem(view);
+                main.setTitle(record.data.title);
+                main.setTitlebarButton(view.getTitlebarButton ? view.getTitlebarButton() : null);
+            }, 0);
+        }
+    },
+    menuShown: function() {        
+    },
+    menuHidden: function() {        
     }
 });
