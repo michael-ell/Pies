@@ -39,7 +39,6 @@ namespace Codell.Pies.Core.Domain
             _colors = new Colors();
             _nextColor = _colors.GetNext();
             _tags = new List<string>();
-
         }
 
         protected void OnPieCreated(PieCreatedEvent @event)
