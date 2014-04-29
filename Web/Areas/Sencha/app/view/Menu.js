@@ -5,7 +5,7 @@
     config: {
         layout: 'vbox',
         zIndex: 4,
-        width: '80%',
+        height: '100%',
         padding: '45 0 0 0',
         items: [
             {

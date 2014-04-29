@@ -42,7 +42,7 @@
             }
         }
     },
-    menuSide: 'left',
+    menuSide: 'top',
     launch: function () {
         var me = this, main = me.getMain(), menu = me.getMenu(), views = me.getViews();
         Ext.Viewport.add(main);
@@ -61,19 +61,28 @@
         Ext.Viewport.hideMenu(this.menuSide);
     },
     showView: function (scope, index, target, record) {
-        var main = this.getMain();
-        var view = record.data.view;
-        this.hideMenu();
+        var me = this;
+        var main = me.getMain();
+        var view = record.data.view;       
+        me.hideMenu();
         if (main.getActiveItem() != view) {
             setTimeout(function() {
                 main.setActiveItem(view);
                 main.setTitle(record.data.title);
-                main.setTitlebarButton(view.getTitlebarButton ? view.getTitlebarButton() : null);
+                me._tbBtn = view.getTitlebarButton ? view.getTitlebarButton() : null;
+                main.setTitlebarButton(me._tbBtn);
             }, 0);
         }
     },
-    menuShown: function() {        
+    menuShown: function () {
+        this._disableTbBtn(true);
     },
-    menuHidden: function() {        
+    menuHidden: function () {
+        this._disableTbBtn(false);
+    },
+    _disableTbBtn: function(val) {
+        if (this._tbBtn) {
+            this._tbBtn.setDisabled(val);
+        }
     }
 });
