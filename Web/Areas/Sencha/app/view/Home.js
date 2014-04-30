@@ -7,8 +7,8 @@ Ext.define('Pies.view.Home', {
         items: [
             {
                 xtype: 'carousel',
-                direction: 'horizontal',
-                indicator: true
+                direction: 'vertical',
+                indicator: false
             }
         ]
     },

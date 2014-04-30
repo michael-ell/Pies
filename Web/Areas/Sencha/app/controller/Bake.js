@@ -48,7 +48,8 @@
         });        
         console.log('created pie ' + created.id + '...');
         me.getView().setPie(created);
-        me.setPie(created);        
+        me.setPie(created);
+        me.getCaption().setValue(created.caption);
     },
     updateCaption: function (scope, caption) {
         console.log('updating caption to ' + caption + '...');

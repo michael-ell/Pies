@@ -22,11 +22,14 @@
 - add a way to allow all data storage to be in config file and app settings determine which one to load
 - ControllerBase returning JSON as string, not json
 
+CQRS
+- Clean up old events
 
 Azure
 - TFS
 - Precompile views?
 - Only deploy form github if tests pass?  That is, simulate CI
+- Build sencha app when deploy
 - compilation debug="true" even in release build???? 
 - move to TFS?
 
@@ -35,15 +38,8 @@ Sencha
 - theme
 - caching and new deploys!!!!
 - Is RecentPiesStore even needed?
-- site.css still coming donw being requested?
 - Package Sencha nuget / mygit
-- Remove PieItem view?
-
-51 degree mobi
-- Redirects on ajax calls
-- Get rid of
-
+- legend to scroll
 
 Upgrade
-- Asp.Net MVC 5
-- WebApi 2
+- Signal R
