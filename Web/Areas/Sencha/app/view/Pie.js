@@ -1,6 +1,6 @@
 ﻿Ext.define("Pies.view.Pie", {
     extend: 'Ext.Container',
-    requires: ['Pies.model.Ingredient', 'Pies.view.LegendItem', 'Ext.chart.PolarChart', 'Ext.chart.series.Pie'],
+    requires: ['Pies.model.Ingredient', 'Pies.view.LegendItem', 'Ext.chart.PolarChart', 'Ext.chart.series.Pie', 'Ext.dataview.DataView'],
     xtype: 'pies-pie',
     config: {
         items: [{

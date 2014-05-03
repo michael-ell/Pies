@@ -4,7 +4,6 @@ Ext.define('Pies.view.Bake', {
     xtype: 'pies-bake',
     config: {
         layout: 'card',
-        scrollable: true,
         items: [
             {
                 xtype: 'pies-edit'
@@ -31,6 +30,7 @@ Ext.define('Pies.view.Bake', {
         });
     },
     applyPie: function (pie) {
+        this.down('pies-edit').setPie(pie);
         this.down('pies-pie').setPie(pie);
         return pie;
     }

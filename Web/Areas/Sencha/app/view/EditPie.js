@@ -1,10 +1,12 @@
 Ext.define('Pies.view.EditPie', {
     extend: 'Ext.Container',
-    requires: ['Ext.form.FieldSet'],
+    requires: ['Pies.model.Ingredient', 'Pies.view.EditIngredient', 'Ext.form.FieldSet', 'Ext.dataview.DataView'],
     xtype: 'pies-edit',
     config: {
+        layout: 'vbox',
         items: [
             {
+                flex: 0,
                 xtype: 'fieldset',
                 items: [
                     {
@@ -20,7 +22,20 @@ Ext.define('Pies.view.EditPie', {
                         name: 'tags'
                     }
                 ]
+            },
+            {
+                flex: 1,
+                xtype: 'dataview',
+                scrollable: 'vertical',
+                store: { model: 'Pies.model.Ingredient' },
+                useComponents: true,
+                defaultType: 'pies-ei'
             }
-        ]
+        ],
+        pie: null
+    },
+    applyPie: function (pie) {
+        this.down('dataview').getStore().setData(pie.allIngredients);
+        return pie;
     }
 });
