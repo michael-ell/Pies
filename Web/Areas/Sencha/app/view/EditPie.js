@@ -12,14 +12,24 @@ Ext.define('Pies.view.EditPie', {
                     {
                         xtype: 'textfield',
                         itemId: 'caption',
-                        label: 'Caption',
-                        name: 'caption'
-                    },
+                        placeHolder: 'Caption'
+                    }
+                ]
+            },
+            {
+                flex: 0,
+                xtype: 'titlebar',
+                title: 'Ingredients',
+                titleAlign: 'left',   
+                cls: 'quiet',
+                ui: 'plain',
+                items: [
                     {
-                        xtype: 'textfield',
-                        itemId: 'tags',
-                        label: 'Tags',
-                        name: 'tags'
+                        iconCls: 'add',
+                        cls: 'btn',
+                        ui: 'plain',
+                        align: 'right',
+                        action: 'addIngredient'
                     }
                 ]
             },
@@ -35,7 +45,10 @@ Ext.define('Pies.view.EditPie', {
         pie: null
     },
     applyPie: function (pie) {
-        this.down('dataview').getStore().setData(pie.allIngredients);
+        this.down('dataview').getStore().setData(pie.editableIngredients);
         return pie;
+    },
+    updateIngredients: function(data) {
+        this.down('dataview').getStore().setData(data.ingredients);
     }
 });

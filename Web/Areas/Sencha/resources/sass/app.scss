@@ -23,11 +23,16 @@ body{
 .center {
 	text-align: center;
 }
+.quiet, .quiet .x-title {
+	font-weight: normal;
+}
 .titlebar {
 	background-color: $pies-primary-color;
 	border-style: none !important;
 }
-
+.btn {
+	color: $font-color !important;
+}
 .header, .legend-item {
     font-weight: bold;
     font-size: 14px; 

@@ -8,13 +8,21 @@
                 xtype: 'fieldset',
                 items: [
                     {
-                        xtype: 'textfield'
+                        xtype: 'textfield',
+                        itemId: 'description'
                     },
                     {
                         xtype: 'sliderfield',
+                        itemId: 'percentage',
                         minValue: 0,
                         maxValue: 100,
-                        increment: 5
+                        increment: 5,
+                        listeners: {
+                            change: function(me, sl, thumb, nv) {
+                                me.fireEvent('percentChange', { scope: me, percent: nv });
+                            }
+                        }
+                        
                     }
                 ]
             }
@@ -22,9 +30,10 @@
     },
     applyRecord: function (record) {
         var i = record.data;
+        this.down('textfield').setValue(i.description).setData(i);
+        this.down('sliderfield').setData(i);
         //var bc = 'border-color:' + i.color;
         //this.down('fieldset').child('div').setStyle(bc);
-        this.down('textfield').setValue(i.description);
         //this.down('textfield').setValue(i.description).setStyle(bc);
         //this.down('sliderfield').setStyle(bc);
         return record;

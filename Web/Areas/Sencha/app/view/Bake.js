@@ -12,7 +12,6 @@ Ext.define('Pies.view.Bake', {
                 xtype: 'pies-pie'
             }
         ],
-        pie: null,
         title: 'Bake'
     },
     getTitlebarButton : function() {
@@ -28,10 +27,5 @@ Ext.define('Pies.view.Bake', {
                 }
             }
         });
-    },
-    applyPie: function (pie) {
-        this.down('pies-edit').setPie(pie);
-        this.down('pies-pie').setPie(pie);
-        return pie;
     }
 });

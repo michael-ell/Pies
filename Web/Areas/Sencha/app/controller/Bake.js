@@ -3,19 +3,22 @@
     requires: ['Pies.model.Pie', 'Pies.view.EditIngredient', 'Ext.data.reader.Json'],
     config: {
         views: ['Bake'],
-        refs: { view: '.pies-bake', caption: '.pies-edit #caption', preview: '.pies-bake .pies-pie' },
+        refs: { view: '.pies-bake .pies-edit', caption: '.pies-edit #caption', preview: '.pies-bake .pies-pie' },
         control: {
-            view: {
+            '.pies-bake': {
                 activate: 'createPie'
             },
             caption: {
                 change: 'updateCaption'
             },
-            '.pies-edit #tags': {
-                change: 'updateTags'
-            },
-            'button[action=addIngredient]': {
+            '.pies-edit button[action=addIngredient]': {
                 tap: 'addIngredient'
+            },
+            '.pies-edit #description': {
+                change: 'updateIngredientDescription'
+            },
+            '.pies-edit #percentage': {
+                percentChange: 'updateIngredientPercentage'
             }
         },
         pie: null
@@ -29,6 +32,9 @@
             c.getPreview().updateCaption(data);
         };
         hub.client.ingredientsUpdated = function (data) {
+            var c = Pies.app.getController('Bake');
+            c.getView().updateIngredients(data);
+            c.getPreview().updateIngredients(data);
         };
     },
     createPie: function () {
@@ -47,22 +53,15 @@
             console.log('joined hub: ' + created.id);
         });        
         console.log('created pie ' + created.id + '...');
-        me.getView().setPie(created);
         me.setPie(created);
+        me.getView().setPie(created);
+        me.getPreview().setPie(created);
         me.getCaption().setValue(created.caption);
     },
     updateCaption: function (scope, caption) {
-        console.log('updating caption to ' + caption + '...');
         Ext.Ajax.request({
             url: '/api/pie/updateCaption',
             jsonData: { id: this.getPie().id, caption: caption }
-        });
-    },
-    updateTags: function (scope, tags) {
-        console.log('updating tags to ' + tags + '...');
-        Ext.Ajax.request({
-            url: '/api/pie/updateTags',
-            jsonData: { id: this.getPie().id, tags: tags }
         });
     },
     addIngredient: function () {
@@ -70,9 +69,17 @@
             url: '/api/pie/addIngredient',
             jsonData: { id: this.getPie().id, description: '?' }
         });
-        //if (!this.editor) {
-        //    this.editor = Ext.Viewport.add({ xtype: 'pies-ei' });
-        //}
-        //this.editor.show();
+    },
+    updateIngredientDescription: function (scope, desc) {
+        Ext.Ajax.request({
+            url: '/api/pie/updateIngredientDescription',
+            jsonData: { pieId: this.getPie().id, id: scope.getData().id, description: desc }
+        });
+    },
+    updateIngredientPercentage: function (opts) {
+        Ext.Ajax.request({
+            url: '/api/pie/updateIngredientPercentage',
+            jsonData: { pieId: this.getPie().id, id: opts.scope.getData().id, percent: opts.percent }
+        });
     }
 });

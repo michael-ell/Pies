@@ -55,5 +55,15 @@
     },
     updateCaption: function (caption) {
         this.down('#caption').setData(caption);
+        this._caption = caption;
+    },
+    updateIngredients: function (data) {
+        if (data.filler.percent > 0) {
+            data.ingredients.push(data.filler);
+        }
+        this.setPie({
+            caption: this._caption,
+            allIngredients: data.ingredients
+        });
     }
 });
