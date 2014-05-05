@@ -36,6 +36,9 @@
             c.getView().updateIngredients(data);
             c.getPreview().updateIngredients(data);
         };
+        hub.client.percentageChanged = function (data) {            
+            Pies.app.getController('Bake').displayNewPercentage(data);
+        };
     },
     createPie: function () {
         Ext.Ajax.request({         
@@ -81,5 +84,15 @@
             url: '/api/pie/updateIngredientPercentage',
             jsonData: { pieId: this.getPie().id, id: opts.scope.getData().id, percent: opts.percent }
         });
+    },
+    displayNewPercentage: function(data) {
+        var ingredients = this.getView().query('.pies-ei') || [];
+        for (var index = 0, count = ingredients.length; index < count; index++) {
+            var i = ingredients[index];
+            if (i.getRecord().data.id == data.id) {
+                i.updatePercent(data.currentPercent, data.message);
+                break;
+            }
+        }
     }
 });

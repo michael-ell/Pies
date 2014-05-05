@@ -31,11 +31,14 @@
     applyRecord: function (record) {
         var i = record.data;
         this.down('textfield').setValue(i.description).setData(i);
-        this.down('sliderfield').setData(i);
+        this.down('sliderfield').setValue(i.percent).setData(i);
         //var bc = 'border-color:' + i.color;
         //this.down('fieldset').child('div').setStyle(bc);
         //this.down('textfield').setValue(i.description).setStyle(bc);
         //this.down('sliderfield').setStyle(bc);
         return record;
+    },
+    updatePercent: function(percent, reason) {
+        this.down('sliderfield').setValue(percent);
     }
 });
