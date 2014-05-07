@@ -10,15 +10,37 @@
         items: [
             {
                 xtype: 'container',
-                layout: 'hbox',
-                cls: 'user-menu-item',
+                layout: 'card',
+                height: '120px',
                 items: [
-                    { xtype: 'spacer' },
                     {
                         xtype: 'container',
-                        html: "<div class='center'><div class='user'><div class='user-photo'>?</div></div><div class='user-name'>Sign in</div></div>"
+                        layout: 'hbox',
+                        cls: 'user-menu-item',
+                        items: [
+                            { xtype: 'spacer' },
+                            {
+                                html: "<div class='center'><div class='user'><div class='user-photo'>?</div></div><div class='user-name'>Sign in</div></div>"
+                            },
+                            { xtype: 'spacer' }
+                        ]
                     },
-                    { xtype: 'spacer' }
+                    {
+                        cls: 'sign-in'
+                    }
+                ],
+                listeners: [
+                    {
+                        element: 'element',
+                        event: 'tap',
+                        fn: function () {
+                            if (this.items.indexOf(this.getActiveItem()) == 0) {
+                                this.animateActiveItem(1, { type: 'slide' });
+                            } else {
+                                this.animateActiveItem(0, { type: 'slide', direction: 'right' });
+                            }
+                        }
+                    }
                 ]
             },
             {

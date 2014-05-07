@@ -6945,52 +6945,52 @@ body.x-desktop {
   padding: 0;
 }
 
-/* line 20, ../sass/app.scss */
+/* line 22, ../sass/app.scss */
 body {
   color: #4a4a4a;
 }
 
-/* line 23, ../sass/app.scss */
+/* line 25, ../sass/app.scss */
 .center {
   text-align: center;
 }
 
-/* line 26, ../sass/app.scss */
+/* line 28, ../sass/app.scss */
 .quiet, .quiet .x-title {
   font-weight: normal;
 }
 
-/* line 29, ../sass/app.scss */
+/* line 31, ../sass/app.scss */
 .titlebar {
   background-color: #4e769f;
   border-style: none !important;
 }
 
-/* line 33, ../sass/app.scss */
+/* line 35, ../sass/app.scss */
 .btn {
   color: #4a4a4a !important;
 }
 
-/* line 36, ../sass/app.scss */
+/* line 38, ../sass/app.scss */
 .header, .legend-item {
   font-weight: bold;
   font-size: 14px;
   text-align: center;
 }
 
-/* line 41, ../sass/app.scss */
+/* line 43, ../sass/app.scss */
 .header {
   margin-top: 10px;
 }
 
-/* line 44, ../sass/app.scss */
+/* line 46, ../sass/app.scss */
 .legend-item-container {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 49, ../sass/app.scss */
+/* line 51, ../sass/app.scss */
 .legend-item {
   border: 1px solid #CCC;
   border-radius: 5px;
@@ -7002,7 +7002,7 @@ body {
   position: relative;
 }
 
-/* line 59, ../sass/app.scss */
+/* line 61, ../sass/app.scss */
 .legend-marker {
   margin-right: 4px;
   width: 11px;
@@ -7013,7 +7013,7 @@ body {
   left: 9px;
 }
 
-/* line 68, ../sass/app.scss */
+/* line 70, ../sass/app.scss */
 .user {
   height: 60px;
   width: 60px;
@@ -7023,7 +7023,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 76, ../sass/app.scss */
+/* line 78, ../sass/app.scss */
 .user-photo {
   color: #212529;
   background-color: #a5a4a4;
@@ -7033,17 +7033,22 @@ body {
   font-size: 36px;
 }
 
-/* line 84, ../sass/app.scss */
+/* line 86, ../sass/app.scss */
 .user-name {
   font-size: 90%;
 }
 
-/* line 87, ../sass/app.scss */
+/* line 89, ../sass/app.scss */
 .user-menu-item {
-  background-color: #333333;
+  background-color: #373A3E;
 }
 
-/* line 90, ../sass/app.scss */
+/* line 93, ../sass/app.scss */
+.sign-in {
+  background-color: #a5a4a4;
+}
+
+/* line 96, ../sass/app.scss */
 .menu-item .x-dataview-item, .user-menu-item {
   padding: 15px;
   color: #a5a4a4 !important;

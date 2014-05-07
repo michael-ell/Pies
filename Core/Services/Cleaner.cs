@@ -10,7 +10,7 @@ namespace Codell.Pies.Core.Services
 
         public Cleaner()
         {
-            _badWords = new Dictionary<string, string>{{"shit", "poop"}};            
+            _badWords = new Dictionary<string, string> { { "shit", "poop" }, { "shithead", "poophead" } };            
         }
 
         public Result Clean(string value)

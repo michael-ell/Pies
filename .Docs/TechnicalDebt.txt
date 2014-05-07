@@ -40,6 +40,7 @@ Sencha
 - Is RecentPiesStore even needed?
 - Package Sencha nuget / mygit
 - legend to scroll
+- scroll ingredient into view when changing description
 
 Upgrade
 - Signal R

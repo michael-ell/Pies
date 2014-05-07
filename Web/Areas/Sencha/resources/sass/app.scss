@@ -11,7 +11,9 @@ $pies-menu-color: #A5A4A4;
 $font-color: #4A4A4A;
 //Remove all gradients, box and text shadows
 $include-highlights: false;
-$sheet-bg-color: #212529; //rgba(126, 129, 131, 0.85);
+
+$sheet-bg-color: #212529;
+//$sheet-bg-color: rgba(33, 37, 41, 0.95);
 
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
@@ -85,7 +87,11 @@ body{
 	font-size: 90%;
 }
 .user-menu-item {
-	background-color: #333333;
+	background-color: #373A3E;
+	//background-color: rgba(55,58,62, 0.95);
+}
+.sign-in {
+	background-color: $pies-menu-color;
 }
 .menu-item .x-dataview-item, .user-menu-item {
 	 padding: 15px;
