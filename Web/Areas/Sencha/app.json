@@ -53,12 +53,22 @@
             "update": "delta"
         },
 		{
-			"path": "http://code.jquery.com/jquery-1.9.1.min.js",
-			remote: true
+			"path": "//code.jquery.com/jquery-1.9.1.min.js",
+			"remote": true
 		},
 		{
-			"path" : "http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.min.js",
-			remote: true
+			"path" : "//ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.min.js",
+			"remote": true
+		},
+		/*
+		{
+			"path" : "//apis.google.com/js/client.js",
+			"remote": true
+		},
+		*/		
+		{
+			"path" : "//apis.google.com/js/client:plusone.js",
+			"remote": true
 		},
         {
             "path": "/signalr/hubs",

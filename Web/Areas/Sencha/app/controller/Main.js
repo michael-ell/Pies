@@ -13,7 +13,7 @@
                 xtype: 'pies-menu',
                 autoCreate: true
             },            
-            home:{
+            home: {
                   selector: '.pies-home',
                   xtype: 'pies-home',
                   autoCreate: true

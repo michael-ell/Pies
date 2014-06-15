@@ -3,7 +3,7 @@ Ext.application({
 
     requires: ['Ext.MessageBox', 'Ext.LoadMask'],
     
-    controllers: ['Main', 'Home', 'Bake'],
+    controllers: ['Main', 'Home', 'Bake', 'Login'],
 
     icon: {},
 

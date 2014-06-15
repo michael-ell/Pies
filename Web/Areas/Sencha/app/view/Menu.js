@@ -1,6 +1,6 @@
 ﻿Ext.define('Pies.view.Menu', {
     extend: 'Ext.Menu',
-    requires: ['Pies.model.MenuItem', 'Ext.dataview.DataView'],
+    requires: ['Pies.view.Login', 'Pies.model.MenuItem', 'Ext.dataview.DataView'],
     xtype: 'pies-menu',
     config: {
         layout: 'vbox',
@@ -9,39 +9,7 @@
         padding: '45 0 0 0',
         items: [
             {
-                xtype: 'container',
-                layout: 'card',
-                height: '120px',
-                items: [
-                    {
-                        xtype: 'container',
-                        layout: 'hbox',
-                        cls: 'user-menu-item',
-                        items: [
-                            { xtype: 'spacer' },
-                            {
-                                html: "<div class='center'><div class='user'><div class='user-photo'>?</div></div><div class='user-name'>Sign in</div></div>"
-                            },
-                            { xtype: 'spacer' }
-                        ]
-                    },
-                    {
-                        cls: 'sign-in'
-                    }
-                ],
-                listeners: [
-                    {
-                        element: 'element',
-                        event: 'tap',
-                        fn: function () {
-                            if (this.items.indexOf(this.getActiveItem()) == 0) {
-                                this.animateActiveItem(1, { type: 'slide' });
-                            } else {
-                                this.animateActiveItem(0, { type: 'slide', direction: 'right' });
-                            }
-                        }
-                    }
-                ]
+                xtype: 'pies-login'
             },
             {
                 xtype: 'dataview',

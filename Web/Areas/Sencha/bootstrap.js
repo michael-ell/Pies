@@ -753,6 +753,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Pies.controller.Bake": [],
   "Pies.controller.Home": [],
+  "Pies.controller.Login": [],
   "Pies.controller.Main": [],
   "Pies.model.Ingredient": [],
   "Pies.model.MenuItem": [],
@@ -764,6 +765,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Pies.view.EditPie": [],
   "Pies.view.Home": [],
   "Pies.view.LegendItem": [],
+  "Pies.view.Login": [],
   "Pies.view.Main": [],
   "Pies.view.Menu": [],
   "Pies.view.MyPies": [],
@@ -1718,6 +1720,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.WindowsPhone": [],
   "Pies.controller.Bake": [],
   "Pies.controller.Home": [],
+  "Pies.controller.Login": [],
   "Pies.controller.Main": [],
   "Pies.model.Ingredient": [],
   "Pies.model.MenuItem": [],
@@ -1738,6 +1741,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Pies.view.LegendItem": [
     "widget.pies-legend"
+  ],
+  "Pies.view.Login": [
+    "widget.pies-login"
   ],
   "Pies.view.Main": [
     "widget.pies-main"

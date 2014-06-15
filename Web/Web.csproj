@@ -18,10 +18,10 @@
     <PrecompilePath Condition=" '$(PrecompilePath)' == '' ">
     </PrecompilePath>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>443</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <PrecompileRazorFiles>false</PrecompileRazorFiles>
@@ -306,6 +306,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Areas\Sencha\app.js" />
+    <Content Include="Areas\Sencha\app\controller\Login.js" />
     <Content Include="Areas\Sencha\app\controller\Main.js" />
     <Content Include="Areas\Sencha\app\controller\Bake.js" />
     <Content Include="Areas\Sencha\app\controller\Home.js" />
@@ -315,6 +316,7 @@
     <Content Include="Areas\Sencha\app\store\Ingredients.js" />
     <Content Include="Areas\Sencha\app\store\RecentPies.js" />
     <Content Include="Areas\Sencha\app\view\Bake.js" />
+    <Content Include="Areas\Sencha\app\view\Login.js" />
     <Content Include="Areas\Sencha\app\view\EditPie.js" />
     <Content Include="Areas\Sencha\app\view\EditIngredient.js" />
     <Content Include="Areas\Sencha\app\view\LegendItem.js" />
@@ -1159,8 +1161,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Api\Models\" />
-    <Folder Include="Areas\Sencha\Models\" />
     <Folder Include="Areas\Sencha\resources\icons\" />
     <Folder Include="Areas\Sencha\resources\images\" />
     <Folder Include="Areas\Sencha\resources\startup\" />
@@ -1208,7 +1208,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52154</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52153/</IISUrl>
+          <IISUrl>http://pies:52000</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

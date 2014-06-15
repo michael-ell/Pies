@@ -34,7 +34,7 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -79,19 +79,19 @@ namespace Codell.Pies.Web.Controllers
             return RedirectToAction("ExternalLoginFailure");
         }
 
-        private string Sign(string consumerSecret, string accessTokenSecret, string data)
-        {
-            var combinedSecrets =
-                HttpUtility.UrlEncode(consumerSecret) +
-                "&" +
-                HttpUtility.UrlEncode(accessTokenSecret);
-            var hashAlgorithm = new HMACSHA1(Encoding.UTF8.GetBytes(combinedSecrets));
+        //private string Sign(string consumerSecret, string accessTokenSecret, string data)
+        //{
+        //    var combinedSecrets =
+        //        HttpUtility.UrlEncode(consumerSecret) +
+        //        "&" +
+        //        HttpUtility.UrlEncode(accessTokenSecret);
+        //    var hashAlgorithm = new HMACSHA1(Encoding.UTF8.GetBytes(combinedSecrets));
 
-            var dataBuffer = Encoding.UTF8.GetBytes(data);
-            var hashBytes = hashAlgorithm.ComputeHash(dataBuffer);
+        //    var dataBuffer = Encoding.UTF8.GetBytes(data);
+        //    var hashBytes = hashAlgorithm.ComputeHash(dataBuffer);
 
-            return Convert.ToBase64String(hashBytes);
-        }
+        //    return Convert.ToBase64String(hashBytes);
+        //}
 
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
