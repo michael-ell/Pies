@@ -34,7 +34,7 @@ namespace Codell.Pies.Web.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {

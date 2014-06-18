@@ -92,6 +92,18 @@ body{
 }
 .sign-in {
 	background-color: $pies-menu-color;
+	padding: 20px 5px;
+}
+.nav-button {
+	color: $font-color;
+	background-color: #E7E7E7;
+	border: 1px solid $font-color;
+	border-radius: 0px;
+	margin: 5px !important;
+	overflow: visible !important;
+	.x-button-label {
+		font-weight: normal;
+	}
 }
 .menu-item .x-dataview-item, .user-menu-item {
 	 padding: 15px;

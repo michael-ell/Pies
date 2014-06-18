@@ -46,13 +46,28 @@
                 ]
             },
             {
+                xtype: 'container',
                 cls: 'sign-in',
+                layout: 'hbox',
+                defaults: {
+                    flex: 1,
+                    xtype: 'button',
+                    cls: 'nav-button'
+                },
                 items: [
                     {
-                        xtype: 'button',
-                        //ui: 'plain',
-                        text: 'Google',
+                        text: 'Google+',
                         action: 'google'
+                    },
+                    {
+                        text: 'Microsoft',
+                        action: 'microsoft',
+                        disabled: true
+                    },
+                    {
+                        text: 'Twitter',
+                        action: 'twitter',
+                        disabled: true
                     }
                 ]
             }

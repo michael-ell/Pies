@@ -16,12 +16,14 @@
     googleLogin: function() {
         gapi.auth.signIn({
             callback: function (result) {
+                Pies.app.fireEvent('busy');
                 gapi.client.load('plus', 'v1', function () {     
                     var request = gapi.client.plus.people.get({
                         'userId': 'me'
                     });
                     request.execute(function (user) {
                         Pies.app.getController('Login').getView().displayUser(user);
+                        Pies.app.fireEvent('notBusy');
                     });
                 });
         }});
