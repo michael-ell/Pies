@@ -87,23 +87,30 @@ body{
 	font-size: 90%;
 }
 .user-menu-item {
-	background-color: #373A3E;
-	//background-color: rgba(55,58,62, 0.95);
+	//background-color: #373A3E;
+	background-color: #474747;
 }
 .sign-in {
-	background-color: $pies-menu-color;
+	//background-color: $pies-menu-color;
+	background-color: #ffffff;
 	padding: 20px 5px;
 }
 .nav-button {
-	color: $font-color;
-	background-color: #E7E7E7;
-	border: 1px solid $font-color;
-	border-radius: 0px;
-	margin: 5px !important;
-	overflow: visible !important;
-	.x-button-label {
-		font-weight: normal;
-	}
+	//margin: 5px !important;
+	font-size: 40px;
+	@extend .center;
+}
+.gplus {
+	color: #DD4B39;
+	@extend .nav-button;
+}
+.twitter {
+	color: #05B0DE;
+	@extend .nav-button;
+}
+.facebook {
+	color: #3C599B;
+	@extend .nav-button;
 }
 .menu-item .x-dataview-item, .user-menu-item {
 	 padding: 15px;
@@ -111,6 +118,17 @@ body{
 	 border-bottom: 1px solid $pies-menu-color;
 }
 
-//Mixins
-@include icon('question');
-@include icon('chart');
+//Fonts
+@include icon-font('IcoMoon', inline-font-files(
+  'icomoon/icomoon.woff', woff,
+  'icomoon/icomoon.ttf', truetype,
+  'icomoon/icomoon.svg', svg,
+  'icomoon/icomoon.eot', eot
+));
+@include icon('menu' , '.', 'IcoMoon');
+@include icon('gplus', '&', 'IcoMoon');
+@include icon('facebook', ')', 'IcoMoon');
+@include icon('twitter'  , ',', 'IcoMoon');
+@include icon('pie', '!', 'IcoMoon');
+@include icon('plus', '"', 'IcoMoon');
+

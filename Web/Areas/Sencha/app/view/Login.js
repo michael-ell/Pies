@@ -51,22 +51,27 @@
                 layout: 'hbox',
                 defaults: {
                     flex: 1,
-                    xtype: 'button',
-                    cls: 'nav-button'
+                    xtype: 'button'
                 },
                 items: [
                     {
-                        text: 'Google+',
-                        action: 'google'
+                        action: 'google',
+                        iconCls: 'gplus',
+                        ui: 'plain',
+                        cls: 'gplus'
                     },
-                    {
-                        text: 'Microsoft',
-                        action: 'microsoft',
+                    {  
+                        action: 'twitter',
+                        iconCls: 'twitter',
+                        cls: 'twitter',
+                        ui: 'plain',
                         disabled: true
                     },
                     {
-                        text: 'Twitter',
-                        action: 'twitter',
+                        action: 'facebook',
+                        iconCls: 'facebook',
+                        cls: 'facebook',
+                        ui: 'plain',
                         disabled: true
                     }
                 ]

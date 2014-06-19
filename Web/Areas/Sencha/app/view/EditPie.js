@@ -25,7 +25,7 @@ Ext.define('Pies.view.EditPie', {
                 ui: 'plain',
                 items: [
                     {
-                        iconCls: 'add',
+                        iconCls: 'plus',
                         cls: 'btn',
                         ui: 'plain',
                         align: 'right',
