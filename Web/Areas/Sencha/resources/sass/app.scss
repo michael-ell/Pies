@@ -6,14 +6,15 @@ $experimental-support-for-khtml : false;
 
 $pies-label: 'pies';
 $pies-primary-color: #4E769F;
-$pies-menu-color: #A5A4A4;
+$pies-menu-color: #EEEEEE;
 
 $font-color: #4A4A4A;
 //Remove all gradients, box and text shadows
 $include-highlights: false;
 
-$sheet-bg-color: #212529;
-//$sheet-bg-color: rgba(33, 37, 41, 0.95);
+//$sheet-bg-color: #212529;
+$opacity: 0.55;
+$sheet-bg-color: rgba(33, 37, 41, $opacity);
 
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
@@ -35,6 +36,9 @@ body{
 .btn {
 	color: $font-color !important;
 }
+.blur{
+     -webkit-filter: blur(15px);
+}
 .header, .legend-item {
     font-weight: bold;
     font-size: 14px; 
@@ -42,6 +46,9 @@ body{
 }
 .header {
     margin-top: 10px;
+}
+.pie {
+	margin-top: 30px;
 }
 .legend-item-container {
     text-align: center;  
@@ -76,7 +83,7 @@ body{
 	margin-bottom: 10px;
 }
 .user-photo {
-	color: $sheet-bg-color;
+	color: $font-color;
 	background-color: $pies-menu-color;
 	height: 44px;
 	width: 44px;	
@@ -87,11 +94,9 @@ body{
 	font-size: 90%;
 }
 .user-menu-item {
-	//background-color: #373A3E;
-	background-color: #474747;
+	background-color: $sheet-bg-color;
 }
 .sign-in {
-	//background-color: $pies-menu-color;
 	background-color: #ffffff;
 	padding: 20px 5px;
 }
@@ -117,8 +122,6 @@ body{
 	 color: $pies-menu-color !important;
 	 border-bottom: 1px solid $pies-menu-color;
 }
-
-//Fonts
 @include icon-font('IcoMoon', inline-font-files(
   'icomoon/icomoon.woff', woff,
   'icomoon/icomoon.ttf', truetype,
@@ -129,6 +132,6 @@ body{
 @include icon('gplus', '&', 'IcoMoon');
 @include icon('facebook', ')', 'IcoMoon');
 @include icon('twitter'  , ',', 'IcoMoon');
-@include icon('pie', '!', 'IcoMoon');
+@include icon('chart', '!', 'IcoMoon');
 @include icon('plus', '"', 'IcoMoon');
 

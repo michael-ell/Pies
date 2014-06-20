@@ -3,6 +3,7 @@
     requires: ['Pies.model.Ingredient', 'Pies.view.LegendItem', 'Ext.chart.PolarChart', 'Ext.chart.series.Pie', 'Ext.dataview.DataView'],
     xtype: 'pies-pie',
     config: {
+        cls: 'pie',
         items: [{
             itemId: 'caption',
             tpl: '<div class="header">{.}</div>'

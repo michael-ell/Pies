@@ -11,7 +11,7 @@ Ext.define('Pies.view.Main', {
                 cls: 'titlebar',
                 items: [
                     {
-                        iconCls: 'menu',
+                        iconCls: 'list',
                         ui: 'plain',
                         action: 'toggleMenu'
                     }

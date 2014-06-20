@@ -49,22 +49,25 @@
         Ext.Viewport.setMenu(menu, { side: me.menuSide, cover: true });
         menu.setData(views);
         main.setViews(views.map(function (item) { return item.view; }));
+        me._current = views[0].view;
         Pies.app.fireEvent('getPies');
     },
     getViews: function () {
         return [{ title: 'Home', view: this.getHome() }, { title: 'Bake', view: this.getBake() }, { title: 'My Pies', view: this.getMine() }];
     },
-    toggleMenu: function() {
+    toggleMenu: function () {
+        //this._current.toggleCls('blur');
         Ext.Viewport.toggleMenu(this.menuSide);
     },
-    hideMenu: function () {
-        Ext.Viewport.hideMenu(this.menuSide);
-    },
+    //hideMenu: function () {
+    //    this._current.removeCls('blur');
+    //    Ext.Viewport.hideMenu(this.menuSide);
+    //},
     showView: function (scope, index, target, record) {
         var me = this;
         var main = me.getMain();
         var view = record.data.view;       
-        me.hideMenu();
+        me.toggleMenu();
         if (main.getActiveItem() != view) {
             setTimeout(function() {
                 main.setActiveItem(view);
@@ -72,12 +75,15 @@
                 me._tbBtn = view.getTitlebarButton ? view.getTitlebarButton() : null;
                 main.setTitlebarButton(me._tbBtn);
             }, 0);
+            me._current = view;
         }
     },
     menuShown: function () {
+        this._current.addCls('blur');
         this._disableTbBtn(true);
     },
     menuHidden: function () {
+        this._current.removeCls('blur');
         this._disableTbBtn(false);
     },
     _disableTbBtn: function(val) {

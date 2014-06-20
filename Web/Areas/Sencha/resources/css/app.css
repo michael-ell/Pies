@@ -5090,7 +5090,7 @@ body.x-desktop {
   padding: 0.7em;
   border-top: 1px solid #092e47;
   background-image: none;
-  background-color: #212529;
+  background-color: rgba(33, 37, 41, 0.55);
   border-radius: 0;
 }
 
@@ -5190,14 +5190,14 @@ body.x-desktop {
 
 /* line 87, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_MessageBox.scss */
 .x-msgbox-dark .x-msgbox-text {
-  color: #eff1f3;
+  color: rgba(239, 241, 243, 0.55);
 }
 /* line 91, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_MessageBox.scss */
 .x-msgbox-dark .x-msgbox-input {
   background-image: none;
-  background-color: #eff1f3;
-  background-image: linear-gradient(top, #d3d8dc, #e1e4e7 10%, #eff1f3 65%, #f1f2f4);
-  border: 0.1em solid #7e8b98;
+  background-color: rgba(239, 241, 243, 0.55);
+  background-image: linear-gradient(top, rgba(211, 216, 220, 0.55), rgba(225, 228, 231, 0.55) 10%, rgba(239, 241, 243, 0.55) 65%, rgba(241, 242, 244, 0.55));
+  border: 0.1em solid rgba(126, 139, 152, 0.55);
 }
 
 /**
@@ -5588,7 +5588,7 @@ body.x-desktop {
 .x-menu {
   padding: 0.7em;
   background-image: none;
-  background-color: #212529;
+  background-color: rgba(33, 37, 41, 0.55);
 }
 /* line 5, ../../touch/resources/themes/stylesheets/sencha-touch/default/src/_Menu.scss */
 .x-menu .x-button {
@@ -6945,52 +6945,67 @@ body.x-desktop {
   padding: 0;
 }
 
-/* line 22, ../sass/app.scss */
+/* line 10, ../sass/_sencha-overrides.scss */
+.x-title {
+  font-weight: normal;
+}
+
+/* line 23, ../sass/app.scss */
 body {
   color: #4a4a4a;
 }
 
-/* line 25, ../sass/app.scss */
+/* line 26, ../sass/app.scss */
 .center, .nav-button, .gplus, .twitter, .facebook {
   text-align: center;
 }
 
-/* line 28, ../sass/app.scss */
+/* line 29, ../sass/app.scss */
 .quiet, .quiet .x-title {
   font-weight: normal;
 }
 
-/* line 31, ../sass/app.scss */
+/* line 32, ../sass/app.scss */
 .titlebar {
   background-color: #4e769f;
   border-style: none !important;
 }
 
-/* line 35, ../sass/app.scss */
+/* line 36, ../sass/app.scss */
 .btn {
   color: #4a4a4a !important;
 }
 
-/* line 38, ../sass/app.scss */
+/* line 39, ../sass/app.scss */
+.blur {
+  -webkit-filter: blur(15px);
+}
+
+/* line 42, ../sass/app.scss */
 .header, .legend-item {
   font-weight: bold;
   font-size: 14px;
   text-align: center;
 }
 
-/* line 43, ../sass/app.scss */
+/* line 47, ../sass/app.scss */
 .header {
   margin-top: 10px;
 }
 
-/* line 46, ../sass/app.scss */
+/* line 50, ../sass/app.scss */
+.pie {
+  margin-top: 30px;
+}
+
+/* line 53, ../sass/app.scss */
 .legend-item-container {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 51, ../sass/app.scss */
+/* line 58, ../sass/app.scss */
 .legend-item {
   border: 1px solid #CCC;
   border-radius: 5px;
@@ -7002,7 +7017,7 @@ body {
   position: relative;
 }
 
-/* line 61, ../sass/app.scss */
+/* line 68, ../sass/app.scss */
 .legend-marker {
   margin-right: 4px;
   width: 11px;
@@ -7013,7 +7028,7 @@ body {
   left: 9px;
 }
 
-/* line 70, ../sass/app.scss */
+/* line 77, ../sass/app.scss */
 .user {
   height: 60px;
   width: 60px;
@@ -7023,57 +7038,57 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 78, ../sass/app.scss */
+/* line 85, ../sass/app.scss */
 .user-photo {
-  color: #212529;
-  background-color: #a5a4a4;
+  color: #4a4a4a;
+  background-color: #eeeeee;
   height: 44px;
   width: 44px;
   border-radius: 22px;
   font-size: 36px;
 }
 
-/* line 86, ../sass/app.scss */
+/* line 93, ../sass/app.scss */
 .user-name {
   font-size: 90%;
 }
 
-/* line 89, ../sass/app.scss */
+/* line 96, ../sass/app.scss */
 .user-menu-item {
-  background-color: #474747;
+  background-color: rgba(33, 37, 41, 0.55);
 }
 
-/* line 93, ../sass/app.scss */
+/* line 99, ../sass/app.scss */
 .sign-in {
   background-color: #ffffff;
   padding: 20px 5px;
 }
 
-/* line 98, ../sass/app.scss */
+/* line 103, ../sass/app.scss */
 .nav-button, .gplus, .twitter, .facebook {
   font-size: 40px;
 }
 
-/* line 103, ../sass/app.scss */
+/* line 108, ../sass/app.scss */
 .gplus {
   color: #DD4B39;
 }
 
-/* line 107, ../sass/app.scss */
+/* line 112, ../sass/app.scss */
 .twitter {
   color: #05B0DE;
 }
 
-/* line 111, ../sass/app.scss */
+/* line 116, ../sass/app.scss */
 .facebook {
   color: #3C599B;
 }
 
-/* line 115, ../sass/app.scss */
+/* line 120, ../sass/app.scss */
 .menu-item .x-dataview-item, .user-menu-item {
   padding: 15px;
-  color: #a5a4a4 !important;
-  border-bottom: 1px solid #a5a4a4;
+  color: #eeeeee !important;
+  border-bottom: 1px solid #eeeeee;
 }
 
 @font-face {
@@ -7140,8 +7155,8 @@ body {
 }
 
 /* line 260, ../../touch/resources/themes/stylesheets/sencha-touch/base/mixins/_Class.scss */
-.x-tab .x-button-icon.pie:before,
-.x-button .x-button-icon.pie:before {
+.x-tab .x-button-icon.chart:before,
+.x-button .x-button-icon.chart:before {
   position: absolute;
   top: 0;
   right: 0;

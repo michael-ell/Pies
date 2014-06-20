@@ -64,15 +64,13 @@
                         action: 'twitter',
                         iconCls: 'twitter',
                         cls: 'twitter',
-                        ui: 'plain',
-                        disabled: true
+                        ui: 'plain'
                     },
                     {
                         action: 'facebook',
                         iconCls: 'facebook',
                         cls: 'facebook',
-                        ui: 'plain',
-                        disabled: true
+                        ui: 'plain'
                     }
                 ]
             }

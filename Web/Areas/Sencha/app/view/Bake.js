@@ -16,7 +16,7 @@ Ext.define('Pies.view.Bake', {
     },
     getTitlebarButton : function() {
         return Ext.create('Ext.Button', {
-            iconCls: 'pie',
+            iconCls: 'chart',
             ui: 'plain',
             listeners: {
                 tap: {

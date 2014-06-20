@@ -3,12 +3,13 @@ Ext.define('Pies.view.Home', {
     requires: ['Pies.view.Pie', 'Ext.carousel.Carousel'],
     xtype: 'pies-home',
     config: {
-        layout: 'fit',
+        layout: 'vbox',
+        scrollable: true,
         items: [
-            {
-                xtype: 'carousel',
-                direction: 'vertical',
-                indicator: false
+            {            
+                //xtype: 'carousel',
+                //direction: 'vertical',
+                //indicator: false
             }
         ]
     },
@@ -20,7 +21,8 @@ Ext.define('Pies.view.Home', {
                 pie: pie
             });
         });
-        this.down('carousel').add(views);
+        //this.down('carousel').add(views);
+        this.add(views);
         return data;
     }
 });
