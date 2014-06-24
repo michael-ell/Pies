@@ -10,11 +10,15 @@ namespace Codell.Pies.Web.Security
     {
         public static void SetUser(this HttpContextBase context, AuthenticationResult result)
         {
-            var user = new User(result.ProviderUserId, result.UserName);
+            context.SetUser(new User(result.ProviderUserId, result.UserName));          
+        }
+
+        public static void SetUser(this HttpContextBase context, User user)
+        {
             var ticket = new FormsAuthenticationTicket(1, user.Name, DateTime.Now, DateTime.Now.AddDays(7), true, user.ToString());
             var encrypted = FormsAuthentication.Encrypt(ticket);
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
-            context.Response.Cookies.Add(cookie);           
+            context.Response.Cookies.Add(cookie); 
         }
 
         public static void ClearUser(this HttpContextBase context)
@@ -42,6 +46,5 @@ namespace Codell.Pies.Web.Security
 
             return new Identity(new User(decryptedTicket.UserData));            
         }
-
     }
 }

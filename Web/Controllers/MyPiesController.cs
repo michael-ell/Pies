@@ -1,56 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
-using AutoMapper;
 using Codell.Pies.Common;
-using Codell.Pies.Core.Commands;
-using Codell.Pies.Core.ReadModels;
-using Codell.Pies.Core.Repositories;
 using Codell.Pies.Web.Models.MyPies;
-using Codell.Pies.Web.Models.Shared;
+using Codell.Pies.Web.Models.Providers;
 using Codell.Pies.Web.Security;
-using Ncqrs.Commanding.ServiceModel;
-using System.Linq;
 
 namespace Codell.Pies.Web.Controllers
 {
     [Authorize]
     public class MyPiesController : Controller
     {
-        private readonly IRepository _repository;
-        private readonly IMappingEngine _mapper;
-        private readonly ICommandService _commandService;
+        private readonly IPiesProvider _piesProvider;
 
-        public MyPiesController(IRepository repository, IMappingEngine mapper, ICommandService commandService)
+        public MyPiesController(IPiesProvider piesProvider)
         {
-            Verify.NotNull(repository, "repository");
-            Verify.NotNull(mapper, "mapper");
-            Verify.NotNull(commandService, "commandService");
-                        
-            _repository = repository;
-            _mapper = mapper;
-            _commandService = commandService;
+            Verify.NotNull(piesProvider, "piesProvider");                      
+            _piesProvider = piesProvider;
+
         }
 
         [HttpGet]
         public ActionResult Index(IPiesIdentity identity)
         {
-            var found = _repository.Find<Pie>(pie => pie.OwnerId == identity.User.Id && pie.IsEmpty == false).OrderBy(pie => pie.Caption);
-            var pies = _mapper.Map<IEnumerable<Pie>, IEnumerable<PieModel>>(found);            
-            return View( new IndexModel {Owner = identity.User, Pies = pies} );  
+            return View(new IndexModel { Owner = identity.User, Pies = _piesProvider.GetPiesFor(identity) });  
         }
 
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var pie = _repository.FindById<Guid, Pie>(id);
-            return View(_mapper.Map<Pie, PieModel>(pie));
-        }
-
-        [HttpDelete]
-        public void Delete(Guid id)
-        {
-            _commandService.Execute(new DeletePieCommand(id));
+            return View(_piesProvider.Get(id));
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Codell.Pies.Web.Configuration
             builder.RegisterModule<NcqrsModule>();
             builder.RegisterModule<StorageModule>();
             builder.RegisterModule<InfrastructureModule>();
+            builder.RegisterModule<ProvidersModule>();
             builder.RegisterModule(new ConfigurationSettingsReader());
         }
     }

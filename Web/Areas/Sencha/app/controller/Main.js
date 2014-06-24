@@ -53,16 +53,11 @@
         Pies.app.fireEvent('getPies');
     },
     getViews: function () {
-        return [{ title: 'Home', view: this.getHome() }, { title: 'Bake', view: this.getBake() }, { title: 'My Pies', view: this.getMine() }];
+        return [{ title: 'Home', view: this.getHome()}, { title: 'Bake', view: this.getBake() }, { title: 'My Pies', view: this.getMine()}];
     },
     toggleMenu: function () {
-        //this._current.toggleCls('blur');
         Ext.Viewport.toggleMenu(this.menuSide);
     },
-    //hideMenu: function () {
-    //    this._current.removeCls('blur');
-    //    Ext.Viewport.hideMenu(this.menuSide);
-    //},
     showView: function (scope, index, target, record) {
         var me = this;
         var main = me.getMain();

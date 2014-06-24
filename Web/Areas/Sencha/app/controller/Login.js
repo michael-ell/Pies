@@ -10,22 +10,32 @@
         }
     },
     launch: function () {
-        //this.getView().displayUser({ displayName: 'Sign In', image: { url: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50' } });
         this.getView().displayUser({ displayName: 'Sign In' });
     },
-    googleLogin: function() {
+    googleLogin: function () {
         gapi.auth.signIn({
             callback: function (result) {
-                Pies.app.fireEvent('busy');
-                gapi.client.load('plus', 'v1', function () {     
-                    var request = gapi.client.plus.people.get({
-                        'userId': 'me'
-                    });
-                    request.execute(function (user) {
-                        Pies.app.getController('Login').getView().displayUser(user);
-                        Pies.app.fireEvent('notBusy');
-                    });
-                });
-        }});
+                if (result.status.signed_in) {
+                    if (result.status.method == 'AUTO') {
+                        Pies.app.fireEvent('busy');
+                        gapi.client.load('plus', 'v1', function() {
+                            var request = gapi.client.plus.people.get({
+                                'userId': 'me'
+                            });
+                            request.execute(function(user) {
+                                Pies.app.getController('Login').getView().displayUser(user);
+                                Ext.Ajax.request({
+                                    url: '/sencha/account/login',
+                                    jsonData: { id: user.id, name: user.displayName }
+                                });
+                                Pies.app.fireEvent('notBusy');
+                            });
+                        });
+                    }
+                } else {
+                    console.log('Google+ sign-in failed: ' + result.error);
+                }
+            }
+        });
     }
 });

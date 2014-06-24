@@ -3,7 +3,7 @@ Ext.application({
 
     requires: ['Ext.MessageBox', 'Ext.LoadMask'],
     
-    controllers: ['Main', 'Home', 'Bake', 'Login'],
+    controllers: ['Main', 'Home', 'Bake', 'Login', 'MyPies'],
 
     icon: {},
 
@@ -34,7 +34,9 @@ Ext.application({
             }, 0);
         },
         notBusy: function () {
-            Ext.Viewport.setMasked(false);
+            setTimeout(function() {
+                Ext.Viewport.setMasked(false);
+            }, 0);
         }
     }
 });

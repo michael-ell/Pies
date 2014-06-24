@@ -8,7 +8,8 @@
             itemId: 'caption',
             tpl: '<div class="header">{.}</div>'
         }],
-        pie: null
+        pie: null,
+        mine: false
     },
     applyPie: function (pie) {
         var ingredients = pie.allIngredients;
@@ -30,6 +31,32 @@
                 }
             }]
         });
+        var actions = this.getMine() !== true ? {} : Ext.create('Ext.Container', {
+            layout: 'hbox',
+            defaults: { flex: 1},
+            items:[
+                {xtype: 'spacer'},
+                {
+                    layout: 'hbox',
+                    defaults: {
+                        xtype: 'button'                 
+                    },
+                    items: [
+                        {
+                            iconCls: 'pencil',
+                            cls: 'edit'
+                        },
+                        {
+                            iconCls: 'trash',
+                            cls: 'delete',
+                            action: 'delPie',
+                            data: pie,
+                        }
+                    ]
+                },
+                {xtype: 'spacer'}
+            ]
+        });
         return {
             caption: pie.caption,
             chart: chart,
@@ -40,18 +67,21 @@
                 store: chart.getLegendStore(),
                 useComponents: true,
                 defaultType: 'pies-legend'
-            }
+            },
+            actions: actions
         };
     },
     updatePie: function (np, op) {
         if (op) {
             this.remove(op.chart);
             this.remove(op.legend);
+            this.remove(op.actions);
         }
         if (np) {
             this.updateCaption(np.caption);
             this.add(np.chart);
             this.add(np.legend);
+            this.add(np.actions);
         }
     },
     updateCaption: function (caption) {

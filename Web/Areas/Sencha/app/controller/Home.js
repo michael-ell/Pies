@@ -2,9 +2,7 @@
     extend: 'Ext.app.Controller',
     requires: ['Pies.view.Home'],
     config: {
-        refs: {
-            home: '.pies-home'
-        }
+        refs: { view: '.pies-home' }
     },
     init: function() {
         Pies.app.on('getPies', this.getPies, this);
@@ -27,6 +25,7 @@
         return !results ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
     },
     showPies: function (xhr, opts) {
-        opts.scope.getHome().setData(Ext.JSON.decode(xhr.responseText));
+        var data = Ext.JSON.decode(xhr.responseText);
+        opts.scope.getView().setData(Array.isArray(data) ? data : [data]);
     }
 });

@@ -1,6 +1,7 @@
 ﻿using System;
 using Codell.Pies.Common.Security;
 using Codell.Pies.Common;
+using Codell.Pies.Web.Areas.Sencha.Models;
 
 namespace Codell.Pies.Web.Security
 {
@@ -17,6 +18,15 @@ namespace Codell.Pies.Web.Security
         {
             Id = id;
             Name = name;
+        }
+
+        public User(UserModel model)
+        {
+            if (model != null)
+            {
+                Id = model.Id;
+                Name = model.Name;
+            }
         }
 
         public string Id { get; private set; }

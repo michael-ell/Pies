@@ -1,4 +1,5 @@
-﻿@using Codell.Pies.Web.Extensions
+﻿@using Codell.Pies.Web.App_Start
+@using Codell.Pies.Web.Extensions
 @model Codell.Pies.Web.Models.MyPies.IndexModel
 <div id="pies">
     <div data-bind="template: { name: 'pie-template', foreach: pies }"></div>        
@@ -22,7 +23,16 @@
 {
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new cc.pies.Controller(@Html.Raw(Model.Pies.ToJson()), { editing: { isEditable: true, owner: '@Model.Owner.Id', actions: { remove: '@Url.Action("Delete")' } } }), $('#pies')[0]);
+            var opts = {
+                editing: {
+                    isEditable: true, 
+                    owner: '@Model.Owner.Id', 
+                    actions: {
+                        remove: '@Url.RouteUrl(WebApiConfig.RouteNames.Default, new { httproute = "", controller = "MyPies", action="Delete"})'                     
+                    }
+                } 
+            }
+            ko.applyBindings(new cc.pies.Controller(@Html.Raw(Model.Pies.ToJson()), opts), $('#pies')[0]);
             $('#comingSoon').dialog({
                 modal: true,
                 title: 'Pies Feature',

@@ -13,7 +13,7 @@ $font-color: #4A4A4A;
 $include-highlights: false;
 
 //$sheet-bg-color: #212529;
-$opacity: 0.55;
+$opacity: 0.6;
 $sheet-bg-color: rgba(33, 37, 41, $opacity);
 
 @import 'sencha-touch/default';
@@ -37,7 +37,7 @@ body{
 	color: $font-color !important;
 }
 .blur{
-     -webkit-filter: blur(15px);
+    -webkit-filter: blur(15px);
 }
 .header, .legend-item {
     font-weight: bold;
@@ -100,38 +100,57 @@ body{
 	background-color: #ffffff;
 	padding: 20px 5px;
 }
-.nav-button {
+.nav-btn {
 	//margin: 5px !important;
 	font-size: 40px;
 	@extend .center;
 }
 .gplus {
 	color: #DD4B39;
-	@extend .nav-button;
+	@extend .nav-btn;
 }
 .twitter {
 	color: #05B0DE;
-	@extend .nav-button;
+	@extend .nav-btn;
 }
 .facebook {
 	color: #3C599B;
-	@extend .nav-button;
+	@extend .nav-btn;
 }
 .menu-item .x-dataview-item, .user-menu-item {
 	 padding: 15px;
 	 color: $pies-menu-color !important;
 	 border-bottom: 1px solid $pies-menu-color;
 }
+.round-btn {
+	color: #ffffff;
+    height: 31px;
+    width: 31px;
+    border-radius: 16px;
+	border: none;
+	margin-right: 5px;
+}
+.edit {
+    background-color: #DB843D;
+	@extend .round-btn;
+}
+.delete {
+    background-color: #89A54E;
+	@extend .round-btn;
+}
+//@include sencha-toolbar-ui('edit', rgb(219, 132, 61), 'flat');
 @include icon-font('IcoMoon', inline-font-files(
   'icomoon/icomoon.woff', woff,
   'icomoon/icomoon.ttf', truetype,
   'icomoon/icomoon.svg', svg,
   'icomoon/icomoon.eot', eot
 ));
-@include icon('menu' , '.', 'IcoMoon');
-@include icon('gplus', '&', 'IcoMoon');
-@include icon('facebook', ')', 'IcoMoon');
-@include icon('twitter'  , ',', 'IcoMoon');
-@include icon('chart', '!', 'IcoMoon');
-@include icon('plus', '"', 'IcoMoon');
+@include icon('menu' , '(', 'IcoMoon');
+@include icon('gplus', '$', 'IcoMoon');
+@include icon('facebook', '%', 'IcoMoon');
+@include icon('twitter'  , '&', 'IcoMoon');
+@include icon('chart', '"', 'IcoMoon');
+@include icon('plus', "'", 'IcoMoon');
+@include icon('pencil', '!', 'IcoMoon');
+@include icon('trash', ')', 'IcoMoon');
 

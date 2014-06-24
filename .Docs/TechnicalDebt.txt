@@ -21,6 +21,8 @@
 - Elmah & Mongo
 - add a way to allow all data storage to be in config file and app settings determine which one to load
 - ControllerBase returning JSON as string, not json
+- test PiesProvider
+- test PageProvider
 
 CQRS
 - Clean up old events
@@ -41,6 +43,9 @@ Sencha
 - Package Sencha nuget / mygit
 - legend to scroll
 - scroll ingredient into view when changing description
+- create google + oauth provider for mvc app
+- sign out of google +
+- handle google + sign in errors
 
 Upgrade
 - Signal R

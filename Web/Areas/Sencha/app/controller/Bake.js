@@ -1,12 +1,13 @@
 ﻿Ext.define('Pies.controller.Bake', {
     extend: 'Ext.app.Controller',
-    requires: ['Pies.model.Pie', 'Pies.view.EditIngredient', 'Ext.data.reader.Json'],
+    requires: ['Pies.model.Pie', 'Pies.view.EditIngredient', 'Pies.hub.Bus', 'Pies.hub.Messages', 'Ext.data.reader.Json'],
     config: {
         views: ['Bake'],
         refs: { view: '.pies-bake .pies-edit', caption: '.pies-edit #caption', preview: '.pies-bake .pies-pie' },
         control: {
             '.pies-bake': {
-                activate: 'createPie'
+                show: 'createPie',
+                hide: 'done'
             },
             caption: {
                 change: 'updateCaption'
@@ -23,23 +24,6 @@
         },
         pie: null
     },
-    constructor: function () { 
-        this.callParent(arguments);
-        var hub = $.connection.pie;
-        hub.client.captionUpdated = function (data) {
-            var c = Pies.app.getController('Bake');
-            c.getCaption().setValue(data);
-            c.getPreview().updateCaption(data);
-        };
-        hub.client.ingredientsUpdated = function (data) {
-            var c = Pies.app.getController('Bake');
-            c.getView().updateIngredients(data);
-            c.getPreview().updateIngredients(data);
-        };
-        hub.client.percentageChanged = function (data) {            
-            Pies.app.getController('Bake').displayNewPercentage(data);
-        };
-    },
     createPie: function () {
         Ext.Ajax.request({         
             url: '/api/pie/create',
@@ -50,12 +34,10 @@
     showPie: function(xhr, opts) {
         var created = Ext.JSON.decode(xhr.responseText);
         var me = opts.scope;
-        $.connection.hub.stop();
-        $.connection.hub.start().done(function () {
-            $.connection.pie.server.join(created.id);
-            console.log('joined hub: ' + created.id);
-        });        
-        console.log('created pie ' + created.id + '...');
+        Pies.hub.Bus.start(created.id)
+                          .subscribe(Pies.hub.Messages.captionUpdated, me.captionUpdated, me)
+                          .subscribe(Pies.hub.Messages.ingredientsUpdated, me.ingredientsUpdated, me)
+                          .subscribe(Pies.hub.Messages.percentageChanged, me.percentageChanged, me);
         me.setPie(created);
         me.getView().setPie(created);
         me.getPreview().setPie(created);
@@ -66,6 +48,10 @@
             url: '/api/pie/updateCaption',
             jsonData: { id: this.getPie().id, caption: caption }
         });
+    },
+    captionUpdated: function (data) {
+        this.getCaption().setValue(data);
+        this.getPreview().updateCaption(data);
     },
     addIngredient: function () {
         Ext.Ajax.request({
@@ -79,13 +65,17 @@
             jsonData: { pieId: this.getPie().id, id: scope.getData().id, description: desc }
         });
     },
+    ingredientsUpdated: function (data) {
+        this.getView().updateIngredients(data);
+        this.getPreview().updateIngredients(data);        
+    },
     updateIngredientPercentage: function (opts) {
         Ext.Ajax.request({
             url: '/api/pie/updateIngredientPercentage',
             jsonData: { pieId: this.getPie().id, id: opts.scope.getData().id, percent: opts.percent }
         });
     },
-    displayNewPercentage: function(data) {
+    percentageChanged: function (data) {
         var ingredients = this.getView().query('.pies-ei') || [];
         for (var index = 0, count = ingredients.length; index < count; index++) {
             var i = ingredients[index];
@@ -94,5 +84,8 @@
                 break;
             }
         }
+    },
+    done: function() {
+        Pies.hub.Bus.stop();
     }
 });
