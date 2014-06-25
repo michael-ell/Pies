@@ -4,6 +4,9 @@
         captionUpdated: 'cu',
         ingredientsUpdated: 'iu',
         percentageChanged: 'pc',
-        messageReceived: 'mr'
+        messageReceived: 'mr',
+        busy: 'b',
+        notBusy: 'nb',
+        userSignedIn: 'usi'
     }
 });

@@ -7003,56 +7003,57 @@ body {
 }
 
 /* line 26, ../sass/app.scss */
-.center, .nav-btn, .gplus, .twitter, .facebook {
+.center, .nav-btn, .gplus, .twitter, .facebook, .action-bar {
   text-align: center;
+  -webkit-box-pack: center !important;
 }
 
-/* line 29, ../sass/app.scss */
+/* line 30, ../sass/app.scss */
 .quiet, .quiet .x-title {
   font-weight: normal;
 }
 
-/* line 32, ../sass/app.scss */
+/* line 33, ../sass/app.scss */
 .titlebar {
   background-color: #4e769f;
   border-style: none !important;
 }
 
-/* line 36, ../sass/app.scss */
+/* line 37, ../sass/app.scss */
 .btn {
   color: #4a4a4a !important;
 }
 
-/* line 39, ../sass/app.scss */
+/* line 40, ../sass/app.scss */
 .blur {
   -webkit-filter: blur(15px);
 }
 
-/* line 42, ../sass/app.scss */
+/* line 43, ../sass/app.scss */
 .header, .legend-item {
   font-weight: bold;
   font-size: 14px;
   text-align: center;
 }
 
-/* line 47, ../sass/app.scss */
+/* line 48, ../sass/app.scss */
 .header {
   margin-top: 10px;
 }
 
-/* line 50, ../sass/app.scss */
+/* line 51, ../sass/app.scss */
 .pie {
   margin-top: 30px;
 }
 
-/* line 53, ../sass/app.scss */
+/* line 54, ../sass/app.scss */
 .legend-item-container {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 58, ../sass/app.scss */
+/* line 59, ../sass/app.scss */
 .legend-item {
   border: 1px solid #CCC;
   border-radius: 5px;
@@ -7064,7 +7065,7 @@ body {
   position: relative;
 }
 
-/* line 68, ../sass/app.scss */
+/* line 69, ../sass/app.scss */
 .legend-marker {
   margin-right: 4px;
   width: 11px;
@@ -7075,7 +7076,7 @@ body {
   left: 9px;
 }
 
-/* line 77, ../sass/app.scss */
+/* line 78, ../sass/app.scss */
 .user {
   height: 60px;
   width: 60px;
@@ -7085,7 +7086,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 85, ../sass/app.scss */
+/* line 86, ../sass/app.scss */
 .user-photo {
   color: #4a4a4a;
   background-color: #eeeeee;
@@ -7095,50 +7096,50 @@ body {
   font-size: 36px;
 }
 
-/* line 93, ../sass/app.scss */
+/* line 94, ../sass/app.scss */
 .user-name {
   font-size: 90%;
 }
 
-/* line 96, ../sass/app.scss */
+/* line 97, ../sass/app.scss */
 .user-menu-item {
   background-color: rgba(33, 37, 41, 0.6);
 }
 
-/* line 99, ../sass/app.scss */
+/* line 100, ../sass/app.scss */
 .sign-in {
   background-color: #ffffff;
   padding: 20px 5px;
 }
 
-/* line 103, ../sass/app.scss */
+/* line 104, ../sass/app.scss */
 .nav-btn, .gplus, .twitter, .facebook {
   font-size: 40px;
 }
 
-/* line 108, ../sass/app.scss */
+/* line 109, ../sass/app.scss */
 .gplus {
   color: #DD4B39;
 }
 
-/* line 112, ../sass/app.scss */
+/* line 113, ../sass/app.scss */
 .twitter {
   color: #05B0DE;
 }
 
-/* line 116, ../sass/app.scss */
+/* line 117, ../sass/app.scss */
 .facebook {
   color: #3C599B;
 }
 
-/* line 120, ../sass/app.scss */
+/* line 121, ../sass/app.scss */
 .menu-item .x-dataview-item, .user-menu-item {
   padding: 15px;
   color: #eeeeee !important;
   border-bottom: 1px solid #eeeeee;
 }
 
-/* line 125, ../sass/app.scss */
+/* line 126, ../sass/app.scss */
 .round-btn, .edit, .delete {
   color: #ffffff;
   height: 31px;
@@ -7146,14 +7147,20 @@ body {
   border-radius: 16px;
   border: none;
   margin-right: 5px;
+  font-size: 11px;
 }
 
-/* line 133, ../sass/app.scss */
+/* line 135, ../sass/app.scss */
+.action-bar {
+  margin-top: 10px;
+}
+
+/* line 139, ../sass/app.scss */
 .edit {
   background-color: #DB843D;
 }
 
-/* line 137, ../sass/app.scss */
+/* line 143, ../sass/app.scss */
 .delete {
   background-color: #89A54E;
 }

@@ -25,6 +25,7 @@ body{
 }
 .center {
 	text-align: center;
+	-webkit-box-pack: center !important;
 }
 .quiet, .quiet .x-title {
 	font-weight: normal;
@@ -129,6 +130,11 @@ body{
     border-radius: 16px;
 	border: none;
 	margin-right: 5px;
+	font-size: 11px;
+}
+.action-bar {
+	margin-top: 10px;
+	@extend .center
 }
 .edit {
     background-color: #DB843D;

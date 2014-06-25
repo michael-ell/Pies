@@ -33,28 +33,20 @@
         });
         var actions = this.getMine() !== true ? {} : Ext.create('Ext.Container', {
             layout: 'hbox',
-            defaults: { flex: 1},
-            items:[
-                {xtype: 'spacer'},
+            defaults: { xtype: 'button' },
+            styleHtmlContent: true,
+            styleHtmlCls: 'action-bar',
+            items: [
                 {
-                    layout: 'hbox',
-                    defaults: {
-                        xtype: 'button'                 
-                    },
-                    items: [
-                        {
-                            iconCls: 'pencil',
-                            cls: 'edit'
-                        },
-                        {
-                            iconCls: 'trash',
-                            cls: 'delete',
-                            action: 'delPie',
-                            data: pie,
-                        }
-                    ]
+                    iconCls: 'pencil',
+                    cls: 'edit'
                 },
-                {xtype: 'spacer'}
+                {
+                    iconCls: 'trash',
+                    cls: 'delete',
+                    action: 'delPie',
+                    data: pie
+                }
             ]
         });
         return {
