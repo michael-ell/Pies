@@ -35,8 +35,8 @@ namespace Codell.Pies.Core.Domain
 
         private void Init()
         {
-            _ingredients = new List<Ingredient>();
             _colors = new Colors();
+            _ingredients = new List<Ingredient>{new Ingredient(Guid.NewGuid(), string.Empty, 0, _colors.GetNext())};
             _nextColor = _colors.GetNext();
             _tags = new List<string>();
         }
@@ -44,6 +44,7 @@ namespace Codell.Pies.Core.Domain
         protected void OnPieCreated(PieCreatedEvent @event)
         {
             _filler = @event.Filler;
+            _ingredients = @event.Ingredients.ToList();
             _owner = @event.Owner;
         }
 

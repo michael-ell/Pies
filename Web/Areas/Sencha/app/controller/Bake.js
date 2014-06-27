@@ -56,7 +56,7 @@
     addIngredient: function () {
         Ext.Ajax.request({
             url: '/api/pie/addIngredient',
-            jsonData: { id: this.getPie().id, description: '?' }
+            jsonData: { id: this.getPie().id, description: '' }
         });
     },
     updateIngredientDescription: function (scope, desc) {

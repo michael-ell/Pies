@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Codell.Pies.Core.EventHandlers;
@@ -22,12 +23,16 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
     {
         private PublishedEvent<PieCreatedEvent> _event;
         private Ingredient _expectedFiller;
+        private IEnumerable<Ingredient> _expectedIngredients;
 
         protected override void Given()
         {
             _event = PublishedEvent.For(New.Events().PieCreatedEvent().Creation);
             _expectedFiller = New.ReadModels().Ingredient();
+            _expectedIngredients = new List<Ingredient>();
             MockFor<IMappingEngine>().Setup(mapper => mapper.Map<Pies.Core.Domain.Ingredient, Ingredient>(_event.Payload.Filler)).Returns(_expectedFiller);
+            MockFor<IMappingEngine>().Setup(mapper => mapper.Map<IEnumerable<Pies.Core.Domain.Ingredient>, IEnumerable<Ingredient>>(_event.Payload.Ingredients))
+                                     .Returns(_expectedIngredients);
         }
 
         protected override void When()
@@ -60,9 +65,9 @@ namespace Codell.Pies.Tests.Core.EventHandlers.PieDenormalizerSpecs
         }
 
         [Observation]
-        public void Then_should_save_the_pie_with_no_ingredients()
+        public void Then_should_save_the_pie_with_the_default_ingredients()
         {
-            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.EditableIngredients != null && !pie.EditableIngredients.Any())));
+            MockFor<IRepository>().Verify(repo => repo.Save(It.Is<Pie>(pie => pie.EditableIngredients == _expectedIngredients)));
         }
 
         [Observation]

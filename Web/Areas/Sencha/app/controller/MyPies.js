@@ -35,20 +35,32 @@
         }
     },
     showPies: function (xhr, opts) {
-        Pies.hub.Bus.start(this._user.id);
-        opts.scope.getView().setData(Ext.JSON.decode(xhr.responseText));
+        var me = opts.scope;
+        Pies.hub.Bus.start(me._user.id).subscribe(Pies.hub.Messages.pieDeleted, me.pieDeleted, me);
+        me.getView().setData(Ext.JSON.decode(xhr.responseText));
     },
     deletePie: function (scope) {
-        var pie = scope.getData();
-        if (pie) {
-            Ext.Ajax.request({
-                url: '/api/mypies/delete/' + pie.id,
-                method: 'DELETE'
-            });
-        }
+        Ext.Msg.confirm("Trash Pie", "Are you sure you want to do that?", function (answer) {
+            if (answer == 'yes') {
+                var pie = scope.getData();
+                if (pie) {
+                    Ext.Ajax.request({
+                        url: '/api/mypies/delete/' + pie.id,
+                        method: 'DELETE'
+                    });
+                }
+            }
+        });
     },
-    pieDeleted: function(data) {
-        //debugger;
+    pieDeleted: function (data) {
+        var view = this.getView();
+        Ext.each(view.getItems().items, function (item) {
+            if (item.getPie().id == data.id) {
+                view.remove(item);
+                return false;
+            }
+            return true;
+        });
     },
     done: function() {
         Pies.hub.Bus.stop();

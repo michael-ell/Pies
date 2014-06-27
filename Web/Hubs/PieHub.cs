@@ -29,8 +29,6 @@ namespace Codell.Pies.Web.EventHandlers
 
         public void Handle(IPublishedEvent<IngredientAddedEvent> @event)
         {
-            //var model = new IngredientModel { Id = @event.Payload.Id, Percent = @event.Payload.Percent, Description = @event.Payload.Description, PieId = @event.EventSourceId };
-            //var view = _controller.Render("_EditableIngredient", model);
             var added = @event.Payload.Added.Id;
             PublishIngredientsUpdated(@event.Payload, @event.EventSourceId, ingredient => ingredient.Id == added ? @event.Payload.Message : "");
         }
@@ -123,10 +121,10 @@ namespace Codell.Pies.Web.EventHandlers
             return GlobalHost.ConnectionManager.GetHubContext<PieHub>().Clients.Group(name);
         }
 
-        public Task Join(string pieId)
+        public Task Join(string name)
         {
             //No need to resolve context as this is created by signalr so context is already set
-            return Groups.Add(Context.ConnectionId, pieId);
+            return Groups.Add(Context.ConnectionId, name);
         }
     }
 }

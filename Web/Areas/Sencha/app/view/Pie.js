@@ -50,6 +50,7 @@
             ]
         });
         return {
+            id: pie.id,
             caption: pie.caption,
             chart: chart,
             legend: {

@@ -9,7 +9,8 @@
                 items: [
                     {
                         xtype: 'textfield',
-                        itemId: 'description'
+                        itemId: 'description',
+                        placeHolder: 'Description'
                     },
                     {
                         xtype: 'sliderfield',

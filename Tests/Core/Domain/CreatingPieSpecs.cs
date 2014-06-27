@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Codell.Pies.Common;
 using Codell.Pies.Common.Security;
 using Codell.Pies.Core.Domain;
@@ -55,6 +56,24 @@ namespace Codell.Pies.Tests.Core.Domain.CreatingPieSpecs
         public void Then_should_announce_a_color_for_the_filler()
         {
             Verify<PieCreatedEvent>(e => e.Filler.Color.IsNotEmpty()).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_a_default_ingredient_was_created_for_the_pie()
+        {
+            Verify<PieCreatedEvent>(e => e.Ingredients.Count() == 1).WasPublished();            
+        }
+
+        [Observation]
+        public void Then_should_announce_the_default_ingredient_created_for_the_pie_is_zero_percent()
+        {
+            Verify<PieCreatedEvent>(e => e.Ingredients.First().Percent == 0).WasPublished();
+        }
+
+        [Observation]
+        public void Then_should_announce_the_default_ingredient_description_created_for_the_pie_is_empty()
+        {
+            Verify<PieCreatedEvent>(e => e.Ingredients.First().Description == string.Empty).WasPublished();
         }
 
     }

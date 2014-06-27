@@ -22,10 +22,10 @@ namespace Codell.Pies.Core.Commands
 
         public AddIngredientCommand(Guid id, string description)
         {
-            Verify.NotWhitespace(description, "description");
+            //Verify.NotWhitespace(description, "description");
             
             Id = id;
-            Description = description;
+            Description = (description ?? "").Trim();
             Cleaner = ServiceLocator.Instance.Find<ICleaner>();
             Settings = ServiceLocator.Instance.Find<ISettings>();
         }

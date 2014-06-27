@@ -23,6 +23,7 @@
 - ControllerBase returning JSON as string, not json
 - test PiesProvider
 - test PageProvider
+- IsEmpty flag on pie...what consitutes an empty pie?  no ingredients? default pie created with one ingredient but this should be empty
 
 CQRS
 - Clean up old events

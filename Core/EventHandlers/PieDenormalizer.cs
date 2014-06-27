@@ -36,12 +36,13 @@ namespace Codell.Pies.Core.EventHandlers
         public void Handle(IPublishedEvent<PieCreatedEvent> evnt)
         {
             var filler = _mapper.Map<Domain.Ingredient, Ingredient>(evnt.Payload.Filler);
+            var ingredients = _mapper.Map<IEnumerable<Domain.Ingredient>, IEnumerable<Ingredient>>(evnt.Payload.Ingredients);
             _repository.Save(new Pie
                                  {
                                      Id = evnt.EventSourceId, 
                                      OwnerId = evnt.Payload.Owner.Id,
                                      Caption = evnt.Payload.Caption,
-                                     EditableIngredients = new List<Ingredient>(),
+                                     EditableIngredients = ingredients,
                                      Filler = filler,
                                      CreatedOn = DateTime.Now, 
                                      IsEmpty = true
@@ -54,7 +55,6 @@ namespace Codell.Pies.Core.EventHandlers
             pie.Caption = evnt.Payload.NewCaption;
             _repository.Save(pie);
         }
-
 
         public void Handle(IPublishedEvent<PieTagsUpdatedEvent> evnt)
         {
