@@ -125,8 +125,8 @@ body{
 }
 .round-btn {
 	color: #ffffff;
-    height: 31px;
-    width: 31px;
+    height: 32px;
+    width: 32px;
     border-radius: 16px;
 	border: none;
 	margin-right: 5px;
@@ -144,6 +144,10 @@ body{
     background-color: #89A54E;
 	@extend .round-btn;
 }
+.email {
+	background-color: #BF3519;
+	@extend .round-btn;
+}
 //@include sencha-toolbar-ui('edit', rgb(219, 132, 61), 'flat');
 @include icon-font('IcoMoon', inline-font-files(
   'icomoon/icomoon.woff', woff,
@@ -151,12 +155,13 @@ body{
   'icomoon/icomoon.svg', svg,
   'icomoon/icomoon.eot', eot
 ));
-@include icon('menu' , '(', 'IcoMoon');
-@include icon('gplus', '$', 'IcoMoon');
-@include icon('facebook', '%', 'IcoMoon');
-@include icon('twitter'  , '&', 'IcoMoon');
+//@include icon('menu' , ')', 'IcoMoon');
+@include icon('gplus', '%', 'IcoMoon');
+@include icon('facebook', '&', 'IcoMoon');
+@include icon('twitter'  , "'", 'IcoMoon');
 @include icon('chart', '"', 'IcoMoon');
-@include icon('plus', "'", 'IcoMoon');
+@include icon('plus', "(", 'IcoMoon');
 @include icon('pencil', '!', 'IcoMoon');
-@include icon('trash', ')', 'IcoMoon');
+@include icon('trash', '#', 'IcoMoon');
+@include icon('email', '$', 'IcoMoon');
 

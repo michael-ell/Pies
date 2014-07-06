@@ -10,7 +10,15 @@
                     {
                         xtype: 'textfield',
                         itemId: 'description',
-                        placeHolder: 'Description'
+                        placeHolder: 'Description',
+                        listeners: {
+                            focus: function () {
+                                var di = this.up('dataitem');
+                                var dv = this.up('dataview');
+                                var idx = dv.getStore().indexOf(di.getRecord());
+                                dv.getScrollable().getScroller().scrollTo(0, di.bodyElement.dom.clientHeight * idx);
+                            }
+                        }
                     },
                     {
                         xtype: 'sliderfield',

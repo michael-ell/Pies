@@ -2,13 +2,18 @@
     extend: 'Ext.app.Controller',
     requires: ['Pies.view.Home'],
     config: {
-        refs: { view: '.pies-home' }
+        refs: { view: '.pies-home' },
+        control: {
+            'button[action=home-refresh]': {
+                tap: 'getPies'
+            }
+        }
     },
     init: function() {
-        Pies.app.on('getPies', this.getPies, this);
+        Pies.app.on(Pies.hub.Messages.getPies, this.getPies, this);
     },
     getPies: function () {
-        Pies.app.fireEvent('busy');
+        Pies.app.fireEvent(Pies.hub.Messages.busy);
         var shared = this._getShared();
         Ext.Ajax.request({
             url: !shared ? '/api/home/getrecent': '/api/home/get/' + shared,
@@ -16,7 +21,7 @@
             scope: this,
             success: this.showPies,
             callback: function () {
-                Pies.app.fireEvent('notBusy');
+                Pies.app.fireEvent(Pies.hub.Messages.notBusy);
             }
         });
     },

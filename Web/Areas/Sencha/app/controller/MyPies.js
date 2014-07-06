@@ -8,8 +8,11 @@
                 show: 'getPies',
                 hide: 'done'
             },
-            '.pies-mine button[action="delPie"]' : {
-                 tap: 'deletePie'
+            '.pies-mine button[action="editPie"]' : {
+                 tap: 'editPie'
+            },
+            '.pies-mine button[action="delPie"]': {
+                tap: 'deletePie'
             }
         }
     },
@@ -38,6 +41,9 @@
         var me = opts.scope;
         Pies.hub.Bus.start(me._user.id).subscribe(Pies.hub.Messages.pieDeleted, me.pieDeleted, me);
         me.getView().setData(Ext.JSON.decode(xhr.responseText));
+    },
+    editPie: function(scope) {
+        Pies.app.fireEvent(Pies.hub.Messages.editPie, scope.getData());
     },
     deletePie: function (scope) {
         Ext.Msg.confirm("Trash Pie", "Are you sure you want to do that?", function (answer) {

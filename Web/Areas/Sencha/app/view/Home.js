@@ -22,7 +22,15 @@ Ext.define('Pies.view.Home', {
             });
         });
         //this.down('carousel').add(views);
+        this.removeAll();
         this.add(views);
         return data;
+    },
+    getTitlebarButton: function () {
+        return Ext.create('Ext.Button', {
+            iconCls: 'refresh',
+            ui: 'plain',
+            action: 'home-refresh'
+        });
     }
 });

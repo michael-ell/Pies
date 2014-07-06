@@ -23,25 +23,31 @@
             }
         },
         pie: null
-    },
+    },   
     createPie: function () {
-        Ext.Ajax.request({         
-            url: '/api/pie/create',
-            scope: this,            
-            success: this.showPie
-        });
+        if (this.getPie() == null) {
+            Ext.Ajax.request({
+                url: '/api/pie/create',
+                scope: this,
+                success: this.showPie
+            });
+        }
     },
     showPie: function(xhr, opts) {
         var created = Ext.JSON.decode(xhr.responseText);
         var me = opts.scope;
-        Pies.hub.Bus.start(created.id)
-                          .subscribe(Pies.hub.Messages.captionUpdated, me.captionUpdated, me)
-                          .subscribe(Pies.hub.Messages.ingredientsUpdated, me.ingredientsUpdated, me)
-                          .subscribe(Pies.hub.Messages.percentageChanged, me.percentageChanged, me);
-        me.setPie(created);
-        me.getView().setPie(created);
-        me.getPreview().setPie(created);
-        me.getCaption().setValue(created.caption);
+        me.edit.call(me, created);
+    },    
+    edit: function (pie) {
+        var me = this;
+        Pies.hub.Bus.start(pie.id)
+                    .subscribe(Pies.hub.Messages.captionUpdated, me.captionUpdated, me)
+                    .subscribe(Pies.hub.Messages.ingredientsUpdated, me.ingredientsUpdated, me)
+                    .subscribe(Pies.hub.Messages.percentageChanged, me.percentageChanged, me);
+        me.setPie(pie);
+        me.getView().setPie(pie);
+        me.getPreview().setPie(pie);
+        me.getCaption().setValue(pie.caption);
     },
     updateCaption: function (scope, caption) {
         Ext.Ajax.request({

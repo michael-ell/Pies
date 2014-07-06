@@ -49,24 +49,35 @@
         Ext.Viewport.setMenu(menu, { side: me.menuSide, cover: true });
         menu.setData(views);
         main.setViews(views.map(function (item) { return item.view; }));
-        me._current = views[0].view;
-        Pies.app.fireEvent('getPies');
+        main.setViews(views);
+        this._show(this.getHomeView());
+        Pies.app.on(Pies.hub.Messages.editPie, this.editPie, this);
+        Pies.app.fireEvent(Pies.hub.Messages.getPies);
     },
     getViews: function () {
-        return [{ title: 'Home', view: this.getHome()}, { title: 'Bake', view: this.getBake() }, { title: 'My Pies', view: this.getMine()}];
+        return [this.getHomeView(), this.getBakeView(), {title: 'My Pies', view: this.getMine()}];
+    },
+    getHomeView: function () {
+        return { title: 'Home', view: this.getHome() };
+    },
+    getBakeView: function() {
+        return { title: 'Bake', view: this.getBake() };
     },
     toggleMenu: function () {
         Ext.Viewport.toggleMenu(this.menuSide);
     },
     showView: function (scope, index, target, record) {
+        this.toggleMenu();
+        this._show(record.data);
+    },
+    _show: function (data) {
         var me = this;
         var main = me.getMain();
-        var view = record.data.view;       
-        me.toggleMenu();
-        if (main.getActiveItem() != view) {
-            setTimeout(function() {
+        var view = data.view;
+        if (me._current != view) {
+            setTimeout(function () {
                 main.setActiveItem(view);
-                main.setTitle(record.data.title);
+                main.setTitle(data.title);
                 me._tbBtn = view.getTitlebarButton ? view.getTitlebarButton() : null;
                 main.setTitlebarButton(me._tbBtn);
             }, 0);
@@ -85,5 +96,8 @@
         if (this._tbBtn) {
             this._tbBtn.setDisabled(val);
         }
+    },
+    editPie: function (pie) {
+        this._show(this.getBakeView());
     }
 });

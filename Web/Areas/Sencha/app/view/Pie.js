@@ -33,20 +33,26 @@
         });
         var actions = this.getMine() !== true ? {} : Ext.create('Ext.Container', {
             layout: 'hbox',
-            defaults: { xtype: 'button' },
+            defaults: { xtype: 'button', data: pie },
             styleHtmlContent: true,
             styleHtmlCls: 'action-bar',
             items: [
                 {
                     iconCls: 'pencil',
-                    cls: 'edit'
+                    cls: 'edit',
+                    action: 'editPie'
                 },
                 {
                     iconCls: 'trash',
                     cls: 'delete',
-                    action: 'delPie',
-                    data: pie
+                    action: 'delPie'
                 }
+                //,
+                //{
+                //    iconCls: 'email',
+                //    cls: 'email',
+                //    action: 'emailPie'
+                //}
             ]
         });
         return {
