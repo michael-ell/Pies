@@ -16,7 +16,11 @@
                                 var di = this.up('dataitem');
                                 var dv = this.up('dataview');
                                 var idx = dv.getStore().indexOf(di.getRecord());
-                                dv.getScrollable().getScroller().scrollTo(0, di.bodyElement.dom.clientHeight * idx);
+                                if (idx > 0) {
+                                    setTimeout(function() {
+                                        dv.getScrollable().getScroller().scrollTo(0, di.bodyElement.dom.clientHeight * idx, true);
+                                    }, 400);
+                                }
                             }
                         }
                     },

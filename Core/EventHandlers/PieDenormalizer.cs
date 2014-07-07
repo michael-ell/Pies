@@ -117,7 +117,5 @@ namespace Codell.Pies.Core.EventHandlers
         {
             _repository.DeleteById<Guid, Pie>(evnt.EventSourceId);
         }
-
- 
     }
 }

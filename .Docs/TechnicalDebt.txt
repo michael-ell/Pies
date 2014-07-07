@@ -47,6 +47,7 @@ Sencha
 - create google + oauth provider for mvc app
 - sign out of google +
 - handle google + sign in errors
+- able to start/bake new pie
 
 Upgrade
 - Signal R
