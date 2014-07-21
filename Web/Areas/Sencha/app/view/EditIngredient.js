@@ -18,7 +18,7 @@
                                 var idx = dv.getStore().indexOf(di.getRecord());
                                 if (idx > 0) {
                                     setTimeout(function() {
-                                        dv.getScrollable().getScroller().scrollTo(0, di.bodyElement.dom.clientHeight * idx, true);
+                                        dv.getScrollable().getScroller().scrollTo(0, (di.bodyElement.dom.clientHeight + 10) * idx, true);
                                     }, 400);
                                 }
                             }

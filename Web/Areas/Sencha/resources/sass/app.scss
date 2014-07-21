@@ -7,14 +7,14 @@ $experimental-support-for-khtml : false;
 $pies-label: 'pies';
 $pies-primary-color: #4E769F;
 $pies-menu-color: #EEEEEE;
-
 $font-color: #4A4A4A;
-//Remove all gradients, box and text shadows
-$include-highlights: false;
-
-//$sheet-bg-color: #212529;
 $opacity: 0.6;
+
+//Sencha CSS variables
+$include-highlights: false; //Remove all gradients, box and text shadows
+$panel-border-radius: 1px;
 $sheet-bg-color: rgba(33, 37, 41, $opacity);
+
 
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
@@ -164,4 +164,5 @@ body{
 @include icon('pencil', '!', 'IcoMoon');
 @include icon('trash', '#', 'IcoMoon');
 @include icon('email', '$', 'IcoMoon');
+@include icon('actions', '*', 'IcoMoon');
 

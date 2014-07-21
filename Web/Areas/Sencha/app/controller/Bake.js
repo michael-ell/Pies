@@ -1,13 +1,19 @@
 ﻿Ext.define('Pies.controller.Bake', {
     extend: 'Ext.app.Controller',
-    requires: ['Pies.model.Pie', 'Pies.view.EditIngredient', 'Pies.hub.Bus', 'Pies.hub.Messages', 'Ext.data.reader.Json'],
+    requires: ['Pies.model.Pie', 'Pies.view.BakeActions', 'Pies.view.EditIngredient', 'Pies.hub.Bus', 'Pies.hub.Messages', 'Ext.data.reader.Json'],
     config: {
         views: ['Bake'],
-        refs: { view: '.pies-bake .pies-edit', caption: '.pies-edit #caption', preview: '.pies-bake .pies-pie' },
+        refs: { main: '.pies-bake', view: '.pies-bake .pies-edit', caption: '.pies-edit #caption', preview: '.pies-bake .pies-pie' },
         control: {
-            '.pies-bake': {
-                show: 'createPie',
+            main: {
+                show: 'show',
                 hide: 'done'
+            },
+            '.pies-bake-actions button[action=preview]': {
+                tap: 'togglePreview'  
+            },
+            '.pies-bake-actions button[action=new]': {
+                tap: 'createPie'
             },
             caption: {
                 change: 'updateCaption'
@@ -23,20 +29,24 @@
             }
         },
         pie: null
-    },   
-    createPie: function () {
+    },
+    show: function() {
         if (this.getPie() == null) {
-            Ext.Ajax.request({
-                url: '/api/pie/create',
-                scope: this,
-                success: this.showPie
-            });
+            this.createPie();
         }
+    },
+    createPie: function () {
+        Ext.Ajax.request({
+            url: '/api/pie/create',
+            scope: this,
+            success: this.showPie
+        });
     },
     showPie: function(xhr, opts) {
         var created = Ext.JSON.decode(xhr.responseText);
         var me = opts.scope;
         me.edit.call(me, created);
+        me.getMain().hideActions();
     },    
     edit: function (pie) {
         var me = this;
@@ -48,6 +58,9 @@
         me.getView().setPie(pie);
         me.getPreview().setPie(pie);
         me.getCaption().setValue(pie.caption);
+    },
+    togglePreview: function () {
+        this.getMain().togglePreview();
     },
     updateCaption: function (scope, caption) {
         Ext.Ajax.request({
